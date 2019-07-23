@@ -1,6 +1,6 @@
 template< typename T >
 size_t longest_increasing_subsequence(const vector< T > &a, bool strict) {
-  vector< int > lis;
+  vector< T > lis;
   for(auto &p : a) {
     typename vector< T >::iterator it;
     if(strict) it = lower_bound(begin(lis), end(lis), p);
