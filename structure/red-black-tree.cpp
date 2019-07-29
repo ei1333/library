@@ -24,28 +24,28 @@ struct RedBlackTree {
 
   struct Node {
     Node *l, *r;
-    bool color;
-    unsigned char level;
-    int cnt;
+    COLOR color;
+    int level, cnt;
     D key, sum;
     L lazy;
 
     Node() {}
 
-    Node(const D &k, const L &pp) :
-        key(k), sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1), lazy(pp) {}
+    Node(const D &k, const L &laz) :
+        key(k), sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1), lazy(laz) {}
 
-    Node(Node *l, Node *r, const D &k, const L &pp) :
-        key(k), color(RED), l(l), r(r), lazy(pp) {}
+    Node(Node *l, Node *r, const D &k, const L &laz) :
+        key(k), color(RED), l(l), r(r), lazy(laz) {}
   };
 
   ArrayPool< Node > pool;
+
 
   const D M1;
   const L OM0;
 
   RedBlackTree(int sz, const D &M1, const L &OM0) :
-      pool(sz), M1(M1), OM0(OM0) {}
+      pool(sz), M1(M1), OM0(OM0) { pool.clear(); }
 
 
   inline Node *alloc(const D &key) {
@@ -74,7 +74,7 @@ struct RedBlackTree {
     t = clone(t);
     if(t->lazy != OM0) {
       if(!t->l) {
-        t->key = g(t->key, t->lazy);
+        t->key = g(t->key, p(t->lazy, 1));
       } else {
         if(t->l) {
           t->l = clone(t->l);
@@ -84,7 +84,7 @@ struct RedBlackTree {
         if(t->r) {
           t->r = clone(t->r);
           t->r->lazy = h(t->r->lazy, t->lazy);
-          t->r->sum = g(p(t->lazy, count(t->r)), t->r->sum);
+          t->r->sum = g(t->r->sum, p(t->lazy, count(t->r)));
         }
       }
       t->lazy = OM0;
@@ -165,7 +165,7 @@ struct RedBlackTree {
   }
 
   Node *build(const vector< D > &v) {
-    pool.clear();
+    //pool.clear();
     return build(0, (int) v.size(), v);
   }
 
@@ -226,11 +226,11 @@ struct RedBlackTree {
   }
 
   void set_element(Node *&t, int k, const D &x) {
-    t = propagate(t);
     if(!t->l) {
       t->key = t->sum = x;
       return;
     }
+    t = propagate(t);
     if(k < count(t->l)) set_element(t->l, k, x);
     else set_element(t->r, k - count(t->l), x);
     t = update(t);
@@ -245,6 +245,6 @@ struct RedBlackTree {
   }
 
   Node *makeset() {
-    return nullptr;
+    return (nullptr);
   }
 };

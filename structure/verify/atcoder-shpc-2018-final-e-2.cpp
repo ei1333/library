@@ -11,6 +11,7 @@ inline pi F(pi x, pi y) {
   return pi((1LL * y.first * power[x.second] + x.first % mod) % mod, x.second + y.second);
 };
  
+ 
 int main() {
   int N, M;
   string S[20];
@@ -28,7 +29,7 @@ int main() {
       dat[i][j].second = 1;
     }
   }
-  using T = RedBlackTree< pi, int, F, none, none >;
+  using T = RedBlackTree< pi, int, F, none, none, none >;
   T beet(M * N * 2, pi(0, 0), 0);
   vector< T::Node * > root;
   for(int i = 0; i < M; i++) root.push_back(beet.build(dat[i]));
