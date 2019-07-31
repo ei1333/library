@@ -1,6 +1,6 @@
 template< int char_size >
 struct TrieNode {
-  int nxt[char_size + 1];
+  int nxt[char_size];
 
   int exist;
   vector< int > accept;
@@ -66,11 +66,11 @@ struct Trie {
     query(str, f, 0, 0);
   }
 
-  int size() const {
+  int count() const {
     return (nodes[0].exist);
   }
 
-  int nodesize() const {
+  int size() const {
     return ((int) nodes.size());
   }
 };

@@ -64,16 +64,16 @@ struct RandomizedBinarySearchTree {
   Node *propagate(Node *t) {
     t = clone(t);
     if(t->lazy != OM0) {
-      t->key = g(t->key, t->lazy);
+      t->key = g(t->key, p(t->lazy, 1));
       if(t->l) {
         t->l = clone(t->l);
         t->l->lazy = h(t->l->lazy, t->lazy);
-        t->l->sum = f(t->l->sum, p(t->lazy, count(t->l)));
+        t->l->sum = g(t->l->sum, p(t->lazy, count(t->l)));
       }
       if(t->r) {
         t->r = clone(t->r);
         t->r->lazy = h(t->r->lazy, t->lazy);
-        t->r->sum = f(p(t->lazy, count(t->r)), t->r->sum);
+        t->r->sum = g(t->r->sum, p(t->lazy, count(t->r)));
       }
       t->lazy = OM0;
     }

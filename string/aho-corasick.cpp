@@ -1,38 +1,36 @@
 template< int char_size, int margin >
-struct AhoCorasick : Trie< char_size, margin > {
-  using TRIE = Trie< char_size, margin >;
-  static const int FAIL = char_size;
+struct AhoCorasick : Trie< char_size + 1, margin > {
+  using Trie< char_size + 1, margin >::Trie;
+
+  const int FAIL = char_size;
   vector< int > correct;
 
-  AhoCorasick() : TRIE() {}
-
   void build(bool heavy = true) {
-    correct.resize(TRIE::nodes.size());
-    for(int i = 0; i < TRIE::nodes.size(); i++) {
-      correct[i] = (int) TRIE::nodes[i].accept.size();
+    correct.resize(this->size());
+    for(int i = 0; i < this->size(); i++) {
+      correct[i] = (int) this->nodes[i].accept.size();
     }
-
     queue< int > que;
     for(int i = 0; i <= char_size; i++) {
-      if(~TRIE::nodes[0].nxt[i]) {
-        TRIE::nodes[TRIE::nodes[0].nxt[i]].nxt[FAIL] = 0;
-        que.emplace(TRIE::nodes[0].nxt[i]);
+      if(~this->nodes[0].nxt[i]) {
+        this->nodes[this->nodes[0].nxt[i]].nxt[FAIL] = 0;
+        que.emplace(this->nodes[0].nxt[i]);
       } else {
-        TRIE::nodes[0].nxt[i] = 0;
+        this->nodes[0].nxt[i] = 0;
       }
     }
     while(!que.empty()) {
-      TrieNode< char_size > &now = TRIE::nodes[que.front()];
+      auto &now = this->nodes[que.front()];
       correct[que.front()] += correct[now.nxt[FAIL]];
       que.pop();
       for(int i = 0; i < char_size; i++) {
         if(now.nxt[i] == -1) continue;
         int fail = now.nxt[FAIL];
-        while(TRIE::nodes[fail].nxt[i] == -1) fail = TRIE::nodes[fail].nxt[FAIL];
-        TRIE::nodes[now.nxt[i]].nxt[FAIL] = TRIE::nodes[fail].nxt[i];
+        while(this->nodes[fail].nxt[i] == -1) fail = this->nodes[fail].nxt[FAIL];
+        this->nodes[now.nxt[i]].nxt[FAIL] = this->nodes[fail].nxt[i];
         if(heavy) {
-          auto &u = TRIE::nodes[now.nxt[i]].accept;
-          auto &v = TRIE::nodes[TRIE::nodes[fail].nxt[i]].accept;
+          auto &u = this->nodes[now.nxt[i]].accept;
+          auto &v = this->nodes[this->nodes[fail].nxt[i]].accept;
           vector< int > accept;
           set_union(begin(u), end(u), begin(v), end(v), back_inserter(accept));
           u = accept;
@@ -43,23 +41,21 @@ struct AhoCorasick : Trie< char_size, margin > {
     }
   }
 
-  int match(const string &str, vector< int > &result, int now = 0) {
-    result.assign(TRIE::size(), 0);
-    int count = 0;
+  map< int, int > match(const string &str, int now = 0) {
+    map< int, int > result;
     for(auto &c : str) {
-      while(TRIE::nodes[now].nxt[c - margin] == -1) now = TRIE::nodes[now].nxt[FAIL];
-      now = TRIE::nodes[now].nxt[c - margin];
-      count += correct[now];
-      for(auto &v : TRIE::nodes[now].accept) ++result[v];
+      while(this->nodes[now].nxt[c - margin] == -1) now = this->nodes[now].nxt[FAIL];
+      now = this->nodes[now].nxt[c - margin];
+      for(auto &v : this->nodes[now].accept) result[v] += 1;
     }
-    return (count);
+    return result;
   }
 
-  int move(const char &c, int &now) {
-    int count = 0;
-    while(TRIE::nodes[now].nxt[c - margin] == -1) now = TRIE::nodes[now].nxt[FAIL];
-    now = TRIE::nodes[now].nxt[c - margin];
-    count += correct[now];
-    return (count);
+  pair< int, int > move(const char &c, int now) {
+    int sum = 0;
+    while(this->nodes[now].nxt[c - margin] == -1) now = this->nodes[now].nxt[FAIL];
+    now = this->nodes[now].nxt[c - margin];
+    sum += correct[now];
+    return {sum, now};
   }
 };
