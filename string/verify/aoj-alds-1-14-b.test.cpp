@@ -1,3 +1,9 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B"
+
+#include "../../template/template.cpp"
+
+#include "../rolling-hash.cpp"
+
 int main() {
   string T, P;
 

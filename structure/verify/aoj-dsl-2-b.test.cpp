@@ -1,3 +1,9 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B"
+
+#include "../../template/template.cpp"
+
+#include "../binary-indexed-tree.cpp"
+
 int main() {
   int N, Q;
   scanf("%d %d", &N, &Q);

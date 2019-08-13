@@ -1,3 +1,9 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_D"
+
+#include "../../template/template.cpp"
+
+#include "../suffix-array.cpp"
+
 int main() {
   string S;
   int Q;

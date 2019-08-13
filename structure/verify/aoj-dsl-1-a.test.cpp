@@ -1,3 +1,9 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
+
+#include "../../template/template.cpp"
+
+#include "../union-find.cpp"
+
 int main() {
   int N, Q;
   scanf("%d %d", &N, &Q);

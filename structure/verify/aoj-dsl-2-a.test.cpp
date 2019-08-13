@@ -1,5 +1,10 @@
-int main()
-{
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
+
+#include "../../template/template.cpp"
+
+#include "../segment-tree.cpp"
+
+int main() {
   int N, Q;
   scanf("%d %d", &N, &Q);
   SegmentTree< int > seg(N, [](int a, int b) { return min(a, b); }, INT_MAX);
