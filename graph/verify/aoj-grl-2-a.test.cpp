@@ -1,3 +1,10 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
+
+#include "../../template/template.cpp"
+#include "../template.cpp"
+
+#include "../prim.cpp"
+
 int main() {
   int V, E;
   scanf("%d %d", &V, &E);

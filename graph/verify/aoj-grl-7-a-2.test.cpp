@@ -1,3 +1,11 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A"
+
+#include "../../template/template.cpp"
+#include "../template.cpp"
+
+#include "../hopcroft-karp.cpp"
+
+
 int main() {
   int X, Y, E;
   scanf("%d %d %d", &X, &Y, &E);

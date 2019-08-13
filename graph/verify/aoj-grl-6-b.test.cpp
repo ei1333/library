@@ -1,3 +1,11 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B"
+
+#include "../../template/template.cpp"
+#include "../template.cpp"
+
+#include "../primal-dual.cpp"
+
+
 int main() {
   int V, E, F;
   scanf("%d %d %d", &V, &E, &F);
