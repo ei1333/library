@@ -1,3 +1,7 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
 using int64 = long long;
 const int mod = 1e9 + 7;
 
@@ -79,8 +83,4 @@ struct FixPoint : F {
 template< typename F >
 inline decltype(auto) MFP(F &&f) {
   return FixPoint< F >{forward< F >(f)};
-}
-
-int main() {
-  $END$
 }

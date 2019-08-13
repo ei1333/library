@@ -1,3 +1,10 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C"
+
+#include "../../template/template.cpp"
+#include "../../graph/template.cpp"
+
+#include "../heavy-light-decomposition.cpp"
+
 int main() {
   int N, Q;
   scanf("%d", &N);
