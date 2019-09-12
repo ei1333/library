@@ -7,6 +7,7 @@ struct Dinic {
     flow_t cap;
     int rev;
     bool isrev;
+    int idx;
   };
 
   vector< vector< edge > > graph;
@@ -14,9 +15,9 @@ struct Dinic {
 
   Dinic(int V) : INF(numeric_limits< flow_t >::max()), graph(V) {}
 
-  void add_edge(int from, int to, flow_t cap) {
-    graph[from].emplace_back((edge) {to, cap, (int) graph[to].size(), false});
-    graph[to].emplace_back((edge) {from, 0, (int) graph[from].size() - 1, true});
+  void add_edge(int from, int to, flow_t cap, int idx = -1) {
+    graph[from].emplace_back((edge) {to, cap, (int) graph[to].size(), false, idx});
+    graph[to].emplace_back((edge) {from, 0, (int) graph[from].size() - 1, true, idx});
   }
 
   bool bfs(int s, int t) {

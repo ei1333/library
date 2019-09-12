@@ -1,23 +1,71 @@
 template< typename flow_t, template< typename > class F >
 struct MaxFlowLowerBound {
   F< flow_t > flow;
-  int X, Y;
-  flow_t low_sum;
+  vector< flow_t > in, up;
+  typename F< flow_t >::edge *latte, *malta;
+  int X, Y, V;
+  flow_t sum;
 
-  MaxFlowLowerBound(int V) : flow(V + 2), X(V), Y(V + 1), low_sum(0) {}
+  MaxFlowLowerBound(int V) : V(V), flow(V + 2), X(V), Y(V + 1), sum(0), in(V) {}
 
   void add_edge(int from, int to, flow_t low, flow_t high) {
-    flow.add_edge(from, to, high - low);
-    flow.add_edge(X, to, low);
-    flow.add_edge(from, Y, low);
-    low_sum += low;
+    assert(from != to);
+    flow.add_edge(from, to, high - low, up.size());
+    in[from] -= low;
+    in[to] += low;
+    up.emplace_back(high);
+  }
+
+  void build() {
+    for(int i = 0; i < V; i++) {
+      if(in[i] > 0) {
+        flow.add_edge(X, i, in[i]);
+        sum += in[i];
+      } else if(in[i] < 0) {
+        flow.add_edge(i, Y, -in[i]);
+      }
+    }
+  }
+
+  bool can_flow(int s, int t) {
+    assert(s != t);
+    flow.add_edge(t, s, flow.INF);
+    latte = &flow.graph[t].back();
+    malta = &flow.graph[s].back();
+    return can_flow();
+  }
+
+  bool can_flow() {
+    build();
+    auto ret = flow.max_flow(X, Y);
+    return ret >= sum;
   }
 
   flow_t max_flow(int s, int t) {
-    auto a = flow.max_flow(X, Y);
-    auto b = flow.max_flow(s, Y);
-    auto c = flow.max_flow(X, t);
-    auto d = flow.max_flow(s, t);
-    return b == c && a + b == low_sum ? b + d : -1;
+    if(can_flow(s, t)) {
+      return flow.max_flow(s, t);
+    } else {
+      return -1;
+    }
+  }
+
+  flow_t min_flow(int s, int t) {
+    if(can_flow(s, t)) {
+      auto ret = flow.INF - latte->cap;
+      latte->cap = malta->cap = 0;
+      return ret - flow.max_flow(t, s);
+    } else {
+      return -1;
+    }
+  }
+
+  void output(int M) {
+    vector< flow_t > ans(M);
+    for(int i = 0; i < flow.graph.size(); i++) {
+      for(auto &e : flow.graph[i]) {
+        if(!e.isrev && ~e.idx) ans[e.idx] = up[e.idx] - e.cap;
+      }
+    }
+    for(auto &p : ans) cout << p << endl;
   }
 };
