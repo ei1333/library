@@ -55,7 +55,7 @@ struct LazySegmentTree {
     for(int i = height; i > 0; i--) propagate(k >> i);
   }
 
-  Monoid update(int a, int b, const OperatorMonoid &x) {
+  void update(int a, int b, const OperatorMonoid &x) {
     thrust(a += sz);
     thrust(b += sz - 1);
     for(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
