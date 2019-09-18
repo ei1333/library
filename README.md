@@ -28,6 +28,7 @@
 - [二次元Segment-Tree(一点更新矩形取得)](https://github.com/ei1333/library/blob/master/structure/segment-tree-2d.cpp)
 - [二次元Segment-Tree(矩形更新一点取得)](https://github.com/ei1333/library/blob/master/structure/segment-tree-2d-2.cpp)
 - [永続Segment-Tree](https://github.com/ei1333/library/blob/master/structure/persistent-segment-tree.cpp)
+- [Segment-Tree-Beats](https://github.com/ei1333/library/blob/master/structure/segment-tree-beats.cpp)
 
 #### Trie
 - [Trie](https://github.com/ei1333/library/blob/master/structure/trie.cpp)
@@ -105,8 +106,36 @@
 - [最小費用流(Primal-Dual) O(FE logV)](https://github.com/ei1333/library/blob/master/graph/primal-dual.cpp)
 - [二部グラフの最大マッチング O(EV)](https://github.com/ei1333/library/blob/master/graph/bipartite-matching.cpp)
 - [二部グラフの最大マッチング(HopCroft-Karp) O(E sqrt(V))](https://github.com/ei1333/library/blob/master/graph/hopcroft-karp.cpp)
+- [二部グラフの最小重み最大マッチング(Hungarian) O(V^3)](https://github.com/ei1333/library/blob/master/graph/hungarian.cpp)
 
-TODO
+#### 連結成分分解
+
+- [二重辺連結成分分解](https://github.com/ei1333/library/blob/master/graph/two-edge-connected-components.cpp)
+- [二重頂点連結成分分解](https://github.com/ei1333/library/blob/master/graph/bi-connected-components.cpp)
+- [強連結成分分解](https://github.com/ei1333/library/blob/master/graph/strongly-connected-components.cpp)
+
+#### 最短路
+
+- [グリッド上の幅優先探索 O(HW)](https://github.com/ei1333/library/blob/master/graph/grid-bfs.cpp)
+- [単一始点最短路(Bellman-Ford) O(VE)](https://github.com/ei1333/library/blob/master/graph/bellman-ford.cpp)
+- [単一始点最短路(SPFA) O(VE)](https://github.com/ei1333/library/blob/master/graph/shortest-path-faster-algorithm.cpp)
+- [単一始点最短路(Dijkstra) O(E logV)](https://github.com/ei1333/library/blob/master/graph/dijkstra.cpp)
+- [全点対間最短路(Warshall-Floyd) O(V^3)](https://github.com/ei1333/library/blob/master/graph/warshall-floyd.cpp)
+
+#### 最小全域木
+
+- [最小全域木(Borůvka)](https://github.com/ei1333/library/blob/master/graph/boruvka.cpp)
+- [最小全域木(Kruskal)](https://github.com/ei1333/library/blob/master/graph/kruskal.cpp)
+- [最小全域木(Prim)](https://github.com/ei1333/library/blob/master/graph/prim.cpp)
+
+#### その他
+
+- [オイラー路の復元](https://github.com/ei1333/library/blob/master/graph/eulerian-trail.cpp)
+- [彩色数 O(2^V V)](https://github.com/ei1333/library/blob/master/graph/chromatic-number.cpp)
+- [最小全域有向木(Chu-Liu/Edmond) O(E logV)](https://github.com/ei1333/library/blob/master/graph/chu-liu-edmond.cpp)
+- [橋/関節点](https://github.com/ei1333/library/blob/master/graph/lowlink.cpp)
+- [最大クリーク O(2^sqrt(2E) V)](https://github.com/ei1333/library/blob/master/graph/maximum-clique.cpp)
+- [最大独立集合(乱択)](https://github.com/ei1333/library/blob/master/graph/maximum-independent-set.cpp)
 
 ## 木
 
@@ -118,7 +147,40 @@ TODO
 - [根付き木に変換](https://github.com/ei1333/library/blob/master/tree/convert-rooted-tree.cpp)
 
 ## 数学
-TODO
+
+- [ModInt](https://github.com/ei1333/library/blob/master/math/mod-int.cpp)
+- [累乗 O(logN)](https://github.com/ei1333/library/blob/master/math/power.cpp)
+- [オイラーのφ関数(値) O(sqrt(N))](https://github.com/ei1333/library/blob/master/math/euler-phi.cpp)
+- [オイラーのφ関数(テーブル) O(N loglogN)](https://github.com/ei1333/library/blob/master/math/euler-phi-table.cpp)
+- [ベル数(値) O(min(N,K) logN)](https://github.com/ei1333/library/blob/master/math/bell-number.cpp)
+- [ラグランジュ補間](https://github.com/ei1333/library/blob/master/math/lagrange-polynomial.cpp)
+- [二項係数(値) O(K)](https://github.com/ei1333/library/blob/master/math/binomial.cpp)
+- [二項係数(テーブル) O(N^2)](https://github.com/ei1333/library/blob/master/math/binomial-table.cpp)
+- [商の列挙](https://github.com/ei1333/library/blob/master/math/quotient-range.cpp)
+- [形式的冪級数](https://github.com/ei1333/library/blob/master/math/polynominal-mod.cpp)
+- [拡張ユークリッドの互除法 O(logN)](https://github.com/ei1333/library/blob/master/math/extgcd.cpp)
+- [第2種スターリング数 O(K logN)](https://github.com/ei1333/library/blob/master/math/stirling-number-second.cpp)
+- [約数列挙 O(sqrt(N)](https://github.com/ei1333/library/blob/master/math/divisor.cpp)
+- [素因数分解 O(sqrt(N))](https://github.com/ei1333/library/blob/master/math/prime-factor.cpp)
+- [組合せ](https://github.com/ei1333/library/blob/master/math/combination.cpp)
+- [行列](https://github.com/ei1333/library/blob/master/math/matrix.cpp)
+- [進数変換](https://github.com/ei1333/library/blob/master/math/convert-base.cpp)
+- [階乗 mod p O(sqrt(p) log p)](https://github.com/ei1333/library/blob/master/math/factorial.cpp)
+- [離散対数問題 O(sqrt(p) log p)](https://github.com/ei1333/library/blob/master/math/mod-log.cpp)
+- [高速フーリエ変換(FFT)](https://github.com/ei1333/library/blob/master/math/fast-fourier-transform.cpp)
+- [高速フーリエ変換(NTT)](https://github.com/ei1333/library/blob/master/math/number-theoretic-transform.cpp)
+- [任意mod畳み込み (30bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution.cpp)
+- [任意mod畳み込み (38bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution-long.cpp)
+- [分割数(値) O(N log N)](https://github.com/ei1333/library/blob/master/math/partition.cpp)
 
 ## その他
-TODO
+
+- [Mo's algorithm](https://github.com/ei1333/library/blob/master/other/mo.cpp)
+- [Mo's alogirhtm(ロールバッグ平方分割)](https://github.com/ei1333/library/blob/master/other/mo-rollback.cpp)
+- [Offline-Dynamic-Connectivity](https://github.com/ei1333/library/blob/master/other/offline-dynamic-connectivity.cpp)
+- [サイコロ](https://github.com/ei1333/library/blob/master/other/dice.cpp)
+- [タイマー](https://github.com/ei1333/library/blob/master/other/timer.cpp)
+- [乱数生成器](https://github.com/ei1333/library/blob/master/other/random-number-generator.cpp)
+- [座標圧縮](https://github.com/ei1333/library/blob/master/other/compress.cpp)
+- [高速入力](https://github.com/ei1333/library/blob/master/other/fast-input.cpp)
+
