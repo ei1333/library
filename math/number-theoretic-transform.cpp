@@ -1,6 +1,7 @@
 template< int mod, int primitiveroot >
 struct NumberTheoreticTransform {
   vector< vector< int > > rts, rrts;
+
   void ensure_base(int N) {
     if(rts.size() >= N) return;
     rts.resize(N), rrts.resize(N);
@@ -31,48 +32,48 @@ struct NumberTheoreticTransform {
     return mod_pow(x, mod - 2);
   }
 
-  inline int add(int x, int y) {
+  inline unsigned add(unsigned x, unsigned y) {
     x += y;
     if(x >= mod) x -= mod;
     return x;
   }
 
-  inline int mul(int a, int b) {
-    return int(1LL * a * b % mod);
+  inline unsigned mul(unsigned a, unsigned b) {
+    return 1ull * a * b % mod;
   }
 
-  void DiscreteFourierTransform(vector< int > &F, bool rev) {
-    const int N = (int) F.size();
+  void ntt(vector< int > &a, bool rev) {
+    const int N = (int) a.size();
     ensure_base(N);
     for(int i = 0, j = 1; j + 1 < N; j++) {
       for(int k = N >> 1; k > (i ^= k); k >>= 1);
-      if(i > j) swap(F[i], F[j]);
+      if(i > j) swap(a[i], a[j]);
     }
     for(int i = 1; i < N; i <<= 1) {
       for(int j = 0; j < N; j += i * 2) {
         for(int k = 0; k < i; k++) {
-          int s = F[j + k], t = mul(F[j + k + i], rev ? rrts[i][k] : rts[i][k]);
-          F[j + k] = add(s, t), F[j + k + i] = add(s, mod - t);
+          int s = a[j + k], t = mul(a[j + k + i], rev ? rrts[i][k] : rts[i][k]);
+          a[j + k] = add(s, t), a[j + k + i] = add(s, mod - t);
         }
       }
     }
     if(rev) {
       int temp = inverse(N);
-      for(int i = 0; i < N; i++) F[i] = mul(F[i], temp);
+      for(int i = 0; i < N; i++) a[i] = mul(a[i], temp);
     }
   }
 
-  vector< int > Multiply(const vector< int > &A, const vector< int > &B) {
+  vector< int > multiply(vector< int > a, vector< int > b) {
+    int need = a.size() + b.size() - 1;
     int sz = 1;
-    while(sz < A.size() + B.size() - 1) sz <<= 1;
-    vector< int > F(sz), G(sz);
-    for(int i = 0; i < A.size(); i++) F[i] = A[i];
-    for(int i = 0; i < B.size(); i++) G[i] = B[i];
-    DiscreteFourierTransform(F, false);
-    DiscreteFourierTransform(G, false);
-    for(int i = 0; i < sz; i++) F[i] = mul(F[i], G[i]);
-    DiscreteFourierTransform(F, true);
-    F.resize(A.size() + B.size() - 1);
-    return F;
+    while(sz < need) sz <<= 1;
+    a.resize(sz, 0);
+    b.resize(sz, 0);
+    ntt(a, false);
+    ntt(b, false);
+    for(int i = 0; i < sz; i++) a[i] = mul(a[i], b[i]);
+    ntt(a, true);
+    a.resize(need);
+    return a;
   }
 };

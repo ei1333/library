@@ -2,14 +2,22 @@ template< typename T >
 T factorial(int64_t n) {
   if(n >= T::get_mod()) return 0;
   if(n == 0) return 1;
- 
+
   const int64_t sn = sqrt(n);
   const T sn_inv = T(1) / sn;
- 
+
   Combination< modint > comb(sn);
   using P = vector< T >;
-  ArbitraryModConvolution< modint > fft;
- 
+
+  ArbitraryModConvolution< T > fft;
+  using FPS = FormalPowerSeries< T >;
+  auto mult = [&](const typename FPS::P &a, const typename FPS::P &b) {
+    auto ret = fft.multiply(a, b);
+    return typename FPS::P(ret.begin(), ret.end());
+  };
+  FPS::set_fft(mult);
+
+
   auto shift = [&](const P &f, T dx) {
     int n = (int) f.size();
     T a = dx * sn_inv;

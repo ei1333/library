@@ -149,6 +149,7 @@
 ## 数学
 
 - [ModInt](https://github.com/ei1333/library/blob/master/math/mod-int.cpp)
+- [任意ModInt](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-int.cpp)
 - [累乗 O(logN)](https://github.com/ei1333/library/blob/master/math/power.cpp)
 - [オイラーのφ関数(値) O(sqrt(N))](https://github.com/ei1333/library/blob/master/math/euler-phi.cpp)
 - [オイラーのφ関数(テーブル) O(N loglogN)](https://github.com/ei1333/library/blob/master/math/euler-phi-table.cpp)
@@ -157,7 +158,9 @@
 - [二項係数(値) O(K)](https://github.com/ei1333/library/blob/master/math/binomial.cpp)
 - [二項係数(テーブル) O(N^2)](https://github.com/ei1333/library/blob/master/math/binomial-table.cpp)
 - [商の列挙](https://github.com/ei1333/library/blob/master/math/quotient-range.cpp)
-- [形式的冪級数](https://github.com/ei1333/library/blob/master/math/polynominal-mod.cpp)
+- [形式的冪級数](https://github.com/ei1333/library/blob/master/math/formal-power-series.cpp)
+- [Multipoint-Evaluation O(N log^2N)](https://github.com/ei1333/library/blob/master/math/multipoint-evaluation.cpp)
+- [Polynomial-Interpolation O(N log^2N)](https://github.com/ei1333/library/blob/master/math/polynomial-interpolation.cpp)
 - [拡張ユークリッドの互除法 O(logN)](https://github.com/ei1333/library/blob/master/math/extgcd.cpp)
 - [第2種スターリング数 O(K logN)](https://github.com/ei1333/library/blob/master/math/stirling-number-second.cpp)
 - [約数列挙 O(sqrt(N)](https://github.com/ei1333/library/blob/master/math/divisor.cpp)
