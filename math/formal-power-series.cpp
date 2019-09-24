@@ -3,7 +3,6 @@ struct FormalPowerSeries : vector< T > {
   using vector< T >::vector;
   using P = FormalPowerSeries;
 
-
   using MULT = function< P(P, P) >;
 
   static MULT &get_mult() {
@@ -15,21 +14,21 @@ struct FormalPowerSeries : vector< T > {
     get_mult() = f;
   }
 
-  //FormalPowerSeries(const vector< T > &v) : FormalPowerSeries(v.begin(), v.end()) {}
-
   void shrink() {
     while(this->size() && this->back() == T(0)) this->pop_back();
   }
 
   P operator+(const P &r) const { return P(*this) += r; }
 
+  P operator+(const T &v) const { return P(*this) += v; }
+
   P operator-(const P &r) const { return P(*this) -= r; }
+
+  P operator-(const T &v) const { return P(*this) -= v; }
 
   P operator*(const P &r) const { return P(*this) *= r; }
 
   P operator*(const T &v) const { return P(*this) *= v; }
-
-  P operator/(const P &r) const { return P(*this) /= r; }
 
   P operator%(const P &r) const { return P(*this) %= r; }
 
@@ -39,9 +38,22 @@ struct FormalPowerSeries : vector< T > {
     return *this;
   }
 
+  P &operator+=(const T &r) {
+    if(this->empty()) this->resize(1);
+    (*this)[0] += r;
+    return *this;
+  }
+
   P &operator-=(const P &r) {
     if(r.size() > this->size()) this->resize(r.size());
     for(int i = 0; i < r.size(); i++) (*this)[i] -= r[i];
+    shrink();
+    return *this;
+  }
+
+  P &operator-=(const T &r) {
+    if(this->empty()) this->resize(1);
+    (*this)[0] -= r;
     shrink();
     return *this;
   }
@@ -58,10 +70,7 @@ struct FormalPowerSeries : vector< T > {
       return *this;
     }
     assert(get_mult() != nullptr);
-    auto ret = get_mult()(*this, r);
-    this->resize(ret.size());
-    for(int k = 0; k < ret.size(); k++) (*this)[k] = ret[k];
-    return *this;
+    return *this = get_mult()(*this, r);
   }
 
   P operator-() const {
@@ -77,10 +86,6 @@ struct FormalPowerSeries : vector< T > {
     }
     int n = this->size() - r.size() + 1;
     return *this = (rev().pre(n) * r.rev().inv(n)).pre(n).rev(n);
-  }
-
-  P &operator%=(const P &r) {
-    return *this -= *this / r * r;
   }
 
   P pre(int sz) const {
@@ -116,7 +121,7 @@ struct FormalPowerSeries : vector< T > {
     if(deg == -1) deg = n;
     P ret({T(1) / (*this)[0]});
     for(int i = 1; i < deg; i <<= 1) {
-      ret = (ret * T(2) - ret * ret * pre(i << 1)).pre(i << 1);
+      ret = (ret + ret - ret * ret * pre(i << 1)).pre(i << 1);
     }
     return ret.pre(deg);
   }
@@ -126,8 +131,7 @@ struct FormalPowerSeries : vector< T > {
     assert((*this)[0] == 1);
     const int n = (int) this->size();
     if(deg == -1) deg = n;
-    auto vv = this->diff() * this->inv(deg);
-    return (this->diff() * this->inv(deg)).integral().pre(deg);
+    return (this->diff() * this->inv(deg)).pre(deg - 1).integral();
   }
 
   // F(0) must be 1
@@ -135,6 +139,7 @@ struct FormalPowerSeries : vector< T > {
     assert((*this)[0] == T(1));
     const int n = (int) this->size();
     if(deg == -1) deg = n;
+    // P ret({(*this)[0].sqrt()});
     P ret({T(1)});
     T inv2 = T(1) / T(2);
     for(int i = 1; i < deg; i <<= 1) {
@@ -148,11 +153,18 @@ struct FormalPowerSeries : vector< T > {
     assert((*this)[0] == T(0));
     const int n = (int) this->size();
     if(deg == -1) deg = n;
-    P ret({T(1)}), g({T(1)});
+    P ret({T(1)});
     for(int i = 1; i < deg; i <<= 1) {
-      ret = (ret * (pre(i << 1) + g - ret.log(i << 1))).pre(i << 1);
+      ret = (ret * (pre(i << 1) + T(1) - ret.log(i << 1))).pre(i << 1);
     }
     return ret.pre(deg);
+  }
+
+  P pow(T k, int deg = -1) const {
+    const int n = (int) this->size();
+    if(deg == -1)
+      deg = n;
+    return (log(deg) * k).exp(deg);
   }
 
   T eval(T x) const {
