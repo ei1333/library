@@ -16,7 +16,7 @@ istream &operator>>(istream &is, Point &p) {
 }
 
 ostream &operator<<(ostream &os, Point &p) {
-  os << fixed << setprecision(10) << p.real() << " " << p.imag();
+  return os << fixed << setprecision(10) << p.real() << " " << p.imag();
 }
 
 // 点 p を反時計回りに theta 回転
