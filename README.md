@@ -174,7 +174,9 @@
 - [高速フーリエ変換(NTT)](https://github.com/ei1333/library/blob/master/math/number-theoretic-transform.cpp)
 - [任意mod畳み込み (30bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution.cpp)
 - [任意mod畳み込み (38bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution-long.cpp)
-- [分割数(値) O(N log N)](https://github.com/ei1333/library/blob/master/math/partition.cpp)
+- [分割数 P(N,N) (列挙) O(N log N)](https://github.com/ei1333/library/blob/master/math/partition.cpp)
+- [第2種スターリング数のk列目 (列挙) O(N log N)](https://github.com/ei1333/library/blob/master/math/stirling-number-second-kth-column.cpp)
+- [ベル数 B(N,N) (列挙) O(N log N)](https://github.com/ei1333/library/blob/master/math/stirling-number-second-kth-column.cpp/bell-number-2.cpp)
 
 ## その他
 

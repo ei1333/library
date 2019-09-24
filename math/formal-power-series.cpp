@@ -76,7 +76,7 @@ struct FormalPowerSeries : vector< T > {
   P &operator%=(const P &r) {
     return *this -= *this / r * r;
   }
-  
+
   P operator-() const {
     P ret(this->size());
     for(int i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
@@ -164,12 +164,26 @@ struct FormalPowerSeries : vector< T > {
     return ret.pre(deg);
   }
 
-  P pow(T k, int deg = -1) const {
+  P pow(int64_t k, int deg = -1) const {
     const int n = (int) this->size();
-    if(deg == -1)
-      deg = n;
-    return (log(deg) * k).exp(deg);
+    if(deg == -1) deg = n;
+    for(int i = 0; i < n; i++) {
+      if((*this)[i] != T(0)) {
+        T rev = T(1) / (*this)[i];
+        P C(*this * rev);
+        P D(n - i);
+        for(int j = i; j < n; j++) D[j - i] = C[j];
+        D = (D.log() * k).exp() * (*this)[i].pow(k);
+        P E(deg);
+        if(i * k > deg) return E;
+        auto S = i * k;
+        for(int j = 0; j + S < deg && j < D.size(); j++) E[j + S] = D[j];
+        return E;
+      }
+    }
+    return *this;
   }
+
 
   T eval(T x) const {
     T r = 0, w = 1;
