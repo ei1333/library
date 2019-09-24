@@ -73,6 +73,10 @@ struct FormalPowerSeries : vector< T > {
     return *this = get_mult()(*this, r);
   }
 
+  P &operator%=(const P &r) {
+    return *this -= *this / r * r;
+  }
+  
   P operator-() const {
     P ret(this->size());
     for(int i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
