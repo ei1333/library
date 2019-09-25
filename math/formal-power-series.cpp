@@ -30,6 +30,8 @@ struct FormalPowerSeries : vector< T > {
 
   P operator*(const T &v) const { return P(*this) *= v; }
 
+  P operator/(const P &r) const { return P(*this) /= r; }
+
   P operator%(const P &r) const { return P(*this) %= r; }
 
   P &operator+=(const P &r) {
@@ -96,6 +98,19 @@ struct FormalPowerSeries : vector< T > {
     return P(begin(*this), begin(*this) + min((int) this->size(), sz));
   }
 
+  P operator>>(int sz) const {
+    if(this->size() <= sz) return {};
+    P ret(*this);
+    ret.erase(ret.begin(), ret.begin() + sz);
+    return ret;
+  }
+
+  P operator<<(int sz) const {
+    P ret(*this);
+    ret.insert(ret.begin(), sz, T(0));
+    return ret;
+  }
+
   P rev(int deg = -1) const {
     P ret(*this);
     if(deg != -1) ret.resize(deg, T(0));
@@ -138,12 +153,23 @@ struct FormalPowerSeries : vector< T > {
     return (this->diff() * this->inv(deg)).pre(deg - 1).integral();
   }
 
-  // F(0) must be 1
   P sqrt(int deg = -1) const {
-    assert((*this)[0] == T(1));
     const int n = (int) this->size();
     if(deg == -1) deg = n;
-    // P ret({(*this)[0].sqrt()});
+
+    if((*this)[0] == T(0)) {
+      for(int i = 1; i < n; i++) {
+        if((*this)[i] != T(0)) {
+          if(i & 1) return {};
+          if(deg - i / 2 <= 0) break;
+          auto ret = (*this >> i).sqrt(deg - i / 2) << (i / 2);
+          if(ret.size() < deg) ret.resize(deg, T(0));
+          return ret;
+        }
+      }
+      return P(deg, 0);
+    }
+
     P ret({T(1)});
     T inv2 = T(1) / T(2);
     for(int i = 1; i < deg; i <<= 1) {
