@@ -1,21 +1,18 @@
-template< int mod, int primitiveroot >
+template< int mod >
 struct NumberTheoreticTransform {
-  vector< vector< int > > rts, rrts;
 
-  void ensure_base(int N) {
-    if(rts.size() >= N) return;
-    rts.resize(N), rrts.resize(N);
-    for(int i = 1; i < N; i <<= 1) {
-      if(rts[i].size()) continue;
-      int w = mod_pow(primitiveroot, (mod - 1) / (i * 2));
-      int rw = inverse(w);
-      rts[i].resize(i), rrts[i].resize(i);
-      rts[i][0] = 1, rrts[i][0] = 1;
-      for(int k = 1; k < i; k++) {
-        rts[i][k] = mul(rts[i][k - 1], w);
-        rrts[i][k] = mul(rrts[i][k - 1], rw);
-      }
-    }
+  vector< int > rev, rts;
+  int base, max_base, root;
+
+  NumberTheoreticTransform() : base(1), rev{0, 1}, rts{0, 1} {
+    assert(mod >= 3 && mod % 2 == 1);
+    auto tmp = mod - 1;
+    max_base = 0;
+    while(tmp % 2 == 0) tmp >>= 1, max_base++;
+    root = 2;
+    while(mod_pow(root, (mod - 1) >> 1) == 1) ++root;
+    assert(mod_pow(root, mod - 1) == 1);
+    root = mod_pow(root, (mod - 1) >> max_base);
   }
 
   inline int mod_pow(int x, int n) {
@@ -39,40 +36,67 @@ struct NumberTheoreticTransform {
   }
 
   inline unsigned mul(unsigned a, unsigned b) {
-    return 1ull * a * b % mod;
+    return 1ull * a * b % (unsigned long long) mod;
   }
 
-  void ntt(vector< int > &a, bool rev) {
-    const int N = (int) a.size();
-    ensure_base(N);
-    for(int i = 0, j = 1; j + 1 < N; j++) {
-      for(int k = N >> 1; k > (i ^= k); k >>= 1);
-      if(i > j) swap(a[i], a[j]);
+  void ensure_base(int nbase) {
+    if(nbase <= base) return;
+    rev.resize(1 << nbase);
+    rts.resize(1 << nbase);
+    for(int i = 0; i < (1 << nbase); i++) {
+      rev[i] = (rev[i >> 1] >> 1) + ((i & 1) << (nbase - 1));
     }
-    for(int i = 1; i < N; i <<= 1) {
-      for(int j = 0; j < N; j += i * 2) {
-        for(int k = 0; k < i; k++) {
-          int s = a[j + k], t = mul(a[j + k + i], rev ? rrts[i][k] : rts[i][k]);
-          a[j + k] = add(s, t), a[j + k + i] = add(s, mod - t);
+    assert(nbase <= max_base);
+    while(base < nbase) {
+      int z = mod_pow(root, 1 << (max_base - 1 - base));
+      for(int i = 1 << (base - 1); i < (1 << base); i++) {
+        rts[i << 1] = rts[i];
+        rts[(i << 1) + 1] = mul(rts[i], z);
+      }
+      ++base;
+    }
+  }
+
+
+  void ntt(vector< int > &a) {
+    const int n = (int) a.size();
+    assert((n & (n - 1)) == 0);
+    int zeros = __builtin_ctz(n);
+    ensure_base(zeros);
+    int shift = base - zeros;
+    for(int i = 0; i < n; i++) {
+      if(i < (rev[i] >> shift)) {
+        swap(a[i], a[rev[i] >> shift]);
+      }
+    }
+    for(int k = 1; k < n; k <<= 1) {
+      for(int i = 0; i < n; i += 2 * k) {
+        for(int j = 0; j < k; j++) {
+          int z = mul(a[i + j + k], rts[j + k]);
+          a[i + j + k] = add(a[i + j], mod - z);
+          a[i + j] = add(a[i + j], z);
         }
       }
     }
-    if(rev) {
-      int temp = inverse(N);
-      for(int i = 0; i < N; i++) a[i] = mul(a[i], temp);
-    }
   }
+
 
   vector< int > multiply(vector< int > a, vector< int > b) {
     int need = a.size() + b.size() - 1;
-    int sz = 1;
-    while(sz < need) sz <<= 1;
+    int nbase = 1;
+    while((1 << nbase) < need) nbase++;
+    ensure_base(nbase);
+    int sz = 1 << nbase;
     a.resize(sz, 0);
     b.resize(sz, 0);
-    ntt(a, false);
-    ntt(b, false);
-    for(int i = 0; i < sz; i++) a[i] = mul(a[i], b[i]);
-    ntt(a, true);
+    ntt(a);
+    ntt(b);
+    int inv_sz = inverse(sz);
+    for(int i = 0; i < sz; i++) {
+      a[i] = mul(a[i], mul(b[i], inv_sz));
+    }
+    reverse(a.begin() + 1, a.end());
+    ntt(a);
     a.resize(need);
     return a;
   }
