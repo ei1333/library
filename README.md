@@ -150,7 +150,8 @@
 
 - [ModInt](https://github.com/ei1333/library/blob/master/math/mod-int.cpp)
 - [任意ModInt](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-int.cpp)
-- [累乗 O(logN)](https://github.com/ei1333/library/blob/master/math/power.cpp)
+- [累乗 O(logN)](https://github.com/ei1333/library/blob/master/math/mod-pow.cpp)
+- [Mod-Sqrt](https://github.com/ei1333/library/blob/master/math/mod-sqrt.cpp)
 - [オイラーのφ関数(値) O(sqrt(N))](https://github.com/ei1333/library/blob/master/math/euler-phi.cpp)
 - [オイラーのφ関数(テーブル) O(N loglogN)](https://github.com/ei1333/library/blob/master/math/euler-phi-table.cpp)
 - [ベル数(値) O(min(N,K) logN)](https://github.com/ei1333/library/blob/master/math/bell-number.cpp)
