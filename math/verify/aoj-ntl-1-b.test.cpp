@@ -2,10 +2,10 @@
 
 #include "../../template/template.cpp"
 
-#include "../power.cpp"
+#include "../mod-pow.cpp"
 
 int main() {
   int M, N;
   cin >> M >> N;
-  cout << power(M, N, 1e9 + 7) << endl;
+  cout << mod_pow(M, N, (int)(1e9 + 7)) << endl;
 }
