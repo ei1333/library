@@ -5,7 +5,7 @@
 #include "../mod-pow.cpp"
 
 int main() {
-  int M, N;
+  int64 M, N;
   cin >> M >> N;
-  cout << mod_pow(M, N, (int)(1e9 + 7)) << endl;
+  cout << mod_pow(M, N, (int64)(1e9 + 7)) << endl;
 }
