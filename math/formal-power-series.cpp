@@ -4,15 +4,32 @@ struct FormalPowerSeries : vector< T > {
   using P = FormalPowerSeries;
 
   using MULT = function< P(P, P) >;
+  using FFT = function< void(P &) >;
 
   static MULT &get_mult() {
     static MULT mult = nullptr;
     return mult;
   }
 
-  static void set_fft(MULT f) {
+  static void set_mult(MULT f) {
     get_mult() = f;
   }
+
+  static FFT &get_fft() {
+    static FFT fft = nullptr;
+    return fft;
+  }
+
+  static FFT &get_ifft() {
+    static FFT ifft = nullptr;
+    return ifft;
+  }
+
+  static void set_fft(FFT f, FFT g) {
+    get_fft() = f;
+    get_ifft() = g;
+  }
+
 
   void shrink() {
     while(this->size() && this->back() == T(0)) this->pop_back();
@@ -137,7 +154,14 @@ struct FormalPowerSeries : vector< T > {
   P inv(int deg = -1) const {
     assert(((*this)[0]) != T(0));
     const int n = (int) this->size();
-    if(deg == -1) deg = n;
+    if(deg == -1) {
+      deg = n;
+    }
+    if(get_fft() != nullptr) {
+      P ret(*this);
+      ret.resize(deg, T(0));
+      return ret.inv_rec();
+    }
     P ret({T(1) / (*this)[0]});
     for(int i = 1; i < deg; i <<= 1) {
       ret = (ret + ret - ret * ret * pre(i << 1)).pre(i << 1);
@@ -156,7 +180,6 @@ struct FormalPowerSeries : vector< T > {
   P sqrt(int deg = -1) const {
     const int n = (int) this->size();
     if(deg == -1) deg = n;
-
     if((*this)[0] == T(0)) {
       for(int i = 1; i < n; i++) {
         if((*this)[i] != T(0)) {
@@ -182,12 +205,80 @@ struct FormalPowerSeries : vector< T > {
   P exp(int deg = -1) const {
     assert((*this)[0] == T(0));
     const int n = (int) this->size();
-    if(deg == -1) deg = n;
+    if(deg == -1) {
+      deg = n;
+    }
+    if(get_fft() != nullptr) {
+      P ret(*this);
+      ret.resize(deg, T(0));
+      return ret.exp_rec();
+    }
     P ret({T(1)});
     for(int i = 1; i < deg; i <<= 1) {
       ret = (ret * (pre(i << 1) + T(1) - ret.log(i << 1))).pre(i << 1);
     }
     return ret.pre(deg);
+  }
+
+  template< typename F >
+  P online_convolution(const P &conv_coeff, F f) const {
+    const int n = (int) conv_coeff.size();
+    assert((n & (n - 1)) == 0);
+    vector< P > conv_ntt_coeff;
+    for(int i = n; i >= 1; i >>= 1) {
+      P g(conv_coeff.pre(i));
+      get_fft()(g);
+      conv_ntt_coeff.emplace_back(g);
+    }
+    P conv_arg(n), conv_ret(n);
+    auto rec = [&](auto rec, int l, int r, int d) -> void {
+      if(r - l <= 16) {
+        for(int i = l; i < r; i++) {
+          T sum = 0;
+          for(int j = l; j < i; j++) sum += conv_arg[j] * conv_coeff[i - j];
+          conv_ret[i] += sum;
+          conv_arg[i] = f(i, conv_ret[i]);
+        }
+      } else {
+        int m = (l + r) / 2;
+        rec(rec, l, m, d + 1);
+        P pre(r - l);
+        for(int i = 0; i < m - l; i++) pre[i] = conv_arg[l + i];
+        get_fft()(pre);
+        for(int i = 0; i < r - l; i++) pre[i] *= conv_ntt_coeff[d][i];
+        get_ifft()(pre);
+        for(int i = 0; i < r - m; i++) conv_ret[m + i] += pre[m + i - l];
+        rec(rec, m, r, d + 1);
+      }
+    };
+    rec(rec, 0, n, 0);
+    return conv_arg;
+  }
+
+  P exp_rec() const {
+    assert((*this)[0] == T(0));
+    const int n = (int) this->size();
+    int m = 1;
+    while(m < n) m *= 2;
+    P conv_coeff(m);
+    for(int i = 1; i < n; i++) conv_coeff[i] = (*this)[i] * i;
+    return online_convolution(conv_coeff, [](int i, const T &x) { return i == 0 ? 1 : x / i; }).pre(n);
+  }
+
+  P inv_rec() const {
+    assert(((*this)[0]) != T(0));
+
+    if((*this)[0] != T(1)) {
+      T rev = T(1) / (*this)[0];
+      return (*this * rev).inv_rec() * rev;
+    }
+    const int n = (int) this->size();
+    int m = 1;
+    while(m < n) m *= 2;
+    P conv_coeff(m);
+    for(int i = 1; i < n; i++) conv_coeff[i] = (*this)[i];
+    T rev = T(1), zero = T(0);
+    return online_convolution(conv_coeff, [&](int i, const T &x) { return (i == 0 ? rev : zero) - x; }).pre(n);
   }
 
   P pow(int64_t k, int deg = -1) const {
@@ -196,15 +287,11 @@ struct FormalPowerSeries : vector< T > {
     for(int i = 0; i < n; i++) {
       if((*this)[i] != T(0)) {
         T rev = T(1) / (*this)[i];
-        P C(*this * rev);
-        P D(n - i);
-        for(int j = i; j < n; j++) D[j - i] = C[j];
-        D = (D.log() * k).exp() * (*this)[i].pow(k);
-        P E(deg);
-        if(i * k > deg) return E;
-        auto S = i * k;
-        for(int j = 0; j + S < deg && j < D.size(); j++) E[j + S] = D[j];
-        return E;
+        P ret = (((*this * rev) >> i).log() * k).exp() * ((*this)[i].pow(k));
+        if(i * k > deg) return P(deg, T(0));
+        ret = (ret << (i * k)).pre(deg);
+        if(ret.size() < deg) ret.resize(deg, T(0));
+        return ret;
       }
     }
     return *this;
@@ -220,3 +307,14 @@ struct FormalPowerSeries : vector< T > {
     return r;
   }
 };
+
+/*
+  NumberTheoreticTransformFriendlyModInt< modint > ntt;
+  using FPS = FormalPowerSeries< modint >;
+  auto mult = [&](const FPS::P &a, const FPS::P &b) {
+    auto ret = ntt.multiply(a, b);
+    return FPS::P(ret.begin(), ret.end());
+  };
+  FPS::set_mult(mult);
+  FPS::set_fft([&](FPS::P &a) { ntt.ntt(a); }, [&](FPS::P &a) { ntt.intt(a); });
+*/

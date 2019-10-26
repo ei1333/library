@@ -61,8 +61,11 @@ struct NumberTheoreticTransformFriendlyModInt {
 
 
   void intt(vector< Mint > &a) {
-    reverse(a.begin() + 1, a.end());
+    const int n = (int) a.size();
     ntt(a);
+    reverse(a.begin() + 1, a.end());
+    Mint inv_sz = Mint(1) / n;
+    for(int i = 0; i < n; i++) a[i] *= inv_sz;
   }
 
   vector< Mint > multiply(vector< Mint > a, vector< Mint > b) {
@@ -79,7 +82,8 @@ struct NumberTheoreticTransformFriendlyModInt {
     for(int i = 0; i < sz; i++) {
       a[i] *= b[i] * inv_sz;
     }
-    intt(a);
+    reverse(a.begin() + 1, a.end());
+    ntt(a);
     a.resize(need);
     return a;
   }
