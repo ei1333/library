@@ -174,6 +174,7 @@
 - [離散対数問題 O(sqrt(p))](https://github.com/ei1333/library/blob/master/math/mod-log.cpp)
 - [高速フーリエ変換(FFT)](https://github.com/ei1333/library/blob/master/math/fast-fourier-transform.cpp)
 - [高速フーリエ変換(NTT)](https://github.com/ei1333/library/blob/master/math/number-theoretic-transform.cpp)
+- [高速フーリエ変換(NTT) ModInt](https://github.com/ei1333/library/blob/master/math/number-theoretic-transform-friendly-mod-int.cpp)
 - [任意mod畳み込み (30bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution.cpp)
 - [任意mod畳み込み (38bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution-long.cpp)
 - [分割数 P(N,N) (列挙) O(N log N)](https://github.com/ei1333/library/blob/master/math/partition.cpp)
