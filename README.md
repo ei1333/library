@@ -136,6 +136,8 @@
 - [橋/関節点](https://github.com/ei1333/library/blob/master/graph/lowlink.cpp)
 - [最大クリーク O(2^sqrt(2E) V)](https://github.com/ei1333/library/blob/master/graph/maximum-clique.cpp)
 - [最大独立集合(乱択)](https://github.com/ei1333/library/blob/master/graph/maximum-independent-set.cpp)
+- [トポロジカルソート](https://github.com/ei1333/library/blob/master/graph/topological-sort.cpp)
+- [DAGの到達可能性クエリ(オフライン) O((V+E)Q/64)](https://github.com/ei1333/library/blob/master/graph/offline-dag-reachability.cpp)
 
 ## 木
 
@@ -145,6 +147,7 @@
 - [全方位木DP](https://github.com/ei1333/library/blob/master/tree/rerooting.cpp)
 - [木の直径](https://github.com/ei1333/library/blob/master/tree/tree-diameter.cpp)
 - [木の重心](https://github.com/ei1333/library/blob/master/tree/centroid.cpp)
+- [木の同型性 O(V logV)](https://github.com/ei1333/library/blob/master/tree/tree-isomorphism.cpp)
 - [根付き木に変換](https://github.com/ei1333/library/blob/master/tree/convert-rooted-tree.cpp)
 
 ## 数学
