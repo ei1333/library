@@ -144,6 +144,7 @@
 - [HL分解](https://github.com/ei1333/library/blob/master/tree/heavy-light-decomposition.cpp)
 - [全方位木DP](https://github.com/ei1333/library/blob/master/tree/rerooting.cpp)
 - [木の直径](https://github.com/ei1333/library/blob/master/tree/tree-diameter.cpp)
+- [木の重心](https://github.com/ei1333/library/blob/master/tree/centroid.cpp)
 - [根付き木に変換](https://github.com/ei1333/library/blob/master/tree/convert-rooted-tree.cpp)
 
 ## 数学

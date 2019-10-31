@@ -1,4 +1,3 @@
-
 template< typename G >
 struct HeavyLightDecomposition {
   G &g;
