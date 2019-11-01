@@ -33,7 +33,7 @@ struct DominatorTree {
   vector< int > idom, semi;
   UnionFind uf;
 
-  DominatorTree(G &g) : g(g), rg(g.size()), par(g.size()), idom(g.size()), semi(g.size(), -1), uf(semi) {
+  DominatorTree(G &g) : g(g), rg(g.size()), par(g.size()), idom(g.size(), -1), semi(g.size(), -1), uf(semi) {
     ord.reserve(g.size());
   }
 
@@ -50,13 +50,16 @@ struct DominatorTree {
 
   void build(int root) {
     const int N = (int) g.size();
-    for(int i = 0; i < N; i++) {
-      for(auto &to : g[i]) rg[to].emplace_back(i);
-    }
     dfs(root);
+    for(int i = 0; i < N; i++) {
+      for(auto &to : g[i]) {
+        if(~semi[i]) rg[to].emplace_back(i);
+      }
+    }
+
     vector< vector< int > > bucket(N);
     vector< int > U(N);
-    for(int i = N - 1; i >= 0; i--) {
+    for(int i = (int) ord.size() - 1; i >= 0; i--) {
       int x = ord[i];
       for(int v : rg[x]) {
         v = uf.eval(v);
@@ -67,15 +70,15 @@ struct DominatorTree {
       bucket[par[x]].clear();
       uf.link(par[x], x);
     }
-    for(int i = 1; i < N; i++) {
+    for(int i = 1; i < ord.size(); i++) {
       int x = ord[i], u = U[x];
       idom[x] = semi[x] == semi[u] ? semi[x] : idom[u];
     }
-    for(int i = 1; i < N; i++) {
+    for(int i = 1; i < ord.size(); i++) {
       int x = ord[i];
       idom[x] = ord[idom[x]];
     }
-    idom[root] = -1;
+    idom[root] = root;
   }
 
   int operator[](const int &k) {
