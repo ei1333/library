@@ -107,6 +107,7 @@
 - [二部グラフの最大マッチング O(EV)](https://github.com/ei1333/library/blob/master/graph/bipartite-matching.cpp)
 - [二部グラフの最大マッチング(HopCroft-Karp) O(E sqrt(V))](https://github.com/ei1333/library/blob/master/graph/hopcroft-karp.cpp)
 - [二部グラフの最小重み最大マッチング(Hungarian) O(V^3)](https://github.com/ei1333/library/blob/master/graph/hungarian.cpp)
+- [一般グラフの最大マッチング(GabowEdmonds) O(VE logV)](https://github.com/ei1333/library/blob/master/graph/gabow-edmonds.cpp)
 
 #### 連結成分分解
 
@@ -138,6 +139,7 @@
 - [最大独立集合(乱択)](https://github.com/ei1333/library/blob/master/graph/maximum-independent-set.cpp)
 - [トポロジカルソート](https://github.com/ei1333/library/blob/master/graph/topological-sort.cpp)
 - [DAGの到達可能性クエリ(オフライン) O((V+E)Q/64)](https://github.com/ei1333/library/blob/master/graph/offline-dag-reachability.cpp)
+- [Dominator-Tree](https://github.com/ei1333/library/blob/master/graph/dominator-tree.cpp)
 
 ## 木
 
