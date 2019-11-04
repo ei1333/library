@@ -21,41 +21,48 @@ struct AhoCorasick : Trie< char_size + 1, margin > {
     }
     while(!que.empty()) {
       auto &now = this->nodes[que.front()];
-      correct[que.front()] += correct[now.nxt[FAIL]];
+      int fail = now.nxt[FAIL];
+      correct[que.front()] += correct[fail];
       que.pop();
       for(int i = 0; i < char_size; i++) {
-        if(now.nxt[i] == -1) continue;
-        int fail = now.nxt[FAIL];
-        while(this->nodes[fail].nxt[i] == -1) fail = this->nodes[fail].nxt[FAIL];
-        this->nodes[now.nxt[i]].nxt[FAIL] = this->nodes[fail].nxt[i];
-        if(heavy) {
-          auto &u = this->nodes[now.nxt[i]].accept;
-          auto &v = this->nodes[this->nodes[fail].nxt[i]].accept;
-          vector< int > accept;
-          set_union(begin(u), end(u), begin(v), end(v), back_inserter(accept));
-          u = accept;
+        if(~now.nxt[i]) {
+          this->nodes[now.nxt[i]].nxt[FAIL] = this->nodes[fail].nxt[i];
+          if(heavy) {
+            auto &u = this->nodes[now.nxt[i]].accept;
+            auto &v = this->nodes[this->nodes[fail].nxt[i]].accept;
+            vector< int > accept;
+            set_union(begin(u), end(u), begin(v), end(v), back_inserter(accept));
+            u = accept;
+          }
+          que.emplace(now.nxt[i]);
+        } else {
+          now.nxt[i] = this->nodes[fail].nxt[i];
         }
-        que.emplace(now.nxt[i]);
       }
-
     }
   }
 
   map< int, int > match(const string &str, int now = 0) {
     map< int, int > result;
     for(auto &c : str) {
-      while(this->nodes[now].nxt[c - margin] == -1) now = this->nodes[now].nxt[FAIL];
       now = this->nodes[now].nxt[c - margin];
       for(auto &v : this->nodes[now].accept) result[v] += 1;
     }
     return result;
   }
 
-  pair< int, int > move(const char &c, int now) {
-    int sum = 0;
-    while(this->nodes[now].nxt[c - margin] == -1) now = this->nodes[now].nxt[FAIL];
+  pair< int64_t, int > move(const char &c, int now = 0) {
     now = this->nodes[now].nxt[c - margin];
-    sum += correct[now];
+    return {correct[now], now};
+  }
+
+  pair< int64_t, int > move(const string &str, int now = 0) {
+    int64_t sum = 0;
+    for(auto &c : str) {
+      auto nxt = move(c, now);
+      sum += nxt.first;
+      now = nxt.second;
+    }
     return {sum, now};
   }
 };
