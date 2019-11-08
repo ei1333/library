@@ -101,6 +101,7 @@
 
 - [最大流(Ford-Fulkerson) O(FE)](https://github.com/ei1333/library/blob/master/graph/ford-fulkerson.cpp)
 - [最大流(Dinic) O(EV^2)](https://github.com/ei1333/library/blob/master/graph/dinic.cpp)
+- [最大流(Dinic) 容量スケーリング O(EV logU)](https://github.com/ei1333/library/blob/master/graph/dinic-capacity-scaling.cpp)
 - [最大流(Push-Relabel) O(V^2 sqrt(E))](https://github.com/ei1333/library/blob/master/graph/push-relabel.cpp)
 - [最小流量制限付き最大流, 循環流](https://github.com/ei1333/library/blob/master/graph/maxflow-lower-bound.cpp)
 - [最小費用流(Primal-Dual) O(FE logV)](https://github.com/ei1333/library/blob/master/graph/primal-dual.cpp)
@@ -184,6 +185,9 @@
 - [任意mod畳み込み (30bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution.cpp)
 - [任意mod畳み込み (38bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution-long.cpp)
 - [ベルヌーイ数, スターリング数などの列挙](https://github.com/ei1333/library/blob/master/math/formal-power-series-seq.cpp)
+- [Berlekamp-Massey O(N^2)](https://github.com/ei1333/library/blob/master/math/berlekamp-massey.cpp)
+- [疎行列の行列累乗 非0要素をS個としてO(N^2+NS+N logN logK)](https://github.com/ei1333/library/blob/master/math/sparse-mat-pow.cpp)
+
 ## その他
 
 - [Mo's algorithm](https://github.com/ei1333/library/blob/master/other/mo.cpp)

@@ -306,4 +306,14 @@ struct FormalPowerSeries : vector< T > {
     }
     return r;
   }
+
+  P pow_mod(int64_t n, P mod) {
+    P x(*this), ret{1};
+    while(n > 0) {
+      if(n & 1) (ret *= x) %= mod;
+      (x *= x) %= mod;
+      n >>= 1;
+    }
+    return ret;
+  }
 };
