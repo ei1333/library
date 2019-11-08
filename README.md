@@ -186,7 +186,7 @@
 - [任意mod畳み込み (38bit)](https://github.com/ei1333/library/blob/master/math/arbitrary-mod-convolution-long.cpp)
 - [ベルヌーイ数, スターリング数などの列挙](https://github.com/ei1333/library/blob/master/math/formal-power-series-seq.cpp)
 - [Berlekamp-Massey O(N^2)](https://github.com/ei1333/library/blob/master/math/berlekamp-massey.cpp)
-- [疎行列の行列累乗 非0要素をS個としてO(N^2+NS+N logN logK)](https://github.com/ei1333/library/blob/master/math/sparse-mat-pow.cpp)
+- [疎行列の行列累乗/行列式](https://github.com/ei1333/library/blob/master/math/sparse-matrix.cpp)
 
 ## その他
 

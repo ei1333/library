@@ -1,30 +1,25 @@
-template< typename T >
+template< class T >
 FormalPowerSeries< T > berlekamp_massey(const FormalPowerSeries< T > &s) {
   const int N = (int) s.size();
-  FormalPowerSeries< T > B(N), C(N);
-  B[0] = C[0] = T(1);
-  int L = 0, m = 1;
-  T b{1};
-  for(int n = 0; n < N; n++) {
-    T d = s[n];
-    for(int i = 1; i <= L; i++) d += C[i] * s[n - i];
-    T inv_b = d / b;
-    if(d == 0) {
-      m++;
-    } else if(2 * L <= n) {
-      auto temp = C;
-      for(int i = 0; i + m < N; i++) C[i + m] -= B[i] * inv_b;
-      L = n + 1 - L;
-      B = temp;
-      b = d;
-      m = 1;
+  FormalPowerSeries< T > b = {T(-1)}, c = {T(-1)};
+  T y = T(1);
+  for(int ed = 1; ed <= N; ed++) {
+    int l = int(c.size()), m = int(b.size());
+    T x = 0;
+    for(int i = 0; i < l; i++) x += c[i] * s[ed - l + i];
+    b.emplace_back(0);
+    m++;
+    if(x == T(0)) continue;
+    T freq = x / y;
+    if(l < m) {
+      auto tmp = c;
+      c.insert(begin(c), m - l, T(0));
+      for(int i = 0; i < m; i++) c[m - 1 - i] -= freq * b[m - 1 - i];
+      b = tmp;
+      y = x;
     } else {
-      for(int i = 0; i + m < N; i++) C[i + m] -= B[i] * inv_b;
-      m++;
+      for(int i = 0; i < m; i++) c[l - 1 - i] -= freq * b[m - 1 - i];
     }
   }
-  C.resize(L + 1);
-  reverse(C.begin(), C.end());
-  assert(L < N - 1);
-  return C;
+  return c;
 }
