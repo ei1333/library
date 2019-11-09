@@ -106,6 +106,12 @@ struct FormalPowerSeries : vector< T > {
     return *this = (rev().pre(n) * r.rev().inv(n)).pre(n).rev(n);
   }
 
+  P dot(P r) const {
+    P ret(min(this->size(), r.size()));
+    for(int i = 0; i < ret.size(); i++) ret[i] = (*this)[i] * r[i];
+    return ret;
+  }
+
   P pre(int sz) const { return P(begin(*this), begin(*this) + min((int) this->size(), sz)); }
 
   P operator>>(int sz) const {
@@ -307,11 +313,24 @@ struct FormalPowerSeries : vector< T > {
     return r;
   }
 
-  P pow_mod(int64_t n, P mod) {
+  P pow_mod(int64_t n, P mod) const {
+    P modinv = mod.rev().inv();
+    auto get_div = [&](P base) {
+      if(base.size() < mod.size()) {
+        base.clear();
+        return base;
+      }
+      int n = base.size() - mod.size() + 1;
+      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);
+    };
     P x(*this), ret{1};
     while(n > 0) {
-      if(n & 1) (ret *= x) %= mod;
-      (x *= x) %= mod;
+      if(n & 1) {
+        ret *= x;
+        ret -= get_div(ret) * mod;
+      }
+      x *= x;
+      x -= get_div(x) * mod;
       n >>= 1;
     }
     return ret;
