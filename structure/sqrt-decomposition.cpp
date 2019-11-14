@@ -8,7 +8,7 @@ struct SqrtDecomposition {
   int N, B, K;
   E L;
 
-  SqrtDecomposition(int N, E L = 0) : N(N), L(L) { // 区間のlow以上の和を求める
+  SqrtDecomposition(int N, E L = 0) : N(N), L(L) { // find the sum of L or more in the interval
     B = (int) sqrt(N);
     K = (N + B - 1) / B;
 

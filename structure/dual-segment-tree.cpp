@@ -1,5 +1,5 @@
 template< typename OperatorMonoid >
-struct DuelSegmentTree {
+struct DualSegmentTree {
   using H = function< OperatorMonoid(OperatorMonoid, OperatorMonoid) >;
 
   int sz, height;
@@ -8,7 +8,7 @@ struct DuelSegmentTree {
   const OperatorMonoid OM0;
 
 
-  DuelSegmentTree(int n, const H h, const OperatorMonoid OM0)
+  DualSegmentTree(int n, const H h, const OperatorMonoid OM0)
       : h(h), OM0(OM0) {
     sz = 1;
     height = 0;

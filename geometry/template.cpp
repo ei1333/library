@@ -19,7 +19,7 @@ ostream &operator<<(ostream &os, Point &p) {
   return os << fixed << setprecision(10) << p.real() << " " << p.imag();
 }
 
-// 点 p を反時計回りに theta 回転
+// rotate point p counterclockwise by theta rad
 Point rotate(Real theta, const Point &p) {
   return Point(cos(theta) * p.real() - sin(theta) * p.imag(), sin(theta) * p.real() + cos(theta) * p.imag());
 }
@@ -32,7 +32,7 @@ Real degree_to_radian(Real d) {
   return (d * PI / 180.0);
 }
 
-// a-b-c の角度のうち小さい方を返す
+// smaller angle of the a-b-c
 Real get_angle(const Point &a, const Point &b, const Point &c) {
   const Point v(b - a), w(c - b);
   Real alpha = atan2(v.imag(), v.real()), beta = atan2(w.imag(), w.real());
@@ -101,31 +101,26 @@ Real dot(const Point &a, const Point &b) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
-// 点の回転方向
 int ccw(const Point &a, Point b, Point c) {
   b = b - a, c = c - a;
   if(cross(b, c) > EPS) return +1;  // "COUNTER_CLOCKWISE"
   if(cross(b, c) < -EPS) return -1; // "CLOCKWISE"
-  if(dot(b, c) < 0) return +2;      // "ONLINE_BACK"
-  if(norm(b) < norm(c)) return -2;  // "ONLINE_FRONT"
-  return 0;                         // "ON_SEGMENT"
+  if(dot(b, c) < 0) return +2;      // "ONLINE_BACK" c-a-b
+  if(norm(b) < norm(c)) return -2;  // "ONLINE_FRONT" a-b-c
+  return 0;                         // "ON_SEGMENT" a-c-b
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
-// 平行判定
 bool parallel(const Line &a, const Line &b) {
   return eq(cross(a.b - a.a, b.b - b.a), 0.0);
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
-// 垂直判定
 bool orthogonal(const Line &a, const Line &b) {
   return eq(dot(a.a - a.b, b.a - b.b), 0.0);
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
-// 射影
-// 直線 l に p から垂線を引いた交点を求める
 Point projection(const Line &l, const Point &p) {
   double t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b);
   return l.a + (l.a - l.b) * t;
@@ -137,8 +132,6 @@ Point projection(const Segment &l, const Point &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-// 反射
-// 直線 l を対称軸として点 p  と線対称にある点を求める
 Point reflection(const Line &l, const Point &p) {
   return p + (projection(l, p) - p) * 2.0;
 }
@@ -265,13 +258,13 @@ pair< Point, Point > crosspoint(const Circle &c1, const Circle &c2) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F
-// 点 p を通る円 c の接線
+// tangent of circle c through point p
 pair< Point, Point > tangent(const Circle &c1, const Point &p2) {
   return crosspoint(c1, Circle(p2, sqrt(norm(c1.p - p2) - c1.r * c1.r)));
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G
-// 円 c1, c2 の共通接線
+// common tangent of circles c1 and c2
 Lines tangent(Circle c1, Circle c2) {
   Lines ret;
   if(c1.r < c2.r) swap(c1, c2);
@@ -293,7 +286,6 @@ Lines tangent(Circle c1, Circle c2) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B
-// 凸性判定
 bool is_convex(const Polygon &p) {
   int n = (int) p.size();
   for(int i = 0; i < n; i++) {
@@ -303,7 +295,6 @@ bool is_convex(const Polygon &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
-// 凸包
 Polygon convex_hull(Polygon &p) {
   int n = (int) p.size(), k = 0;
   if(n <= 2) return p;
@@ -320,7 +311,6 @@ Polygon convex_hull(Polygon &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
-// 多角形と点の包含判定
 enum {
   OUT, ON, IN
 };
@@ -338,7 +328,7 @@ int contains(const Polygon &Q, const Point &p) {
 
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
-// 線分の重複除去
+// deduplication of line segments
 void merge_segments(vector< Segment > &segs) {
 
   auto merge_if_able = [](Segment &s1, const Segment &s2) {
@@ -362,8 +352,7 @@ void merge_segments(vector< Segment > &segs) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
-// 線分アレンジメント
-// 任意の2線分の交点を頂点としたグラフを構築する
+// construct a graph with the vertex of the intersection of any two line segments
 vector< vector< int > > segment_arrangement(vector< Segment > &segs, vector< Point > &ps) {
   vector< vector< int > > g;
   int N = (int) segs.size();
@@ -400,8 +389,7 @@ vector< vector< int > > segment_arrangement(vector< Segment > &segs, vector< Poi
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
-// 凸多角形の切断
-// 直線 l.a-l.b で切断しその左側にできる凸多角形を返す
+// cut with a straight line l and return a convex polygon on the left
 Polygon convex_cut(const Polygon &U, Line l) {
   Polygon ret;
   for(int i = 0; i < U.size(); i++) {
@@ -415,7 +403,6 @@ Polygon convex_cut(const Polygon &U, Line l) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
-// 多角形の面積
 Real area(const Polygon &p) {
   Real A = 0;
   for(int i = 0; i < p.size(); ++i) {
@@ -425,7 +412,6 @@ Real area(const Polygon &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
-// 円と多角形の共通部分の面積
 Real area(const Polygon &p, const Circle &c) {
   if(p.size() < 3) return 0.0;
   function< Real(Circle, Point, Point) > cross_area = [&](const Circle &c, const Point &a, const Point &b) {
@@ -449,7 +435,6 @@ Real area(const Polygon &p, const Circle &c) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
-// 凸多角形の直径(最遠頂点対間距離)
 Real convex_diameter(const Polygon &p) {
   int N = (int) p.size();
   int is = 0, js = 0;
@@ -478,7 +463,6 @@ Real convex_diameter(const Polygon &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
-// 最近点対
 Real closest_pair(Points ps) {
   if(ps.size() <= 1) throw (0);
   sort(begin(ps), end(ps));

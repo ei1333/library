@@ -32,7 +32,7 @@ FormalPowerSeries< T > minimum_poly(const FPSGraph< T > &g) {
   return berlekamp_massey(f);
 }
 
-/* 行列累乗: nexの計算量をO(S)として O(N(N+S) + N log N log Q) */
+/* O(N(N+S) + N log N log Q) (O(S): time complexity of nex) */
 template< typename T >
 FormalPowerSeries< T > sparse_pow(int64_t Q, FormalPowerSeries< modint > dp, const FPSGraph< T > &g) {
   const int N = (int) dp.size();
@@ -45,7 +45,7 @@ FormalPowerSeries< T > sparse_pow(int64_t Q, FormalPowerSeries< modint > dp, con
   return res;
 }
 
-/* 行列式: 非0の要素をS個として O(N(N+S)) */
+/* O(N(N+S)) (S: none-zero elements)*/
 template< typename T >
 T sparse_determinant(FPSGraph< T > g) {
   using FPS = FormalPowerSeries< T >;
