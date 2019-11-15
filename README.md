@@ -4,7 +4,7 @@
 
 競技プログラミング用のライブラリ(C++14)
 
-使い方などは [https://ei1333.github.io/luzhiled/](https://ei1333.github.io/luzhiled/) を参照してください
+使い方などは [https://ei1333.github.io/luzhiled/](https://ei1333.github.io/luzhiled/) を参照してください（更新をサボっているため最新ではない場合があります）
 
 ## テンプレート
 
@@ -39,6 +39,7 @@
 - [Conxex-Hull-Trick(追加クエリの傾きが単調)](https://github.com/ei1333/library/blob/master/structure/convex-hull-trick-add-monotone.cpp)
 - [Li-Chao-Tree](https://github.com/ei1333/library/blob/master/structure/li-chao-tree.cpp)
 - [動的Li-Chao-Tree](https://github.com/ei1333/library/blob/master/structure/dynamic-li-chao-tree.cpp)
+- [永続動的Li-Chao-Tree](https://github.com/ei1333/library/blob/master/structure/persistent-dynamic-li-chao-tree.cpp)
 
 #### Link-Cut-Tree
 - [Link-Cut-Tree](https://github.com/ei1333/library/blob/master/structure/link-cut-tree.cpp)
