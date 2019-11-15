@@ -1,3 +1,50 @@
+class Stack {
+private:
+  const int N, H;
+  vector< int > node;
+ 
+public:
+  Stack(const int N, const int H) : N(N), H(H), node(N + H) { clear(); }
+ 
+  inline bool empty(const int h) const { return node[N + h] == N + h; }
+ 
+  inline int top(const int h) const { return node[N + h]; }
+ 
+  inline void pop(const int h) { node[N + h] = node[node[N + h]]; }
+ 
+  inline void push(const int h, const int u) { node[u] = node[N + h], node[N + h] = u; }
+ 
+  inline void clear() { iota(node.begin() + N, node.end(), N); }
+};
+ 
+class List {
+public:
+  struct node {
+    int prev, next;
+  };
+  const int N, H;
+  vector< node > dat;
+ 
+  List(const int N, const int H) : N(N), H(H), dat(N + H) { clear(); }
+ 
+  inline bool empty(const int h) const { return (dat[N + h].next == N + h); }
+ 
+  inline bool more_one(const int h) const { return dat[N + h].prev != dat[N + h].next; }
+ 
+  inline void insert(const int h, const int u) {
+    dat[u].prev = dat[N + h].prev, dat[u].next = N + h;
+    dat[dat[N + h].prev].next = u, dat[N + h].prev = u;
+  }
+ 
+  inline void erase(const int u) {
+    dat[dat[u].prev].next = dat[u].next, dat[dat[u].next].prev = dat[u].prev;
+  }
+ 
+  inline void clear() {
+    for(int i = N; i < N + H; ++i) dat[i].prev = dat[i].next = i;
+  }
+};
+
 template< typename flow_t >
 struct PushRelabel {
   struct edge {
