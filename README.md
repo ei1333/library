@@ -54,6 +54,7 @@
 ### Heap
 - [Skew-Heap](https://github.com/ei1333/library/blob/master/structure/skew-heap.cpp)
 - [Fibonacchi-Heap](https://github.com/ei1333/library/blob/master/structure/fibonacchi-heap.cpp)
+- [Radix-Heap](https://github.com/ei1333/library/blob/master/structure/radix-heap.cpp)
 
 #### その他
 - [Binary-Indexed-Tree](https://github.com/ei1333/library/blob/master/structure/binary-indexed-tree.cpp)
@@ -124,7 +125,9 @@
 - [グリッド上の幅優先探索 O(HW)](https://github.com/ei1333/library/blob/master/graph/grid-bfs.cpp)
 - [単一始点最短路(Bellman-Ford) O(VE)](https://github.com/ei1333/library/blob/master/graph/bellman-ford.cpp)
 - [単一始点最短路(SPFA) O(VE)](https://github.com/ei1333/library/blob/master/graph/shortest-path-faster-algorithm.cpp)
-- [単一始点最短路(Dijkstra) O(E logV)](https://github.com/ei1333/library/blob/master/graph/dijkstra.cpp)
+- [単一始点最短路(Dijkstra) O((E + V) logV)](https://github.com/ei1333/library/blob/master/graph/dijkstra.cpp)
+- [単一始点最短路(Dijkstra with Fibonacch-Heap) O(V logV + E)](https://github.com/ei1333/library/blob/master/graph/dijkstra-fibonacchi-heap.cpp)
+- [単一始点最短路(Dijkstra with Radix-Heap) O((E + V) logU)](https://github.com/ei1333/library/blob/master/graph/dijkstra-radix-heap.cpp)
 - [全点対間最短路(Warshall-Floyd) O(V^3)](https://github.com/ei1333/library/blob/master/graph/warshall-floyd.cpp)
 
 #### 最小全域木
@@ -132,6 +135,7 @@
 - [最小全域木(Borůvka)](https://github.com/ei1333/library/blob/master/graph/boruvka.cpp)
 - [最小全域木(Kruskal)](https://github.com/ei1333/library/blob/master/graph/kruskal.cpp)
 - [最小全域木(Prim)](https://github.com/ei1333/library/blob/master/graph/prim.cpp)
+- [最小全域木(Prim with Fibonacchi-Heap)](https://github.com/ei1333/library/blob/master/graph/prim-fibonacchi-heap.cpp)
 
 #### その他
 
