@@ -64,6 +64,7 @@
 - [列の平方分割](https://github.com/ei1333/library/blob/master/structure/sqrt-decomposition.cpp)
 - [長方形の和集合の面積](https://github.com/ei1333/library/blob/master/structure/union-rectangle.cpp)
 - [スライド区間の昇順k個の和](https://github.com/ei1333/library/blob/master/structure/priority-sum-structure.cpp)
+- [Sliding-Window-Aggregation](https://github.com/ei1333/library/blob/master/structure/sliding-window-aggregation.cpp)
 
 ## DP
 
