@@ -2,6 +2,8 @@
 
 [![Travis](https://img.shields.io/travis/ei1333/library/master.svg)](https://travis-ci.org/ei1333/library)
 
+[![Actions Status](https://github.com/ei1333/library/workflows/verify/badge.svg)](https://github.com/ei1333/library/actions)
+
 競技プログラミング用のライブラリ(C++14)
 
 使い方などは [https://ei1333.github.io/luzhiled/](https://ei1333.github.io/luzhiled/) を参照してください（更新をサボっているため最新ではない場合があります）
