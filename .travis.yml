@@ -12,6 +12,7 @@ addons:
 
 before_install:
     - pip3 install -U setuptools
-    - pip3 install -U online-judge-tools=='6.*'
+    - pip3 install -U online-judge-tools=='7.2.*'
+    - pip3 install -U git+https://github.com/kmyk/online-judge-verify-helper.git@master
 script:
-    - ./test.sh
+    - oj-verify run
