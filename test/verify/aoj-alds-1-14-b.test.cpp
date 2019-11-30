@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../rolling-hash.cpp"
+#include "../../string/rolling-hash.cpp"
 
 int main() {
   string T, P;

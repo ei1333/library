@@ -2,9 +2,9 @@
 
 #include "../../template/template.cpp"
 
-#include "../mod-int.cpp"
+#include "../../math/combinatorics/mod-int.cpp"
 
-#include "../partition-table.cpp"
+#include "../../math/combinatorics/partition-table.cpp"
 
 int main() {
   int N, K;

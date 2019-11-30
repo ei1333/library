@@ -2,10 +2,10 @@
 
 #include "../../template/template.cpp"
 
-#include "../mod-int.cpp"
-#include "../combination.cpp"
+#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/combination.cpp"
 
-#include "../bell-number.cpp"
+#include "../../math/combinatorics/bell-number.cpp"
 
 int main() {
   int N, K;

@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../suffix-array.cpp"
+#include "../../string/suffix-array.cpp"
 
 int main() {
   string S;

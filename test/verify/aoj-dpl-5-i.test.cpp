@@ -2,10 +2,10 @@
 
 #include "../../template/template.cpp"
 
-#include "../mod-int.cpp"
-#include "../combination.cpp"
+#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/combination.cpp"
 
-#include "../stirling-number-second.cpp"
+#include "../../math/combinatorics/stirling-number-second.cpp"
 
 int main() {
   int N, K;

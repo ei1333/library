@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../extgcd.cpp"
+#include "../../math/number-theory/extgcd.cpp"
 
 int main() {
   int a, b, x, y;

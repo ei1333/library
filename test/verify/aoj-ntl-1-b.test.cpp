@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../mod-pow.cpp"
+#include "../../math/combinatorics/mod-pow.cpp"
 
 int main() {
   int64 M, N;

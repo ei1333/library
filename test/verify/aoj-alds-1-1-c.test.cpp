@@ -2,17 +2,17 @@
 
 #include "../../template/template.cpp"
 
-#include "../prime-table.cpp"
+#include "../../math/number-theory/is-prime.cpp"
 
 int main() {
-  auto t = prime_table(100000000);
   int N;
   cin >> N;
   int ret = 0;
   while(N--) {
     int x;
     cin >> x;
-    ret += t[x];
+    ret += is_prime(x);
   }
   cout << ret << endl;
 }
+

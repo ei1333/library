@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../euler-phi.cpp"
+#include "../../math/number-theory/euler-phi.cpp"
 
 int main() {
   int N;

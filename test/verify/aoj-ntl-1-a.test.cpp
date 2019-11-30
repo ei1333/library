@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../prime-factor.cpp"
+#include "../../math/number-theory/prime-factor.cpp"
 
 int main() {
   int N;
