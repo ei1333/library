@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../template.cpp"
 
-#include "../../structure/fibonacchi-heap.cpp"
+#include "../../structure/heap/fibonacchi-heap.cpp"
 
 #include "../dijkstra-fibonacchi-heap.cpp"
 

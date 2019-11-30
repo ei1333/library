@@ -3,8 +3,8 @@
 #include "../../template/template.cpp"
 #include "../template.cpp"
 
-#include "../../structure/union-find.cpp"
-#include "../../structure/skew-heap.cpp"
+#include "../../structure/union-find/union-find.cpp"
+#include "../../structure/heap/skew-heap.cpp"
 
 #include "../chu-liu-edmond.cpp"
 

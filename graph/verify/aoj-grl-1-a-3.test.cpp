@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../template.cpp"
 
-#include "../../structure/radix-heap.cpp"
+#include "../../structure/heap/radix-heap.cpp"
 
 #include "../dijkstra-radix-heap.cpp"
 

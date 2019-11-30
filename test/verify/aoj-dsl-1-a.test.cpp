@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../union-find.cpp"
+#include "../../structure/union-find/union-find.cpp"
 
 int main() {
   int N, Q;

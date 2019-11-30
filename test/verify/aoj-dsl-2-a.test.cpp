@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../segment-tree.cpp"
+#include "../../structure/segment-tree/segment-tree.cpp"
 
 int main() {
   int N, Q;

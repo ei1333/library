@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../binary-indexed-tree.cpp"
+#include "../../structure/others/binary-indexed-tree.cpp"
 
 int main() {
   int N, Q;

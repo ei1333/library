@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../template.cpp"
 
-#include "../../structure/union-find.cpp"
+#include "../../structure/union-find/union-find.cpp"
 
 #include "../boruvka.cpp"
 

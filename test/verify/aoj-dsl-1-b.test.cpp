@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../weighted-union-find.cpp"
+#include "../../structure/union-find/weighted-union-find.cpp"
 
 int main() {
   int N, M;
