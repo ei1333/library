@@ -1,20 +1,19 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../../structure/union-find/union-find.cpp"
-
-#include "../kruskal.cpp"
+#include "../../graph/mst/prim.cpp"
 
 int main() {
   int V, E;
   scanf("%d %d", &V, &E);
-  Edges< int > edges;
+  WeightedGraph< int > g(V);
   for(int i = 0; i < E; i++) {
     int a, b, c;
     scanf("%d %d %d", &a, &b, &c);
-    edges.emplace_back(a, b, c);
+    g[a].emplace_back(b, c);
+    g[b].emplace_back(a, c);
   }
-  printf("%d\n", kruskal(edges, V));
+  printf("%d\n", prim(g));
 }

@@ -1,11 +1,11 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
 #include "../../structure/union-find/union-find.cpp"
 
-#include "../boruvka.cpp"
+#include "../../graph/mst/boruvka.cpp"
 
 int main() {
   int V, E;

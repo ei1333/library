@@ -1,11 +1,11 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../../structure/heap/radix-heap.cpp"
+#include "../../structure/heap/fibonacchi-heap.cpp"
 
-#include "../dijkstra-radix-heap.cpp"
+#include "../../graph/shortest-path/dijkstra-fibonacchi-heap.cpp"
 
 int main() {
   int V, E, R;
@@ -16,7 +16,7 @@ int main() {
     scanf("%d %d %d", &a, &b, &c);
     g[a].emplace_back(b, c);
   }
-  for(auto &dist : dijkstra_radix_heap(g, R)) {
+  for(auto &dist : dijkstra_fibonacchi_heap(g, R)) {
     if(dist == numeric_limits< int >::max()) puts("INF");
     else printf("%d\n", dist);
   }

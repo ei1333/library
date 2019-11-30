@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../warshall-floyd.cpp"
+#include "../../graph/shortest-path/warshall-floyd.cpp"
 
 int main() {
   int V, E;

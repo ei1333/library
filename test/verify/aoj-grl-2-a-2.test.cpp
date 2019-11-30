@@ -1,21 +1,20 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../../structure/heap/fibonacchi-heap.cpp"
+#include "../../structure/union-find/union-find.cpp"
 
-#include "../prim-fibonacchi-heap.cpp"
+#include "../../graph/mst/kruskal.cpp"
 
 int main() {
   int V, E;
   scanf("%d %d", &V, &E);
-  WeightedGraph< int > g(V);
+  Edges< int > edges;
   for(int i = 0; i < E; i++) {
     int a, b, c;
     scanf("%d %d %d", &a, &b, &c);
-    g[a].emplace_back(b, c);
-    g[b].emplace_back(a, c);
+    edges.emplace_back(a, b, c);
   }
-  printf("%d\n", prim_fibonacchi_heap(g));
+  printf("%d\n", kruskal(edges, V));
 }

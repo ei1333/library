@@ -3,27 +3,27 @@
 #include "../../template/template.cpp"
 #include "../../graph/template.cpp"
 
-#include "../doubling-lowest-common-ancestor.cpp"
+#include "../../graph/tree/heavy-light-decomposition.cpp"
 
 int main() {
   int N, Q;
   scanf("%d", &N);
   UnWeightedGraph g(N);
+  HeavyLightDecomposition< UnWeightedGraph > tree(g);
   for(int i = 0; i < N; i++) {
     int k;
     scanf("%d", &k);
-    while(k--) {
+    for(int j = 0; j < k; j++) {
       int c;
       scanf("%d", &c);
       g[i].push_back(c);
     }
   }
-  DoublingLowestCommonAncestor< UnWeightedGraph > lca(g);
-  lca.build();
+  tree.build();
   scanf("%d", &Q);
-  while(Q--) {
-    int x, y;
-    scanf("%d %d", &x, &y);
-    printf("%d\n", lca.query(x, y));
+  for(int i = 0; i < Q; i++) {
+    int u, v;
+    scanf("%d %d", &u, &v);
+    printf("%d\n", tree.lca(u, v));
   }
 }

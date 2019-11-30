@@ -1,9 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../lowlink.cpp"
+#include "../../graph/others/lowlink.cpp"
 
 int main() {
   int V, E;
@@ -17,6 +17,6 @@ int main() {
   }
   LowLink< UnWeightedGraph > lowlink(g);
   lowlink.build();
-  sort(lowlink.bridge.begin(), lowlink.bridge.end());
-  for(auto &p : lowlink.bridge) printf("%d %d\n", p.first, p.second);
+  sort(lowlink.articulation.begin(), lowlink.articulation.end());
+  for(auto &v : lowlink.articulation) printf("%d\n", v);
 }

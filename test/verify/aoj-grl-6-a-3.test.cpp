@@ -1,14 +1,14 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../dinic.cpp"
+#include "../../graph/flow/push-relabel.cpp"
 
 int main() {
   int V, E;
   scanf("%d %d", &V, &E);
-  Dinic< int > g(V);
+  PushRelabel< int > g(V);
   for(int i = 0; i < E; i++) {
     int a, b, c;
     scanf("%d %d %d", &a, &b, &c);
