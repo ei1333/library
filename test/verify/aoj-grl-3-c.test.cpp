@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
 
 #include "../../template/template.cpp"
-#include "../template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../strongly-connected-components.cpp"
+#include "../../graph/connected-components/strongly-connected-components.cpp"
 
 int main() {
   int V, E, Q;
