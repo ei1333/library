@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../knapsack-limitations.cpp"
+#include "../../dp/knapsack-limitations.cpp"
 
 int main() {
   int N, W;

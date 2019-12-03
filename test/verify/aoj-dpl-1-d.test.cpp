@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../longest-increasing-subsequence.cpp"
+#include "../../dp/longest-increasing-subsequence.cpp"
 
 int main() {
   int N;

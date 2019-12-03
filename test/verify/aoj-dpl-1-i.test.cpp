@@ -2,9 +2,9 @@
 
 #include "../../template/template.cpp"
 
-#include "../knapsack-limitations.cpp"
+#include "../../dp/knapsack-limitations.cpp"
 
-#include "../knapsack-limitations-2.cpp"
+#include "../../dp/knapsack-limitations-2.cpp"
 
 int main() {
   int N;

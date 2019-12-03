@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../largest-rectangle.cpp"
+#include "../../dp/largest-rectangle.cpp"
 
 int main() {
   int N;
