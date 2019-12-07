@@ -1,3 +1,10 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0294"
+
+#include "../../template/template.cpp"
+#include "../../graph/template.cpp"
+
+#include "../../graph/others/dominator-tree.cpp"
+
 int main() {
   int N, M, Q;
   cin >> N >> M;

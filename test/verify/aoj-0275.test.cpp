@@ -1,3 +1,14 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275"
+
+#include "../../template/template.cpp"
+#include "../../graph/template.cpp"
+
+#include "../../graph/shortest-path/dijkstra.cpp"
+
+#include "../../graph/others/topological-sort.cpp"
+
+#include "../../graph/others/offline-dag-reachability.cpp"
+
 int main() {
   int S, R, A, B, Q;
   cin >> S >> R;

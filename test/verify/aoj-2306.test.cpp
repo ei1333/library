@@ -1,3 +1,10 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2306"
+
+#include "../../template/template.cpp"
+#include "../../graph/template.cpp"
+
+#include "../../graph/others/maximum-clique.cpp"
+
 int main() {
   int N, M;
   cin >> N >> M;

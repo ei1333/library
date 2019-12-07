@@ -1,3 +1,10 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1615"
+
+#include "../../template/template.cpp"
+
+#include "../../graph/flow/dinic.cpp"
+#include "../../graph/flow/maxflow-lower-bound.cpp"
+
 int main() {
   int N, M;
   while(cin >> N >> M, N) {

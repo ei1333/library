@@ -1,3 +1,10 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1163"
+
+#include "../../template/template.cpp"
+#include "../../graph/template.cpp"
+
+#include "../../graph/flow/hungarian.cpp"
+
 int main() {
   int M, N, B[500], R[500];
   while(cin >> M >> N, M) {

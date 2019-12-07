@@ -1,3 +1,10 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0304"
+
+#include "../../template/template.cpp"
+#include "../../graph/template.cpp"
+
+#include "../../graph/shortest-path/bellman-ford.cpp"
+
 int main() {
   int N, C;
   int A[200], O[200], B[200], S[200], D[200];
