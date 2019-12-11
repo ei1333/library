@@ -5,13 +5,16 @@ struct FormalPowerSeries : vector< T > {
 
   using MULT = function< P(P, P) >;
   using FFT = function< void(P &) >;
+  using SQRT = function< T(T) >;
 
   static MULT &get_mult() {
     static MULT mult = nullptr;
     return mult;
   }
 
-  static void set_mult(MULT f) { get_mult() = f; }
+  static void set_mult(MULT f) {
+    get_mult() = f;
+  }
 
   static FFT &get_fft() {
     static FFT fft = nullptr;
@@ -26,6 +29,15 @@ struct FormalPowerSeries : vector< T > {
   static void set_fft(FFT f, FFT g) {
     get_fft() = f;
     get_ifft() = g;
+  }
+
+  static SQRT &get_sqrt() {
+    static SQRT sqr = nullptr;
+    return sqr;
+  }
+
+  static void set_sqrt(SQRT sqr) {
+    get_sqrt() = sqr;
   }
 
   void shrink() {
@@ -182,7 +194,9 @@ struct FormalPowerSeries : vector< T > {
         if((*this)[i] != T(0)) {
           if(i & 1) return {};
           if(deg - i / 2 <= 0) break;
-          auto ret = (*this >> i).sqrt(deg - i / 2) << (i / 2);
+          auto ret = (*this >> i).sqrt(deg - i / 2);
+          if(ret.empty()) return {};
+          ret = ret << (i / 2);
           if(ret.size() < deg) ret.resize(deg, T(0));
           return ret;
         }
@@ -190,7 +204,16 @@ struct FormalPowerSeries : vector< T > {
       return P(deg, 0);
     }
 
-    P ret({T(1)});
+    P ret;
+    if(get_sqrt() == nullptr) {
+      assert((*this)[0] == T(1));
+      ret = {T(1)};
+    } else {
+      auto sqr = get_sqrt()((*this)[0]);
+      if(sqr * sqr != (*this)[0]) return {};
+      ret = {T(sqr)};
+    }
+
     T inv2 = T(1) / T(2);
     for(int i = 1; i < deg; i <<= 1) {
       ret = (ret + pre(i << 1) * ret.inv(i << 1)) * inv2;
@@ -220,9 +243,11 @@ struct FormalPowerSeries : vector< T > {
     const int n = (int) conv_coeff.size();
     assert((n & (n - 1)) == 0);
     vector< P > conv_ntt_coeff;
+    auto& fft = get_fft();
+    auto& ifft = get_ifft();
     for(int i = n; i >= 1; i >>= 1) {
       P g(conv_coeff.pre(i));
-      get_fft()(g);
+      fft(g);
       conv_ntt_coeff.emplace_back(g);
     }
     P conv_arg(n), conv_ret(n);
@@ -239,9 +264,9 @@ struct FormalPowerSeries : vector< T > {
         rec(rec, l, m, d + 1);
         P pre(r - l);
         for(int i = 0; i < m - l; i++) pre[i] = conv_arg[l + i];
-        get_fft()(pre);
+        fft(pre);
         for(int i = 0; i < r - l; i++) pre[i] *= conv_ntt_coeff[d][i];
-        get_ifft()(pre);
+        ifft(pre);
         for(int i = 0; i < r - m; i++) conv_ret[m + i] += pre[m + i - l];
         rec(rec, m, r, d + 1);
       }
