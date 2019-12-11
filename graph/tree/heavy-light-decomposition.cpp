@@ -35,6 +35,7 @@ struct HeavyLightDecomposition {
     dfs_hld(0, -1, t);
   }
 
+  /* k: 0-indexed */
   int la(int v, int k) {
     while(1) {
       int u = head[v];
@@ -51,16 +52,20 @@ struct HeavyLightDecomposition {
     }
   }
 
-  template< typename T, typename Q, typename F >
-  T query(int u, int v, const T &ti, const Q &q, const F &f, bool edge = false) {
+  template< typename T, typename Q, typename F, typename S >
+  T query(int u, int v, const T &ti, const Q &q, const F &f, const S &s, bool edge = false) {
     T l = ti, r = ti;
     for(;; v = par[head[v]]) {
       if(in[u] > in[v]) swap(u, v), swap(l, r);
       if(head[u] == head[v]) break;
       l = f(q(in[head[v]], in[v] + 1), l);
     }
-    return f(f(q(in[u] + edge, in[v] + 1), l), r);
-//  return {f(q(in[u] + edge, in[v] + 1), l), r};
+    return s(f(q(in[u] + edge, in[v] + 1), l), r);
+  }
+
+  template< typename T, typename Q, typename F >
+  T query(int u, int v, const T &ti, const Q &q, const F &f, bool edge = false) {
+    return query(u, v, ti, q, f, f, edge);
   }
 
   template< typename Q >
