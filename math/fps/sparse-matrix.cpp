@@ -34,7 +34,7 @@ FormalPowerSeries< T > minimum_poly(const FPSGraph< T > &g) {
 
 /* O(N(N+S) + N log N log Q) (O(S): time complexity of nex) */
 template< typename T >
-FormalPowerSeries< T > sparse_pow(int64_t Q, FormalPowerSeries< modint > dp, const FPSGraph< T > &g) {
+FormalPowerSeries< T > sparse_pow(int64_t Q, FormalPowerSeries< T > dp, const FPSGraph< T > &g) {
   const int N = (int) dp.size();
   auto A = FormalPowerSeries< T >({0, 1}).pow_mod(Q, minimum_poly(g));
   FormalPowerSeries< T > res(N);
