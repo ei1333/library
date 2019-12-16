@@ -1,62 +1,62 @@
-template< typename Data, typename T >
+template< typename sum_t, typename key_t >
 struct ReRooting {
- 
   struct Node {
-    int to, rev;
-    Data data;
+    int to;
+    key_t data;
+    sum_t dp, ndp;
   };
- 
-  using F1 = function< T(T, T) >;
-  using F2 = function< T(T, Data) >;
- 
+
+  using F = function< sum_t(sum_t, sum_t) >;
+  using G = function< sum_t(sum_t, key_t) >;
+
   vector< vector< Node > > g;
-  vector< vector< T > > ldp, rdp;
-  vector< int > lptr, rptr;
-  const F1 f1;
-  const F2 f2;
-  const T ident;
- 
-  ReRooting(int n, const F1 &f1, const F2 &f2, const T &ident) :
-      g(n), ldp(n), rdp(n), lptr(n), rptr(n), f1(f1), f2(f2), ident(ident) {}
- 
-  void add_edge(int u, int v, const Data &d) {
-    g[u].emplace_back((Node) {v, (int) g[v].size(), d});
-    g[v].emplace_back((Node) {u, (int) g[u].size() - 1, d});
+  vector< sum_t > subdp, dp;
+  const sum_t ident;
+  const F f;
+  const G gg;
+
+  ReRooting(int V, const F f, const G g, const sum_t &ident)
+      : g(V), f(f), gg(g), ident(ident), subdp(V, ident), dp(V, ident) {}
+
+  void add_edge(int u, int v, const key_t &d) {
+    g[u].emplace_back((Node) {v, d, ident, ident});
+    g[v].emplace_back((Node) {u, d, ident, ident});
   }
- 
-  void add_edge_bi(int u, int v, const Data &d, const Data &e) {
-    g[u].emplace_back((Node) {v, (int) g[v].size(), d});
-    g[v].emplace_back((Node) {u, (int) g[u].size() - 1, e});
+
+  void add_edge_bi(int u, int v, const key_t &d, const key_t &e) {
+    g[u].emplace_back((Node) {v, d, ident, ident});
+    g[v].emplace_back((Node) {u, e, ident, ident});
   }
- 
- 
-  T dfs(int idx, int par) {
- 
-    while(lptr[idx] != par && lptr[idx] < g[idx].size()) {
-      auto &e = g[idx][lptr[idx]];
-      ldp[idx][lptr[idx] + 1] = f1(ldp[idx][lptr[idx]], f2(dfs(e.to, e.rev), e.data));
-      ++lptr[idx];
+
+  void dfs_sub(int idx, int par) {
+    for(auto &e : g[idx]) {
+      if(e.to == par) continue;
+      dfs_sub(e.to, idx);
+      subdp[idx] = f(subdp[idx], gg(subdp[e.to], e.data));
     }
-    while(rptr[idx] != par && rptr[idx] >= 0) {
-      auto &e = g[idx][rptr[idx]];
-      rdp[idx][rptr[idx]] = f1(rdp[idx][rptr[idx] + 1], f2(dfs(e.to, e.rev), e.data));
-      --rptr[idx];
-    }
-    if(par < 0) return rdp[idx][0];
-    return f1(ldp[idx][par], rdp[idx][par + 1]);
   }
- 
-  vector< T > solve() {
-    for(int i = 0; i < g.size(); i++) {
-      ldp[i].assign(g[i].size() + 1, ident);
-      rdp[i].assign(g[i].size() + 1, ident);
-      lptr[i] = 0;
-      rptr[i] = (int) g[i].size() - 1;
+
+  void dfs_all(int idx, int par, const sum_t &top) {
+    sum_t buff{ident};
+    for(int i = 0; i < (int) g[idx].size(); i++) {
+      auto &e = g[idx][i];
+      e.ndp = buff;
+      e.dp = gg(par == e.to ? top : subdp[e.to], e.data);
+      buff = f(buff, e.dp);
     }
-    vector< T > ret;
-    for(int i = 0; i < g.size(); i++) {
-      ret.push_back(dfs(i, -1));
+    dp[idx] = buff;
+    buff = ident;
+    for(int i = (int) g[idx].size() - 1; i >= 0; i--) {
+      auto &e = g[idx][i];
+      if(e.to != par) dfs_all(e.to, idx, f(e.ndp, buff));
+      e.ndp = f(e.ndp, buff);
+      buff = f(buff, e.dp);
     }
-    return ret;
+  }
+
+  vector< sum_t > build() {
+    dfs_sub(0, -1);
+    dfs_all(0, -1, ident);
+    return dp;
   }
 };
