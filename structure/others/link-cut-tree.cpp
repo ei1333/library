@@ -1,7 +1,7 @@
 template< typename Monoid = int, typename OperatorMonoid = Monoid >
 struct LinkCutTree {
   using F = function< Monoid(Monoid, Monoid) >;
-  using G = function< Monoid(Monoid, OperatorMonoid, int) >;
+  using G = function< Monoid(Monoid, OperatorMonoid) >;
   using H = function< OperatorMonoid(OperatorMonoid, OperatorMonoid) >;
   using S = function< Monoid(Monoid) >;
 
@@ -45,8 +45,8 @@ struct LinkCutTree {
 
   void propagate(Node *t, const OperatorMonoid &x) {
     t->lazy = h(t->lazy, x);
-    t->key = g(t->key, x, 1);
-    t->sum = g(t->sum, x, t->sz);
+    t->key = g(t->key, x);
+    t->sum = g(t->sum, x);
   }
 
   void toggle(Node *t) {
@@ -207,4 +207,3 @@ struct LinkCutTree {
     return x;
   }
 };
-
