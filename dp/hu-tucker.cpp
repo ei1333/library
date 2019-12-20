@@ -1,4 +1,4 @@
-te< typename Heap, typename T >
+template< typename Heap, typename T >
 T hu_tucker(vector< T > vs, T INF) {
   int N = (int) vs.size();
   Heap heap;
