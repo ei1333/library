@@ -4,35 +4,26 @@
 
 #include "../../graph/tree/rerooting.cpp"
 
-const int INF = 1 << 30;
-using pi = pair< int, int >;
-
 int main() {
   int N, D;
-  cin >> N >> D;
+  cin >> N;
 
-  auto f1 = [](pi a, pi b) {
-    return pi(a.first + b.first, max(a.second, b.second));
-  };
-  auto f2 = [](pi a, pi data) {
-    a.first += data.second;
-    a.second += data.first;
-    return a;
+  auto f1 = [](int a, int b) {
+    return max(a, b);
   };
 
-  ReRooting< pi, pi > g(N, f1, f2, {0, 0});
+  auto f2 = [](int a, int data) {
+    return a + data;
+  };
+
+  ReRooting< int, int > g(N, f1, f2, 0);
   for(int i = 1; i < N; i++) {
-    int s, t, w;
-    cin >> s >> t >> w;
+    int s, t;
+    cin >> s >> t;
     --s, --t;
-    g.add_edge_bi(s, t, pi(w, true), pi(w, false));
+    g.add_edge(s, t, 1);
   }
-
-  int ret = INF;
   for(auto &p : g.build()) {
-    if(p.second <= D) ret = min(ret, p.first);
+    cout << (N - 1) * 2 - p << endl;
   }
-  if(ret >= INF) ret = -1;
-  cout << ret << endl;
 }
-
