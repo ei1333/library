@@ -71,6 +71,9 @@
 ## DP
 
 #### ナップサック問題
+- [0-1ナップサック O(NW)](https://github.com/ei1333/library/blob/master/dp/knapsack-01.cpp)
+- [0-1ナップサック O(N sum(v_i))](https://github.com/ei1333/library/blob/master/dp/knapsack-01-2.cpp)
+- [個数制限なしナップサック O(NW)](https://github.com/ei1333/library/blob/master/dp/knapsack.cpp)
 - [個数制限付きナップサック O(NW)](https://github.com/ei1333/library/blob/master/dp/knapsack-limitations.cpp)
 - [個数制限付きナップサック O(N^2 max(v_i)^2)](https://github.com/ei1333/library/blob/master/dp/knapsack-limitations-2.cpp)
 
@@ -83,6 +86,7 @@
 - [最適二分探索木](https://github.com/ei1333/library/blob/master/dp/hu-tucker.cpp)
 - [ヒストグラム中の最大長方形](https://github.com/ei1333/library/blob/master/dp/largest-rectangle.cpp)
 - [最長増加部分列(LIS)](https://github.com/ei1333/library/blob/master/dp/longest-increasing-subsequence.cpp)
+- [編集距離](https://github.com/ei1333/library/blob/master/dp/edit-distance.cpp)
 - [Monotone-Minima](https://github.com/ei1333/library/blob/master/dp/monotone-minima.cpp)
 - [オンラインオフライン変換](https://github.com/ei1333/library/blob/master/dp/online-offline-dp.cpp)
 - [スライド最小値](https://github.com/ei1333/library/blob/master/dp/slide-min.cpp)
