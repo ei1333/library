@@ -211,7 +211,7 @@
 ## その他
 
 - [Mo's algorithm](https://github.com/ei1333/library/blob/master/other/mo.cpp)
-- [Mo's alogirhtm(ロールバッグ平方分割)](https://github.com/ei1333/library/blob/master/other/mo-rollback.cpp)
+- [Mo's algorithm(ロールバッグ平方分割)](https://github.com/ei1333/library/blob/master/other/mo-rollback.cpp)
 - [Offline-Dynamic-Connectivity](https://github.com/ei1333/library/blob/master/other/offline-dynamic-connectivity.cpp)
 - [サイコロ](https://github.com/ei1333/library/blob/master/other/dice.cpp)
 - [タイマー](https://github.com/ei1333/library/blob/master/other/timer.cpp)
