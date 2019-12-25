@@ -25,7 +25,7 @@
 
 #### Segment-Tree
 - [Segment-Tree](https://github.com/ei1333/library/blob/master/structure/segment-tree/segment-tree.cpp)
-- [双対Segment-Tree](https://github.com/ei1333/library/blob/master/structure/segment-tree/duel-segment-tree.cpp)
+- [双対Segment-Tree](https://github.com/ei1333/library/blob/master/structure/segment-tree/dual-segment-tree.cpp)
 - [遅延伝搬Segment-Tree](https://github.com/ei1333/library/blob/master/structure/segment-tree/lazy-segment-tree.cpp)
 - [二次元Segment-Tree(一点更新矩形取得)](https://github.com/ei1333/library/blob/master/structure/segment-tree/segment-tree-2d.cpp)
 - [二次元Segment-Tree(矩形更新一点取得)](https://github.com/ei1333/library/blob/master/structure/segment-tree/segment-tree-2d-2.cpp)
