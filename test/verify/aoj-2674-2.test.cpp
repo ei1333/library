@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 
 #include "../../structure/wavelet/succinct-indexable-dictionary.cpp"
-#include "../../structure/wavelet/wavelet-matrix.cpp"
+#include "../../structure/wavelet/wavelet-tree.cpp"
 
 int main() {
   int N, Q;
@@ -13,7 +13,7 @@ int main() {
     cin >> X[i];
     X[i] += 5e8;
   }
-  WaveletMatrix< int, 30 > matrix(X);
+  WaveletTree< int, 30 > matrix(X);
   cin >> Q;
   while(Q--) {
     int L, R, E;

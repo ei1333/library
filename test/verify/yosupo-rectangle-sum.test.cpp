@@ -2,8 +2,8 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/others/succinct-indexable-dictionary.cpp"
-#include "../../structure/others/wavelet-matrix-rectangle-sum.cpp"
+#include "../../structure/wavelet/succinct-indexable-dictionary.cpp"
+#include "../../structure/wavelet/wavelet-matrix-rectangle-sum.cpp"
 
 int main() {
   int N, Q;

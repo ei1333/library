@@ -58,6 +58,12 @@
 - [Fibonacchi-Heap](https://github.com/ei1333/library/blob/master/structure/heap/fibonacchi-heap.cpp)
 - [Radix-Heap](https://github.com/ei1333/library/blob/master/structure/heap/radix-heap.cpp)
 
+#### ウェーブレット
+- [完備辞書](https://github.com/ei1333/library/blob/master/structure/wavelet/succinct-indexable-dictionary.cpp)
+- [Wavelet-Matrix](https://github.com/ei1333/library/blob/master/structure/wavelet/wavelet-matrix.cpp)
+- [Wavelet-Matrix-Rectangle-Sum](https://github.com/ei1333/library/blob/master/structure/wavelet/wavelet-matrix-rectangle-sum.cpp)
+- [Wevelet-Tree](https://github.com/ei1333/library/blob/master/structure/wavelet/wavelet-tree.cpp)
+
 #### その他
 - [Binary-Indexed-Tree](https://github.com/ei1333/library/blob/master/structure/others/binary-indexed-tree.cpp)
 - [Sparse-Table](https://github.com/ei1333/library/blob/master/structure/others/sparse-table.cpp)
@@ -67,8 +73,6 @@
 - [長方形の和集合の面積](https://github.com/ei1333/library/blob/master/structure/others/union-rectangle.cpp)
 - [スライド区間の昇順k個の和](https://github.com/ei1333/library/blob/master/structure/others/priority-sum-structure.cpp)
 - [Sliding-Window-Aggregation](https://github.com/ei1333/library/blob/master/structure/others/sliding-window-aggregation.cpp)
-- [Wavelet-Matrix](https://github.com/ei1333/library/blob/master/structure/others/wavelet-matrix.cpp)
-- [Wavelet-Matrix-Rectangle-Sum](https://github.com/ei1333/library/blob/master/structure/others/wavelet-matrix-rectangle-sum.cpp)
 
 ## DP
 
