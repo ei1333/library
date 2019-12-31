@@ -13,7 +13,7 @@ int main() {
     cin >> X[i];
     X[i] += 5e8;
   }
-  WaveletTree< int, 30 > matrix(X);
+  CompressedWaveletTree< int, 18 > matrix(X);
   cin >> Q;
   while(Q--) {
     int L, R, E;

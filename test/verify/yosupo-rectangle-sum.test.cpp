@@ -22,12 +22,13 @@ int main() {
     ys[x[i]] = y[i];
     ws[x[i]] = w[i];
   }
-  WaveletMatrixRectangleSum< int, 30, int64 > mat(ys, ws);
+  CompressedWaveletMatrixRectangleSum< int, 18, int64 > mat(ys, ws);
   while(Q--) {
     int l, r, d, u;
     cin >> l >> d >> r >> u;
     l = lower_bound(begin(xs), end(xs), make_pair(l, -1)) - begin(xs);
     r = lower_bound(begin(xs), end(xs), make_pair(r, -1)) - begin(xs);
-    cout << mat.range_sum(l, r, d, u) << "\n";
+    cout << mat.rect_sum(l, r, d, u) << "\n";
   }
 }
+
