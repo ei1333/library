@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   Trie< 26, 'a' > trie;
   string S, P[5000];

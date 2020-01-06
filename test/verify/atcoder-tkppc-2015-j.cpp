@@ -1,3 +1,5 @@
+#define IGNORE
+
 template< typename T, typename Compare = less< T > >
 struct PQ {
   priority_queue< T, vector< T >, Compare > que1, que2;

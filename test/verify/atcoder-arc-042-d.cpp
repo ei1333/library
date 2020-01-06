@@ -1,3 +1,5 @@
+#define IGNORE
+
 int64_t mod_pow(int64_t x, int64_t n, int64_t mod) {
   int64_t ret = 1;
   while(n > 0) {

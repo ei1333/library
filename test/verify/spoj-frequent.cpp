@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   int N, Q;
   while(cin >> N, N) {

@@ -1,3 +1,5 @@
+#define IGNORE
+
 using int64 = long long;
  
 int64 add(int64 x, int64 y) { return x + y; }

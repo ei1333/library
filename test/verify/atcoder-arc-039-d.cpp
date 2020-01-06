@@ -1,3 +1,5 @@
+#define IGNORE
+
 template< typename G >
 struct DoublingLowestCommonAncestor {
   const int LOG;

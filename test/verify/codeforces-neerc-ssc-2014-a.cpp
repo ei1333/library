@@ -1,3 +1,5 @@
+#define IGNORE
+
 struct UnionFindUndo {
   vector< int > data;
   stack< pair< int, int > > history;

@@ -1,3 +1,5 @@
+#define IGNORE
+
 template< int mod >
 struct ModInt {
   int x;

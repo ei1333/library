@@ -1,3 +1,5 @@
+#define IGNORE
+
 struct UnionFind {
   vector< int > data;
  

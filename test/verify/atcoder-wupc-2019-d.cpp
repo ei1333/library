@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   int N, M;
   vector< int > g[100000];

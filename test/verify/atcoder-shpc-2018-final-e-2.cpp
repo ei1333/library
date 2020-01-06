@@ -1,3 +1,5 @@
+#define IGNORE
+
 using pi = pair< int, int >;
 using int64 = long long;
 const int mod = 1e9 + 7;

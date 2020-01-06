@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   FILE *in, *out;
   in = fopen("connect.in", "r");

@@ -1,3 +1,5 @@
+#define IGNORE
+
 using int64 = long long;
 
 int64 power[234567];

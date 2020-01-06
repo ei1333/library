@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   int N, X;
   cin >> N >> X;
@@ -42,3 +44,4 @@ int main() {
   }
   cout << ok << endl;
 }
+

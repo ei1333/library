@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   int N;
   scanf("%d", &N);

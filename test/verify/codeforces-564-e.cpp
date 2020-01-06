@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   struct tap {
     int64 sz, szsum, cashsz, cashszsum;

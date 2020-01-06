@@ -1,3 +1,5 @@
+#define IGNORE
+
 int main() {
   int64 X;
   cin >> X;

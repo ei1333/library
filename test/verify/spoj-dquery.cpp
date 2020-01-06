@@ -1,3 +1,5 @@
+#define IGNORE
+
 nt main() {
   int N, Q;
   cin >> N;
