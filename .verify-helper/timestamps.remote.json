@@ -74,6 +74,7 @@
 "test/verify/yosupo-log-of-formal-power-series.test.cpp": "2019-12-11 22:31:39 +0900",
 "test/verify/yosupo-matrix-det.test.cpp": "2019-12-12 22:16:00 +0900",
 "test/verify/yosupo-maximum-independent-set.test.cpp": "2019-12-12 22:16:00 +0900",
+"test/verify/yosupo-montmort-number-mod.test.cpp": "2020-01-07 02:37:39 +0900",
 "test/verify/yosupo-multipoint-evaluation.test.cpp": "2019-12-12 22:16:00 +0900",
 "test/verify/yosupo-partition-function.test.cpp": "2019-12-11 22:31:39 +0900",
 "test/verify/yosupo-polynomial-interpolation.test.cpp": "2019-12-12 22:16:00 +0900",
