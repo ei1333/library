@@ -217,7 +217,7 @@
 - [疎行列の行列累乗/行列式](https://github.com/ei1333/library/blob/master/math/fps/sparse-matrix.cpp)
 
 #### 行列
-- [行列](https://github.com/ei1333/library/blob/master/math/matrix.cpp)
+- [行列](https://github.com/ei1333/library/blob/master/math/matrix/matrix.cpp)
 
 ## その他
 
