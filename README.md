@@ -199,6 +199,7 @@
 - [第2種スターリング数 O(K logN)](https://github.com/ei1333/library/blob/master/math/combinatorics/stirling-number-second.cpp)
 - [階乗 mod p O(sqrt(p) log p)](https://github.com/ei1333/library/blob/master/math/combinatorics/factorial.cpp)
 - [離散対数問題 O(sqrt(p))](https://github.com/ei1333/library/blob/master/math/combinatorics/mod-log.cpp)
+- [モンモール数 O(N)](https://github.com/ei1333/library/blob/master/math/combinatorics/montmort.cpp)
 
 #### FFT
 - [高速フーリエ変換(FFT)](https://github.com/ei1333/library/blob/master/math/fft/fast-fourier-transform.cpp)
