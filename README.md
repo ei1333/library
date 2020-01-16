@@ -178,6 +178,7 @@
 #### 数論
 - [オイラーのφ関数(値) O(sqrt(N))](https://github.com/ei1333/library/blob/master/math/number-theory/euler-phi.cpp)
 - [オイラーのφ関数(テーブル) O(N loglogN)](https://github.com/ei1333/library/blob/master/math/number-theory/euler-phi-table.cpp)
+- [メビウスのμ関数(テーブル) O(N loglogN)](https://github.com/ei1333/library/blob/master/math/number-theory/moebius-mu-table.cpp)
 - [商の列挙](https://github.com/ei1333/library/blob/master/math/number-theory/quotient-range.cpp)
 - [拡張ユークリッドの互除法 O(logN)](https://github.com/ei1333/library/blob/master/math/number-theory/extgcd.cpp)
 - [約数列挙 O(sqrt(N)](https://github.com/ei1333/library/blob/master/math/number-theory/divisor.cpp)
