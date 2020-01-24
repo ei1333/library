@@ -40,10 +40,10 @@
 "test/verify/aoj-grl-1-b-2.test.cpp": "2019-11-30 23:02:43 +0900",
 "test/verify/aoj-grl-1-b.test.cpp": "2019-11-30 23:02:43 +0900",
 "test/verify/aoj-grl-1-c.test.cpp": "2019-11-30 23:02:43 +0900",
-"test/verify/aoj-grl-2-a-2.test.cpp": "2019-11-30 23:02:43 +0900",
+"test/verify/aoj-grl-2-a-2.test.cpp": "2020-01-24 16:48:25 +0900",
 "test/verify/aoj-grl-2-a-3.test.cpp": "2019-11-30 23:02:43 +0900",
 "test/verify/aoj-grl-2-a-4.test.cpp": "2019-11-30 23:02:43 +0900",
-"test/verify/aoj-grl-2-a.test.cpp": "2019-11-30 23:02:43 +0900",
+"test/verify/aoj-grl-2-a.test.cpp": "2020-01-24 16:48:25 +0900",
 "test/verify/aoj-grl-2-b.test.cpp": "2019-11-30 23:02:43 +0900",
 "test/verify/aoj-grl-3-a.test.cpp": "2019-11-30 23:02:43 +0900",
 "test/verify/aoj-grl-3-b.test.cpp": "2019-11-30 23:02:43 +0900",
@@ -83,6 +83,5 @@
 "test/verify/yosupo-segment-add-get-min.test.cpp": "2020-01-07 02:07:19 +0900",
 "test/verify/yosupo-sparse-matrix-det.test.cpp": "2019-12-12 22:16:00 +0900",
 "test/verify/yosupo-sqrt-mod.test.cpp": "2019-12-11 22:31:39 +0900",
-"test/verify/yosupo-sqrt-of-formal-power-series.test.cpp": "2019-12-11 22:31:39 +0900",
-"~": "dummy"
+"test/verify/yosupo-sqrt-of-formal-power-series.test.cpp": "2019-12-11 22:31:39 +0900"
 }
