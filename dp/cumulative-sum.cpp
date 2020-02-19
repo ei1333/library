@@ -1,10 +1,16 @@
+/**
+ * @brief CumulativeSum(一次元累積和)
+ * @docs docs/cumulative-sum.md
+ */
 template< class T >
 struct CumulativeSum {
   vector< T > data;
 
-  CumulativeSum(int sz) : data(sz, 0) {};
+  CumulativeSum() = default;
 
-  void add(int k, T x) {
+  explicit CumulativeSum(size_t sz) : data(sz, 0) {}
+
+  void add(int k, const T &x) {
     data[k] += x;
   }
 
@@ -14,8 +20,8 @@ struct CumulativeSum {
     }
   }
 
-  T query(int k) {
-    if(k < 0) return (0);
-    return (data[min(k, (int) data.size() - 1)]);
+  T query(int k) const {
+    if(k < 0) return 0;
+    return data[min(k, (int) data.size() - 1)];
   }
 };

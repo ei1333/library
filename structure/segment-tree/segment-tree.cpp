@@ -1,3 +1,7 @@
+/**
+ * @brief Segment-Tree(セグメント木)
+ * @docs docs/segment-tree.md
+ */
 template< typename Monoid >
 struct SegmentTree {
   using F = function< Monoid(Monoid, Monoid) >;
@@ -7,7 +11,7 @@ struct SegmentTree {
 
   const F f;
   const Monoid M1;
-
+  
   SegmentTree(int n, const F f, const Monoid &M1) : f(f), M1(M1) {
     sz = 1;
     while(sz < n) sz <<= 1;
@@ -55,7 +59,6 @@ struct SegmentTree {
     return a - sz;
   }
 
-
   template< typename C >
   int find_first(int a, const C &check) {
     Monoid L = M1;
@@ -93,4 +96,3 @@ struct SegmentTree {
     return -1;
   }
 };
-
