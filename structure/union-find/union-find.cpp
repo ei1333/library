@@ -1,11 +1,14 @@
-/* @docs docs/union-find.md */
+/**
+ * @brief Union-Find
+ * @docs docs/union-find.md
+ */
 struct UnionFind {
   vector< int > data;
 
   UnionFind() = default;
 
   explicit UnionFind(size_t sz) : data(sz, -1) {}
-  
+
   bool unite(int x, int y) {
     x = find(x), y = find(y);
     if(x == y) return false;
