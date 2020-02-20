@@ -1,8 +1,13 @@
+/**
+ * @brief Disjoint-Sparse-Table
+ * @docs docs/disjoint-sparse-table.md
+ */
 template< typename Semigroup >
 struct DisjointSparseTable {
   using F = function< Semigroup(Semigroup, Semigroup) >;
   const F f;
   vector< vector< Semigroup > > st;
+  vector< int > lookup;
 
   DisjointSparseTable(const vector< Semigroup > &v, const F &f) : f(f) {
     int b = 0;
@@ -21,11 +26,15 @@ struct DisjointSparseTable {
         for(int k = t + 1; k < r; k++) st[i][k] = f(st[i][k - 1], v[k]);
       }
     }
+    lookup.resize(1 << b);
+    for(int i = 2; i < lookup.size(); i++) {
+      lookup[i] = lookup[i >> 1] + 1;
+    }
   }
 
   Semigroup query(int l, int r) {
     if(l >= --r) return st[0][l];
-    int p = 31 - __builtin_clz(l ^ r);
+    int p = lookup[l ^ r];
     return f(st[p][l], st[p][r]);
   }
 };

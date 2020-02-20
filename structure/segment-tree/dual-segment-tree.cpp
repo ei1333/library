@@ -1,3 +1,7 @@
+/**
+ * @brief Dual-Segment-Tree(双対セグメント木)
+ * @docs docs/dual-segment-tree.md
+ */
 template< typename OperatorMonoid >
 struct DualSegmentTree {
   using H = function< OperatorMonoid(OperatorMonoid, OperatorMonoid) >;
@@ -7,9 +11,7 @@ struct DualSegmentTree {
   const H h;
   const OperatorMonoid OM0;
 
-
-  DualSegmentTree(int n, const H h, const OperatorMonoid OM0)
-      : h(h), OM0(OM0) {
+  DualSegmentTree(int n, const H h, const OperatorMonoid &OM0) : h(h), OM0(OM0) {
     sz = 1;
     height = 0;
     while(sz < n) sz <<= 1, height++;

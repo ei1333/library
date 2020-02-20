@@ -1,3 +1,7 @@
+/**
+ * @brief Lazy-Segment-Tree(遅延伝搬セグメント木)
+ * @docs docs/lazy-segment-tree.md
+ */
 template< typename Monoid, typename OperatorMonoid = Monoid >
 struct LazySegmentTree {
   using F = function< Monoid(Monoid, Monoid) >;
@@ -12,7 +16,6 @@ struct LazySegmentTree {
   const H h;
   const Monoid M1;
   const OperatorMonoid OM0;
-
 
   LazySegmentTree(int n, const F f, const G g, const H h,
                   const Monoid &M1, const OperatorMonoid OM0)
@@ -113,8 +116,7 @@ struct LazySegmentTree {
     }
     return -1;
   }
-
-
+  
   template< typename C >
   int find_last(int b, const C &check) {
     Monoid R = M1;
