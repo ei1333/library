@@ -1,3 +1,7 @@
+/**
+ * @brief Knapsack-01(0-1ナップサック問題) $O(NW)$
+ * @docs docs/knapsack-01.md
+ */
 template< typename T, typename Compare = greater< T > >
 vector< T > knapsack_01(const vector< int > &w, const vector< T > &v, const int &W, const T &NG, const Compare &comp = Compare()) {
   const int N = (int) w.size();
