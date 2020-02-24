@@ -1,3 +1,7 @@
+/**
+ * @brief Bell-Number(ベル数)
+ * @docs docs/bell-number.md
+ */
 template< typename T >
 T bell_number(int n, int k) {
   if(n == 0) return 1;

@@ -1,5 +1,9 @@
+/**
+ * @brief Partition-Table(分割数テーブル)
+ * @docs docs/partition-table.md
+ */
 template< typename T >
-vector< vector< T > > get_partition(int n, int k) {
+vector< vector< T > > partition_table(int n, int k) {
   vector< vector< T > > dp(n + 1, vector< T >(k + 1));
   dp[0][0] = 1;
   for(int i = 0; i <= n; i++) {

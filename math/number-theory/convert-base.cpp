@@ -1,3 +1,7 @@
+/**
+ * @brief Convert-Base(進数変換)
+ * @docs docs/convert-base.md
+ */
 template< typename T >
 vector< T > convert_base(T x, T b) {
   vector< T > ret;

@@ -1,3 +1,7 @@
+/**
+ * @brief Binomial-Table(二項係数テーブル)
+ * @docs docs/binomial-table.md
+ */
 template< typename T >
 vector< vector< T > > binomial_table(int N) {
   vector< vector< T > > mat(N + 1, vector< T >(N + 1));
