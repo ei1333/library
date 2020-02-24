@@ -1,3 +1,7 @@
+/**
+ * @brief  Online-Offline-DP(オンライン・オフライン変換)
+ * @docs docs/online-offline-dp.md
+ */
 template< typename T, typename Compare = less< T > >
 vector< T > online_offline_dp(int W, const function< T(int, int) > &f, const Compare &comp = Compare()) {
   vector< T > dp(W + 1);
