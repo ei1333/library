@@ -18,3 +18,8 @@
 * `find_first(a, check)`: $[a, x)$ が `check` を満たす最初の要素位置 $x$ を返す.
 * `find_last(b, check)`: $[x, b)$ が `check` を満たす最後の要素位置 $x$ を返す.
 
+## 計算量
+
+* `set(k, x)`: $O(1)$
+* `build()`: $O(N)$
+* クエリ: $O(\log N)$
