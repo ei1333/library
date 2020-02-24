@@ -1,3 +1,7 @@
+/**
+ * @brief Monotone-Minima
+ * @docs docs/monotone-minima.md
+ */
 template< typename T, typename Compare = less< T > >
 vector< pair< int, T > > monotone_minima(int H, int W, const function< T(int, int) > &f, const Compare &comp = Compare()) {
   vector< pair< int, T > > dp(H);
@@ -20,4 +24,3 @@ vector< pair< int, T > > monotone_minima(int H, int W, const function< T(int, in
   dfs(0, H - 1, 0, W - 1);
   return dp;
 }
-
