@@ -1,3 +1,6 @@
+/**
+ * @brief Centroid(木の重心)
+ */
 template< typename G >
 vector< int > centroid(const G &g) {
   const int N = (int) g.size();

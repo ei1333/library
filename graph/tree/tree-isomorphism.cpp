@@ -1,11 +1,13 @@
-template< typename G >
-bool tree_isomorphism(const G &a, const G &b) {
+/**
+ * @brief Tree-Isomorphism(木の同型性判定)
+ */
+bool tree_isomorphism(const UnWeightedGraph &a, const UnWeightedGraph &b) {
   if(a.size() != b.size()) return false;
 
   const int N = (int) a.size();
   using pvi = pair< vector< int >, vector< int > >;
 
-  auto get_uku = [&](const G &t, int e) {
+  auto get_uku = [&](const UnWeightedGraph &t, int e) {
     stack< pair< int, int > > st;
     st.emplace(e, -1);
     vector< int > dep(N, -1), par(N);
