@@ -57,7 +57,6 @@ struct NumberTheoreticTransform {
     }
   }
 
-
   void ntt(vector< int > &a) {
     const int n = (int) a.size();
     assert((n & (n - 1)) == 0);
@@ -79,7 +78,6 @@ struct NumberTheoreticTransform {
       }
     }
   }
-
 
   vector< int > multiply(vector< int > a, vector< int > b) {
     int need = a.size() + b.size() - 1;
