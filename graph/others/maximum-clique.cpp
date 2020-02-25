@@ -1,5 +1,5 @@
 /**
- * @bref Maximum-Clique(最大クリーク)
+ * @brief Maximum-Clique(最大クリーク)
  */
 template< int V >
 struct MaximumClique {

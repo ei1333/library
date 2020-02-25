@@ -1,5 +1,5 @@
 /**
- * @bref Enumerate-Clique(クリーク全列挙)
+ * @brief Enumerate-Clique(クリーク全列挙)
  * @see https://www.slideshare.net/wata_orz/ss-12131479
  */
 vector< vector< int > > enumerate_clique(Matrix< bool > g) {
