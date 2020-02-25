@@ -1,3 +1,7 @@
+/**
+ * @brief Knapsack-Limitations(個数制限つきナップサック問題) $O(N^2 \max(v_i)^2)$
+ * @docs docs/knapsack-limitations-2.md
+ */
 template< typename T >
 T knapsack_limitations(const vector< T > &w, const vector< T > &m, const vector< int > &v,
                        const T &W) {
