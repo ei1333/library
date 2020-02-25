@@ -1,92 +1,70 @@
-template< typename T >
-T maximum_clique(Matrix< bool > g, function< T(vector< int >) > f) {
+/**
+ * @bref Maximum-Clique(最大クリーク)
+ */
+template< int V >
+struct MaximumClique {
+  using B = bitset< V >;
+  vector< B > g, col_buf;
 
-  int N = (int) g.size(), M = 0;
-  vector< int > deg(N), v(N);
-  for(int i = 0; i < N; i++) {
-    for(int j = 0; j < i; j++) {
-      assert(g[i][j] == g[j][i]);
-      if(g[i][j]) {
-        ++deg[i];
-        ++M;
-      }
-    }
+  struct P {
+    int idx, col, deg;
+
+    P(int idx, int col, int deg) : idx(idx), col(col), deg(deg) {}
+  };
+
+  MaximumClique() = default;
+
+  explicit MaximumClique(int N) : g(N), col_buf(N) {}
+
+  void add_edge(int a, int b) {
+    g[a].set(b);
+    g[b].set(a);
   }
-  T t = 0;
-  int lim = (int) sqrt(2 * M);
 
-  for(int i = 0; i < N; i++) {
-    vector< int > notice;
-    for(int j = 0; j < N; j++) {
-      if(!v[j] && deg[j] < lim) {
-        for(int k = 0; k < N; k++) {
-          if(j == k) continue;
-          if(g[j][k]) notice.emplace_back(k);
+  vector< int > now, clique;
+
+  void dfs(vector< P > &rem) {
+    if(clique.size() < now.size()) clique = now;
+    sort(begin(rem), end(rem), [](const P &a, const P &b) {
+      return a.deg > b.deg;
+    });
+    int max_c = 1;
+    for(auto &p : rem) {
+      p.col = 0;
+      while((g[p.idx] & col_buf[p.col]).any()) ++p.col;
+      max_c = max(max_c, p.idx + 1);
+      col_buf[p.col].set(p.idx);
+    }
+    for(int i = 0; i < max_c; i++) col_buf[i].reset();
+    sort(begin(rem), end(rem), [&](const P &a, const P &b) {
+      return a.col < b.col;
+    });
+    for(; !rem.empty(); rem.pop_back()) {
+      auto &p = rem.back();
+      if(now.size() + p.col + 1 <= clique.size()) break;
+      vector< P > nrem;
+      B bs;
+      for(auto &q : rem) {
+        if(g[p.idx][q.idx]) {
+          nrem.emplace_back(q.idx, -1, 0);
+          bs.set(q.idx);
         }
-        notice.emplace_back(j);
-        break;
       }
-    }
-    if(notice.empty()) break;
-    int neighbor = (int) notice.size() - 1;
-    vector< int > bit(neighbor);
-    for(int j = 0; j < neighbor; j++) {
-      for(int k = 0; k < j; k++) {
-        if(!g[notice[j]][notice[k]]) {
-          bit[j] |= 1 << k;
-          bit[k] |= 1 << j;
-        }
+      for(auto &q : nrem) {
+        q.deg = (bs & g[q.idx]).count();
       }
-    }
-    for(int j = 0; j < (1 << neighbor); j++) {
-      bool ok = true;
-      for(int k = 0; k < neighbor; k++) {
-        if((j >> k) & 1) ok &= (j & bit[k]) == 0;
-      }
-      if(ok) {
-        vector< int > stock{notice.back()};
-        for(int k = 0; k < neighbor; k++) {
-          if((j >> k) & 1) stock.emplace_back(notice[k]);
-        }
-        t = max(t, f(stock));
-      }
-    }
-    v[notice.back()] = true;
-    for(int j = 0; j < N; j++) {
-      if(g[j][notice.back()]) {
-        --deg[j];
-        g[notice.back()][j] = g[j][notice.back()] = false;
-      }
+      now.emplace_back(p.idx);
+      dfs(nrem);
+      now.pop_back();
     }
   }
 
-  vector< int > notice;
-  for(int j = 0; j < N; j++) {
-    if(!v[j]) notice.emplace_back(j);
-  }
-  int neighbor = (int) notice.size();
-  vector< int > bit(neighbor);
-  for(int j = 0; j < neighbor; j++) {
-    for(int k = 0; k < j; k++) {
-      if(!g[notice[j]][notice[k]]) {
-        bit[j] |= 1 << k;
-        bit[k] |= 1 << j;
-      }
+  vector< int > solve() {
+    vector< P > remark;
+    for(int i = 0; i < g.size(); i++) {
+      remark.emplace_back(i, -1, (int) g[i].size());
     }
+    dfs(remark);
+    return clique;
   }
-  for(int j = 0; j < (1 << neighbor); j++) {
-    bool ok = true;
-    for(int k = 0; k < neighbor; k++) {
-      if((j >> k) & 1) ok &= (j & bit[k]) == 0;
-    }
-    if(ok) {
-      vector< int > stock;
-      for(int k = 0; k < neighbor; k++) {
-        if((j >> k) & 1) stock.emplace_back(notice[k]);
-      }
-      t = max(t, f(stock));
-    }
-  }
-  return t;
-}
-
+};

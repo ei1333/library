@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../../graph/template.cpp"
 
-#include "../../graph/others/maximum-clique.cpp"
+#include "../../graph/others/enumerate-clique.cpp"
 
 int main() {
   int N, M;
@@ -19,15 +19,20 @@ int main() {
     h[x][y] = z;
     h[y][x] = z;
   }
-  function< int(vector< int >) > f = [&](vector< int > t) {
-    if(t.size() <= 1) return 0;
-    int ret = 0;
-    for(int i = 0; i < t.size(); i++) {
+  auto cliques = enumerate_clique(g);
+  int ret = 0;
+  for(auto &clique : cliques) {
+    if(clique.size() == 1) continue;
+    int add = 0;
+    for(auto &i : clique) {
       int uku = 1 << 30;
-      for(int j = 0; j < t.size(); j++) if(i != j) uku = min(uku, h[t[i]][t[j]]);
-      ret += uku;
+      for(auto &j : clique) {
+        if(i != j) uku = min(uku, h[i][j]);
+      }
+      add += uku;
     }
-    return ret;
-  };
-  cout << maximum_clique(g, f) << endl;
+    ret = max(ret, add);
+  }
+  cout << ret << "\n";
 }
+
