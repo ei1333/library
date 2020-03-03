@@ -76,6 +76,7 @@
 "test/verify/yosupo-find-linear-recurrence.test.cpp": "2020-03-03 17:43:59 +0900",
 "test/verify/yosupo-general-matching.test.cpp": "2019-12-12 22:16:00 +0900",
 "test/verify/yosupo-inv-of-formal-power-series.test.cpp": "2020-02-24 19:19:55 +0900",
+"test/verify/yosupo-kth-root-integer.test.cpp": "2020-03-03 18:40:18 +0900",
 "test/verify/yosupo-line-add-get-min.test.cpp": "2020-01-07 02:07:19 +0900",
 "test/verify/yosupo-log-of-formal-power-series.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-matrix-det.test.cpp": "2019-12-12 22:16:00 +0900",
@@ -92,6 +93,6 @@
 "test/verify/yosupo-sqrt-of-formal-power-series.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-staticrmq-2.test.cpp": "2020-02-20 22:23:04 +0900",
 "test/verify/yosupo-staticrmq.test.cpp": "2020-02-20 22:23:04 +0900",
-"test/verify/yosupo-sum-of-floor-of-linear.test.cpp": "2020-03-03 17:43:59 +0900",
+"test/verify/yosupo-sum-of-floor-of-linear.test.cpp": "2020-03-03 18:40:18 +0900",
 "test/verify/yosupo-tetration-mod.test.cpp": "2020-03-03 18:28:13 +0900"
 }
