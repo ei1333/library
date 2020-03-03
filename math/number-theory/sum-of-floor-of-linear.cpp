@@ -1,6 +1,5 @@
 /**
- * @title Sum-Of-Floor-Of-Linear(一次関数の床関数の和)
- * @brief $\sum_{i=0}^{n-1} floor(\frac {a \times i + b} m)$
+ * @brief Sum-Of-Floor-Of-Linear(一次関数の床関数の和)
  */
 template< typename T >
 T sum_of_floor_of_linear(const T &n, const T &m, T a, T b) {
