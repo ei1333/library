@@ -1,55 +1,89 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2667"
 
 #include "../../template/template.cpp"
+#include "../../graph/template.cpp"
 
-#include "../../structure/develop/array-pool.cpp"
-#include "../../structure/develop/dual-splay-tree.cpp"
-#include "../../structure/develop/link-cut-tree-subtree-dual-semi-group.cpp"
+#include "../../graph/tree/heavy-light-decomposition.cpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-
-  struct Uku {
-    int64 sum;
-    int e_sz;
-  };
-
-  auto f = [](Uku x, const Uku &y) {
-    x.sum += y.sum;
-    x.e_sz += y.e_sz;
-    return x;
-  };
-  auto g = [](Uku x, const int64 &y) {
-    x.sum += x.e_sz * y;
-    return x;
-  };
-  auto h = [](const int64 &x, const int64 &y) {
-    return x + y;
-  };
-  auto lct = get_link_cut_tree_subtree_dual_semi_group< Uku, int64, 300000 >(f, g, h, 0);
-  vector< decltype(lct)::Node * > vv(N), ee(N);
-  for(int i = 0; i < N; i++) {
-    vv[i] = lct.alloc((Uku) {0, 0});
-  }
+  UnWeightedGraph g(N);
   for(int i = 1; i < N; i++) {
     int a, b;
     cin >> a >> b;
-    ee[i] = lct.alloc((Uku) {0, 1});
-    lct.evert(vv[b]);
-    lct.link(vv[b], ee[i]);
-    lct.link(ee[i], vv[a]);
+    g[a].emplace_back(b);
+    g[b].emplace_back(a);
   }
-  for(int i = 0; i < Q; i++) {
+  HeavyLightDecomposition< UnWeightedGraph > hld(g);
+  hld.build();
+
+  struct Query {
     int t, a, b;
-    cin >> t >> a >> b;
-    if(t == 0) {
-      lct.evert(vv[a]);
-      lct.expose(vv[b]);
-      cout << vv[b]->sum.sum << "\n";
+
+    void input() {
+      cin >> t >> a >> b;
+    }
+  };
+
+  vector< int > remark;
+  vector< Query > qs;
+  vector< int64 > sum(N);
+
+  vector< int > index(N);
+  for(int i = 0; i < Q; i++) {
+    Query q;
+    q.input();
+    qs.emplace_back(q);
+    if(q.t == 0) {
+      remark.emplace_back(q.a);
+      remark.emplace_back(q.b);
     } else {
-      lct.evert(vv[0]);
-      lct.subtree_add(vv[a], b);
+      remark.emplace_back(q.a);
+    }
+    if(remark.size() >= 2000 || i + 1 == Q) {
+      auto es = hld.compress(remark);
+      for(int j = 0; j < remark.size(); j++) index[remark[j]] = j;
+      vector< int > dist(remark.size()), par(remark.size());
+      UnWeightedGraph h(remark.size());
+      for(auto &p : es) {
+        p.first = index[p.first];
+        p.second = index[p.second];
+        par[p.second] = p.first;
+        dist[p.second] = hld.dist(remark[p.first], remark[p.second]);
+        h[p.first].emplace_back(p.second);
+      }
+      vector< int64 > lazy_add(N), backet_add(N);
+      for(auto &q : qs) {
+        if(q.t == 0) {
+          int64 ret = 0;
+          ret += sum[q.a] + sum[q.b] - 2 * sum[hld.lca(q.a, q.b)];
+          ret += backet_add[q.a] + backet_add[q.b] - 2 * backet_add[hld.lca(q.a, q.b)];
+          cout << ret << "\n";
+        } else {
+          lazy_add[q.a] += q.b;
+          q.a = index[q.a];
+          MFP([&](auto dfs, int idx, int p, int64 sz) -> void {
+            for(auto &to : h[idx]) {
+              if(to != p) {
+                backet_add[remark[to]] += (sz + dist[to]) * q.b;
+                dfs(to, idx, sz + dist[to]);
+              }
+            }
+          })(q.a, par[q.a], 0);
+        }
+      }
+      MFP([&](auto dfs, int idx, int par, int64 add, int64 all) -> void {
+        all += add;
+        add += lazy_add[idx];
+        sum[idx] += all;
+        for(auto &to : g[idx]) {
+          if(to != par) dfs(to, idx, add, all);
+        }
+      })(0, -1, 0, 0);
+      qs.clear();
+      remark.clear();
     }
   }
 }
+
