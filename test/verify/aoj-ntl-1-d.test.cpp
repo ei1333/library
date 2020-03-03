@@ -7,5 +7,5 @@
 int main() {
   int N;
   cin >> N;
-  cout << euler_phi(N) << endl;
+  cout << euler_phi< int64_t >(N) << endl;
 }
