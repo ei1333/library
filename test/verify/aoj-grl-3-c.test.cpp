@@ -1,25 +1,21 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+
+#include "../../graph/graph-template.cpp"
 
 #include "../../graph/connected-components/strongly-connected-components.cpp"
 
 int main() {
   int V, E, Q;
-  scanf("%d %d", &V, &E);
-  UnWeightedGraph g(V), buff;
-  for(int i = 0; i < E; i++) {
-    int a, b;
-    scanf("%d %d", &a, &b);
-    g[a].emplace_back(b);
-  }
-  StronglyConnectedComponents< UnWeightedGraph > scc(g);
-  scc.build(buff);
-  scanf("%d", &Q);
+  cin >> V >> E;
+  StronglyConnectedComponents<> scc(V);
+  scc.read(E, false, 0, true);
+  scc.build();
+  cin >> Q;
   while(Q--) {
     int a, b;
-    scanf("%d %d", &a, &b);
-    puts(scc[a] == scc[b] ? "1" : "0");
+    cin >> a >> b;
+    cout << (int) (scc[a] == scc[b]) << "\n";
   }
 }
