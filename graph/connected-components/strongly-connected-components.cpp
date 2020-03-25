@@ -1,48 +1,59 @@
-template< typename G >
-struct StronglyConnectedComponents {
-  const G &g;
-  UnWeightedGraph gg, rg;
-  vector< int > comp, order, used;
+/**
+ * @brief Strongly-Connected-Components(強連結成分分解)
+ */
+template< typename T = int >
+struct StronglyConnectedComponents : Graph< T > {
+public:
+  using Graph< T >::Graph;
+  using Graph< T >::g;
+  vector< int > comp;
+  Graph< T > dag;
+  vector< vector< int > > group;
 
-  StronglyConnectedComponents(G &g) : g(g), gg(g.size()), rg(g.size()), comp(g.size(), -1), used(g.size()) {
+  void build() {
+    rg = Graph< T >(g.size());
     for(int i = 0; i < g.size(); i++) {
-      for(auto e : g[i]) {
-        gg[i].emplace_back((int) e);
-        rg[(int) e].emplace_back(i);
+      for(auto &e : g[i]) {
+        rg.add_directed_edge(e.to, e.from, e.cost);
       }
+    }
+    comp.assign(g.size(), -1);
+    used.assign(g.size(), 0);
+    for(int i = 0; i < g.size(); i++) dfs(i);
+    reverse(begin(order), end(order));
+    int ptr = 0;
+    for(int i : order) if(comp[i] == -1) rdfs(i, ptr), ptr++;
+    dag = Graph< T >(ptr);
+    for(int i = 0; i < g.size(); i++) {
+      for(auto &e : g[i]) {
+        int x = comp[e.from], y = comp[e.to];
+        if(x == y) continue;
+        dag.add_directed_edge(x, y, e.cost);
+      }
+    }
+    group.resize(ptr);
+    for(int i = 0; i < g.size(); i++) {
+      group[comp[i]].emplace_back(i);
     }
   }
 
-  int operator[](int k) {
+  int operator[](int k) const {
     return comp[k];
   }
 
+private:
+  vector< int > order, used;
+  Graph< T > rg;
+
   void dfs(int idx) {
-    if(used[idx]) return;
-    used[idx] = true;
-    for(int to : gg[idx]) dfs(to);
+    if(exchange(used[idx], true)) return;
+    for(auto &to : g[idx]) dfs(to);
     order.push_back(idx);
   }
 
   void rdfs(int idx, int cnt) {
     if(comp[idx] != -1) return;
     comp[idx] = cnt;
-    for(int to : rg[idx]) rdfs(to, cnt);
-  }
-
-  void build(UnWeightedGraph &t) {
-    for(int i = 0; i < gg.size(); i++) dfs(i);
-    reverse(begin(order), end(order));
-    int ptr = 0;
-    for(int i : order) if(comp[i] == -1) rdfs(i, ptr), ptr++;
-
-    t.resize(ptr);
-    for(int i = 0; i < g.size(); i++) {
-      for(auto &to : g[i]) {
-        int x = comp[i], y = comp[to];
-        if(x == y) continue;
-        t[x].push_back(y);
-      }
-    }
+    for(auto &to : rg.g[idx]) rdfs(to, cnt);
   }
 };

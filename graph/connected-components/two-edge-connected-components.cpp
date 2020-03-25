@@ -1,34 +1,48 @@
-template< typename G >
-struct TwoEdgeConnectedComponents : LowLink< G > {
-  using LL = LowLink< G >;
+/**
+ * @brief Two-Edge-Connected-Components(二重辺連結成分分解)
+ */
+template< typename T = int >
+struct TwoEdgeConnectedComponents : LowLink< T > {
+public:
+  using LowLink< T >::LowLink;
+  using LowLink< T >::g;
+  using LowLink< T >::ord;
+  using LowLink< T >::low;
+  using LowLink< T >::bridge;
+
   vector< int > comp;
- 
-  TwoEdgeConnectedComponents(const G &g) : LL(g) {}
- 
-  int operator[](const int &k) {
+  Graph< T > tree;
+  vector< vector< int > > group;
+
+  int operator[](const int &k) const {
     return comp[k];
   }
- 
-  void dfs(int idx, int par, int &k) {
-    if(~par && this->ord[par] >= this->low[idx]) comp[idx] = comp[par];
-    else comp[idx] = k++;
-    for(auto &to : this->g[idx]) {
-      if(comp[to] == -1) dfs(to, idx, k);
-    }
-  }
- 
-  void build(UnWeightedGraph &t) {
-    LL::build();
-    comp.assign(this->g.size(), -1);
+
+  void build() override {
+    LowLink< T >::build();
+    comp.assign(g.size(), -1);
     int k = 0;
-    for(int i = 0; i < comp.size(); i++) {
+    for(int i = 0; i < (int) comp.size(); i++) {
       if(comp[i] == -1) dfs(i, -1, k);
     }
-    t.resize(k);
-    for(auto &e : this->bridge) {
-      int x = comp[e.first], y = comp[e.second];
-      t[x].push_back(y);
-      t[y].push_back(x);
+    group.resize(k);
+    for(int i = 0; i < (int) g.size(); i++) {
+      group[comp[i]].emplace_back(i);
+    }
+    tree = Graph< T >(k);
+    for(auto &e : bridge) {
+      tree.add_edge(comp[e.from], comp[e.to], e.cost);
+    }
+  }
+
+  explicit TwoEdgeConnectedComponents(const Graph< T > &g) : Graph< T >(g) {}
+
+private:
+  void dfs(int idx, int par, int &k) {
+    if(par >= 0 && ord[par] >= low[idx]) comp[idx] = comp[par];
+    else comp[idx] = k++;
+    for(auto &to : g[idx]) {
+      if(comp[to] == -1) dfs(to, idx, k);
     }
   }
 };
