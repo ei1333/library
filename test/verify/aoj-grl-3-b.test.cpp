@@ -1,22 +1,19 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
 
-#include "../../graph/others/lowlink.cpp"
+#include "../../graph/graph-template.cpp"
+
+#include "../../graph/others/low-link.cpp"
 
 int main() {
   int V, E;
-  scanf("%d %d", &V, &E);
-  UnWeightedGraph g(V);
-  for(int i = 0; i < E; i++) {
-    int x, y;
-    scanf("%d %d", &x, &y);
-    g[x].push_back(y);
-    g[y].push_back(x);
-  }
-  LowLink< UnWeightedGraph > lowlink(g);
-  lowlink.build();
-  sort(lowlink.bridge.begin(), lowlink.bridge.end());
-  for(auto &p : lowlink.bridge) printf("%d %d\n", p.first, p.second);
+  cin >> V >> E;
+  LowLink<> g(V);
+  g.read(E, 0);
+  g.build();
+  auto &bridge = g.bridge;
+  for(auto &v : bridge) tie(v.from, v.to) = minmax({v.from, v.to});
+  sort(bridge.begin(), bridge.end(), [](auto &p, auto &q) { return tie(p.from, p.to) < tie(q.from, q.to); });
+  for(auto &v : bridge) cout << v.from << " " << v.to << "\n";
 }
