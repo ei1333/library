@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+#include "../../graph/graph-template.cpp"
 
 #include "../../structure/segment-tree/lazy-segment-tree.cpp"
 
@@ -13,15 +13,8 @@ int main() {
   for(int i = 0; i < N; i++) {
     cin >> S[i];
   }
-  UnWeightedGraph g(N);
-  HeavyLightDecomposition< UnWeightedGraph > tree(g);
-  for(int i = 0; i < N - 1; i++) {
-    int u, v;
-    cin >> u >> v;
-    --u, --v;
-    g[u].emplace_back(v);
-    g[v].emplace_back(u);
-  }
+  HeavyLightDecomposition< int64 > tree(N);
+  tree.read(N - 1);
   tree.build();
 
   struct Node {
@@ -58,7 +51,6 @@ int main() {
     swap(l.left, l.right);
     return l + r;
   };
-
 
   while(Q--) {
     int T, A, B, C;

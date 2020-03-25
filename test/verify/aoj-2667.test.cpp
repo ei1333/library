@@ -1,21 +1,15 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2667"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+#include "../../graph/graph-template.cpp"
 
 #include "../../graph/tree/heavy-light-decomposition.cpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  UnWeightedGraph g(N);
-  for(int i = 1; i < N; i++) {
-    int a, b;
-    cin >> a >> b;
-    g[a].emplace_back(b);
-    g[b].emplace_back(a);
-  }
-  HeavyLightDecomposition< UnWeightedGraph > hld(g);
+  HeavyLightDecomposition<> hld(N);
+  hld.read(N - 1, 0);
   hld.build();
 
   struct Query {
@@ -45,13 +39,13 @@ int main() {
       auto es = hld.compress(remark);
       for(int j = 0; j < remark.size(); j++) index[remark[j]] = j;
       vector< int > dist(remark.size()), par(remark.size());
-      UnWeightedGraph h(remark.size());
+      Graph<> h(remark.size());
       for(auto &p : es) {
         p.first = index[p.first];
         p.second = index[p.second];
         par[p.second] = p.first;
         dist[p.second] = hld.dist(remark[p.first], remark[p.second]);
-        h[p.first].emplace_back(p.second);
+        h.add_directed_edge(p.first, p.second);
       }
       vector< int64 > lazy_add(N), backet_add(N);
       for(auto &q : qs) {
@@ -64,7 +58,7 @@ int main() {
           lazy_add[q.a] += q.b;
           q.a = index[q.a];
           MFP([&](auto dfs, int idx, int p, int64 sz) -> void {
-            for(auto &to : h[idx]) {
+            for(auto &to : h.g[idx]) {
               if(to != p) {
                 backet_add[remark[to]] += (sz + dist[to]) * q.b;
                 dfs(to, idx, sz + dist[to]);
@@ -77,7 +71,7 @@ int main() {
         all += add;
         add += lazy_add[idx];
         sum[idx] += all;
-        for(auto &to : g[idx]) {
+        for(auto &to : hld.g[idx]) {
           if(to != par) dfs(to, idx, add, all);
         }
       })(0, -1, 0, 0);
@@ -86,4 +80,3 @@ int main() {
     }
   }
 }
-

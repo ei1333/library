@@ -1,5 +1,8 @@
+/**
+ * @brief Dijkstra-Fibonacchi-Heap(単一始点最短路)
+ */
 template< typename T >
-vector< T > dijkstra_fibonacchi_heap(WeightedGraph< T > &g, int s) {
+vector< T > dijkstra_fibonacchi_heap(Graph< T > &g, int s) {
   const auto INF = numeric_limits< T >::max();
   using Heap = FibonacchiHeap< T, int >;
   using Node = typename Heap::Node;
@@ -17,7 +20,7 @@ vector< T > dijkstra_fibonacchi_heap(WeightedGraph< T > &g, int s) {
     int idx;
     tie(cost, idx) = heap.pop();
     if(dist[idx] < cost) continue;
-    for(auto &e : g[idx]) {
+    for(auto &e : g.g[idx]) {
       auto next_cost = cost + e.cost;
       if(dist[e.to] <= next_cost) continue;
       if(keep[e.to] == nullptr) {

@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+#include "../../graph/graph-template.cpp"
 
 #include "../../graph/shortest-path/dijkstra.cpp"
 
@@ -12,23 +12,22 @@
 int main() {
   int S, R, A, B, Q;
   cin >> S >> R;
-  WeightedGraph< int > g(S);
+  Graph< int > g(S);
   vector< int > U(R), V(R), C(R);
   for(int i = 0; i < R; i++) {
     cin >> U[i] >> V[i] >> C[i];
     --U[i], --V[i];
-    g[U[i]].emplace_back(V[i], C[i]);
-    g[V[i]].emplace_back(U[i], C[i]);
+    g.add_edge(U[i], V[i], C[i]);
   }
   cin >> A >> B >> Q;
   --A, --B;
   auto pre = dijkstra(g, A);
   auto suf = dijkstra(g, B);
 
-  UnWeightedGraph dag(S);
+  Graph< int > dag(S);
   for(int i = 0; i < R; i++) {
-    if(pre[U[i]] + C[i] + suf[V[i]] == pre[B]) dag[U[i]].emplace_back(V[i]);
-    if(pre[V[i]] + C[i] + suf[U[i]] == pre[B]) dag[V[i]].emplace_back(U[i]);
+    if(pre[U[i]] + C[i] + suf[V[i]] == pre[B]) dag.add_directed_edge(U[i], V[i]);
+    if(pre[V[i]] + C[i] + suf[U[i]] == pre[B]) dag.add_directed_edge(V[i], U[i]);
   }
   vector< pair< int, int > > qs(Q);
   for(auto &p : qs) {

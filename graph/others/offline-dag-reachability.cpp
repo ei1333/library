@@ -1,5 +1,8 @@
-template< typename G >
-vector< int > offline_dag_reachability(const G &g, vector< pair< int, int > > &qs) {
+/**
+ * @brief Offline-Dag-Reachability(DAGの到達可能性クエリ)
+ */
+template< typename T >
+vector< int > offline_dag_reachability(const Graph< T > &g, vector< pair< int, int > > &qs) {
   const int N = (int) g.size();
   const int Q = (int) qs.size();
   auto ord = topological_sort(g);
@@ -11,7 +14,7 @@ vector< int > offline_dag_reachability(const G &g, vector< pair< int, int > > &q
       dp[qs[k].first] |= int64_t(1) << (k - l);
     }
     for(auto &idx : ord) {
-      for(auto &to : g[idx]) dp[to] |= dp[idx];
+      for(auto &to : g.g[idx]) dp[to] |= dp[idx];
     }
     for(int k = l; k < r; k++) {
       ans[k] = (dp[qs[k].second] >> (k - l)) & 1;
