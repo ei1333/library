@@ -1,4 +1,9 @@
-#define IGNORE
+#define PROBLEM "https://yukicoder.me/problems/no/704"
+
+#include "../../template/template.cpp"
+
+#include "../../dp/monotone-minima.cpp"
+#include "../../dp/online-offline-dp.cpp"
 
 int main() {
   int n;
@@ -11,7 +16,7 @@ int main() {
     assert(0 <= i && i < j && j <= n);
     int s = abs(a[j - 1] - x[i]);
     int t = abs(y[i]);
-    return 1LL * s * s * s + 1LL * t * t * t;
+    return s + t;
   };
   cout << online_offline_dp(n, dist).back() << endl;
 }
