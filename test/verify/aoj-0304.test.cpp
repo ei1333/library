@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0304"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+#include "../../graph/graph-template.cpp"
 
 #include "../../graph/shortest-path/bellman-ford.cpp"
 
@@ -32,7 +32,7 @@ int main() {
   for(int i = 0; i < (1 << undefined.size()); i++) {
     for(int j = 0; j < undefined.size(); j++) O[undefined[j]] = (i >> j) & 1;
 
-    Edges< int > es;
+    Edges<> es;
     for(int k = 0; k < C; k++) {
       if(O[k] == 1) swap(A[k], B[k]);
       es.emplace_back(B[k], A[k], 0);
@@ -48,3 +48,4 @@ int main() {
   if(ret >= numeric_limits< int >::max()) cout << "inf" << endl;
   else cout << ret << endl;
 }
+

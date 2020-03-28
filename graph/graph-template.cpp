@@ -46,3 +46,6 @@ struct Graph {
     }
   }
 };
+
+template< typename T = int >
+using Edges = vector< Edge< T > >;
