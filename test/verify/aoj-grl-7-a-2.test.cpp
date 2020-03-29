@@ -1,10 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_7_A"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
 
 #include "../../graph/flow/hopcroft-karp.cpp"
-
 
 int main() {
   int X, Y, E;

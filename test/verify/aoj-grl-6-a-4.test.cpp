@@ -1,7 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
 
 #include "../../graph/flow/dinic-capacity-scaling.cpp"
 

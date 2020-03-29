@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+#include "../../graph/graph-template.cpp"
 
 #include "../../structure/union-find/union-find.cpp"
 
@@ -20,9 +20,9 @@ int main() {
   auto f = [&](int sz, vector< int > belong) {
     vector< pair< int, int > > ret(sz, {INF, -1});
     for(auto &e : g) {
-      if(belong[e.src] == belong[e.to]) continue;
-      ret[belong[e.src]] = min(ret[belong[e.src]], make_pair(e.cost, belong[e.to]));
-      ret[belong[e.to]] = min(ret[belong[e.to]], make_pair(e.cost, belong[e.src]));
+      if(belong[e.from] == belong[e.to]) continue;
+      ret[belong[e.from]] = min(ret[belong[e.from]], make_pair(e.cost, belong[e.to]));
+      ret[belong[e.to]] = min(ret[belong[e.to]], make_pair(e.cost, belong[e.from]));
     }
     return ret;
   };
