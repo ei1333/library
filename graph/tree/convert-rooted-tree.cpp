@@ -1,5 +1,5 @@
 /**
- * @brief ConvertRootedTree(根付き木に変換)
+ * @brief Convert-Rooted-Tree(根付き木に変換)
  */
 template< typename T >
 Graph< T > convert_rooted_tree(const Graph< T > &g, int r = 0) {
