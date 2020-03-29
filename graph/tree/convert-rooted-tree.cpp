@@ -1,7 +1,10 @@
-template< typename G >
-G convert_rooted_tree(const G &g, int r = 0) {
+/**
+ * @brief ConvertRootedTree(根付き木に変換)
+ */
+template< typename T >
+Graph< T > convert_rooted_tree(const Graph< T > &g, int r = 0) {
   int N = (int) g.size();
-  G rg(N);
+  Graph< T > rg(N);
   vector< int > v(N);
   v[r] = 1;
   queue< int > que;
@@ -9,11 +12,11 @@ G convert_rooted_tree(const G &g, int r = 0) {
   while(!que.empty()) {
     auto p = que.front();
     que.pop();
-    for(auto &to : g[p]) {
+    for(auto &to : g.g[p]) {
       if(v[to] == 0) {
         v[to] = 1;
         que.emplace(to);
-        rg[p].emplace_back(to);
+        rg.add_directed_edge(p, to, to.cost);
       }
     }
   }

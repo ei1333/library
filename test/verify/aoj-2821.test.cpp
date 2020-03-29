@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+#include "../../graph/graph-template.cpp"
 
 #include "../../structure/union-find/union-find.cpp"
 
@@ -27,29 +27,21 @@ int main() {
   }
 
   cin >> N;
-  UnWeightedGraph t(N);
-  for(int i = 1; i < N; i++) {
-    int x, y;
-    cin >> x >> y;
-    --x, --y;
-    t[x].emplace_back(y);
-    t[y].emplace_back(x);
-  }
+  Graph<> t(N);
+  t.read(N - 1);
 
   int ret = 0;
   vector< int > id(belong_v.size());
   for(int i = 0; i < (int) belong_v.size(); i++) {
     if(uf.find(i) == i) {
-      UnWeightedGraph g(belong_v[i].size());
+      Graph<> g(belong_v[i].size());
       int ptr = 0;
       for(auto &p : belong_v[i]) id[p] = ptr++;
       for(auto &j : belong_e[i]) {
-        g[id[U[j]]].emplace_back(id[V[j]]);
-        g[id[V[j]]].emplace_back(id[U[j]]);
+        g.add_edge(id[U[j]], id[V[j]]);
       }
       ret += tree_isomorphism(t, g);
     }
   }
   cout << ret << endl;
 }
-

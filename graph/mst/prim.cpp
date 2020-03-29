@@ -1,3 +1,6 @@
+/**
+ * @brief Prim(最小全域木)
+ */
 template< typename T >
 struct MinimumSpanningTree {
   T cost;
@@ -5,10 +8,10 @@ struct MinimumSpanningTree {
 };
 
 template< typename T >
-MinimumSpanningTree< T > prim(WeightedGraph< T > g) {
+MinimumSpanningTree< T > prim(const Graph< T > &g) {
   T total = T();
   vector< int > used(g.size());
-  vector< edge< T > * > dist(g.size());
+  vector< Edge< T > * > dist(g.size());
   using pi = pair< T, int >;
   priority_queue< pi, vector< pi >, greater<> > que;
   que.emplace(T(), 0);
@@ -20,9 +23,8 @@ MinimumSpanningTree< T > prim(WeightedGraph< T > g) {
     used[p.second] = true;
     total += p.first;
     if(dist[p.second]) edges.emplace_back(*dist[p.second]);
-    for(auto &e : g[p.second]) {
+    for(auto &e : g.g[p.second]) {
       if(used[e.to] || (dist[e.to] && dist[e.to]->cost <= e.cost)) continue;
-      e.src = p.second;
       que.emplace(e.cost, e.to);
     }
   }

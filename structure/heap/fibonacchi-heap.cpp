@@ -1,3 +1,6 @@
+/**
+ * @brief Fibonacchi-Heap(フィボナッチヒープ)
+ */
 template< typename key_t, typename val_t >
 struct FibonacchiHeap {
   struct Node {
