@@ -1,16 +1,22 @@
-template< class D, class L, D (*f)(D, D), D (*g)(D, L), L (*h)(L, L), L (*p)(L, int) >
-struct PersistentRedBlackTree : RedBlackTree< D, L, f, g, h, p > {
-  using RBT = RedBlackTree< D, L, f, g, h, p >;
+template< typename Monoid, typename F, size_t FEW = 1000 >
+struct PersistentRedBlackTree : RedBlackTree< Monoid, F > {
+  using RBT = RedBlackTree< Monoid, F >;
+  using RBT::RedBlackTree;
   using Node = typename RBT::Node;
 
-  PersistentRedBlackTree(int sz, const D &M1, const L &OM0) :
-      RBT(sz, M1, OM0) {}
+private:
+  Node *clone(Node *t) override {
+    return &(*RBT::pool.alloc() = *t);
+  }
 
-  Node *clone(Node *t) override { return &(*RBT::pool.alloc() = *t); }
-
+public:
   Node *rebuild(Node *r) {
     auto ret = RBT::dump(r);
     RBT::pool.clear();
     return RBT::build(ret);
+  }
+
+  bool few() {
+    return this->pool.ptr < FEW;
   }
 };

@@ -1,23 +1,6 @@
-template< class T >
-struct ArrayPool {
-  vector< T > pool;
-  vector< T * > stock;
-  int ptr;
-
-  ArrayPool(int sz) : pool(sz), stock(sz) {}
-
-  inline T *alloc() { return stock[--ptr]; }
-
-  inline void free(T *t) { stock[ptr++] = t; }
-
-  void clear() {
-    ptr = (int) pool.size();
-    for(int i = 0; i < pool.size(); i++) stock[i] = &pool[i];
-  }
-};
-
-template< class D, class L, D (*f)(D, D), D (*g)(D, L), L (*h)(L, L), L (*p)(L, int) >
+template< typename Monoid, typename F >
 struct RedBlackTree {
+public:
   enum COLOR {
     BLACK, RED
   };
@@ -26,81 +9,36 @@ struct RedBlackTree {
     Node *l, *r;
     COLOR color;
     int level, cnt;
-    D key, sum;
-    L lazy;
+    Monoid sum;
 
     Node() {}
 
-    Node(const D &k, const L &laz) :
-        key(k), sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1), lazy(laz) {}
+    Node(const Monoid &k) :
+        sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1) {}
 
-    Node(Node *l, Node *r, const D &k, const L &laz) :
-        key(k), color(RED), l(l), r(r), lazy(laz) {}
+    Node(Node *l, Node *r, const Monoid &k) :
+        sum(k), color(RED), l(l), r(r) {}
   };
 
-  ArrayPool< Node > pool;
-
-
-  const D M1;
-  const L OM0;
-
-  RedBlackTree(int sz, const D &M1, const L &OM0) :
-      pool(sz), M1(M1), OM0(OM0) { pool.clear(); }
-
-
-  inline Node *alloc(const D &key) {
-    return &(*pool.alloc() = Node(key, OM0));
-  }
-
+private:
   inline Node *alloc(Node *l, Node *r) {
-    auto t = &(*pool.alloc() = Node(l, r, M1, OM0));
+    auto t = &(*pool.alloc() = Node(l, r, M1));
     return update(t);
   }
 
-  virtual Node *clone(Node *t) { return t; }
-
-  inline int count(const Node *t) { return t ? t->cnt : 0; }
-
-  inline D sum(const Node *t) { return t ? t->sum : M1; }
-
-  Node *update(Node *t) {
-    t->cnt = count(t->l) + count(t->r) + (!t->l || !t->r);
-    t->level = t->l ? t->l->level + (t->l->color == BLACK) : 0;
-    t->sum = f(f(sum(t->l), t->key), sum(t->r));
-    return t;
-  }
-
-  Node *propagate(Node *t) {
-    t = clone(t);
-    if(t->lazy != OM0) {
-      if(!t->l) {
-        t->key = g(t->key, p(t->lazy, 1));
-      } else {
-        if(t->l) {
-          t->l = clone(t->l);
-          t->l->lazy = h(t->l->lazy, t->lazy);
-          t->l->sum = g(t->l->sum, p(t->lazy, count(t->l)));
-        }
-        if(t->r) {
-          t->r = clone(t->r);
-          t->r->lazy = h(t->r->lazy, t->lazy);
-          t->r->sum = g(t->r->sum, p(t->lazy, count(t->r)));
-        }
-      }
-      t->lazy = OM0;
-    }
-    return update(t);
+  virtual Node *clone(Node *t) {
+    return t; //return &(*pool.alloc() = *t); }
   }
 
   Node *rotate(Node *t, bool b) {
-    t = propagate(t);
+    t = clone(t);
     Node *s;
     if(b) {
-      s = propagate(t->l);
+      s = clone(t->l);
       t->l = s->r;
       s->r = t;
     } else {
-      s = propagate(t->r);
+      s = clone(t->r);
       t->r = s->l;
       s->l = t;
     }
@@ -110,7 +48,7 @@ struct RedBlackTree {
 
   Node *submerge(Node *l, Node *r) {
     if(l->level < r->level) {
-      r = propagate(r);
+      r = clone(r);
       Node *c = (r->l = submerge(l, r->l));
       if(r->color == BLACK && c->color == RED && c->l && c->l->color == RED) {
         r->color = RED;
@@ -121,7 +59,7 @@ struct RedBlackTree {
       return update(r);
     }
     if(l->level > r->level) {
-      l = propagate(l);
+      l = clone(l);
       Node *c = (l->r = submerge(l->r, r));
       if(l->color == BLACK && c->color == RED && c->r && c->r->color == RED) {
         l->color = RED;
@@ -134,18 +72,54 @@ struct RedBlackTree {
     return alloc(l, r);
   }
 
-  Node *merge(Node *l, Node *r) {
-    if(!l || !r) return l ? l : r;
-    Node *c = submerge(l, r);
-    c->color = BLACK;
-    return c;
+  Node *build(int l, int r, const vector< Monoid > &v) {
+    if(l + 1 >= r) return alloc(v[l]);
+    return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
   }
+
+  Node *update(Node *t) {
+    t->cnt = count(t->l) + count(t->r) + (!t->l || !t->r);
+    t->level = t->l ? t->l->level + (t->l->color == BLACK) : 0;
+    if(t->l) t->sum = f(sum(t->l), sum(t->r));
+    return t;
+  }
+
+  void dump(Node *r, typename vector< Monoid >::iterator &it) {
+    if(!r->l) {
+      *it++ = r->sum;
+      return;
+    }
+    dump(r->l, it);
+    dump(r->r, it);
+  }
+
+  Node *merge(Node *l) {
+    return l;
+  }
+
+public:
+
+  ArrayPool< Node > pool;
+  const F f;
+  const Monoid M1;
+
+  RedBlackTree(int sz, const F &f, const Monoid &M1) :
+      pool(sz), M1(M1), f(f) { pool.clear(); }
+
+
+  inline Node *alloc(const Monoid &key) {
+    return &(*pool.alloc() = Node(key));
+  }
+
+  inline int count(const Node *t) { return t ? t->cnt : 0; }
+
+  inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
 
   pair< Node *, Node * > split(Node *t, int k) {
     if(!t) return {nullptr, nullptr};
-    t = propagate(t);
     if(k == 0) return {nullptr, t};
     if(k >= count(t)) return {t, nullptr};
+    t = clone(t);
     Node *l = t->l, *r = t->r;
     pool.free(t);
     if(k < count(l)) {
@@ -159,30 +133,29 @@ struct RedBlackTree {
     return {l, r};
   }
 
-  Node *build(int l, int r, const vector< D > &v) {
-    if(l + 1 >= r) return alloc(v[l]);
-    return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
+  tuple< Node *, Node *, Node * > split3(Node *t, int a, int b) {
+    auto x = split(t, a);
+    auto y = split(x.second, b - a);
+    return make_tuple(x.first, y.first, y.second);
   }
 
-  Node *build(const vector< D > &v) {
-    //pool.clear();
+  template< typename ... Args >
+  Node *merge(Node *l, Args ...rest) {
+    Node *r = merge(rest...);
+    if(!l || !r) return l ? l : r;
+    Node *c = submerge(l, r);
+    c->color = BLACK;
+    return c;
+  }
+
+  Node *build(const vector< Monoid > &v) {
     return build(0, (int) v.size(), v);
   }
 
-  void dump(Node *r, typename vector< D >::iterator &it, L lazy) {
-    if(r->lazy != OM0) lazy = h(lazy, r->lazy);
-    if(!r->l || !r->r) {
-      *it++ = g(r->key, lazy);
-      return;
-    }
-    dump(r->l, it, lazy);
-    dump(r->r, it, lazy);
-  }
-
-  vector< D > dump(Node *r) {
-    vector< D > v((size_t) count(r));
+  vector< Monoid > dump(Node *r) {
+    vector< Monoid > v((size_t) count(r));
     auto it = begin(v);
-    dump(r, it, OM0);
+    dump(r, it);
     return v;
   }
 
@@ -193,24 +166,24 @@ struct RedBlackTree {
       ret += std::to_string(s[i]);
       ret += ", ";
     }
-    return (ret);
+    return ret;
   }
 
-  void insert(Node *&t, int k, const D &v) {
+  void insert(Node *&t, int k, const Monoid &v) {
     auto x = split(t, k);
     t = merge(merge(x.first, alloc(v)), x.second);
   }
 
-  D erase(Node *&t, int k) {
+  Monoid erase(Node *&t, int k) {
     auto x = split(t, k);
     auto y = split(x.second, 1);
-    auto v = y.first->key;
+    auto v = y.first->sum;
     pool.free(y.first);
     t = merge(x.first, y.second);
     return v;
   }
 
-  D query(Node *&t, int a, int b) {
+  Monoid query(Node *&t, int a, int b) {
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     auto ret = sum(y.first);
@@ -218,33 +191,14 @@ struct RedBlackTree {
     return ret;
   }
 
-  void set_propagate(Node *&t, int a, int b, const L &pp) {
-    auto x = split(t, a);
-    auto y = split(x.second, b - a);
-    y.first->lazy = h(y.first->lazy, pp);
-    t = merge(x.first, merge(propagate(y.first), y.second));
-  }
-
-  void set_element(Node *&t, int k, const D &x) {
+  void set_element(Node *&t, int k, const Monoid &x) {
+    t = clone(t);
     if(!t->l) {
-      t->key = t->sum = x;
+      t->sum = x;
       return;
     }
-    t = propagate(t);
     if(k < count(t->l)) set_element(t->l, k, x);
     else set_element(t->r, k - count(t->l), x);
     t = update(t);
-  }
-
-  int size(Node *t) {
-    return count(t);
-  }
-
-  bool empty(Node *t) {
-    return !t;
-  }
-
-  Node *makeset() {
-    return (nullptr);
   }
 };
