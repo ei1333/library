@@ -1,3 +1,6 @@
+/**
+ * @brief Red-Black-Tree(赤黒木)
+ */
 template< typename Monoid, typename F >
 struct RedBlackTree {
 public:
@@ -9,15 +12,19 @@ public:
     Node *l, *r;
     COLOR color;
     int level, cnt;
-    Monoid sum;
+    Monoid key;
 
     Node() {}
 
     Node(const Monoid &k) :
-        sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1) {}
+        key(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1) {}
 
     Node(Node *l, Node *r, const Monoid &k) :
-        sum(k), color(RED), l(l), r(r) {}
+        key(k), color(RED), l(l), r(r) {}
+
+    bool is_leaf() const {
+      return l == nullptr;
+    }
   };
 
 private:
@@ -27,7 +34,7 @@ private:
   }
 
   virtual Node *clone(Node *t) {
-    return t; //return &(*pool.alloc() = *t); }
+    return t;
   }
 
   Node *rotate(Node *t, bool b) {
@@ -80,13 +87,13 @@ private:
   Node *update(Node *t) {
     t->cnt = count(t->l) + count(t->r) + (!t->l || !t->r);
     t->level = t->l ? t->l->level + (t->l->color == BLACK) : 0;
-    if(t->l) t->sum = f(sum(t->l), sum(t->r));
+    if(!t->is_leaf()) t->key = f(sum(t->l), sum(t->r));
     return t;
   }
 
   void dump(Node *r, typename vector< Monoid >::iterator &it) {
-    if(!r->l) {
-      *it++ = r->sum;
+    if(r->is_leaf()) {
+      *it++ = r->key;
       return;
     }
     dump(r->l, it);
@@ -99,7 +106,7 @@ private:
 
 public:
 
-  ArrayPool< Node > pool;
+  VectorPool< Node > pool;
   const F f;
   const Monoid M1;
 
@@ -113,7 +120,7 @@ public:
 
   inline int count(const Node *t) { return t ? t->cnt : 0; }
 
-  inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
+  inline const Monoid &sum(const Node *t) { return t ? t->key : M1; }
 
   pair< Node *, Node * > split(Node *t, int k) {
     if(!t) return {nullptr, nullptr};
@@ -177,7 +184,7 @@ public:
   Monoid erase(Node *&t, int k) {
     auto x = split(t, k);
     auto y = split(x.second, 1);
-    auto v = y.first->sum;
+    auto v = y.first->key;
     pool.free(y.first);
     t = merge(x.first, y.second);
     return v;
@@ -193,12 +200,32 @@ public:
 
   void set_element(Node *&t, int k, const Monoid &x) {
     t = clone(t);
-    if(!t->l) {
-      t->sum = x;
+    if(t->is_leaf()) {
+      t->key = x;
       return;
     }
     if(k < count(t->l)) set_element(t->l, k, x);
     else set_element(t->r, k - count(t->l), x);
     t = update(t);
+  }
+
+  void push_front(Node *&t, const Monoid &v) {
+    t = merge(alloc(v), t);
+  }
+
+  void push_back(Node *&t, const Monoid &v) {
+    t = merge(t, alloc(v));
+  }
+
+  Monoid pop_front(Node *&t) {
+    auto ret = split(t, 1);
+    t = ret.second;
+    return ret.first->key;
+  }
+
+  Monoid pop_back(Node *&t) {
+    auto ret = split(t, count(t) - 1);
+    t = ret.first;
+    return ret.second->key;
   }
 };

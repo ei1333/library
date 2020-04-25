@@ -1,4 +1,4 @@
-template< typename Monoid, typename F, size_t FEW = 1000 >
+template< typename Monoid, typename F, size_t FULL = 1000 >
 struct PersistentRedBlackTree : RedBlackTree< Monoid, F > {
   using RBT = RedBlackTree< Monoid, F >;
   using RBT::RedBlackTree;
@@ -16,7 +16,7 @@ public:
     return RBT::build(ret);
   }
 
-  bool few() {
-    return this->pool.ptr < FEW;
+  bool almost_full() const {
+    return this->pool.ptr < FULL;
   }
 };
