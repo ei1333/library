@@ -12,12 +12,12 @@ public:
     Node *l, *r;
     COLOR color;
     int level, cnt;
-    Monoid key;
+    Monoid key, sum;
 
     Node() {}
 
     Node(const Monoid &k) :
-        key(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1) {}
+        key(k), sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1) {}
 
     Node(Node *l, Node *r, const Monoid &k) :
         key(k), color(RED), l(l), r(r) {}
@@ -87,7 +87,7 @@ private:
   Node *update(Node *t) {
     t->cnt = count(t->l) + count(t->r) + (!t->l || !t->r);
     t->level = t->l ? t->l->level + (t->l->color == BLACK) : 0;
-    if(!t->is_leaf()) t->key = f(sum(t->l), sum(t->r));
+    t->sum = f(f(sum(t->l), t->key), sum(t->r));
     return t;
   }
 
@@ -120,7 +120,7 @@ public:
 
   inline int count(const Node *t) { return t ? t->cnt : 0; }
 
-  inline const Monoid &sum(const Node *t) { return t ? t->key : M1; }
+  inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
 
   pair< Node *, Node * > split(Node *t, int k) {
     if(!t) return {nullptr, nullptr};
@@ -201,7 +201,7 @@ public:
   void set_element(Node *&t, int k, const Monoid &x) {
     t = clone(t);
     if(t->is_leaf()) {
-      t->key = x;
+      t->key = t->sum = x;
       return;
     }
     if(k < count(t->l)) set_element(t->l, k, x);
