@@ -129,12 +129,6 @@ private:
     return l;
   }
 
-  Monoid query(Node *t, int a, int b, OperatorMonoid pp, int l, int r) {
-    if(r <= a || b <= l) return M1;
-    if(a <= l && r <= b) return g(t->sum, pp);
-    return f(query(t->l, a, b, h(pp, t->lazy), l, l + count(t->l)), query(t->r, a, b, h(pp, t->lazy), r - count(t->r), r));
-  }
-
 public:
 
   VectorPool< Node > pool;
@@ -224,15 +218,19 @@ public:
     return v;
   }
 
-  Monoid query(Node *t, int a, int b) {
-    return query(t, a, b, OM0, 0, count(t));
+  Monoid query(Node *&t, int a, int b) {
+    auto x = split(t, a);
+    auto y = split(x.second, b - a);
+    Monoid ret = sum(y.first);
+    t = merge(x.first, y.first, y.second);
+    return ret;
   }
 
   void set_propagate(Node *&t, int a, int b, const OperatorMonoid &pp) {
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     y.first->lazy = h(y.first->lazy, pp);
-    t = merge(x.first, merge(propagate(y.first), y.second));
+    t = merge(x.first, propagate(y.first), y.second);
   }
 
   void set_element(Node *&t, int k, const Monoid &x) {
