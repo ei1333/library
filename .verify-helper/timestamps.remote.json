@@ -90,6 +90,7 @@
 "test/verify/yosupo-montmort-number-mod.test.cpp": "2020-02-24 19:08:02 +0900",
 "test/verify/yosupo-multipoint-evaluation.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-partition-function.test.cpp": "2020-02-24 19:19:55 +0900",
+"test/verify/yosupo-persistent-unionfind.test.cpp": "2020-05-01 18:25:23 +0900",
 "test/verify/yosupo-polynomial-interpolation.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-range-affine-range-sum-2.test.cpp": "2020-05-01 18:16:03 +0900",
 "test/verify/yosupo-range-affine-range-sum.test.cpp": "2020-04-28 21:53:51 +0900",
