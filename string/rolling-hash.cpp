@@ -1,48 +1,71 @@
-template< unsigned mod >
+/**
+ * @brief Rolling-Hash(ローリングハッシュ)
+ * @see https://qiita.com/keymoon/items/11fac5627672a6d6a9f6
+ */
 struct RollingHash {
-  vector< unsigned > hashed, power;
+  static const uint64_t mod = (1ull << 61ull) - 1;
+  using uint128_t = __uint128_t;
+  vector< uint64_t > hashed, power;
+  const uint64_t base;
 
-  inline unsigned mul(unsigned a, unsigned b) const {
-    unsigned long long x = (unsigned long long) a * b;
-    unsigned xh = (unsigned) (x >> 32), xl = (unsigned) x, d, m;
-    asm("divl %4; \n\t" : "=a" (d), "=d" (m) : "d" (xh), "a" (xl), "r" (mod));
-    return m;
+  static inline uint64_t add(uint64_t a, uint64_t b) {
+    if((a += b) >= mod) a -= mod;
+    return a;
   }
 
-  RollingHash(const string &s, unsigned base = 10007) {
-    int sz = (int) s.size();
+  static inline uint64_t mul(uint64_t a, uint64_t b) {
+    uint128_t c = (uint128_t) a * b;
+    return add(c >> 61, c & mod);
+  }
+
+  static inline uint64_t generate_base() {
+    mt19937_64 mt(chrono::steady_clock::now().time_since_epoch().count());
+    uniform_int_distribution< uint64_t > rand(1, RollingHash::mod - 1);
+    return rand(mt);
+  }
+
+  RollingHash() = default;
+
+  RollingHash(const string &s, uint64_t base) : base(base) {
+    size_t sz = s.size();
     hashed.assign(sz + 1, 0);
     power.assign(sz + 1, 0);
     power[0] = 1;
     for(int i = 0; i < sz; i++) {
       power[i + 1] = mul(power[i], base);
-      hashed[i + 1] = mul(hashed[i], base) + s[i];
-      if(hashed[i + 1] >= mod) hashed[i + 1] -= mod;
+      hashed[i + 1] = add(mul(hashed[i], base), s[i]);
     }
   }
 
-  unsigned get(int l, int r) const {
-    unsigned ret = hashed[r] + mod - mul(hashed[l], power[r - l]);
-    if(ret >= mod) ret -= mod;
-    return ret;
+  template< typename T >
+  RollingHash(const vector< T > &s, uint64_t base) : base(base) {
+    size_t sz = s.size();
+    hashed.assign(sz + 1, 0);
+    power.assign(sz + 1, 0);
+    power[0] = 1;
+    for(int i = 0; i < sz; i++) {
+      power[i + 1] = mul(power[i], base);
+      hashed[i + 1] = add(mul(hashed[i], base), s[i]);
+    }
   }
 
-  unsigned connect(unsigned h1, int h2, int h2len) const {
-    unsigned ret = mul(h1, power[h2len]) + h2;
-    if(ret >= mod) ret -= mod;
-    return ret;
+  uint64_t query(int l, int r) const {
+    return add(hashed[r], mod - mul(hashed[l], power[r - l]));
   }
 
-  int LCP(const RollingHash< mod > &b, int l1, int r1, int l2, int r2) {
+  uint64_t combine(uint64_t h1, uint64_t h2, size_t h2len) const {
+    return add(mul(h1, power[h2len]), h2);
+  }
+
+  int lcp(const RollingHash &b, int l1, int r1, int l2, int r2) const {
+    assert(base == b.base);
     int len = min(r1 - l1, r2 - l2);
-    int low = -1, high = len + 1;
+    int low = 0, high = len + 1;
     while(high - low > 1) {
       int mid = (low + high) / 2;
-      if(get(l1, l1 + mid) == b.get(l2, l2 + mid)) low = mid;
+      if(query(l1, l1 + mid) == b.query(l2, l2 + mid)) low = mid;
       else high = mid;
     }
-    return (low);
+    return low;
   }
 };
-
-using RH = RollingHash< 1000000007 >;

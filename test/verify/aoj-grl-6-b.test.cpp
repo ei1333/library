@@ -1,7 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
 
 #include "../../graph/flow/primal-dual.cpp"
 
