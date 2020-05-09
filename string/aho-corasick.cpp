@@ -1,3 +1,7 @@
+/**
+ * @brief Aho-Corasick(エイホ–コラシック法)
+ * @docs docs/aho-corasick.md
+ */
 template< int char_size, int margin >
 struct AhoCorasick : Trie< char_size + 1, margin > {
   using Trie< char_size + 1, margin >::Trie;
