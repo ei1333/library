@@ -1,11 +1,13 @@
 /**
- * @brief Incremental-Bridge-Connectivity
+ * @brief IncrementalBridgeConnectivity
+ * @docs docs/incremental-bridge-connectivity.md
  * @see https://scrapbox.io/data-structures/Incremental_Bridge-Connectivity
  */
 struct IncrementalBridgeConnectivity {
 private:
   UnionFind cc, bcc;
   vector< int > bbf;
+  size_t bridge;
 
   int size() {
     return bbf.size();
@@ -32,6 +34,7 @@ private:
       bbf[x] = bbf[y];
       bcc.unite(x, y);
       x = nxt;
+      --bridge;
     }
   }
 
@@ -46,10 +49,14 @@ private:
   }
 
 public:
-  explicit IncrementalBridgeConnectivity(int sz) : cc(sz), bcc(sz), bbf(sz, sz) {}
+  explicit IncrementalBridgeConnectivity(int sz) : cc(sz), bcc(sz), bbf(sz, sz), bridge(0) {}
 
   int find(int k) {
     return bcc.find(k);
+  }
+
+  size_t bridge_size() const {
+    return bridge;
   }
 
   void add_edge(int x, int y) {
@@ -63,6 +70,7 @@ public:
       if(cc.size(x) > cc.size(y)) swap(x, y);
       link(x, y);
       cc.unite(x, y);
+      ++bridge;
     }
   }
 };
