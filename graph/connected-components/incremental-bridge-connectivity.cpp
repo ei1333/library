@@ -49,6 +49,8 @@ private:
   }
 
 public:
+  IncrementalBridgeConnectivity() = default;
+
   explicit IncrementalBridgeConnectivity(int sz) : cc(sz), bcc(sz), bbf(sz, sz), bridge(0) {}
 
   int find(int k) {
