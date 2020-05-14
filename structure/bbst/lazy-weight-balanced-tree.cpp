@@ -1,32 +1,22 @@
 /**
- * @brief Lazy-Red-Black-Tree(遅延伝搬赤黒木)
- * @docs docs/lazy-red-black-tree.md
+ * @brief Lazy-Weight-Balanced-Tree(遅延伝搬重み平衡木)
  */
 template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
-struct LazyRedBlackTree {
+struct LazyWeightBalancedTree {
 public:
-  enum COLOR {
-    BLACK, RED
-  };
-
   struct Node {
     Node *l, *r;
-    COLOR color;
-    int level, cnt;
+    int cnt;
     Monoid key, sum;
     OperatorMonoid lazy;
 
     Node() {}
 
-    Node(const Monoid &k, const OperatorMonoid &laz) :
-        key(k), sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1), lazy(laz) {}
+    Node(const Monoid &k, const OperatorMonoid &laz) : key(k), sum(k), l(nullptr), r(nullptr), cnt(1), lazy(laz) {}
 
-    Node(Node *l, Node *r, const Monoid &k, const OperatorMonoid &laz) :
-        key(k), color(RED), l(l), r(r), lazy(laz) {}
+    Node(Node *l, Node *r, const Monoid &k, const OperatorMonoid &laz) : key(k), l(l), r(r), lazy(laz) {}
 
-    bool is_leaf() const {
-      return l == nullptr;
-    }
+    bool is_leaf() { return !l || !r; }
   };
 
 private:
@@ -52,53 +42,43 @@ private:
     return update(t);
   }
 
+  Node *update(Node *t) {
+    t->cnt = count(t->l) + count(t->r) + t->is_leaf();
+    t->sum = f(f(sum(t->l), t->key), sum(t->r));
+    return t;
+  }
+
   inline Node *alloc(Node *l, Node *r) {
     auto t = &(*pool.alloc() = Node(l, r, M1, OM0));
     return update(t);
   }
 
-  virtual Node *clone(Node *t) {
-    return t;
-  }
-
-  Node *rotate(Node *t, bool b) {
-    t = propagate(t);
-    Node *s;
-    if(b) {
-      s = propagate(t->l);
-      t->l = s->r;
-      s->r = t;
-    } else {
-      s = propagate(t->r);
-      t->r = s->l;
-      s->l = t;
-    }
-    update(t);
-    return update(s);
-  }
-
   Node *submerge(Node *l, Node *r) {
-    if(l->level < r->level) {
-      r = propagate(r);
-      Node *c = (r->l = submerge(l, r->l));
-      if(r->color == BLACK && c->color == RED && c->l && c->l->color == RED) {
-        r->color = RED;
-        c->color = BLACK;
-        if(r->r->color == BLACK) return rotate(r, true);
-        r->r->color = BLACK;
-      }
-      return update(r);
-    }
-    if(l->level > r->level) {
+    if(count(l) > count(r) * 4) {
       l = propagate(l);
-      Node *c = (l->r = submerge(l->r, r));
-      if(l->color == BLACK && c->color == RED && c->r && c->r->color == RED) {
-        l->color = RED;
-        c->color = BLACK;
-        if(l->l->color == BLACK) return rotate(l, false);
-        l->l->color = BLACK;
+      auto nl = propagate(l->l);
+      auto nr = submerge(l->r, r);
+      if(count(nl) * 4 >= count(nr)) {
+        l->r = nr;
+        return update(l);
       }
-      return update(l);
+      l->r = nr->l;
+      nr->l = l;
+      update(l);
+      return update(nr);
+    }
+    if(count(l) * 4 < count(r)) {
+      r = propagate(r);
+      auto nl = submerge(l, r->l);
+      auto nr = propagate(r->r);
+      if(count(nl) <= count(nr) * 4) {
+        r->l = nl;
+        return update(r);
+      }
+      r->l = nl->r;
+      nl->r = r;
+      update(r);
+      return update(nl);
     }
     return alloc(l, r);
   }
@@ -106,13 +86,6 @@ private:
   Node *build(int l, int r, const vector< Monoid > &v) {
     if(l + 1 >= r) return alloc(v[l]);
     return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
-  }
-
-  Node *update(Node *t) {
-    t->cnt = count(t->l) + count(t->r) + t->is_leaf();
-    t->level = t->is_leaf() ? 0 : t->l->level + (t->l->color == BLACK);
-    t->sum = f(f(sum(t->l), t->key), sum(t->r));
-    return t;
   }
 
   void dump(Node *r, typename vector< Monoid >::iterator &it, OperatorMonoid lazy) {
@@ -125,28 +98,33 @@ private:
     dump(r->r, it, lazy);
   }
 
+  virtual Node *clone(Node *t) {
+    return t;
+  }
+
   Node *merge(Node *l) {
     return l;
   }
 
-public:
 
+public:
   VectorPool< Node > pool;
   const F f;
   const G g;
   const H h;
-  const OperatorMonoid OM0;
   const Monoid M1;
+  const OperatorMonoid OM0;
 
-  LazyRedBlackTree(int sz, const F &f, const G &g, const H &h, const Monoid &M1, const OperatorMonoid &OM0) :
-      pool(sz), M1(M1), OM0(OM0), f(f), g(g), h(h) { pool.clear(); }
-
+  LazyWeightBalancedTree(int sz, const F &f, const G &g, const H &h, const Monoid &M1, const OperatorMonoid &OM0)
+      : pool(sz), M1(M1), f(f), g(g), h(h), OM0(OM0) {
+    pool.clear();
+  }
 
   inline Node *alloc(const Monoid &key) {
     return &(*pool.alloc() = Node(key, OM0));
   }
 
-  inline int count(const Node *t) { return t ? t->cnt : 0; }
+  static inline int count(const Node *t) { return t ? t->cnt : 0; }
 
   inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
 
@@ -178,9 +156,7 @@ public:
   Node *merge(Node *l, Args ...rest) {
     Node *r = merge(rest...);
     if(!l || !r) return l ? l : r;
-    Node *c = submerge(l, r);
-    c->color = BLACK;
-    return c;
+    return submerge(l, r);
   }
 
   Node *build(const vector< Monoid > &v) {
@@ -212,7 +188,7 @@ public:
   Monoid erase(Node *&t, int k) {
     auto x = split(t, k);
     auto y = split(x.second, 1);
-    auto v = y.first->key;
+    auto v = y.first->c;
     pool.free(y.first);
     t = merge(x.first, y.second);
     return v;

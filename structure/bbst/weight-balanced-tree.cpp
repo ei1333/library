@@ -31,15 +31,15 @@ private:
   }
 
   Node *submerge(Node *l, Node *r) {
-    if(count(l) * 2 > count(r) * 7) {
+    if(count(l) > count(r) * 4) {
       l = clone(l);
       auto nl = clone(l->l);
       auto nr = submerge(l->r, r);
-      if(count(nl) * 7 >= count(nr) * 2) {
+      if(count(nl) * 4 >= count(nr)) {
         l->r = nr;
         return update(l);
       }
-      if(count(nr->l) * 2 <= count(nr->r) * 5) {
+      if(count(nr->l) * 3 <= count(nr->r) * 5) {
         l->r = nr->l;
         nr->l = l;
         update(l);
@@ -54,15 +54,15 @@ private:
       t->r = nr;
       return update(t);
     }
-    if(count(l) * 7 < count(r) * 2) {
+    if(count(l) * 4 < count(r)) {
       r = clone(r);
       auto nl = submerge(l, r->l);
       auto nr = clone(r->r);
-      if(count(nl) * 2 <= count(nr) * 7) {
+      if(count(nl) <= count(nr) * 4) {
         r->l = nl;
         return update(r);
       }
-      if(count(nl->l) * 5 >= count(nl->r) * 2) {
+      if(count(nl->l) * 5 >= count(nl->r) * 3) {
         r->l = nl->r;
         nl->r = r;
         update(r);
