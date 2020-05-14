@@ -1,81 +1,81 @@
 /**
- * @brief Red-Black-Tree(赤黒木)
- * @docs docs/red-black-tree.md
+ * @brief Weight-Balanced-Tree(重み平衡木)
  */
 template< typename Monoid, typename F >
-struct RedBlackTree {
+struct WeightBalancedTree {
 public:
-  enum COLOR {
-    BLACK, RED
-  };
-
   struct Node {
     Node *l, *r;
-    COLOR color;
-    int level, cnt;
+    int cnt;
     Monoid key, sum;
 
     Node() {}
 
-    Node(const Monoid &k) :
-        key(k), sum(k), l(nullptr), r(nullptr), color(BLACK), level(0), cnt(1) {}
+    Node(const Monoid &k) : key(k), sum(k), l(nullptr), r(nullptr), cnt(1) {}
 
-    Node(Node *l, Node *r, const Monoid &k) :
-        key(k), color(RED), l(l), r(r) {}
+    Node(Node *l, Node *r, const Monoid &k) : key(k), l(l), r(r) {}
 
-    bool is_leaf() const {
-      return l == nullptr;
-    }
+    bool is_leaf() { return !l || !r; }
   };
 
 private:
+  Node *update(Node *t) {
+    t->cnt = count(t->l) + count(t->r) + t->is_leaf();
+    t->sum = f(f(sum(t->l), t->key), sum(t->r));
+    return t;
+  }
+
   inline Node *alloc(Node *l, Node *r) {
     auto t = &(*pool.alloc() = Node(l, r, M1));
     return update(t);
   }
 
-  virtual Node *clone(Node *t) {
-    return t;
-  }
-
-  Node *rotate(Node *t, bool b) {
-    t = clone(t);
-    Node *s;
-    if(b) {
-      s = clone(t->l);
-      t->l = s->r;
-      s->r = t;
-    } else {
-      s = clone(t->r);
-      t->r = s->l;
-      s->l = t;
-    }
-    update(t);
-    return update(s);
-  }
-
   Node *submerge(Node *l, Node *r) {
-    if(l->level < r->level) {
-      r = clone(r);
-      Node *c = (r->l = submerge(l, r->l));
-      if(r->color == BLACK && c->color == RED && c->l && c->l->color == RED) {
-        r->color = RED;
-        c->color = BLACK;
-        if(r->r->color == BLACK) return rotate(r, true);
-        r->r->color = BLACK;
-      }
-      return update(r);
-    }
-    if(l->level > r->level) {
+    if(count(l) * 2 > count(r) * 7) {
       l = clone(l);
-      Node *c = (l->r = submerge(l->r, r));
-      if(l->color == BLACK && c->color == RED && c->r && c->r->color == RED) {
-        l->color = RED;
-        c->color = BLACK;
-        if(l->l->color == BLACK) return rotate(l, false);
-        l->l->color = BLACK;
+      auto nl = clone(l->l);
+      auto nr = submerge(l->r, r);
+      if(count(nl) * 7 >= count(nr) * 2) {
+        l->r = nr;
+        return update(l);
       }
-      return update(l);
+      if(count(nr->l) * 2 <= count(nr->r) * 5) {
+        l->r = nr->l;
+        nr->l = l;
+        update(l);
+        return update(nr);
+      }
+      Node *t = clone(nr->l);
+      l->r = nr->l->l;
+      update(l);
+      nr->l = nr->l->r;
+      update(nr);
+      t->l = l;
+      t->r = nr;
+      return update(t);
+    }
+    if(count(l) * 7 < count(r) * 2) {
+      r = clone(r);
+      auto nl = submerge(l, r->l);
+      auto nr = clone(r->r);
+      if(count(nl) * 2 <= count(nr) * 7) {
+        r->l = nl;
+        return update(r);
+      }
+      if(count(nl->l) * 5 >= count(nl->r) * 2) {
+        r->l = nl->r;
+        nl->r = r;
+        update(r);
+        return update(nl);
+      }
+      Node *t = clone(nl->r);
+      r->l = nl->r->r;
+      update(r);
+      nl->r = nl->r->l;
+      update(nl);
+      t->r = r;
+      t->l = nl;
+      return update(t);
     }
     return alloc(l, r);
   }
@@ -85,13 +85,6 @@ private:
     return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
   }
 
-  Node *update(Node *t) {
-    t->cnt = count(t->l) + count(t->r) + (!t->l || !t->r);
-    t->level = t->l ? t->l->level + (t->l->color == BLACK) : 0;
-    t->sum = f(f(sum(t->l), t->key), sum(t->r));
-    return t;
-  }
-
   void dump(Node *r, typename vector< Monoid >::iterator &it) {
     if(r->is_leaf()) {
       *it++ = r->key;
@@ -99,6 +92,10 @@ private:
     }
     dump(r->l, it);
     dump(r->r, it);
+  }
+
+  virtual Node *clone(Node *t) {
+    return t;
   }
 
   Node *merge(Node *l) {
@@ -112,20 +109,19 @@ private:
   }
 
 public:
-
   VectorPool< Node > pool;
   const F f;
   const Monoid M1;
 
-  RedBlackTree(int sz, const F &f, const Monoid &M1) :
-      pool(sz), M1(M1), f(f) { pool.clear(); }
-
+  WeightBalancedTree(int sz, const F &f, const Monoid &M1) : pool(sz), M1(M1), f(f) {
+    pool.clear();
+  }
 
   inline Node *alloc(const Monoid &key) {
     return &(*pool.alloc() = Node(key));
   }
 
-  inline int count(const Node *t) { return t ? t->cnt : 0; }
+  static inline int count(const Node *t) { return t ? t->cnt : 0; }
 
   inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
 
@@ -157,9 +153,7 @@ public:
   Node *merge(Node *l, Args ...rest) {
     Node *r = merge(rest...);
     if(!l || !r) return l ? l : r;
-    Node *c = submerge(l, r);
-    c->color = BLACK;
-    return c;
+    return submerge(l, r);
   }
 
   Node *build(const vector< Monoid > &v) {
@@ -191,7 +185,7 @@ public:
   Monoid erase(Node *&t, int k) {
     auto x = split(t, k);
     auto y = split(x.second, 1);
-    auto v = y.first->key;
+    auto v = y.first->c;
     pool.free(y.first);
     t = merge(x.first, y.second);
     return v;
