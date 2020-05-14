@@ -1,3 +1,7 @@
+/**
+ * @brief Cumulative-Sum-2D(二次元累積和)
+ * @docs docs/cumulative-sum-2d.md
+*/
 template< class T >
 struct CumulativeSum2D {
   vector< vector< T > > data;
@@ -18,7 +22,7 @@ struct CumulativeSum2D {
     }
   }
 
-  T query(int sx, int sy, int gx, int gy) {
+  T query(int sx, int sy, int gx, int gy) const {
     return (data[gx][gy] - data[sx][gy] - data[gx][sy] + data[sx][sy]);
   }
 };
