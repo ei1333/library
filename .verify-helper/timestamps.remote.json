@@ -111,6 +111,7 @@
 "test/verify/yosupo-sum-of-floor-of-linear.test.cpp": "2020-03-03 18:40:18 +0900",
 "test/verify/yosupo-tetration-mod.test.cpp": "2020-03-03 18:28:13 +0900",
 "test/verify/yosupo-three-edge-connected-components.test.cpp": "2020-05-15 01:29:43 +0900",
+"test/verify/yosupo-tree-decomposition-width-2.test.cpp": "2020-05-27 13:26:09 +0900",
 "test/verify/yosupo-two-edge-connected-components-2.test.cpp": "2020-05-15 01:29:43 +0900",
 "test/verify/yosupo-two-edge-connected-components.test.cpp": "2020-03-28 20:39:54 +0900",
 "test/verify/yosupo-two-sat.test.cpp": "2020-04-08 00:50:52 +0900",
