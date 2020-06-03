@@ -58,4 +58,8 @@ struct BinaryBasis {
     }
     return ret;
   }
+
+  size_t size() const {
+    return basis.size();
+  }
 };
