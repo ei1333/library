@@ -94,6 +94,7 @@
 "test/verify/yosupo-multipoint-evaluation.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-partition-function.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-persistent-unionfind.test.cpp": "2020-05-01 18:25:23 +0900",
+"test/verify/yosupo-point-add-rectangle-sum.test.cpp": "2020-06-17 14:58:48 +0900",
 "test/verify/yosupo-polynomial-interpolation.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-queue-operate-all-composite.test.cpp": "2020-05-15 00:40:42 +0900",
 "test/verify/yosupo-range-affine-range-sum-2.test.cpp": "2020-05-14 23:23:31 +0900",
