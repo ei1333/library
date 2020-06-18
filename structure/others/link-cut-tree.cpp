@@ -1,10 +1,10 @@
 /**
  * @brief Link-Cut-Tree
  */
-template< typename Monoid = int, typename OperatorMonoid = Monoid >
-struct LinkCutTree : LazySplayTree< Monoid, OperatorMonoid > {
-  using LST = LazySplayTree< Monoid, OperatorMonoid >;
-  using LST::LazySplayTree;
+template< template< typename, typename > typename ST, typename Monoid = int, typename OperatorMonoid = Monoid >
+struct LinkCutTree : ST< Monoid, OperatorMonoid > {
+  using LST = ST< Monoid, OperatorMonoid >;
+  using LST::ST;
   using Node = typename LST::Node;
 
   Node *expose(Node *t) {

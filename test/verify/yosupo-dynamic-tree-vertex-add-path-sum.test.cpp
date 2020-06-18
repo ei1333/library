@@ -2,18 +2,18 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/bbst/lazy-splay-tree.cpp"
+#include "../../structure/bbst/reversible-splay-tree.cpp"
 
 #include "../../structure/others/link-cut-tree.cpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  using LCT = LinkCutTree< int64, int >;
+  using LCT = LinkCutTree< ReversibleSplayTree, int64 >;
 
   auto add = [](int64 a, int64 b) { return a + b; };
   auto s = [](int64 a) { return a; };
-  LCT lct(add, add, add, s, 0, 0);
+  LCT lct(add, s, 0);
 
   vector< int > A(N);
   cin >> A;

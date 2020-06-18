@@ -1,8 +1,8 @@
 /**
- * @brief Lazy-Splay-Tree(遅延伝搬Splay木)
+ * @brief Lazy-Reversible-Splay-Tree(遅延伝搬反転可能Splay木)
  */
 template< typename Monoid = int, typename OperatorMonoid = Monoid >
-struct LazySplayTree {
+struct LazyReversibleSplayTree {
 public:
   using F = function< Monoid(Monoid, Monoid) >;
   using G = function< Monoid(Monoid, OperatorMonoid) >;
@@ -25,13 +25,13 @@ public:
         l(nullptr), r(nullptr), p(nullptr) {}
   };
 
-  LazySplayTree(const F &f, const Monoid &M1) :
-      LazySplayTree(f, [](const Monoid &a) { return a; }, M1) {}
+  LazyReversibleSplayTree(const F &f, const Monoid &M1) :
+      LazyReversibleSplayTree(f, [](const Monoid &a) { return a; }, M1) {}
 
-  LazySplayTree(const F &f, const S &s, const Monoid &M1) :
-      LazySplayTree(f, G(), H(), s, M1, OperatorMonoid()) {}
+  LazyReversibleSplayTree(const F &f, const S &s, const Monoid &M1) :
+      LazyReversibleSplayTree(f, G(), H(), s, M1, OperatorMonoid()) {}
 
-  LazySplayTree(const F &f, const G &g, const H &h, const S &s,
+  LazyReversibleSplayTree(const F &f, const G &g, const H &h, const S &s,
                 const Monoid &M1, const OperatorMonoid &OM0) :
       f(f), g(g), h(h), s(s), M1(M1), OM0(OM0) {}
 

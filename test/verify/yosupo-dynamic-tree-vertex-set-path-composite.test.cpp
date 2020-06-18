@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/bbst/lazy-splay-tree.cpp"
+#include "../../structure/bbst/reversible-splay-tree.cpp"
 
 #include "../../structure/others/link-cut-tree.cpp"
 
@@ -16,7 +16,7 @@ int main() {
 
   using pi = pair< mint, mint >;
   using pii = pair< pi, pi >;
-  using LCT = LinkCutTree< pair< pi, pi >, bool >;
+  using LCT = LinkCutTree< ReversibleSplayTree, pair< pi, pi > >;
   auto f = [](const pi &x, const pi &y) { return pi(x.first * y.first, x.second * y.first + y.second); };
   auto ff = [&](const pii &a, const pii &b) { return pii(f(a.first, b.first), f(b.second, a.second)); };
   auto flip = [&](const pii &a) { return pii(a.second, a.first); };

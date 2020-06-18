@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/bbst/lazy-splay-tree.cpp"
+#include "../../structure/bbst/lazy-reversible-splay-tree.cpp"
 
 #include "../../structure/others/link-cut-tree.cpp"
 
@@ -40,7 +40,7 @@ int main() {
   };
 
 
-  using LCT = LinkCutTree< Node, int64 >;
+  using LCT = LinkCutTree< LazyReversibleSplayTree, Node, int64 >;
   LCT lct(F, G, H, T, Node(), infll);
   vector< LCT::Node * > vs(N);
 
