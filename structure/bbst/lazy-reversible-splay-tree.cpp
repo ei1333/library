@@ -32,7 +32,7 @@ public:
       LazyReversibleSplayTree(f, G(), H(), s, M1, OperatorMonoid()) {}
 
   LazyReversibleSplayTree(const F &f, const G &g, const H &h, const S &s,
-                const Monoid &M1, const OperatorMonoid &OM0) :
+                          const Monoid &M1, const OperatorMonoid &OM0) :
       f(f), g(g), h(h), s(s), M1(M1), OM0(OM0) {}
 
 
@@ -71,6 +71,7 @@ public:
       t = alloc(v);
       return t;
     } else {
+      splay(t);
       Node *cur = get_left(t), *z = alloc(v);
       splay(cur);
       z->p = cur;
@@ -85,6 +86,7 @@ public:
       t = alloc(v);
       return t;
     } else {
+      splay(t);
       Node *cur = get_right(t), *z = alloc(v);
       splay(cur);
       z->p = cur;
@@ -125,6 +127,7 @@ public:
   }
 
   void set_propagate(Node *&t, int a, int b, const OperatorMonoid &pp) {
+    splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     set_propagate(y.first, pp);
@@ -132,6 +135,7 @@ public:
   }
 
   virtual void set_propagate(Node *&t, const OperatorMonoid &pp) {
+    splay(t);
     propagate(t, pp);
     push(t);
   }
@@ -154,6 +158,13 @@ public:
     }
   }
 
+  tuple< Node *, Node *, Node * > split3(Node *t, int a, int b) {
+    splay(t);
+    auto x = split(t, a);
+    auto y = split(x.second, b - a);
+    return make_tuple(x.first, y.first, y.second);
+  }
+
   template< typename ... Args >
   Node *merge(Node *l, Args ...rest) {
     Node *r = merge(rest...);
@@ -170,11 +181,13 @@ public:
   }
 
   void insert(Node *&t, int k, const Monoid &v) {
+    splay(t);
     auto x = split(t, k);
-    t = merge(merge(x.first, alloc(v)), x.second);
+    t = merge(x.first, alloc(v), x.second);
   }
 
   Monoid erase(Node *&t, int k) {
+    splay(t);
     auto x = split(t, k);
     auto y = split(x.second, 1);
     auto v = y.first->c;
@@ -184,6 +197,7 @@ public:
   }
 
   Monoid query(Node *&t, int a, int b) {
+    splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     auto ret = sum(y.first);
@@ -209,12 +223,6 @@ public:
     return t;
   }
 
-  tuple< Node *, Node *, Node * > split3(Node *t, int a, int b) {
-    auto x = split(t, a);
-    auto y = split(x.second, b - a);
-    return make_tuple(x.first, y.first, y.second);
-  }
-
   void push(Node *t) {
     if(t->lazy != OM0) {
       if(t->l) propagate(t->l, t->lazy);
@@ -226,6 +234,11 @@ public:
       if(t->r) toggle(t->r);
       t->rev = false;
     }
+  }
+
+  void set_element(Node *&t, int k, const Monoid &x) {
+    splay(t);
+    sub_set_element(t, k, x);
   }
 
 private:
@@ -273,5 +286,18 @@ private:
 
   Node *merge(Node *l) {
     return l;
+  }
+
+  Node *sub_set_element(Node *&t, int k, const Monoid &x) {
+    push(t);
+    if(k < count(t->l)) {
+      return sub_set_element(t->l, k, x);
+    } else if(k == count(t->l)) {
+      t->key = x;
+      splay(t);
+      return t;
+    } else {
+      return sub_set_element(t->r, k - count(t->l) - 1, x);
+    }
   }
 };

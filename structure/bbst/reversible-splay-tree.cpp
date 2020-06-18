@@ -64,6 +64,7 @@ public:
       t = alloc(v);
       return t;
     } else {
+      splay(t);
       Node *cur = get_left(t), *z = alloc(v);
       splay(cur);
       z->p = cur;
@@ -78,6 +79,7 @@ public:
       t = alloc(v);
       return t;
     } else {
+      splay(t);
       Node *cur = get_right(t), *z = alloc(v);
       splay(cur);
       z->p = cur;
@@ -151,11 +153,13 @@ public:
   }
 
   void insert(Node *&t, int k, const Monoid &v) {
+    splay(t);
     auto x = split(t, k);
     t = merge(merge(x.first, alloc(v)), x.second);
   }
 
   Monoid erase(Node *&t, int k) {
+    splay(t);
     auto x = split(t, k);
     auto y = split(x.second, 1);
     auto v = y.first->c;
@@ -165,6 +169,7 @@ public:
   }
 
   Monoid query(Node *&t, int a, int b) {
+    splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     auto ret = sum(y.first);
@@ -191,6 +196,7 @@ public:
   }
 
   tuple< Node *, Node *, Node * > split3(Node *t, int a, int b) {
+    splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     return make_tuple(x.first, y.first, y.second);
@@ -204,6 +210,11 @@ public:
     }
   }
 
+  void set_element(Node *&t, int k, const Monoid &x) {
+    splay(t);
+    sub_set_element(t, k, x);
+  }
+
 private:
   const Monoid M1;
   const F f;
@@ -213,6 +224,20 @@ private:
     if(l + 1 >= r) return alloc(v[l]);
     return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
   }
+
+  Node *sub_set_element(Node *&t, int k, const Monoid &x) {
+    push(t);
+    if(k < count(t->l)) {
+      return sub_set_element(t->l, k, x);
+    } else if(k == count(t->l)) {
+      t->key = x;
+      splay(t);
+      return t;
+    } else {
+      return sub_set_element(t->r, k - count(t->l) - 1, x);
+    }
+  }
+
 
   void rotr(Node *t) {
     auto *x = t->p, *y = x->p;
