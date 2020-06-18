@@ -4,7 +4,7 @@
 template< template< typename, typename > typename ST, typename Monoid = int, typename OperatorMonoid = Monoid >
 struct LinkCutTree : ST< Monoid, OperatorMonoid > {
   using LST = ST< Monoid, OperatorMonoid >;
-  using LST::ST;
+  using ST< Monoid, OperatorMonoid >::ST;
   using Node = typename LST::Node;
 
   Node *expose(Node *t) {
