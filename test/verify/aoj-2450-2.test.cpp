@@ -2,6 +2,8 @@
 
 #include "../../template/template.cpp"
 
+#include "../../structure/bbst/lazy-splay-tree.cpp"
+
 #include "../../structure/others/link-cut-tree.cpp"
 
 int main() {
@@ -44,7 +46,7 @@ int main() {
 
   for(int i = 0; i < N; i++) {
     cin >> S[i];
-    vs[i] = lct.make_node(i, Node(S[i], 1));
+    vs[i] = lct.alloc(Node(S[i], 1));
   }
   for(int i = 0; i < N - 1; i++) {
     int u, v;
@@ -63,9 +65,7 @@ int main() {
       lct.set_propagate(vs[B], C);
     } else {
       lct.evert(vs[A]);
-      lct.expose(vs[B]);
-      cout << vs[B]->sum.ans << "\n";
+      cout << lct.query(vs[B]).ans << "\n";
     }
   }
 }
-
