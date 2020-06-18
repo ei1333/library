@@ -2,43 +2,31 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/others/link-cut-tree-subtree.cpp"
+#include "../../structure/bbst/lazy-splay-tree.cpp"
+
+#include "../../structure/others/link-cut-tree.cpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
+  using LCT = LinkCutTree< int64, int >;
 
-  struct Node {
-    int64 sum;
-
-    Node() : sum(0) {}
-
-    void toggle() {}
-
-    void merge(int64 cost, const Node &parent, const Node &child) {
-      sum = cost + parent.sum + child.sum;
-    }
-
-    void add(const Node &chsum) {}
-
-    void erase(const Node &chsum) {}
-  } e;
-
-  using LCT = LinkCutTreeSubtree< Node, int64 >;
-  LCT lct(e);
+  auto add = [](int64 a, int64 b) { return a + b; };
+  auto s = [](int64 a) { return a; };
+  LCT lct(add, add, add, s, 0, 0);
 
   vector< int > A(N);
   cin >> A;
 
-  vector< LCT::Node * > vs(N), es(N);
+  vector< LCT::Node * > vs(N);
   for(int i = 0; i < N; i++) {
-    vs[i] = lct.make_node(A[i]);
+    vs[i] = lct.alloc(A[i]);
   }
   for(int i = 1; i < N; i++) {
     int a, b;
     cin >> a >> b;
-    lct.evert(vs[b]);
-    lct.link(vs[b], vs[a]);
+    lct.evert(vs[a]);
+    lct.link(vs[a], vs[b]);
   }
 
   while(Q--) {
@@ -54,12 +42,14 @@ int main() {
     } else if(T == 1) {
       int P, X;
       cin >> P >> X;
-      lct.set_key(vs[P], vs[P]->key + X);
+      lct.expose(vs[P]);
+      vs[P]->key += X;
+      lct.update(vs[P]);
     } else {
       int U, V;
       cin >> U >> V;
       lct.evert(vs[U]);
-      cout << lct.query(vs[V]).sum << "\n";
+      cout << lct.query(vs[V]) << "\n";
     }
   }
 }
