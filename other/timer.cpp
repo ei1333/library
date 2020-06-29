@@ -1,14 +1,22 @@
+/**
+ * @brief Timer(タイマー)
+ * @docs docs/timer.md
+ */
+constexpr uint64_t CYCLES_PER_SEC = 3000000000; // AtCoder
+// constexpr uint64_t CYCLES_PER_SEC = 3600000000; // Codeforces
+// constexpr uint64_t CYCLES_PER_SEC = 2300000000; // yukicoder
 struct Timer {
-  chrono::high_resolution_clock::time_point st;
+  uint64_t start;
 
-  Timer() { reset(); }
+  Timer() : start{} { reset(); }
 
-  void reset() {
-    st = chrono::high_resolution_clock::now();
-  }
+  void reset() { start = get_cycle(); }
 
-  chrono::milliseconds::rep elapsed() {
-    auto ed = chrono::high_resolution_clock::now();
-    return chrono::duration_cast< chrono::milliseconds >(ed - st).count();
+  inline double get_second() const { return (double) (get_cycle() - start) / CYCLES_PER_SEC; }
+
+  static inline uint64_t get_cycle() {
+    unsigned low, high;
+    __asm__ volatile ("rdtsc" : "=a" (low), "=d" (high));
+    return ((uint64_t) low) | ((uint64_t) high << 32ull);
   }
 };
