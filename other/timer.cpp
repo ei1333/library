@@ -12,11 +12,11 @@ struct Timer {
 
   void reset() { start = get_cycle(); }
 
-  inline double get_second() const { return (double) (get_cycle() - start) / CYCLES_PER_SEC; }
+  inline double get_second() const { return (double) get_cycle() / CYCLES_PER_SEC; }
 
-  static inline uint64_t get_cycle() {
+  inline uint64_t get_cycle() const {
     unsigned low, high;
     __asm__ volatile ("rdtsc" : "=a" (low), "=d" (high));
-    return ((uint64_t) low) | ((uint64_t) high << 32ull);
+    return (((uint64_t) low) | ((uint64_t) high << 32ull)) - start;
   }
 };
