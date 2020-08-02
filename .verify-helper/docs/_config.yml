@@ -1,0 +1,20 @@
+title: Luzhiled's Library
+
+plugins:
+- jemoji
+- jekyll-remote-theme
+theme: null 
+remote_theme: jekyll/minima
+
+lang: ja
+
+timezone: Asia/Tokyo
+
+author:
+  name: Luzhiled
+
+minima:
+  social_links:
+    twitter: ei13333
+    github: ei1333
+    
