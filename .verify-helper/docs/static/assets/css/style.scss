@@ -12,9 +12,21 @@ pre, code {
   background-color: #FAFAFA !important;
 }
 
-a:link {
-  text-decoration: underline;
-}
 a:hover {
   background: #DDDDDD;
+}
+
+h2, h3 {
+  padding: 0.3em 0.3em 0.3em 0.5em;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-left: 6px;
+  border-right: 1px;
+  border-color: #666666;
+  border-style: solid;
+  margin-top: 1em;
+}
+
+#library-files {
+  border: none;
 }
