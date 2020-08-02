@@ -6,6 +6,9 @@
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
 
+small {
+  display: none;
+}
 
 pre, code {
   font-family: source-code-pro;
