@@ -1,3 +1,7 @@
+/**
+ * @brief Largest-Rectangle(最大長方形)
+ * @docs docs/largest-rectangle.md
+ */	
 template< typename T >
 int64_t largest_rectangle(vector< T > height)
 {
