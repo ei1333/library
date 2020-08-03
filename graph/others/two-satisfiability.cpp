@@ -1,3 +1,5 @@
+#include "graph/connected-components/strongly-connected-components.cpp"
+
 /**
  * @brief 2-SAT
  */
