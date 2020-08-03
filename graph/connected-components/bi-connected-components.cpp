@@ -1,5 +1,3 @@
-#include "graph/others/low-link.cpp"
-
 /**
  * @brief Bi-Connected-Components(二重頂点連結成分分解)
  */

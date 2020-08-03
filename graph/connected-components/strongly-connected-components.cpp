@@ -1,5 +1,3 @@
-#include "graph/graph-template.cpp"
-
 /**
  * @brief Strongly-Connected-Components(強連結成分分解)
  */

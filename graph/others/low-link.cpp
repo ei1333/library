@@ -1,5 +1,3 @@
-#include "graph/graph-template.cpp"
-
 /**
  * @brief Low-Link
  * @see http://kagamiz.hatenablog.com/entry/2013/10/05/005213
