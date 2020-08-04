@@ -118,6 +118,7 @@
 "test/verify/yosupo-tree-decomposition-width-2.test.cpp": "2020-05-27 13:26:09 +0900",
 "test/verify/yosupo-two-edge-connected-components-2.test.cpp": "2020-05-15 01:29:43 +0900",
 "test/verify/yosupo-two-edge-connected-components.test.cpp": "2020-08-04 01:14:35 +0900",
+"test/verify/yosupo-two-sat.test.cpp": "2020-08-04 23:33:40 +0900",
 "test/verify/yukicoder-1002.test.cpp": "2020-03-28 20:39:54 +0900",
 "test/verify/yukicoder-184.test.cpp": "2020-06-03 21:44:16 +0900",
 "test/verify/yukicoder-430.test.cpp": "2020-05-10 01:03:47 +0900",
