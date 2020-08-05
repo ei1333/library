@@ -1,5 +1,6 @@
 /**
  * @brief Bi-Connected-Components(二重頂点連結成分分解)
+ * @docs docs/bi-connected-components.md
  */
 template< typename T = int >
 struct BiConnectedComponents : LowLink< T > {
