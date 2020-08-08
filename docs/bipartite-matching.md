@@ -9,6 +9,9 @@
 * `BipartiteMatching(n)`:= 全体のグラフの頂点数を `n` で初期化する.
 * `add_edge(u, v)`:= 頂点 `u`, `v` 間に辺を張る.
 * `bipartite_matching()`:= 二部グラフの最大マッチングを返す.
+* `add_vertex(idx)`:= 頂点 `idx` を追加し, フローの変化量を返す($0$ または $1$).
+* `erase_vertex(idx)`:= 頂点 `idx` を削除し, フローの変化量を返す($0$ または $-1$).
+* `output()`:= マッチングに使った辺を出力する.
 
 ## 計算量
 
