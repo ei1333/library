@@ -6,10 +6,11 @@ struct BipartiteFlow {
   size_t n, m, time_stamp;
   vector< vector< int > > g, rg;
   vector< int > match_l, match_r, dist, used, alive;
+  bool matched;
 
 public:
   explicit BipartiteFlow(size_t n, size_t m) :
-      n(n), m(m), g(n), rg(m), match_l(n, -1), match_r(m, -1), used(n), alive(n, 1), time_stamp(0) {}
+      n(n), m(m), g(n), rg(m), match_l(n, -1), match_r(m, -1), used(n), alive(n, 1), time_stamp(0), matched(false) {}
 
   void add_edge(int u, int v) {
     g[u].push_back(v);
@@ -17,6 +18,7 @@ public:
   }
 
   vector< pair< int, int > > max_matching() {
+    matched = true;
     for(;;) {
       build_augment_path();
       ++time_stamp;
@@ -33,8 +35,9 @@ public:
     return ret;
   }
 
-  vector< pair< int, int > > lex_min_max_matching() {
-    max_matching();
+  /* http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0334 */
+  vector< pair< int, int > > lex_max_matching() {
+    if(!matched) max_matching();
     for(auto &vs : g) sort(begin(vs), end(vs));
     vector< pair< int, int > > es;
     for(int i = 0; i < n; i++) {
@@ -52,25 +55,77 @@ public:
   }
 
   vector< int > min_vertex_cover() {
-    auto color = get_color();
+    auto visited = find_residual_path();
     vector< int > ret;
-    for(int i = 0; i < n; i++) {
-      if(!color.first[i]) ret.emplace_back(i);
-    }
-    for(int i = 0; i < m; i++) {
-      if(color.second[i]) ret.emplace_back(i + n);
+    for(int i = 0; i < n + m; i++) {
+      if(visited[i] ^ (i < n)) {
+        ret.emplace_back(i);
+      }
     }
     return ret;
   }
 
-  vector< int > max_independent_set() {
-    auto color = get_color();
-    vector< int > ret;
-    for(int i = 0; i < n; i++) {
-      if(color.first[i]) ret.emplace_back(i);
+  /* https://atcoder.jp/contests/utpc2013/tasks/utpc2013_11 */
+  vector< int > lex_min_vertex_cover(const vector< int > &ord) {
+    assert(ord.size() == n + m);
+    auto res = build_risidual_graph();
+    vector< vector< int > > r_res(n + m + 2);
+    for(int i = 0; i < n + m + 2; i++) {
+      for(auto &j : res[i]) r_res[j].emplace_back(i);
     }
-    for(int i = 0; i < m; i++) {
-      if(!color.second[i]) ret.emplace_back(i + n);
+    queue< int > que;
+    vector< int > visited(n + m + 2, -1);
+    auto expand_left = [&](int t) {
+      if(visited[t] != -1) return;
+      que.emplace(t);
+      visited[t] = 1;
+      while(!que.empty()) {
+        int idx = que.front();
+        que.pop();
+        for(auto &to : r_res[idx]) {
+          if(visited[to] != -1) continue;
+          visited[to] = 1;
+          que.emplace(to);
+        }
+      }
+    };
+    auto expand_right = [&](int t) {
+      if(visited[t] != -1) return;
+      que.emplace(t);
+      visited[t] = 0;
+      while(!que.empty()) {
+        int idx = que.front();
+        que.pop();
+        for(auto &to : res[idx]) {
+          if(visited[to] != -1) continue;
+          visited[to] = 0;
+          que.emplace(to);
+        }
+      }
+    };
+    expand_right(n + m);
+    expand_left(n + m + 1);
+    vector< int > ret;
+    for(auto &t : ord) {
+      if(t < n) {
+        expand_left(t);
+        if(visited[t] & 1) ret.emplace_back(t);
+      } else {
+        expand_right(t);
+        if(~visited[t] & 1) ret.emplace_back(t);
+      }
+    }
+    return ret;
+  }
+
+
+  vector< int > max_independent_set() {
+    auto visited = find_residual_path();
+    vector< int > ret;
+    for(int i = 0; i < n + m; i++) {
+      if(visited[i] ^ (i >= n)) {
+        ret.emplace_back(i);
+      }
     }
     return ret;
   }
@@ -98,9 +153,9 @@ public:
     return es;
   }
 
-  // must call max_matching() before
   // left: [0,n), right: [n,n+m), S: n+m, T: n+m+1
   vector< vector< int > > build_risidual_graph() {
+    if(!matched) max_matching();
     const size_t S = n + m;
     const size_t T = n + m + 1;
     vector< vector< int > > ris(n + m + 2);
@@ -122,6 +177,24 @@ public:
   }
 
 private:
+  vector< int > find_residual_path() {
+    auto res = build_risidual_graph();
+    queue< int > que;
+    vector< int > visited(n + m + 2);
+    que.emplace(n + m);
+    visited[n + m] = true;
+    while(!que.empty()) {
+      int idx = que.front();
+      que.pop();
+      for(auto &to : res[idx]) {
+        if(visited[to]) continue;
+        visited[to] = true;
+        que.emplace(to);
+      }
+    }
+    return visited;
+  }
+
   void build_augment_path() {
     queue< int > que;
     dist.assign(g.size(), -1);
@@ -168,30 +241,5 @@ private:
       }
     }
     return false;
-  }
-
-  pair< vector< int >, vector< int > > get_color() {
-    max_matching();
-    queue< int > que;
-    vector< int > color_l(n), color_r(m);
-    for(int i = 0; i < n; i++) {
-      if(match_l[i] == -1) {
-        color_l[i] = true;
-        que.emplace(i);
-      }
-    }
-    while(!que.empty()) {
-      int a = que.front();
-      que.pop();
-      for(auto &b : g[a]) {
-        if(match_l[a] == b || color_r[b]) continue;
-        color_r[b] = true;
-        if(match_r[b] >= 0 && !color_l[match_r[b]]) {
-          color_l[match_r[b]] = true;
-          que.emplace(match_r[b]);
-        }
-      }
-    }
-    return {color_l, color_r};
   }
 };

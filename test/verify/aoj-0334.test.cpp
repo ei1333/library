@@ -16,7 +16,7 @@ int main() {
       if(x) flow.add_edge(j, i);
     }
   }
-  auto v = flow.lex_min_max_matching();
+  auto v = flow.lex_max_matching();
   if(v.size() < N) {
     cout << "no\n";
   } else {
