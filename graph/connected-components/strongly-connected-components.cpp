@@ -1,5 +1,6 @@
 /**
  * @brief Strongly-Connected-Components(強連結成分分解)
+ * @docs docs/strongly-connected-components.md
  */
 template< typename T = int >
 struct StronglyConnectedComponents : Graph< T > {

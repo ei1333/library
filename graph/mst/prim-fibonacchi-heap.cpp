@@ -1,5 +1,6 @@
 /**
  * @brief Prim-Fibonacchi-Heap(最小全域木)
+ * @docs docs/prim-fibonacchi-heap.md
  */
 template< typename T >
 struct MinimumSpanningTree {

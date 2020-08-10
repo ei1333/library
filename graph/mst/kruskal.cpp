@@ -1,5 +1,6 @@
 /**
  * @brief Kruskal(最小全域木)
+ * @docs docs/kruskal.md
  */
 template< typename T >
 struct MinimumSpanningTree {
