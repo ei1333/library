@@ -1,3 +1,7 @@
+/*
+ * @brief Wavelet-Tree(ウェーブレット木)
+ * @docs docs/wavelet-tree.md
+ */
 template< typename T, int MAXLOG >
 struct WaveletTree {
 
@@ -39,6 +43,18 @@ struct WaveletTree {
   WaveletTree(vector< T > v) {
     vector< T > rbuff(v.size());
     root = build(v, rbuff, MAXLOG - 1, 0, v.size());
+  }
+
+  int rank(Node *t, int l, int r, const T &x, int level) {
+    if(l >= r || t == nullptr) return 0;
+    if(level == -1) return r - l;
+    bool f = (x >> level) & 1;
+    l = t->sid.rank(f, l), r = t->sid.rank(f, r);
+    return rank(t->ch[f], l, r, x, level - 1);
+  }
+
+  int rank(const T &x, int r) {
+    return rank(root, 0, r, x, MAXLOG - 1);
   }
 
   T kth_smallest(Node *t, int l, int r, int k, int level) {
@@ -108,14 +124,6 @@ struct CompressedWaveletTree {
 
   inline int get(const T &x) {
     return lower_bound(begin(ys), end(ys), x) - begin(ys);
-  }
-
-  T access(int k) {
-    return ys[mat.access(k)];
-  }
-
-  T operator[](const int &k) {
-    return access(k);
   }
 
   int rank(const T &x, int r) {
