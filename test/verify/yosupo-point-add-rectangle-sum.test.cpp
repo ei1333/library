@@ -48,7 +48,7 @@ int main() {
   CompressedWaveletMatrixPointAddRectangleSum< int, 18, int64 > mat(ys, ws);
   for(int i = 0; i < Q; i++) {
     if(t[i] == 0) {
-      mat.point_add(a[i], b[i], c[i]);
+      mat.point_add(a[i], c[i]);
     } else {
       out.writeln(mat.rect_sum(a[i], c[i], b[i], d[i]));
     }

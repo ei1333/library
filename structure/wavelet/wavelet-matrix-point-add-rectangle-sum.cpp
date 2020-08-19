@@ -7,11 +7,12 @@ struct WaveletMatrixPointAddRectangleSum {
   size_t length;
   SuccinctIndexableDictionary matrix[MAXLOG];
   BinaryIndexedTree< D > ds[MAXLOG];
+  vector< T > v;
   int mid[MAXLOG];
 
   WaveletMatrixPointAddRectangleSum() = default;
 
-  WaveletMatrixPointAddRectangleSum(const vector< T > &v, const vector< D > &d) : length(v.size()) {
+  WaveletMatrixPointAddRectangleSum(const vector< T > &v, const vector< D > &d) : length(v.size()), v(v) {
     assert(v.size() == d.size());
     vector< int > l(length), r(length), ord(length);
     iota(begin(ord), end(ord), 0);
@@ -48,9 +49,14 @@ struct WaveletMatrixPointAddRectangleSum {
   D rect_sum(int l, int r, T upper) {
     D ret = 0;
     for(int level = MAXLOG - 1; level >= 0; level--) {
-      bool f = ((upper >> level) & 1);
-      if(f) ret += ds[level].query(matrix[level].rank(false, r) - 1) - ds[level].query(matrix[level].rank(false, l) - 1);
-      tie(l, r) = succ(f, l, r, level);
+      if(((upper >> level) & 1)) {
+        auto nxt = succ(false, l, r, level);
+        ret += ds[level].query(nxt.second - 1) - ds[level].query(nxt.first - 1);
+        l = l - nxt.first + mid[level];
+        r = r - nxt.second + mid[level];
+      } else {
+        tie(l, r) = succ(false, l, r, level);
+      }
     }
     return ret;
   }
@@ -59,7 +65,8 @@ struct WaveletMatrixPointAddRectangleSum {
     return rect_sum(l, r, upper) - rect_sum(l, r, lower);
   }
 
-  void point_add(int k, T y, const D &x) {
+  void point_add(int k, const D &x) {
+    auto &y = v[k];
     for(int level = MAXLOG - 1; level >= 0; level--) {
       bool f = ((y >> level) & 1);
       k = matrix[level].rank(f, k) + mid[level] * f;
@@ -93,7 +100,7 @@ struct CompressedWaveletMatrixPointAddRectangleSum {
     return mat.rect_sum(l, r, get(lower), get(upper));
   }
 
-  void point_add(int k, T y, const D &x) {
-    mat.point_add(k, get(y), x);
+  void point_add(int k, const D &x) {
+    mat.point_add(k, x);
   }
 };
