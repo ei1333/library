@@ -21,8 +21,8 @@ int main() {
   }
   cin >> A >> B >> Q;
   --A, --B;
-  auto pre = dijkstra(g, A);
-  auto suf = dijkstra(g, B);
+  auto pre = dijkstra(g, A).dist;
+  auto suf = dijkstra(g, B).dist;
 
   Graph< int > dag(S);
   for(int i = 0; i < R; i++) {

@@ -10,7 +10,7 @@ int main() {
   cin >> V >> E >> R;
   Graph< int > g(V);
   g.read(E, 0, true, true);
-  for(auto &dist : dijkstra(g, R)) {
+  for(auto &dist : dijkstra(g, R).dist) {
     if(dist == numeric_limits< int >::max()) cout << "INF\n";
     else cout << dist << "\n";
   }

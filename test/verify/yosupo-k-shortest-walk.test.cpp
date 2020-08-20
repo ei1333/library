@@ -1,0 +1,22 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/k_shortest_walk"
+
+#include "../../template/template.cpp"
+
+#include "../../graph/graph-template.cpp"
+#include "../../graph/shortest-path/dijkstra.cpp"
+
+#include "../../structure/heap/leftist-heap.cpp"
+#include "../../structure/heap/persistent-leftist-heap.cpp"
+#include "../../graph/shortest-path/k-shortest-walk.cpp"
+
+int main() {
+  int N, M, S, T, K;
+  cin >> N >> M >> S >> T >> K;
+  Graph< int64 > g(N);
+  g.read(M, 0, true, true);
+  auto ret = k_shortest_walk(g, S, T, K);
+  for(int i = 0; i < K; i++) {
+    if(i >= ret.size()) cout << -1 << "\n";
+    else cout << ret[i] << "\n";
+  }
+}

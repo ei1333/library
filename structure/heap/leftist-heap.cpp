@@ -7,8 +7,9 @@ struct LeftistHeap {
     Node *l, *r;
     int s;
     T key;
+    int idx;
 
-    explicit Node(const T &key) : key(key), s(1), l(nullptr), r(nullptr) {}
+    explicit Node(const T &key, int idx) : key(key), s(1), l(nullptr), r(nullptr), idx(idx) {}
   };
 
   LeftistHeap() = default;
@@ -17,8 +18,8 @@ struct LeftistHeap {
     return t;
   }
 
-  Node *alloc(const T &key) {
-    return new Node(key);
+  Node *alloc(const T &key, int idx = -1) {
+    return new Node(key, idx);
   }
 
   Node *meld(Node *a, Node *b) {
@@ -31,15 +32,13 @@ struct LeftistHeap {
     return a;
   }
 
-  Node *push(Node *t, const T &key) {
-    return meld(t, alloc(key));
+  Node *push(Node *t, const T &key, int idx = -1) {
+    return meld(t, alloc(key, idx));
   }
 
   Node *pop(Node *t) {
     assert(t != nullptr);
-    auto ret = meld(t->l, t->r);
-    delete t;
-    return ret;
+    return meld(t->l, t->r);
   }
 
   Node *make_root() {
