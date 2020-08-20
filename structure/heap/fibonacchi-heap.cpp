@@ -1,5 +1,6 @@
 /**
  * @brief Fibonacchi-Heap(フィボナッチヒープ)
+ * @see https://www.cs.princeton.edu/~wayne/teaching/fibonacci-heap.pdf
  */
 template< typename key_t, typename val_t >
 struct FibonacchiHeap {

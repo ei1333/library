@@ -1,5 +1,10 @@
+/**
+ * @brief Dinic-Capacity-Scaling(最大流)
+ * @docs docs/dinic-capacity-scaling.md
+ */
 template< typename flow_t >
 struct DinicCapacityScaling {
+  static_assert(is_integral< flow_t >::value, "template parameter flow_t must be integral type");
 
   const flow_t INF;
 
@@ -8,21 +13,22 @@ struct DinicCapacityScaling {
     flow_t cap;
     int rev;
     bool isrev;
+    int idx;
   };
 
   vector< vector< edge > > graph;
   vector< int > min_cost, iter;
   flow_t max_cap;
 
-  DinicCapacityScaling(int V) : INF(numeric_limits< flow_t >::max()), graph(V), max_cap(0) {}
+  explicit DinicCapacityScaling(int V) : INF(numeric_limits< flow_t >::max()), graph(V), max_cap(0) {}
 
-  void add_edge(int from, int to, flow_t cap) {
+  void add_edge(int from, int to, flow_t cap, int idx = -1) {
     max_cap = max(max_cap, cap);
-    graph[from].emplace_back((edge) {to, cap, (int) graph[to].size(), false});
-    graph[to].emplace_back((edge) {from, 0, (int) graph[from].size() - 1, true});
+    graph[from].emplace_back((edge) {to, cap, (int) graph[to].size(), false, idx});
+    graph[to].emplace_back((edge) {from, 0, (int) graph[from].size() - 1, true, idx});
   }
 
-  bool bfs(int s, int t, const flow_t &base) {
+  bool build_augment_path(int s, int t, const flow_t &base) {
     min_cost.assign(graph.size(), -1);
     queue< int > que;
     min_cost[s] = 0;
@@ -40,13 +46,13 @@ struct DinicCapacityScaling {
     return min_cost[t] != -1;
   }
 
-  flow_t dfs(int idx, const int t, const flow_t base, flow_t flow) {
+  flow_t find_augment_path(int idx, const int t, flow_t base, flow_t flow) {
     if(idx == t) return flow;
     flow_t sum = 0;
     for(int &i = iter[idx]; i < graph[idx].size(); i++) {
       edge &e = graph[idx][i];
       if(e.cap >= base && min_cost[idx] < min_cost[e.to]) {
-        flow_t d = dfs(e.to, t, base, min(flow - sum, e.cap));
+        flow_t d = find_augment_path(e.to, t, base, min(flow - sum, e.cap));
         if(d > 0) {
           e.cap -= d;
           graph[e.to][e.rev].cap += d;
@@ -63,9 +69,9 @@ struct DinicCapacityScaling {
     flow_t flow = 0;
     for(int i = 63 - __builtin_clzll(max_cap); i >= 0; i--) {
       flow_t now = flow_t(1) << i;
-      while(bfs(s, t, now)) {
+      while(build_augment_path(s, t, now)) {
         iter.assign(graph.size(), 0);
-        flow += dfs(s, t, now, INF);
+        flow += find_augment_path(s, t, now, INF);
       }
     }
     return flow;
@@ -81,4 +87,3 @@ struct DinicCapacityScaling {
     }
   }
 };
-
