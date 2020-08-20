@@ -32,6 +32,7 @@
 "test/verify/aoj-alds-1-11-c.test.cpp": "2020-03-28 23:32:32 +0900",
 "test/verify/aoj-alds-1-14-b.test.cpp": "2020-05-10 01:03:47 +0900",
 "test/verify/aoj-alds-1-14-d.test.cpp": "2019-11-30 23:36:31 +0900",
+"test/verify/aoj-alds-1-9-c.test.cpp": "2020-08-20 22:49:30 +0900",
 "test/verify/aoj-dpl-1-b.test.cpp": "2020-02-21 17:07:30 +0900",
 "test/verify/aoj-dpl-1-c.test.cpp": "2020-02-21 17:07:30 +0900",
 "test/verify/aoj-dpl-1-d.test.cpp": "2020-02-26 02:30:05 +0900",
