@@ -5,7 +5,7 @@
 
 ## 使い方
 
-* `add(bit, idx = -1, delta = 1, xor_val = 0)`: トライ木に値 `bit` に `delta` を加える. `exist` には自分を含む部分木に追加された値の `delta` の総和, `idx` に対して $-1$ 以外を与えると `accept` にそのノードにマッチする全ての値のindexが格納される.
+* `add(bit, idx = -1, delta = 1, xor_val = 0)`: トライ木の値 `bit` に `delta` を加える. `exist` には自分を含む部分木に追加された値の `delta` の総和, `idx` に対して $-1$ 以外を与えると `accept` にそのノードにマッチする全ての値のindexが格納される.
 * `erase(bit, xor_val = 0)`: 値 `bit` に対応する `delta` に $-1$ を加える.
 * `find(bit, xor_val = 0)`: 値 `bit` に対応するノードを返す. 存在しないとき `nullptr`.
 * `count(bit, xor_val = 0)`: 値 `bit` に対応するノードの `delta` を返す. 存在しないとき $0$.
