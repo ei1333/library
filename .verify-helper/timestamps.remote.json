@@ -133,6 +133,7 @@
 "test/verify/yosupo-two-edge-connected-components.test.cpp": "2020-08-05 16:40:46 +0900",
 "test/verify/yosupo-two-sat.test.cpp": "2020-08-10 20:09:21 +0900",
 "test/verify/yukicoder-1002.test.cpp": "2020-03-28 20:39:54 +0900",
+"test/verify/yukicoder-1069.test.cpp": "2020-08-22 20:09:30 +0900",
 "test/verify/yukicoder-184.test.cpp": "2020-06-03 21:44:16 +0900",
 "test/verify/yukicoder-430.test.cpp": "2020-05-10 01:03:47 +0900",
 "test/verify/yukicoder-583.test.cpp": "2020-03-30 02:46:21 +0900",
