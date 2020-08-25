@@ -145,6 +145,6 @@ public:
       res.emplace_back();
       for(auto &j : ans[i]) if(j < A.size()) res.back().emplace_back(j);
     }
-    return ans;
+    return res;
   }
 };
