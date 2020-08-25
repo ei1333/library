@@ -2,27 +2,19 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
+#include "../../structure/union-find/union-find.cpp"
+
 #include "../../graph/others/eulerian-trail.cpp"
 
 int main() {
   int N, M;
   cin >> N >> M;
   vector< int > A(M), B(M);
-  vector< int > used(N);
+  EulerianTrail< false > et(N);
   for(int i = 0; i < M; i++) {
     cin >> A[i] >> B[i];
-    used[A[i]] = true;
-    used[B[i]] = true;
+    et.add_edge(A[i], B[i]);
   }
-  int ptr = 0;
-  for(int i = 0; i < N; i++) {
-    if(used[i]) used[i] = ptr++;
-  }
-  Edges<> es;
-  for(int i = 0; i < M; i++) {
-    es.emplace_back(used[A[i]], used[B[i]]);
-  }
-  if(eulerian_trail(es, false).empty()) cout << "NO\n";
-  else cout << "YES\n";
+  if(et.enumerate_semi_eulerian_trail().size() == 1) cout << "YES\n";
+  else cout << "NO\n";
 }

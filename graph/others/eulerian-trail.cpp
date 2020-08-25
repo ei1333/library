@@ -1,70 +1,102 @@
 /**
  * @brief Eulerian-Trail(オイラー路)
  */
-template< typename T >
-Edges< T > eulerian_trail(Edges< T > &es, bool directed, int s = -1) {
-  int V = 0;
-  for(auto &e : es) V = max(V, max(e.to, e.from) + 1);
-  vector< vector< pair< Edge< T >, int > > > g(V);
-  for(auto e : es) {
-    int sz_to = (int) g[e.to].size();
-    g[e.from].emplace_back(e, sz_to);
-    if(!directed) {
-      int sz_src = (int) g[e.from].size() - 1;
-      swap(e.from, e.to);
-      g[e.from].emplace_back(e, sz_src);
-    }
-  }
-  if(directed) {
-    vector< int > deg(V), used(V);
-    for(auto &e : es) deg[e.from]++, used[e.from] = true;
-    for(auto &e : es) deg[e.to]--, used[e.to] = true;
-    vector< int > latte, malta;
-    for(int i = 0; i < V; i++) {
-      if(abs(deg[i]) >= 2) return {};
-      else if(deg[i] == 1) latte.emplace_back(i);
-      else if(deg[i] == -1) malta.emplace_back(i);
-    }
-    if(latte.size() > 1 || malta.size() > 1) return {};
-    if(s != -1 && !latte.empty() && latte[0] != s) return {};
-    if(s == -1) {
-      for(int i = 0; i < V; i++) {
-        if(used[i]) s = i;
-      }
-      if(!latte.empty()) s = latte[0];
-    }
-  } else {
-    vector< int > odd;
-    for(int i = 0; i < V; i++) {
-      if(g[i].size() & 1) odd.emplace_back(i);
-    }
-    if(odd.size() > 2) return {};
-    if(s != -1 && odd[0] != s && odd[1] != s) return {};
-    if(s == -1) {
-      for(int i = 0; i < V; i++) {
-        if(g[i].size()) s = i;
-      }
-      if(!odd.empty()) s = odd[0];
-    }
-  }
-  vector< Edge< T > > ord;
-  stack< pair< int, Edge< T > > > st;
-  st.emplace(s, Edge< T >(-1, -1));
-  while(st.size()) {
-    int idx = st.top().first;
-    if(g[idx].empty()) {
-      ord.emplace_back(st.top().second);
-      st.pop();
+template< bool directed >
+struct EulerianTrail {
+  vector< vector< pair< int, int > > > g;
+  vector< pair< int, int > > es;
+  int M;
+  vector< int > used_vertex, used_edge, deg;
+
+  explicit EulerianTrail(int V) : g(V), M(0), deg(V), used_vertex(V) {}
+
+  void add_edge(int a, int b) {
+    es.emplace_back(a, b);
+    g[a].emplace_back(b, M);
+    if(directed) {
+      deg[a]++;
+      deg[b]--;
     } else {
-      auto e = g[idx].back();
-      g[idx].pop_back();
-      if(e.second == -1) continue;
-      if(!directed) g[e.first.to][e.second].second = -1;
-      st.emplace(e.first.to, e.first);
+      g[b].emplace_back(a, M);
+      deg[a]++;
+      deg[b]++;
     }
+    M++;
   }
-  ord.pop_back();
-  reverse(begin(ord), end(ord));
-  if(ord.size() != es.size()) return {};
-  return ord;
-}
+
+  pair< int, int > get_edge(int idx) const {
+    return es[idx];
+  }
+
+  vector< vector< int > > enumerate_eulerian_trail() {
+    if(directed) {
+      for(auto &p : deg) if(p != 0) return {};
+    } else {
+      for(auto &p : deg) if(p & 1) return {};
+    }
+    used_edge.assign(M, 0);
+    vector< vector< int > > ret;
+    for(int i = 0; i < (int) g.size(); i++) {
+      if(g[i].empty() || used_vertex[i]) continue;
+      ret.emplace_back(go(i));
+    }
+    return ret;
+  }
+
+  vector< vector< int > > enumerate_semi_eulerian_trail() {
+    UnionFind uf(g.size());
+    for(auto &p : es) uf.unite(p.first, p.second);
+    vector< vector< int > > group(g.size());
+    for(int i = 0; i < (int) g.size(); i++) group[uf.find(i)].emplace_back(i);
+    vector< vector< int > > ret;
+    used_edge.assign(M, 0);
+    for(auto &vs : group) {
+      if(vs.empty()) continue;
+      int latte = -1, malta = -1;
+      if(directed) {
+        for(auto &p : vs) {
+          if(abs(deg[p]) > 1) {
+            return {};
+          } else if(deg[p] == 1) {
+            if(latte >= 0) return {};
+            latte = p;
+          }
+        }
+      } else {
+        for(auto &p : vs) {
+          if(deg[p] & 1) {
+            if(latte == -1) latte = p;
+            else if(malta == -1) malta = p;
+            else return {};
+          }
+        }
+      }
+      ret.emplace_back(go(latte == -1 ? vs.front() : latte));
+      if(ret.back().empty()) ret.pop_back();
+    }
+    return ret;
+  }
+
+  vector< int > go(int s) {
+    stack< pair< int, int > > st;
+    vector< int > ord;
+    st.emplace(s, -1);
+    while(!st.empty()) {
+      int idx = st.top().first;
+      used_vertex[idx] = true;
+      if(g[idx].empty()) {
+        ord.emplace_back(st.top().second);
+        st.pop();
+      } else {
+        auto e = g[idx].back();
+        g[idx].pop_back();
+        if(used_edge[e.second]) continue;
+        used_edge[e.second] = true;
+        st.emplace(e);
+      }
+    }
+    ord.pop_back();
+    reverse(ord.begin(), ord.end());
+    return ord;
+  }
+};
