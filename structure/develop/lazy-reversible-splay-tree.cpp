@@ -70,15 +70,15 @@ public:
   }
 
   Node *push_front(Node *t, const T &x) override {
-    return push_front_node(t, new Node(x));
+    return push_front_node(t, new Node(x, OM0));
   }
 
   Node *push_back(Node *t, const T &x) override {
-    return push_back_node(t, new Node(x));
+    return push_back_node(t, new Node(x, OM0));
   }
 
   void insert(Node *&t, int k, const T &x) override {
-    insert_node(t, k, new Node(x));
+    insert_node(t, k, new Node(x, OM0));
   }
 
   void set_propagate(Node *&t, int a, int b, const E &pp) {
