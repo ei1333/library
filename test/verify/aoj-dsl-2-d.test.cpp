@@ -8,7 +8,7 @@ int main() {
   int N, Q;
   cin >> N >> Q;
   auto h = [](int a, int b) { return b; };
-  DualSegmentTree< int > seg(N, h, INT_MAX);
+  auto seg = get_dual_segment_tree(N, h, INT_MAX);
   while(Q--) {
     int com;
     cin >> com;

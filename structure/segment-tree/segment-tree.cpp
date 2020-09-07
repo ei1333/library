@@ -2,10 +2,8 @@
  * @brief Segment-Tree(セグメント木)
  * @docs docs/segment-tree.md
  */
-template< typename Monoid >
+template< typename Monoid, typename F >
 struct SegmentTree {
-  using F = function< Monoid(Monoid, Monoid) >;
-
   int sz;
   vector< Monoid > seg;
 
@@ -96,3 +94,8 @@ struct SegmentTree {
     return -1;
   }
 };
+
+template< typename Monoid, typename F >
+SegmentTree< Monoid, F > get_segment_tree(int N, const F& f, const Monoid& M1) {
+  return {N, f, M1};
+}

@@ -25,7 +25,7 @@ int main() {
   }
   using Mat = SquareMatrix< modint, 2 >;
   auto f = [](const Mat &a, const Mat &b) { return a * b; };
-  SegmentTree< Mat > seg(N, f, Mat::mul_identity());
+  auto seg = get_segment_tree(N, f, Mat::mul_identity());
   int Q;
   cin >> Q;
   while(Q--) {

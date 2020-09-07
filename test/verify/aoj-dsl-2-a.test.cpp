@@ -7,7 +7,7 @@
 int main() {
   int N, Q;
   scanf("%d %d", &N, &Q);
-  SegmentTree< int > seg(N, [](int a, int b) { return min(a, b); }, INT_MAX);
+  auto seg = get_segment_tree(N, [](int a, int b) { return min(a, b); }, INT_MAX);
   while(Q--) {
     int T, X, Y;
     scanf("%d %d %d", &T, &X, &Y);

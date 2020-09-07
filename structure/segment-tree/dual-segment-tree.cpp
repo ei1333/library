@@ -2,10 +2,8 @@
  * @brief Dual-Segment-Tree(双対セグメント木)
  * @docs docs/dual-segment-tree.md
  */
-template< typename OperatorMonoid >
+template< typename OperatorMonoid, typename H >
 struct DualSegmentTree {
-  using H = function< OperatorMonoid(OperatorMonoid, OperatorMonoid) >;
-
   int sz, height;
   vector< OperatorMonoid > lazy;
   const H h;
@@ -44,3 +42,8 @@ struct DualSegmentTree {
     return lazy[k];
   }
 };
+
+template< typename OperatorMonoid, typename H >
+DualSegmentTree< OperatorMonoid, H > get_dual_segment_tree(int N, const H& h, const OperatorMonoid& OM0) {
+  return {N, h, OM0};
+}
