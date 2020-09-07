@@ -2,12 +2,8 @@
  * @brief Lazy-Segment-Tree(遅延伝搬セグメント木)
  * @docs docs/lazy-segment-tree.md
  */
-template< typename Monoid, typename OperatorMonoid = Monoid >
+template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
 struct LazySegmentTree {
-  using F = function< Monoid(Monoid, Monoid) >;
-  using G = function< Monoid(Monoid, OperatorMonoid) >;
-  using H = function< OperatorMonoid(OperatorMonoid, OperatorMonoid) >;
-
   int sz, height;
   vector< Monoid > data;
   vector< OperatorMonoid > lazy;
@@ -136,3 +132,9 @@ struct LazySegmentTree {
     return -1;
   }
 };
+
+template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
+LazySegmentTree< Monoid, OperatorMonoid, F, G, H > get_lazy_segment_tree
+    (int N, const F &f, const G &g, const H &h, const Monoid &M1, const OperatorMonoid &OM0) {
+  return {N, f, g, h, M1, OM0};
+}

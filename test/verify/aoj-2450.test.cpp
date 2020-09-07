@@ -41,7 +41,7 @@ int main() {
   auto F = [](const Node &a, const Node &b) { return a + b; };
   auto G = [](const Node &a, int64 x) { return Node(x, a.length); };
   auto H = [](int64 x, int64 y) { return y; };
-  LazySegmentTree< Node, int64 > seg(N, F, G, H, Node(), infll);
+  auto seg = get_lazy_segment_tree(N, F, G, H, Node(), infll);
   for(int i = 0; i < N; i++) seg.set(i, Node(S[tree.rev[i]], 1));
   seg.build();
 

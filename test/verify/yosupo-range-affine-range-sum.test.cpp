@@ -22,7 +22,7 @@ int main() {
   auto h = [](const qi &a, const qi &b) -> qi {
     return {a.first * b.first, a.second * b.first + b.second};
   };
-  LazySegmentTree< pi, qi > seg(N, f, g, h, pi(0, 0), pi(1, 0));
+  auto seg = get_lazy_segment_tree(N, f, g, h, pi(0, 0), pi(1, 0));
   for(int i = 0; i < N; i++) {
     mint a;
     cin >> a;
