@@ -114,6 +114,7 @@
 "test/verify/yosupo-queue-operate-all-composite.test.cpp": "2020-05-15 00:40:42 +0900",
 "test/verify/yosupo-range-affine-range-sum-2.test.cpp": "2020-05-14 23:23:31 +0900",
 "test/verify/yosupo-range-affine-range-sum-3.test.cpp": "2020-05-14 23:23:31 +0900",
+"test/verify/yosupo-range-affine-range-sum.test.cpp": "2020-09-08 00:38:57 +0900",
 "test/verify/yosupo-range-kth-smallest-2.test.cpp": "2020-08-20 02:29:21 +0900",
 "test/verify/yosupo-range-kth-smallest.test.cpp": "2020-08-20 02:29:21 +0900",
 "test/verify/yosupo-rectangle-sum.test.cpp": "2020-08-14 04:28:43 +0900",
