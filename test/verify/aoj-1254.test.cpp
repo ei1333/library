@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1254"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
+#include "../../math/matrix/square-matrix.cpp"
 
 #include "../../graph/others/chromatic-number.cpp"
 
@@ -70,7 +70,7 @@ int main() {
       }
     }
 
-    Matrix< bool > G(m.size(), vector< bool >(m.size()));
+    SquareMatrix< bool, 10 > G{};
     for(int i = 0; i < n; i++) {
       for(int j = i + 1; j < n; j++) {
         if(name[i] == name[j]) continue;

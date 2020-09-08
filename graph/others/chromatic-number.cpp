@@ -1,9 +1,15 @@
-int chromatic_number(const Matrix< bool > &g) {
+/**
+ * @brief Chromatic-Number(彩色数)
+ * @docs docs/chromatic-number.md
+ * @see https://www.slideshare.net/wata_orz/ss-12131479
+ */
+template< typename Matrix >
+int chromatic_number(Matrix &g) {
   int N = (int) g.size();
   vector< int > es(N);
   for(int i = 0; i < g.size(); i++) {
     for(int j = 0; j < g.size(); j++) {
-      es[i] |= g[i][j] << j;
+      if(g[i][j] != 0) es[i] |= 1 << j;
     }
   }
   int ret = N;
@@ -27,4 +33,3 @@ int chromatic_number(const Matrix< bool > &g) {
   }
   return ret;
 }
-
