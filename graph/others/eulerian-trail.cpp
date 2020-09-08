@@ -1,5 +1,6 @@
 /**
  * @brief Eulerian-Trail(オイラー路)
+ * @docs docs/eulerian-trail.md
  */
 template< bool directed >
 struct EulerianTrail {
