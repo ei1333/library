@@ -2,8 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-
 #include "../../graph/tree/centroid-decomposition.cpp"
 
 #include "../../math/fft/fast-fourier-transform.cpp"

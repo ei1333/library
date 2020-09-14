@@ -1,3 +1,5 @@
+#include "../connected-components/bi-connected-components.cpp"
+
 /**
  * @brief Block-Cut-Tree
  * @see https://ei1333.hateblo.jp/entry/2020/03/25/010057

@@ -1,3 +1,5 @@
+#include "../others/low-link.cpp"
+
 /**
  * @brief Two-Edge-Connected-Components(二重辺連結成分分解)
  * @docs docs/two-edge-connected-components.md

@@ -1,3 +1,5 @@
+#include "../graph-template.cpp"
+
 /**
  * @brief Centroid-Decomosition(重心分解)
  */

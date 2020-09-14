@@ -2,9 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-
-#include "../../graph/others/low-link.cpp"
 #include "../../graph/connected-components/two-edge-connected-components.cpp"
 
 int main() {
