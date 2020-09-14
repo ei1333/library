@@ -2,10 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/union-find/union-find.cpp"
-
-#include "../../graph/graph-template.cpp"
-#include "../../graph/connected-components/incremental-bridge-connectivity.cpp"
 #include "../../graph/connected-components/three-edge-connected-components.cpp"
 
 int main() {

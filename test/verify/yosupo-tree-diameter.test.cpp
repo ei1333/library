@@ -2,8 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-
 #include "../../graph/tree/tree-diameter.cpp"
 
 int main() {

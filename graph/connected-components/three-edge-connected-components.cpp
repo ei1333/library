@@ -1,3 +1,6 @@
+#include "../graph-template.cpp"
+#include "incremental-bridge-connectivity.cpp"
+
 /**
  * @brief Three-Edge-Connected-Components(三重辺連結成分分解)
  */

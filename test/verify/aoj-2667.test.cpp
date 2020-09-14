@@ -1,7 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2667"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
 #include "../../graph/tree/heavy-light-decomposition.cpp"
 

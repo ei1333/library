@@ -1,7 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
 #include "../../structure/segment-tree/lazy-segment-tree.cpp"
 

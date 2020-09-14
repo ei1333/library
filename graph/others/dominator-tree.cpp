@@ -1,3 +1,5 @@
+#include "../graph-template.cpp"
+
 /**
  * @brief Dominator-Tree
  */

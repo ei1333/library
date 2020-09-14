@@ -1,3 +1,5 @@
+#include "../graph-template.cpp"
+
 /**
  * @brief Tree-Diameter(木の直径)
  */

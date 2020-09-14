@@ -5,9 +5,6 @@
 #include "../../other/scanner.cpp"
 #include "../../other/printer.cpp"
 
-#include "../../graph/graph-template.cpp"
-
-#include "../../graph/connected-components/strongly-connected-components.cpp"
 #include "../../graph/others/two-satisfiability.cpp"
 
 int main() {

@@ -1,3 +1,5 @@
+#include "../graph-template.cpp"
+
 /**
  * @brief Heavy-Light-Decomposition(HL分解)
  * @see https://smijake3.hatenablog.com/entry/2019/09/15/200200
