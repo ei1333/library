@@ -2,8 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../dp/knapsack-limitations.cpp"
-
 #include "../../dp/knapsack-limitations-2.cpp"
 
 int main() {

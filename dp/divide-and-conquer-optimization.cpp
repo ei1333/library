@@ -1,3 +1,5 @@
+#include "monotone-minima.cpp"
+
 /**
  * @brief Divide-And-Conquer-Optimization
  * @docs docs/divide-and-conquer-optimization.md

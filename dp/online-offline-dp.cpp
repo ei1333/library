@@ -1,3 +1,5 @@
+#include "monotone-minima.cpp"
+
 /**
  * @brief  Online-Offline-DP(オンライン・オフライン変換)
  * @docs docs/online-offline-dp.md

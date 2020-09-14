@@ -2,7 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../dp/monotone-minima.cpp"
 #include "../../dp/divide-and-conquer-optimization.cpp"
 
 int main() {
