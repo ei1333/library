@@ -1,3 +1,5 @@
+#include "../graph-template.cpp"
+
 /**
  * @brief Prim(最小全域木)
  * @docs docs/prim.md
