@@ -2,8 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/union-find/union-find.cpp"
-
 #include "../../graph/mst/boruvka.cpp"
 
 int main() {

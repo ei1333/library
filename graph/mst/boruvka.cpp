@@ -1,3 +1,5 @@
+#include "../../structure/union-find/union-find.cpp"
+
 /**
  * @brief Boruvka(最小全域木)
  * @docs docs/boruvka.md

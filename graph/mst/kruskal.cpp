@@ -1,3 +1,6 @@
+#include "../graph-template.cpp"
+#include "../../structure/union-find/union-find.cpp"
+
 /**
  * @brief Kruskal(最小全域木)
  * @docs docs/kruskal.md
