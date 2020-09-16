@@ -60,6 +60,7 @@
 "test/verify/aoj-grl-2-a-2.test.cpp": "2020-09-16 23:08:58 +0900",
 "test/verify/aoj-grl-2-a-3.test.cpp": "2020-09-16 23:08:58 +0900",
 "test/verify/aoj-grl-2-a-4.test.cpp": "2020-09-16 23:08:58 +0900",
+"test/verify/aoj-grl-2-a.test.cpp": "2020-09-16 23:14:29 +0900",
 "test/verify/aoj-grl-2-b.test.cpp": "2020-02-19 21:42:58 +0900",
 "test/verify/aoj-grl-3-a.test.cpp": "2020-09-15 01:04:53 +0900",
 "test/verify/aoj-grl-3-b.test.cpp": "2020-09-15 01:04:53 +0900",
