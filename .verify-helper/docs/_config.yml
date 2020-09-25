@@ -8,6 +8,14 @@ plugins:
 
 lang: ja
 
+remote_theme: ei1333/minima
+theme: null
+
+minima:	
+  social_links:	
+    github: ei1333	
+    twitter: ei13333
+
 timezone: Asia/Tokyo
 
 author:
