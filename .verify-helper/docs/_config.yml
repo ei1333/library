@@ -8,9 +8,6 @@ plugins:
 
 lang: ja
 
-remote_theme: ei1333/minima
-theme: null
-
 timezone: Asia/Tokyo
 
 author:
