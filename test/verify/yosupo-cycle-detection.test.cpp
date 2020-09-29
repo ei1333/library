@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/ecycle_detection"
+#define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection"
 
 #include "../../template/template.cpp"
 
