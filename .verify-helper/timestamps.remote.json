@@ -81,6 +81,7 @@
 "test/verify/yosupo-bellnoulli-number.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-bipartite-edge-coloring.test.cpp": "2020-09-08 21:03:17 +0900",
 "test/verify/yosupo-bipartitematching.test.cpp": "2020-08-10 19:29:34 +0900",
+"test/verify/yosupo-cartesian-tree.test.cpp": "2020-09-30 01:59:52 +0900",
 "test/verify/yosupo-convolution-mod.test.cpp": "2020-02-24 19:19:55 +0900",
 "test/verify/yosupo-cycle-detection.test.cpp": "2020-09-29 21:11:40 +0900",
 "test/verify/yosupo-discrete-logarithm-mod.test.cpp": "2019-12-11 22:31:39 +0900",
