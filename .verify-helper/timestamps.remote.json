@@ -82,6 +82,7 @@
 "test/verify/yosupo-bipartite-edge-coloring.test.cpp": "2020-09-08 21:03:17 +0900",
 "test/verify/yosupo-bipartitematching.test.cpp": "2020-08-10 19:29:34 +0900",
 "test/verify/yosupo-convolution-mod.test.cpp": "2020-02-24 19:19:55 +0900",
+"test/verify/yosupo-cycle-detection.test.cpp": "2020-09-29 21:11:40 +0900",
 "test/verify/yosupo-discrete-logarithm-mod.test.cpp": "2019-12-11 22:31:39 +0900",
 "test/verify/yosupo-dominatortree.test.cpp": "2020-09-15 01:41:10 +0900",
 "test/verify/yosupo-dynamic-tree-vertex-add-path-sum-2.test.cpp": "2020-08-29 03:56:51 +0900",
