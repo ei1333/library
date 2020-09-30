@@ -44,7 +44,7 @@ DAGの最小パス被覆は二部グラフの最大マッチング問題に帰�
 * `erase_edge(a, b)`: $O(V)$
 * `max_matching()`: $O(E \sqrt V)$
 * `min_vertex_cover()`: $O(E \sqrt V)$
-* `max_vertex_cover()`: $O(E \sqrt V)$
+* `max_independent_cover()`: $O(E \sqrt V)$
 * `min_edge_cover()`: $O(E \sqrt V)$
 * `lex_max_matching()`: $O(E V)$ だと思うが早くできるのかも
 * `lex_min_vertex_cover(ord)`: $O(E \sqrt V)$
