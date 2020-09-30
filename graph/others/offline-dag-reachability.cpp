@@ -1,5 +1,6 @@
 /**
  * @brief Offline-Dag-Reachability(DAGの到達可能性クエリ)
+ * @docs docs/offline-dag-reachability.md
  */
 template< typename T >
 vector< int > offline_dag_reachability(const Graph< T > &g, vector< pair< int, int > > &qs) {

@@ -1,6 +1,7 @@
 /**
  * @brief Enumerate-Clique(クリーク全列挙)
  * @see https://www.slideshare.net/wata_orz/ss-12131479
+ * @docs docs/enumerate-clique.md
  */
 vector< vector< int > > enumerate_clique(Matrix< bool > g) {
 

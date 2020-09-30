@@ -2,6 +2,8 @@
 
 /**
  * @brief Dominator-Tree
+ * @docs docs/dominator-tree.md
+ * @see http://sigma425.hatenablog.com/entry/2015/12/25/224053
  */
 template< typename T = int >
 struct DominatorTree : Graph< T > {
