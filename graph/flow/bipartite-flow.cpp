@@ -35,6 +35,16 @@ public:
     return ret;
   }
 
+  /* http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=3198 */
+  void erase_edge(int a, int b) {
+    if(match_l[a] == b) {
+      match_l[a] = -1;
+      match_r[b] = -1;
+    }
+    g[a].erase(find(begin(g[a]), end(g[a]), b));
+    rg[b].erase(find(begin(rg[b]), end(rg[b]), a));
+  }
+
   /* http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0334 */
   vector< pair< int, int > > lex_max_matching() {
     if(!matched) max_matching();
