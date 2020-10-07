@@ -6,7 +6,7 @@ struct PrimeCount {
 private:
   int64_t sq;
   vector< bool > prime;
-  vector< int > prime_sum, primes;
+  vector< int64_t > prime_sum, primes;
 
   int64_t p2(int64_t x, int64_t y) {
     if(x < 4) return 0;
