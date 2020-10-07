@@ -1,5 +1,6 @@
 /**
- * @brief Mod-Tetration
+ * @brief Mod-Tetration(テトレーション)
+ * @docs docs/mod-tetration.md
  */
 template< typename T >
 T mod_tetration(const T &a, const T &b, const T &m) {
