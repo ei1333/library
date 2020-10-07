@@ -84,6 +84,7 @@
 "test/verify/yosupo-bipartitematching.test.cpp": "2020-09-30 14:25:12 +0900",
 "test/verify/yosupo-cartesian-tree.test.cpp": "2020-09-30 01:59:52 +0900",
 "test/verify/yosupo-convolution-mod.test.cpp": "2020-02-24 19:19:55 +0900",
+"test/verify/yosupo-counting-primes.test.cpp": "2020-10-08 01:50:06 +0900",
 "test/verify/yosupo-cycle-detection.test.cpp": "2020-09-30 18:06:49 +0900",
 "test/verify/yosupo-discrete-logarithm-mod.test.cpp": "2020-10-07 20:31:58 +0900",
 "test/verify/yosupo-dominatortree.test.cpp": "2020-09-30 18:06:49 +0900",
