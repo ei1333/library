@@ -1,5 +1,6 @@
 /**
  * @brief Kth-Root
+ * @docs docs/kth-root.md
  */
 uint64_t kth_root(uint64_t a, int k) {
   if(k == 1) return a;
