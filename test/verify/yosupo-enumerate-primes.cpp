@@ -7,7 +7,7 @@
 int main() {
   int N, A, B;
   cin >> N >> A >> B;
-  auto d = enumerate_prime(N);
+  auto d = enumerate_primes(N);
   vector< int > ans;
   for(int i = B; i < d.size(); i += A) {
     ans.emplace_back(d[i]);

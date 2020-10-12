@@ -4,7 +4,7 @@
  * @brief Enumerate-Primes(素数列挙)
  * @docs docs/enumerate-primes.md
  */
-vector< int > enumerate_prime(int n) {
+vector< int > enumerate_primes(int n) {
   if(n <= 1) return {};
   auto d = prime_table(n);
   vector< int > primes;
