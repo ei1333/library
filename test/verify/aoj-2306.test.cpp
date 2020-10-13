@@ -19,7 +19,7 @@ int main() {
     h[x][y] = z;
     h[y][x] = z;
   }
-  auto cliques = enumerate_clique(g);
+  auto cliques = enumerate_cliques(g);
   int ret = 0;
   for(auto &clique : cliques) {
     if(clique.size() == 1) continue;
