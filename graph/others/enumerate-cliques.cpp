@@ -1,9 +1,9 @@
 /**
  * @brief Enumerate-Clique(クリーク全列挙)
  * @see https://www.slideshare.net/wata_orz/ss-12131479
- * @docs docs/enumerate-clique.md
+ * @docs docs/enumerate-cliques.md
  */
-vector< vector< int > > enumerate_clique(Matrix< bool > g) {
+vector< vector< int > > enumerate_cliques(Matrix< bool > g) {
 
   int N = (int) g.size(), M = 0;
   vector< int > deg(N);

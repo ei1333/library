@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../math/number-theory/enumerate-prime.cpp"
+#include "../../math/number-theory/enumerate-primes.cpp"
 
 int main() {
   int N, A, B;

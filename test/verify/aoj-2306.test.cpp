@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../../graph/template.cpp"
 
-#include "../../graph/others/enumerate-clique.cpp"
+#include "../../graph/others/enumerate-cliques.cpp"
 
 int main() {
   int N, M;
