@@ -3,7 +3,7 @@ struct FormalPowerSeries : vector< T > {
   using vector< T >::vector;
   using P = FormalPowerSeries;
 
-  using MULT = function< P(P, P) >;
+  using MULT = function< vector< T >(P, P) >;
   using FFT = function< void(P &) >;
   using SQRT = function< T(T) >;
 
@@ -98,7 +98,8 @@ struct FormalPowerSeries : vector< T > {
       return *this;
     }
     assert(get_mult() != nullptr);
-    return *this = get_mult()(*this, r);
+    auto ret = get_mult()(*this, r);
+    return *this = P(begin(ret), end(ret));
   }
 
   P &operator%=(const P &r) { return *this -= *this / r * r; }
