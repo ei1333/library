@@ -5,10 +5,10 @@
 #include "integral.cpp"
 
 /**
- * @brief Log $\log {f(x)}$
+ * @brief Log ($\log {f(x)}$)
  */
 template< typename T >
-typename FormalPowerSeries< T >::P FormalPowerSeries< T >::log(int deg) const {
+typename FormalPowerSeries< T > FormalPowerSeries< T >::log(int deg) const {
   assert((*this)[0] == 1);
   const int n = (int) this->size();
   if(deg == -1) deg = n;

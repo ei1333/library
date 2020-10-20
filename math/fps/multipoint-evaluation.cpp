@@ -1,3 +1,6 @@
+#include "formal-power-series.cpp"
+#include "inv.cpp"
+
 template< typename T >
 struct PolyBuf {
   using FPS = FormalPowerSeries< T >;

@@ -2,10 +2,10 @@
 #include "formal-power-series.cpp"
 
 /**
- * @brief Integral $\int f(x) dx$
+ * @brief Integral ($\int f(x) dx$)
  */
 template< typename T >
-typename FormalPowerSeries< T >::P FormalPowerSeries< T >::integral() const {
+typename FormalPowerSeries< T > FormalPowerSeries< T >::integral() const {
   const int n = (int) this->size();
   P ret(n + 1);
   ret[0] = T(0);
