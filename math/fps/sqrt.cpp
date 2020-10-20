@@ -6,7 +6,7 @@
  * @brief Sqrt ($\sqrt {f(x)}$)
  */
 template< typename T >
-typename FormalPowerSeries< T > FormalPowerSeries< T >::sqrt(int deg) const {
+typename FormalPowerSeries< T >::P FormalPowerSeries< T >::sqrt(int deg) const {
   const int n = (int) this->size();
   if(deg == -1) deg = n;
   if((*this)[0] == T(0)) {

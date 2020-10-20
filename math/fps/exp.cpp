@@ -7,7 +7,7 @@
  * @brief Exp ($e^{f(x)}$)
  */
 template< typename T >
-typename FormalPowerSeries< T > FormalPowerSeries< T >::exp_fast(int deg) const {
+typename FormalPowerSeries< T >::P FormalPowerSeries< T >::exp_fast(int deg) const {
   if(deg == -1) deg = this->size();
   assert((*this)[0] == T(0));
 

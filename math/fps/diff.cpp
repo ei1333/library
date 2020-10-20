@@ -5,7 +5,7 @@
  * @brief Diff ($f'(x)$)
  */
 template< typename T >
-typename FormalPowerSeries< T > FormalPowerSeries< T >::diff() const {
+typename FormalPowerSeries< T >::P FormalPowerSeries< T >::diff() const {
   const int n = (int) this->size();
   P ret(max(0, n - 1));
   for(int i = 1; i < n; i++) ret[i - 1] = (*this)[i] * T(i);

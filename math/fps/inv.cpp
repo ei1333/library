@@ -5,7 +5,7 @@
  * @brief Inv ($\frac {1} {f(x)}$)
  */
 template< typename T >
-typename FormalPowerSeries< T > FormalPowerSeries< T >::inv_fast() const {
+typename FormalPowerSeries< T >::P FormalPowerSeries< T >::inv_fast() const {
   assert(((*this)[0]) != T(0));
 
   const int n = (int) this->size();
