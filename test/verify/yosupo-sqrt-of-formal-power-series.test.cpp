@@ -8,7 +8,7 @@
 #include "../../math/combinatorics/mod-pow.cpp"
 #include "../../math/combinatorics/mod-sqrt.cpp"
 
-#include "../../math/fps/formal-power-series.cpp"
+#include "../../math/fps/sqrt.cpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;
@@ -16,12 +16,8 @@ using mint = ModInt< MOD >;
 int main() {
   NumberTheoreticTransformFriendlyModInt< mint > ntt;
   using FPS = FormalPowerSeries< mint >;
-  auto mult = [&](const FPS::P &a, const FPS::P &b) {
-    auto ret = ntt.multiply(a, b);
-    return FPS::P(ret.begin(), ret.end());
-  };
-  FPS::set_mult(mult);
-  FPS::set_fft([&](FPS::P &a) { ntt.ntt(a); }, [&](FPS::P &a) { ntt.intt(a); });
+  FPS::set_mult([&](const FPS& a, const FPS& b) { return ntt.multiply(a, b);});
+  FPS::set_fft([&](FPS &a) { ntt.ntt(a); }, [&](FPS &a) { ntt.intt(a); });
   FPS::set_sqrt([](mint a) { return mod_sqrt< int64_t >(a.x, MOD); });
   int N;
   cin >> N;

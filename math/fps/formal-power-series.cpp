@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @brief Formal-Power-Series(形式的冪級数)
  */
@@ -105,7 +107,9 @@ struct FormalPowerSeries : vector< T > {
     return *this = P(begin(ret), end(ret));
   }
 
-  P &operator%=(const P &r) { return *this -= *this / r * r; }
+  P &operator%=(const P &r) {
+    return *this -= *this / r * r;
+  }
 
   P operator-() const {
     P ret(this->size());
@@ -128,7 +132,9 @@ struct FormalPowerSeries : vector< T > {
     return ret;
   }
 
-  P pre(int sz) const { return P(begin(*this), begin(*this) + min((int) this->size(), sz)); }
+  P pre(int sz) const {
+    return P(begin(*this), begin(*this) + min((int) this->size(), sz));
+  }
 
   P operator>>(int sz) const {
     if(this->size() <= sz) return {};
@@ -150,196 +156,24 @@ struct FormalPowerSeries : vector< T > {
     return ret;
   }
 
-  P diff() const {
-    const int n = (int) this->size();
-    P ret(max(0, n - 1));
-    for(int i = 1; i < n; i++) ret[i - 1] = (*this)[i] * T(i);
-    return ret;
-  }
+  P diff() const;
 
-  P integral() const {
-    const int n = (int) this->size();
-    P ret(n + 1);
-    ret[0] = T(0);
-    for(int i = 0; i < n; i++) ret[i + 1] = (*this)[i] / T(i + 1);
-    return ret;
-  }
+  P integral() const;
 
   // F(0) must not be 0
-  P inv(int deg = -1) const {
-    assert(((*this)[0]) != T(0));
-    const int n = (int) this->size();
-    if(deg == -1) deg = n;
-    if(get_fft() != nullptr) {
-      P ret(*this);
-      ret.resize(deg, T(0));
-      return ret.inv_fast();
-    }
-    P ret({T(1) / (*this)[0]});
-    for(int i = 1; i < deg; i <<= 1) {
-      ret = (ret + ret - ret * ret * pre(i << 1)).pre(i << 1);
-    }
-    return ret.pre(deg);
-  }
+  P inv_fast() const;
+
+  P inv(int deg = -1) const;
 
   // F(0) must be 1
-  P log(int deg = -1) const {
-    assert((*this)[0] == 1);
-    const int n = (int) this->size();
-    if(deg == -1) deg = n;
-    return (this->diff() * this->inv(deg)).pre(deg - 1).integral();
-  }
+  P log(int deg = -1) const;
 
-  P sqrt(int deg = -1) const {
-    const int n = (int) this->size();
-    if(deg == -1) deg = n;
-    if((*this)[0] == T(0)) {
-      for(int i = 1; i < n; i++) {
-        if((*this)[i] != T(0)) {
-          if(i & 1) return {};
-          if(deg - i / 2 <= 0) break;
-          auto ret = (*this >> i).sqrt(deg - i / 2);
-          if(ret.empty()) return {};
-          ret = ret << (i / 2);
-          if(ret.size() < deg) ret.resize(deg, T(0));
-          return ret;
-        }
-      }
-      return P(deg, 0);
-    }
-
-    P ret;
-    if(get_sqrt() == nullptr) {
-      assert((*this)[0] == T(1));
-      ret = {T(1)};
-    } else {
-      auto sqr = get_sqrt()((*this)[0]);
-      if(sqr * sqr != (*this)[0]) return {};
-      ret = {T(sqr)};
-    }
-
-    T inv2 = T(1) / T(2);
-    for(int i = 1; i < deg; i <<= 1) {
-      ret = (ret + pre(i << 1) * ret.inv(i << 1)) * inv2;
-    }
-    return ret.pre(deg);
-  }
-
+  P sqrt(int deg = -1) const;
+  
   // F(0) must be 0
-  P exp(int deg = -1) const {
-    assert((*this)[0] == T(0));
-    const int n = (int) this->size();
-    if(deg == -1) deg = n;
-    if(get_fft() != nullptr) {
-      P ret(*this);
-      ret.resize(deg, T(0));
-      return ret.exp_fast(deg);
-    }
-    P ret({T(1)});
-    for(int i = 1; i < deg; i <<= 1) {
-      ret = (ret * (pre(i << 1) + T(1) - ret.log(i << 1))).pre(i << 1);
-    }
-    return ret.pre(deg);
-  }
+  P exp_fast(int deg = -1) const;
 
-  P exp_fast(int deg) const {
-    if(deg == -1) deg = this->size();
-    assert((*this)[0] == T(0));
-
-    P inv;
-    inv.reserve(deg + 1);
-    inv.push_back(T(0));
-    inv.push_back(T(1));
-
-    auto inplace_integral = [&](P &F) -> void {
-      const int n = (int) F.size();
-      auto mod = T::get_mod();
-      while((int) inv.size() <= n) {
-        int i = inv.size();
-        inv.push_back((-inv[mod % i]) * (mod / i));
-      }
-      F.insert(begin(F), T(0));
-      for(int i = 1; i <= n; i++) F[i] *= inv[i];
-    };
-
-    auto inplace_diff = [](P &F) -> void {
-      if(F.empty()) return;
-      F.erase(begin(F));
-      T coeff = 1, one = 1;
-      for(int i = 0; i < (int) F.size(); i++) {
-        F[i] *= coeff;
-        coeff += one;
-      }
-    };
-
-    P b{1, 1 < (int) this->size() ? (*this)[1] : 0}, c{1}, z1, z2{1, 1};
-    for(int m = 2; m < deg; m *= 2) {
-      auto y = b;
-      y.resize(2 * m);
-      get_fft()(y);
-      z1 = z2;
-      P z(m);
-      for(int i = 0; i < m; ++i) z[i] = y[i] * z1[i];
-      get_ifft()(z);
-      fill(begin(z), begin(z) + m / 2, T(0));
-      get_fft()(z);
-      for(int i = 0; i < m; ++i) z[i] *= -z1[i];
-      get_ifft()(z);
-      c.insert(end(c), begin(z) + m / 2, end(z));
-      z2 = c;
-      z2.resize(2 * m);
-      get_fft()(z2);
-      P x(begin(*this), begin(*this) + min< int >(this->size(), m));
-      inplace_diff(x);
-      x.push_back(T(0));
-      get_fft()(x);
-      for(int i = 0; i < m; ++i) x[i] *= y[i];
-      get_ifft()(x);
-      x -= b.diff();
-      x.resize(2 * m);
-      for(int i = 0; i < m - 1; ++i) x[m + i] = x[i], x[i] = T(0);
-      get_fft()(x);
-      for(int i = 0; i < 2 * m; ++i) x[i] *= z2[i];
-      get_ifft()(x);
-      x.pop_back();
-      inplace_integral(x);
-      for(int i = m; i < min< int >(this->size(), 2 * m); ++i) x[i] += (*this)[i];
-      fill(begin(x), begin(x) + m, T(0));
-      get_fft()(x);
-      for(int i = 0; i < 2 * m; ++i) x[i] *= y[i];
-      get_ifft()(x);
-      b.insert(end(b), begin(x) + m, end(x));
-    }
-    return P{begin(b), begin(b) + deg};
-  }
-
-
-  P inv_fast() const {
-    assert(((*this)[0]) != T(0));
-
-    const int n = (int) this->size();
-    P res{T(1) / (*this)[0]};
-
-    for(int d = 1; d < n; d <<= 1) {
-      P f(2 * d), g(2 * d);
-      for(int j = 0; j < min(n, 2 * d); j++) f[j] = (*this)[j];
-      for(int j = 0; j < d; j++) g[j] = res[j];
-      get_fft()(f);
-      get_fft()(g);
-      for(int j = 0; j < 2 * d; j++) f[j] *= g[j];
-      get_ifft()(f);
-      for(int j = 0; j < d; j++) {
-        f[j] = 0;
-        f[j + d] = -f[j + d];
-      }
-      get_fft()(f);
-      for(int j = 0; j < 2 * d; j++) f[j] *= g[j];
-      get_ifft()(f);
-      for(int j = 0; j < d; j++) f[j] = res[j];
-      res = f;
-    }
-    return res.pre(n);
-  }
+  P exp(int deg = -1) const;
 
   P pow(int64_t k, int deg = -1) const {
     const int n = (int) this->size();

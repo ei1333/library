@@ -5,7 +5,7 @@
 #include "../../math/combinatorics/mod-int.cpp"
 #include "../../math/fft/number-theoretic-transform-friendly-mod-int.cpp"
 
-#include "../../math/fps/formal-power-series.cpp"
+#include "../../math/fps/exp.cpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;
@@ -22,4 +22,3 @@ int main() {
   cin >> F;
   cout << F.exp() << endl;
 }
-
