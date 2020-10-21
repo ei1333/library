@@ -26,7 +26,7 @@ FormalPowerSeries< T > multipoint_evaluation(const FormalPowerSeries< T > &as, c
   function< void(FPS, int, int) > rec = [&](FPS a, int l, int r) -> void {
     a %= buf.query(l, r);
     if(a.size() <= B) {
-      for(int i = l; i < r; i++) ret.emplace_back(a.eval(xs[i]));
+      for(int i = l; i < r; i++) ret.emplace_back(a(xs[i]));
       return;
     }
     rec(a, l, (l + r) >> 1);
