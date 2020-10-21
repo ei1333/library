@@ -175,21 +175,7 @@ struct FormalPowerSeries : vector< T > {
 
   P exp(int deg = -1) const;
 
-  P pow(int64_t k, int deg = -1) const {
-    const int n = (int) this->size();
-    if(deg == -1) deg = n;
-    for(int i = 0; i < n; i++) {
-      if((*this)[i] != T(0)) {
-        T rev = T(1) / (*this)[i];
-        P ret = (((*this * rev) >> i).log() * k).exp() * ((*this)[i].pow(k));
-        if(i * k > deg) return P(deg, T(0));
-        ret = (ret << (i * k)).pre(deg);
-        if(ret.size() < deg) ret.resize(deg, T(0));
-        return ret;
-      }
-    }
-    return *this;
-  }
+  P pow(int64_t k, int deg = -1) const;
 
   T eval(T x) const {
     T r = 0, w = 1;
@@ -199,27 +185,6 @@ struct FormalPowerSeries : vector< T > {
     }
     return r;
   }
-
-  P pow_mod(int64_t n, P mod) const {
-    P modinv = mod.rev().inv();
-    auto get_div = [&](P base) {
-      if(base.size() < mod.size()) {
-        base.clear();
-        return base;
-      }
-      int n = base.size() - mod.size() + 1;
-      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);
-    };
-    P x(*this), ret{1};
-    while(n > 0) {
-      if(n & 1) {
-        ret *= x;
-        ret -= get_div(ret) * mod;
-      }
-      x *= x;
-      x -= get_div(x) * mod;
-      n >>= 1;
-    }
-    return ret;
-  }
+  
+  P mod_pow(int64_t k, P g) const;
 };
