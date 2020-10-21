@@ -3,7 +3,7 @@
 #include "inv.cpp"
 
 /**
- * @brief Mod-Pow ($f(x)^k \bmod g$)
+ * @brief Mod-Pow ($f(x)^k \bmod g(x)$)
  */
 template< typename T >
 typename FormalPowerSeries< T >::P FormalPowerSeries< T >::mod_pow(int64_t k, P g) const {

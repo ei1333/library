@@ -5,7 +5,8 @@
 /**
  * @brief Pow ($f(x)^k$)
  */
-P pow(int64_t k, int deg = -1) const {
+template< typename T >
+typename FormalPowerSeries< T >::P FormalPowerSeries< T >::pow(int64_t k, int deg) const {
   const int n = (int) this->size();
   if(deg == -1) deg = n;
   for(int i = 0; i < n; i++) {

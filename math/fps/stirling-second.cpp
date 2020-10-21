@@ -4,7 +4,7 @@
 template< typename T >
 FormalPowerSeries< T > stirling_second(int N) {
   FormalPowerSeries< T > A(N + 1), B(N + 1);
-  modint tmp = 1;
+  T tmp = 1;
   for(int i = 0; i <= N; i++) {
     T rev = T(1) / tmp;
     A[i] = T(i).pow(N) * rev;

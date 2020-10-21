@@ -13,7 +13,6 @@ using mint = ModInt< MOD >;
 int main() {
   NumberTheoreticTransformFriendlyModInt< mint > ntt;
   using FPS = FormalPowerSeries< mint >;
-  FPS::set_mult([&](const FPS& a, const FPS& b) { return ntt.multiply(a, b);});
   FPS::set_fft([&](FPS &a) { ntt.ntt(a); }, [&](FPS &a) { ntt.intt(a); });
 
   int N;

@@ -34,6 +34,23 @@ struct FormalPowerSeries : vector< T > {
   static void set_fft(FFT f, FFT g) {
     get_fft() = f;
     get_ifft() = g;
+    if(get_mult() == nullptr) {
+      auto mult = [&](P a, P b) {
+        int need = a.size() + b.size() - 1;
+        int nbase = 1;
+        while((1 << nbase) < need) nbase++;
+        int sz = 1 << nbase;
+        a.resize(sz, T(0));
+        b.resize(sz, T(0));
+        get_fft()(a);
+        get_fft()(b);
+        for(int i = 0; i < sz; i++) a[i] *= b[i];
+        get_ifft()(a);
+        a.resize(need);
+        return a;
+      };
+      set_mult(mult);
+    }
   }
 
   static SQRT &get_sqrt() {
@@ -156,6 +173,15 @@ struct FormalPowerSeries : vector< T > {
     return ret;
   }
 
+  T operator()(T x) const {
+    T r = 0, w = 1;
+    for(auto &v : *this) {
+      r += w * v;
+      w *= x;
+    }
+    return r;
+  }
+
   P diff() const;
 
   P integral() const;
@@ -169,7 +195,7 @@ struct FormalPowerSeries : vector< T > {
   P log(int deg = -1) const;
 
   P sqrt(int deg = -1) const;
-  
+
   // F(0) must be 0
   P exp_fast(int deg = -1) const;
 
@@ -177,14 +203,5 @@ struct FormalPowerSeries : vector< T > {
 
   P pow(int64_t k, int deg = -1) const;
 
-  T eval(T x) const {
-    T r = 0, w = 1;
-    for(auto &v : *this) {
-      r += w * v;
-      w *= x;
-    }
-    return r;
-  }
-  
   P mod_pow(int64_t k, P g) const;
 };
