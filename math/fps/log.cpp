@@ -6,6 +6,7 @@
 
 /**
  * @brief Log ($\log {f(x)}$)
+ * @docs docs/log.md
  */
 template< typename T >
 typename FormalPowerSeries< T >::P FormalPowerSeries< T >::log(int deg) const {
