@@ -138,6 +138,7 @@
 "test/verify/yosupo-staticrmq-3.test.cpp": "2020-05-14 22:00:37 +0900",
 "test/verify/yosupo-staticrmq.test.cpp": "2020-02-20 22:23:04 +0900",
 "test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp": "2020-10-23 03:48:43 +0900",
+"test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp": "2020-10-23 03:48:43 +0900",
 "test/verify/yosupo-sum-of-floor-of-linear.test.cpp": "2020-10-09 19:49:33 +0900",
 "test/verify/yosupo-tetration-mod.test.cpp": "2020-10-07 20:31:58 +0900",
 "test/verify/yosupo-three-edge-connected-components.test.cpp": "2020-09-15 01:41:10 +0900",
