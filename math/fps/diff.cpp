@@ -3,6 +3,7 @@
 
 /**
  * @brief Diff ($f'(x)$)
+ * @docs docs/diff.md
  */
 template< typename T >
 typename FormalPowerSeries< T >::P FormalPowerSeries< T >::diff() const {
