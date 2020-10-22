@@ -3,7 +3,7 @@
 
 /**
  * @brief Integral ($\int f(x) dx$)
- * @docs md/integral.md
+ * @docs docs/integral.md
  */
 template< typename T >
 typename FormalPowerSeries< T >::P FormalPowerSeries< T >::integral() const {
