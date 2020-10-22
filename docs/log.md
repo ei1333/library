@@ -1,8 +1,8 @@
 ## 概要
 
-対数 $\log f(x)$ を求める. つまり $\displaystyle f(x) = e ^ {g(x)} = \sum_{k=0}^{\infty} \frac {g(x)^k} {k!}$ を満たす $g(x)$ を求める. 
+対数 $\log f(x)$ を求める.
 
-$[x^0] f(x) = 1$ のときのみ定義される.
+つまり $\displaystyle f(x) = e ^ {g(x)} = \sum_{k=0}^{\infty} \frac {g(x)^k} {k!}$ を満たす $g(x)$ を求める. ただし $[x^0] f(x) = 1$.
 
 $\log f(x) = \int \frac {f'(x)} {f(x)} dx$ に基づいて計算する.
 

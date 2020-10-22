@@ -5,6 +5,7 @@
 
 /**
  * @brief Exp ($e^{f(x)}$)
+ * @docs docs/exp.md
  */
 template< typename T >
 typename FormalPowerSeries< T >::P FormalPowerSeries< T >::exp_fast(int deg) const {
