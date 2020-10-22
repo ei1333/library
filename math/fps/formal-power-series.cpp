@@ -204,4 +204,6 @@ struct FormalPowerSeries : vector< T > {
   P pow(int64_t k, int deg = -1) const;
 
   P mod_pow(int64_t k, P g) const;
+
+  P taylor_shift(T c) const;
 };
