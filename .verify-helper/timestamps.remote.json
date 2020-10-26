@@ -117,6 +117,7 @@
 "test/verify/yosupo-point-set-range-composite-3.test.cpp": "2020-08-29 03:56:51 +0900",
 "test/verify/yosupo-point-set-range-composite.test.cpp": "2020-06-19 01:56:15 +0900",
 "test/verify/yosupo-polynomial-interpolation.test.cpp": "2020-10-23 03:48:43 +0900",
+"test/verify/yosupo-polynomial-taylor-shift.test.cpp": "2020-10-26 17:23:30 +0900",
 "test/verify/yosupo-pow-of-formal-power-series.test.cpp": "2020-10-23 03:48:43 +0900",
 "test/verify/yosupo-queue-operate-all-composite.test.cpp": "2020-05-15 00:40:42 +0900",
 "test/verify/yosupo-range-affine-range-sum-2.test.cpp": "2020-05-14 23:23:31 +0900",
