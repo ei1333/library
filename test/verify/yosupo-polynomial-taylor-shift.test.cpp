@@ -4,14 +4,17 @@
 
 #include "../../math/combinatorics/mod-int.cpp"
 
+#include "../../math/fft/number-theoretic-transform-friendly-mod-int.cpp"
+
 #include "../../math/fps/taylor-shift.cpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;
 
 int main() {
+  NumberTheoreticTransformFriendlyModInt< mint > ntt;
   using FPS = FormalPowerSeries< mint >;
-
+  FPS::set_fft([&](FPS &a) { ntt.ntt(a); }, [&](FPS &a) { ntt.intt(a); });
   int N, C;
   cin >> N >> C;
   FPS F(N);
