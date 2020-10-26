@@ -1,5 +1,6 @@
 /**
  * @brief Centroid(木の重心)
+ * @docs docs/centroid.md
  */
 template< typename T >
 vector< int > centroid(const Graph< T > &g) {
