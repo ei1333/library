@@ -12,16 +12,10 @@ struct Diameter {
 
     light_t() : top1(-inf), top2(-inf), diameter(-inf) {}
 
-    void update(const light_t &x, const light_t &y) {
-
-      {
-        top1 = val;
-        top2 = -inf;
-        diameter = dia;
-      }
-
-      update(x);
-      update(y);
+    void set_sum() {
+      top1 = val;
+      top2 = -inf;
+      diameter = dia;
     }
 
     void update(const light_t &p) {

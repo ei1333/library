@@ -42,7 +42,9 @@ private:
   }
 
   void update(Node *t) {
-    t->sum.update(sum(t->l), sum(t->r));
+    t->sum.set_sum();
+    if(t->l) t->sum.update(t->l->sum);
+    if(t->r) t->sum.update(t->r->sum);
   }
 
   Node *get_right(Node *t) const {
