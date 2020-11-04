@@ -1,3 +1,5 @@
+#include "splay-tree.cpp"
+
 template< typename T, size_t V >
 struct LinkCutTreeSubTree {
   using key_t = typename T::key_t;
