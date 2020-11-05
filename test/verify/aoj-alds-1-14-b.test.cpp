@@ -8,11 +8,11 @@ int main() {
   string T, P;
   cin >> T;
   cin >> P;
-  auto base = RollingHash::generate_base();
-  auto rh1 = RollingHash(T, base);
-  auto rh2 = RollingHash(P, base);
+  RollingHash roll;
+  auto rh1 = roll.build(T);
+  auto rh2 = roll.build(P);
   for(int i = 0; i + P.size() <= T.size(); i++) {
-    if(rh1.query(i, i + P.size()) == rh2.query(0, P.size())) {
+    if(roll.query(rh1, i, i + P.size()) == roll.query(rh2, 0, P.size())) {
       cout << i << endl;
     }
   }
