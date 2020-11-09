@@ -1,7 +1,7 @@
 #include "../../structure/others/sparse-table.cpp"
 
 /**
- * @brief RMQ-Lowest-Common-Ancestor(最小共通祖先)
+ * @brief RMQ-Lowest-Common-Ancestor(最小共通祖先) <$O(n \log n)$, $O(1)$>
  */
 template< typename T = int >
 struct RMQLowestCommonAncestor : Graph< T > {
