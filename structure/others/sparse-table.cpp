@@ -2,21 +2,22 @@
  * @brief Sparse-Table(スパーステーブル)
  * @docs docs/sparse-table.md
  */
-template< typename T >
+template< typename T, typename F >
 struct SparseTable {
+  const F f;
   vector< vector< T > > st;
   vector< int > lookup;
 
-  explicit SparseTable(const vector< T > &v) {
-    int b = 0;
-    while((1 << b) <= v.size()) ++b;
-    st.assign(b, vector< T >(1 << b));
+  explicit SparseTable(const vector< T > &v, const F &f) : f(f) {
+    const int n = (int) v.size();
+    const int b = 32 - __builtin_clz(n);
+    st.assign(b, vector< T >(n));
     for(int i = 0; i < v.size(); i++) {
       st[0][i] = v[i];
     }
     for(int i = 1; i < b; i++) {
-      for(int j = 0; j + (1 << i) <= (1 << b); j++) {
-        st[i][j] = min(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+      for(int j = 0; j + (1 << i) <= n; j++) {
+        st[i][j] = f(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
       }
     }
     lookup.resize(v.size() + 1);
@@ -25,8 +26,13 @@ struct SparseTable {
     }
   }
 
-  inline T query(int l, int r) const {
+  inline T fold(int l, int r) const {
     int b = lookup[r - l];
-    return min(st[b][l], st[b][r - (1 << b)]);
+    return f(st[b][l], st[b][r - (1 << b)]);
   }
 };
+
+template< typename T, typename F >
+SparseTable< T, F > get_sparse_table(const vector< T > &v, const F &f) {
+  return SparseTable< T, F >(v, f);
+}

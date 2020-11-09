@@ -9,10 +9,10 @@ int main() {
   cin >> N >> Q;
   vector< int > A(N);
   cin >> A;
-  SparseTable< int > st(A);
+  auto st = get_sparse_table(A, [](int a, int b) { return min(a, b); });
   while(Q--) {
     int l, r;
     cin >> l >> r;
-    cout << st.query(l, r) << "\n";
+    cout << st.fold(l, r) << "\n";
   }
 }
