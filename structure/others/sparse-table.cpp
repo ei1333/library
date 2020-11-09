@@ -4,9 +4,11 @@
  */
 template< typename T, typename F >
 struct SparseTable {
-  const F f;
+  F f;
   vector< vector< T > > st;
   vector< int > lookup;
+
+  SparseTable() = default;
 
   explicit SparseTable(const vector< T > &v, const F &f) : f(f) {
     const int n = (int) v.size();
