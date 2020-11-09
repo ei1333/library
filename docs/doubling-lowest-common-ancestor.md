@@ -7,9 +7,10 @@
 
 * `build()`: 構築する.
 * `lca(u, v)`: 頂点 `u`, `v` の最小共通祖先(LCA)を返す.
+* `climb(u, k)`: 頂点 `u` から `k` 個親に遡った頂点を返す.
 * `dist(u, v)`: 頂点 `u`, `v` 間のパスの辺の本数を返す.
 
 ## 計算量
 
 * `build()`: $O(V)$
-* `lca()`, `dist()`: $O(\log V)$
+* `lca()`, `climb(u, k)`, `dist()`: $O(\log V)$

@@ -32,9 +32,7 @@ public:
 
   int lca(int u, int v) {
     if(dep[u] > dep[v]) swap(u, v);
-    for(int i = LOG - 1; i >= 0; i--) {
-      if(((dep[v] - dep[u]) >> i) & 1) v = table[i][v];
-    }
+    v = climb(v, dep[v] - dep[u]);
     if(u == v) return u;
     for(int i = LOG - 1; i >= 0; i--) {
       if(table[i][u] != table[i][v]) {
@@ -45,7 +43,15 @@ public:
     return table[0][u];
   }
 
-  T dist(int u, int v) {
+  int climb(int u, int k) const {
+    if(dep[u] < k) return -1;
+    for(int i = LOG - 1; i >= 0; i--) {
+      if((k >> i) & 1) u = table[i][u];
+    }
+    return u;
+  }
+
+  T dist(int u, int v) const {
     return sum[u] + sum[v] - 2 * sum[lca(u, v)];
   }
 
