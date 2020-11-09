@@ -1,5 +1,6 @@
 /**
- * @brief Doubling-Lowest-Common-Ancestor(最小共通祖先) <$O(n \log n)$, $O(\log n)$>
+ * @brief Doubling-Lowest-Common-Ancestor(最小共通祖先)
+ * @docs docs/doubling-lowest-common-ancestor.md
  */
 template< typename T >
 struct DoublingLowestCommonAncestor : Graph< T > {
