@@ -1,3 +1,5 @@
+#include "../../structure/others/sparse-table.cpp"
+
 /**
  * @brief RMQ-Lowest-Common-Ancestor(最小共通祖先)
  */
