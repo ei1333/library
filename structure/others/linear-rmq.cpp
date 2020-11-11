@@ -3,10 +3,8 @@
  **/
 template< typename Comp >
 struct LinearRMQ {
-  static constexpr int BLOCKSIZE = 16;
-  using block_type = uint_least16_t;
 
-  vector< block_type > small;
+  vector< int > small;
   vector< vector< int > > large;
 
   LinearRMQ() = default;
@@ -27,25 +25,25 @@ struct LinearRMQ {
 
   explicit LinearRMQ(size_t n, const Comp &comp) : comp(comp) {
     vector< int > st;
-    st.reserve(BLOCKSIZE);
+    st.reserve(32);
     large.emplace_back();
-    large.front().reserve(n / BLOCKSIZE);
+    large.front().reserve(n / 32);
     small.reserve(n);
     for(int i = 0; i < n; i++) {
       while(!st.empty() && !comp(st.back(), i)) {
         st.pop_back();
       }
       small.emplace_back(st.empty() ? 0 : small[st.back()]);
-      small.back() |= static_cast< block_type  >(1) << (i % BLOCKSIZE);
+      small.back() |= 1 << (i % 32);
       st.emplace_back(i);
-      if((i + 1) % BLOCKSIZE == 0) {
+      if((i + 1) % 32 == 0) {
         large.front().emplace_back(st.front());
         st.clear();
       }
     }
-    for(int i = 1; (i << 1) <= n / BLOCKSIZE; i <<= 1) {
+    for(int i = 1; (i << 1) <= n / 32; i <<= 1) {
       vector< int > v;
-      int csz = n / BLOCKSIZE + 1 - (i << 1);
+      int csz = n / 32 + 1 - (i << 1);
       v.reserve(csz);
       for(int k = 0; k < csz; k++) {
         v.emplace_back(get_min(large.back()[k], large.back()[k + i]));
@@ -56,18 +54,18 @@ struct LinearRMQ {
 
   int fold(int l, int r) const {
     --r;
-    int left = l / BLOCKSIZE + 1;
-    int right = r / BLOCKSIZE;
+    int left = l / 32 + 1;
+    int right = r / 32;
     if(left < right) {
       auto p = msb(right - left);
       return get_min(
-          get_min((left - 1) * BLOCKSIZE + ctz(small[left * BLOCKSIZE - 1] & ~static_cast<block_type>(0) << l % BLOCKSIZE), large[p][left]),
-          get_min(large[p][right - (1 << p)], right * BLOCKSIZE + ctz(small[r])));
+          get_min((left - 1) * 32 + ctz(small[left * 32 - 1] & ~0 << l % 32), large[p][left]),
+          get_min(large[p][right - (1 << p)], right * 32 + ctz(small[r])));
     } else if(left == right) {
-      return get_min((left - 1) * BLOCKSIZE + ctz(small[left * BLOCKSIZE - 1] & ~static_cast<block_type>(0) << l % BLOCKSIZE),
-                     left * BLOCKSIZE + ctz(small[r]));
+      return get_min((left - 1) * 32 + ctz(small[left * 32 - 1] & ~0 << l % 32),
+                     left * 32 + ctz(small[r]));
     } else {
-      return right * BLOCKSIZE + ctz(small[r] & ~static_cast<block_type>(0) << l % BLOCKSIZE);
+      return right * 32 + ctz(small[r] & ~0 << l % 32);
     }
   }
 };
