@@ -8,7 +8,11 @@ int main() {
   int N, Q;
   cin >> N;
   Polygon g(N);
-  cin >> g;
+  for(int i = 0; i < N; i++) {
+    double x, y;
+    cin >> x >> y;
+    g[i] = Point(x, y);
+  }
   cin >> Q;
   while(Q--) {
     double x, y;
