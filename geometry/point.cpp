@@ -32,5 +32,13 @@ namespace geometry {
     return real(a) * real(b) + imag(a) * imag(b);
   }
 
+  bool compare_x(const Point &a, const Point &b) {
+    return equals(real(a), real(b)) ? imag(a) < imag(b) : real(a) < real(b);
+  }
+
+  bool compare_y(const Point &a, const Point &b) {
+    return equals(imag(a), imag(b)) ? real(a) < real(b) : imag(a) < imag(b);
+  }
+
   using Points = vector< Point >;
 }
