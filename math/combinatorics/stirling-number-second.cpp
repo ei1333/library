@@ -1,3 +1,7 @@
+/**
+ * @brief Stirling-Number-Second(第2種スターリング数)
+ * @docs docs/stirling-number-second.md
+ */
 template< typename T >
 T stirling_number_second(int n, int k) {
   Combination< T > table(k);
