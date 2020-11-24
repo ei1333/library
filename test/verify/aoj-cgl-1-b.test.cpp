@@ -1,9 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B"
 #define ERROR 0.00000001
 
 #include "../../template/template.cpp"
 
-#include "../../geometry/projection.cpp"
+#include "../../geometry/reflection.cpp"
 
 using namespace geometry;
 
@@ -15,6 +15,6 @@ int main() {
   while(Q--) {
     Point p;
     cin >> p;
-    cout << projection(l, p) << "\n";
+    cout << reflection(l, p) << "\n";
   }
 }
