@@ -1,3 +1,4 @@
+#pragma once
 #include "point.cpp"
 
 namespace geometry {
