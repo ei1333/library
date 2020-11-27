@@ -11,5 +11,5 @@ namespace geometry {
     Circle(const Point &p, const Real &r) : p(p), r(r) {}
   };
 
-  using Circles = vector< Segment >;
+  using Circles = vector< Circle >;
 }
