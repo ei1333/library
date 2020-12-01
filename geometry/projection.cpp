@@ -1,3 +1,5 @@
+#pragma once
+
 #include "point.cpp"
 #include "line.cpp"
 
