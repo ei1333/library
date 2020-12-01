@@ -2,7 +2,9 @@
 
 #include "../../template/template.cpp"
 
-#include "../../geometry/template.cpp"
+#include "../../geometry/convex_polygon_contains.cpp"
+
+using namespace geometry;
 
 int main() {
   int N, Q;
@@ -18,7 +20,7 @@ int main() {
     double x, y;
     cin >> x >> y;
     Point p(x - x / 10000, y - y / 10000);
-    if(convex_contains(g, p)) cout << 1 << "\n";
+    if(convex_polygon_contains(g, p)) cout << 1 << "\n";
     else cout << 0 << "\n";
   }
 }

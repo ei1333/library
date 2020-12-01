@@ -4,10 +4,6 @@
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
-  enum {
-    OUT, ON, IN
-  };
-
   int contains(const Polygon &Q, const Point &p) {
     bool in = false;
     for(int i = 0; i < Q.size(); i++) {
