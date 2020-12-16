@@ -13,6 +13,5 @@ T stirling_number_second(int n, int k) {
     if((k - i) & 1) ret -= add;
     else ret += add;
   }
-  return ret * table.rfact(k);
+  return ret * table.finv(k);
 }
-
