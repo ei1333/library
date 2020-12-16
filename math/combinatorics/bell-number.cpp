@@ -1,4 +1,4 @@
-#include "enumerate.cpp"
+#include "enumeration.cpp"
 
 /**
  * @brief Bell-Number(ベル数)

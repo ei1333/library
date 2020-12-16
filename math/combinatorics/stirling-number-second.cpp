@@ -1,4 +1,4 @@
-#include "enumerate.cpp"
+#include "enumeration.cpp"
 
 /**
  * @brief Stirling-Number-Second(第2種スターリング数)
