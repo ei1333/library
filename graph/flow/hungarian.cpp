@@ -1,8 +1,13 @@
+#include "../../math/matrix/matrix.cpp"
+
+/**
+ * @brief Hungarian(二部グラフの最小重み最大マッチング)
+ */
 template< typename T >
-T hungarian(Matrix< T > &A) {
+pair< T, vector< int > > hungarian(Matrix< T > &A) {
   const T infty = numeric_limits< T >::max();
-  const int N = (int) A.size();
-  const int M = (int) A[0].size();
+  const int N = (int) A.height();
+  const int M = (int) A.width();
   vector< int > P(M), way(M);
   vector< T > U(N, 0), V(M, 0), minV;
   vector< bool > used;
@@ -33,5 +38,5 @@ T hungarian(Matrix< T > &A) {
       j0 = way[j0];
     } while(j0 != 0);
   }
-  return -V[0];
+  return {-V[0], P};
 }
