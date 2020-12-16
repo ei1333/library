@@ -8,7 +8,7 @@ template< typename T >
 T bell_number(int n, int k) {
   if(n == 0) return 1;
   k = min(k, n);
-  Enumerate< T > uku(k);
+  Enumeration< T > uku(k);
   T ret = 0;
   vector< T > pref(k + 1);
   pref[0] = 1;

@@ -6,7 +6,7 @@
  */
 template< typename T >
 T stirling_number_second(int n, int k) {
-  Enumerate< T > table(k);
+  Enumeration< T > table(k);
   T ret = 0;
   for(int i = 0; i <= k; i++) {
     auto add = T(i).pow(n) * table.C(k, i);
