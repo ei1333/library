@@ -13,8 +13,8 @@ T bell_number(int n, int k) {
   vector< T > pref(k + 1);
   pref[0] = 1;
   for(int i = 1; i <= k; i++) {
-    if(i & 1) pref[i] = pref[i - 1] - uku.rfact(i);
-    else pref[i] = pref[i - 1] + uku.rfact(i);
+    if(i & 1) pref[i] = pref[i - 1] - uku.finv(i);
+    else pref[i] = pref[i - 1] + uku.finv(i);
   }
   for(int i = 1; i <= k; i++) {
     ret += T(i).pow(n) * uku.finv(i) * pref[k - i];
