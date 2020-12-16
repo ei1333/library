@@ -1,10 +1,12 @@
+#include "enumerate.cpp"
+
 /**
  * @brief Stirling-Number-Second(第2種スターリング数)
  * @docs docs/stirling-number-second.md
  */
 template< typename T >
 T stirling_number_second(int n, int k) {
-  Combination< T > table(k);
+  Enumerate< T > table(k);
   T ret = 0;
   for(int i = 0; i <= k; i++) {
     auto add = T(i).pow(n) * table.C(k, i);
