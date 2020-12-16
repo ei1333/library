@@ -1,7 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1163"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
 
 #include "../../graph/flow/hungarian.cpp"
 
@@ -15,12 +14,12 @@ int main() {
       cin >> R[i];
     }
     if(M > N) swap(M, N), swap(B, R);
-    Matrix< int > mat(M + 1, vector< int >(N + 1));
+    Matrix< int > mat(M + 1, N + 1);
     for(int i = 0; i < M; i++) {
       for(int j = 0; j < N; j++) {
         if(__gcd(B[i], R[j]) > 1) mat[i + 1][j + 1] = -1;
       }
     }
-    cout << -hungarian(mat) << endl;
+    cout << -hungarian(mat).first << endl;
   }
 }
