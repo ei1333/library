@@ -24,22 +24,22 @@ int main() {
   int64_t inv = 0, all = 0;
   vector< int64_t > ans(Q);
   auto add_left = [&](int idx) {
-    inv += bit.query(A[idx] - 1);
+    inv += bit.sum(A[idx]);
     bit.add(A[idx], 1);
     all++;
   };
   auto add_right = [&](int idx) {
-    inv += all - bit.query(A[idx]);
+    inv += all - bit.sum(A[idx] + 1);
     bit.add(A[idx], 1);
     ++all;
   };
   auto erase_left = [&](int idx) {
-    inv -= bit.query(A[idx] - 1);
+    inv -= bit.sum(A[idx]);
     bit.add(A[idx], -1);
     --all;
   };
   auto erase_right = [&](int idx) {
-    inv -= all - bit.query(A[idx]);
+    inv -= all - bit.sum(A[idx] + 1);
     bit.add(A[idx], -1);
     --all;
   };

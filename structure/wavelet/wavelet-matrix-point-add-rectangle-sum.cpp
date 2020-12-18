@@ -1,3 +1,6 @@
+#include "succinct-indexable-dictionary.cpp"
+#include "../others/binary-indexed-tree.cpp"
+
 /*
  * @brief Wavelet-Matrix-Point-Add-Rectangle-Sum
  * @docs docs/wavelet-matrix-point-add-rectangle-sum.md
@@ -51,7 +54,7 @@ struct WaveletMatrixPointAddRectangleSum {
     for(int level = MAXLOG - 1; level >= 0; level--) {
       if(((upper >> level) & 1)) {
         auto nxt = succ(false, l, r, level);
-        ret += ds[level].query(nxt.second - 1) - ds[level].query(nxt.first - 1);
+        ret += ds[level].sum(nxt.first, nxt.second);
         l = l - nxt.first + mid[level];
         r = r - nxt.second + mid[level];
       } else {

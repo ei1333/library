@@ -2,9 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/others/binary-indexed-tree.cpp"
-
-#include "../../structure/wavelet/succinct-indexable-dictionary.cpp"
 #include "../../structure/wavelet/wavelet-matrix-point-add-rectangle-sum.cpp"
 
 #include "../../other/scanner.cpp"

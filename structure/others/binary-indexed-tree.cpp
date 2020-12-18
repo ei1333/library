@@ -4,8 +4,10 @@
  */
 template< typename T >
 struct BinaryIndexedTree {
+private:
   vector< T > data;
 
+public:
   BinaryIndexedTree() = default;
 
   explicit BinaryIndexedTree(size_t sz) : data(sz + 1, 0) {}
@@ -22,10 +24,14 @@ struct BinaryIndexedTree {
     for(++k; k < (int) data.size(); k += k & -k) data[k] += x;
   }
 
-  T query(int k) const {
+  T sum(int r) const {
     T ret = T();
-    for(++k; k > 0; k -= k & -k) ret += data[k];
+    for(; r > 0; r -= r & -r) ret += data[r];
     return ret;
+  }
+
+  T sum(int l, int r) const {
+    return sum(r) - sum(l);
   }
 
   int lower_bound(T x) const {
