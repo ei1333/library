@@ -12,6 +12,6 @@ int main() {
     int T, X, Y;
     cin >> T >> X >> Y;
     if(T == 0) bit.add(X - 1, Y);
-    else cout << bit.query(Y - 1) - bit.query(X - 2) << "\n";
+    else cout << bit.sum(X - 1, Y) << "\n";
   }
 }
