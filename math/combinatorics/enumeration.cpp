@@ -56,9 +56,9 @@ public:
   }
 };
 
-template< typename M >
-vector< M > Enumeration< M >::_fact = vector< M >();
-template< typename M >
-vector< M > Enumeration< M >::_finv = vector< M >();
-template< typename M >
-vector< M > Enumeration< M >::_inv = vector< M >();
+template< typename T >
+vector< T > Enumeration< T >::_fact = vector< T >();
+template< typename T >
+vector< T > Enumeration< T >::_finv = vector< T >();
+template< typename T >
+vector< T > Enumeration< T >::_inv = vector< T >();
