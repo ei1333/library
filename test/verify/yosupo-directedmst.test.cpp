@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/mst/directed-minimum-spanning-tree.cpp"
+#include "../../graph/mst/directed-mst.cpp"
 
 int main() {
   int n, m, r;
@@ -14,7 +14,7 @@ int main() {
     cin >> a >> b >> w;
     edges.emplace_back(a, b, w);
   }
-  auto res = directed_minimum_spanning_tree(n, r, edges);
+  auto res = directed_mst(n, r, edges);
   cout << res.cost << "\n";
   vector< int > ans(n);
   ans[r] = r;

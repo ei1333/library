@@ -2,7 +2,7 @@
 #include "../../structure/heap/skew-heap.cpp"
 
 /**
- * @brief Directed-Minimum-Spanning-Tree(最小有向全域木)
+ * @brief Directed-MST(最小有向全域木)
  */
 template< typename T >
 struct MinimumSpanningTree {
@@ -11,7 +11,7 @@ struct MinimumSpanningTree {
 };
 
 template< typename T >
-MinimumSpanningTree< T > directed_minimum_spanning_tree(int V, int root, Edges< T > edges) {
+MinimumSpanningTree< T > directed_mst(int V, int root, Edges< T > edges) {
   for(int i = 0; i < V; ++i) {
     if(i != root) edges.emplace_back(i, root, 0);
   }
