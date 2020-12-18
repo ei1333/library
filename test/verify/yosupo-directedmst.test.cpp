@@ -1,0 +1,25 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/directedmst"
+
+#include "../../template/template.cpp"
+
+#include "../../graph/mst/directed-minimum-spanning-tree.cpp"
+
+int main() {
+  int n, m, r;
+  cin >> n >> m >> r;
+  Edges< int64_t > edges;
+  for(int i = 0; i < m; ++i) {
+    int a, b;
+    int64_t w;
+    cin >> a >> b >> w;
+    edges.emplace_back(a, b, w);
+  }
+  auto res = directed_minimum_spanning_tree(n, r, edges);
+  cout << res.cost << "\n";
+  vector< int > ans(n);
+  ans[r] = r;
+  for(auto &e : res.edges) {
+    ans[e.to] = e.from;
+  }
+  cout << ans << "\n";
+}

@@ -1,21 +1,17 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_B"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
 
-#include "../../structure/union-find/union-find.cpp"
-#include "../../structure/heap/skew-heap.cpp"
-
-#include "../../graph/mst/chu-liu-edmond.cpp"
+#include "../../graph/mst/directed-minimum-spanning-tree.cpp"
 
 int main() {
   int V, E, R;
-  scanf("%d %d %d", &V, &E, &R);
+  cin >> V >> E >> R;
   Edges< int > edges;
   for(int i = 0; i < E; i++) {
     int a, b, c;
-    scanf("%d %d %d", &a, &b, &c);
+    cin >> a >> b >> c;
     edges.emplace_back(a, b, c);
   }
-  printf("%d\n", MinimumSpanningTreeArborescence< int >(edges, V).build(R));
+  cout << directed_minimum_spanning_tree(V, R, edges).cost << "\n";
 }
