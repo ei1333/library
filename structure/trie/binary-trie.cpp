@@ -103,12 +103,8 @@ private:
     if(bit_index == -1) return 0;
     D ret = 0;
     bool f = (xor_val >> bit_index) & 1;
-    if(f ^ ((bit >> bit_index) & 1)) {
-      if(t->nxt[f]) ret += t->nxt[f]->exist;
-      if(t->nxt[1 ^ f]) ret += count_less(t->nxt[1 ^ f], bit, bit_index - 1, xor_val);
-    } else {
-      if(t->nxt[f]) ret += count_less(t->nxt[f], bit, bit_index - 1, xor_val);
-    }
+    if((bit >> bit_index & 1) and t->nxt[f]) ret += t->nxt[f]->exist;
+    if(t->nxt[f ^ (bit >> bit_index & 1)]) ret += count_less(t->nxt[f ^ (bit >> bit_index & 1)], bit, bit_index - 1, xor_val);
     return ret;
   }
 };
