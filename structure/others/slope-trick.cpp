@@ -8,11 +8,12 @@ struct SlopeTrick {
   const T INF = numeric_limits< T >::max() / 3;
 
   T min_f;
-  priority_queue< T, vector< T >, greater<> > L, R;
+  priority_queue< T, vector< T >, less<> > L;
+  priority_queue< T, vector< T >, greater<> > R;
 
 
   SlopeTrick() : min_f(0) {
-    L.push(INF);
+    L.push(-INF);
     R.push(INF);
   }
 
@@ -22,7 +23,7 @@ struct SlopeTrick {
 
   // return min f(x)
   Query query() const {
-    return (Query) {-L.top(), R.top(), min_f};
+    return (Query) {L.top(), R.top(), min_f};
   }
 
   // f(x) += a
@@ -30,35 +31,40 @@ struct SlopeTrick {
     min_f += a;
   }
 
+  // add \_
   // f(x) += max(a - x, 0)
-  void add_left(const T &a) {
+  void add_a_minus_x(const T &a) {
     min_f += max(T(0), a - R.top());
     R.push(a);
-    L.push(-R.top());
+    L.push(R.top());
     R.pop();
   }
 
+  // add _/
   // f(x) += max(x - a, 0)
-  void add_right(const T &a) {
-    min_f += max(T(0), -L.top() - a);
-    L.push(-a);
-    R.push(-L.top());
+  void add_x_minus_a(const T &a) {
+    min_f += max(T(0), L.top() - a);
+    L.push(a);
+    R.push(L.top());
     L.pop();
   }
 
+  // add \/
   // f(x) += abs(x - a)
   void add_abs(const T &a) {
-    add_left(a);
-    add_right(a);
+    add_a_minus_x(a);
+    add_x_minus_a(a);
   }
 
-  // f(x) = min f(y) (y <= x)
-  void cumulative_min_left() {
+  // \/ -> \_
+  // f_{new} (x) = min f(y) (y <= x)
+  void clear_right() {
     while(R.size() >= 2) R.pop();
   }
 
-  // f(x) = min f(y) (y >= x)
-  void cumulative_min_right() {
+  // \/ -> _/
+  // f_{new} (x) = min f(y) (y >= x)
+  void clear_left() {
     while(L.size() >= 2) L.pop();
   }
 };
