@@ -97,11 +97,18 @@ public:
     while(L.size() >= 2) L.pop();
   }
 
+  // \/ -> \_/
+  // f_{new} (x) = min f(y) (x-b <= y <= x-a)
+  void shift(const T& a, const T& b) {
+    assert(a <= b);
+    add_l += a;
+    add_r += b;
+  }
+  
   // \/. -> .\/
   // f_{new} (x) = f(x - a)
   void shift(const T &a) {
-    add_l += a;
-    add_r += a;
+    shift(a, a);
   }
 
   // L, R を破壊する
