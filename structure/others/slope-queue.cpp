@@ -1,9 +1,10 @@
 /**
- * @brief Slope-Trick
+ * @brief Slope-Queue
  * @see https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8
+ * @docs docs/slope-queue.md
  */
 template< typename T >
-struct SlopeTrick {
+struct SlopeQueue {
 
   const T INF = numeric_limits< T >::max() / 3;
 
@@ -11,7 +12,6 @@ struct SlopeTrick {
   priority_queue< T, vector< T >, less<> > L;
   priority_queue< T, vector< T >, greater<> > R;
   T add_l, add_r;
-
 
 private:
   void push_R(const T &a) {
@@ -43,7 +43,7 @@ private:
   }
 
 public:
-  SlopeTrick() : min_f(0), add_l(0), add_r(0) {
+  SlopeQueue() : min_f(0), add_l(0), add_r(0) {
     L.push(-INF);
     R.push(INF);
   }
@@ -104,7 +104,7 @@ public:
     add_l += a;
     add_r += b;
   }
-  
+
   // \/. -> .\/
   // f_{new} (x) = f(x - a)
   void shift(const T &a) {
