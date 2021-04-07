@@ -11,7 +11,7 @@ $f(x)$ の傾きが変化する点を優先度付きキューに持つことで,
 * `add_all(a)`: $f(x)$ に $a$ を加算する。
 * `add_a_minus_x(a)`: $f(x)$ に $\max(a - x, 0)$ を加算する。
 * `add_x_minus_a(a)`: $f(x)$ に $\max(x - a, 0)$ を加算する。
-* `add_abs(a)`: $f(x)$ に $|x - a|$ を加算する。
+* `add_abs(a)`: $f(x)$ に$abs(x-a)$ を加算する。
 * `clear_right()`: $f(x) = \min_{y \le x} f(y)$ に置き換える。
 * `clear_left()`: $f(x) = \min_{y \ge x} f(y)$ に置き換える。
 * `shift(a, b)`: $f(x) = \min_{x-b \le y \le x-a} f(y)$ に置き換える。$a \leq b$ を満たす必要がある。
