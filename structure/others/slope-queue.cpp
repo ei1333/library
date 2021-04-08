@@ -1,6 +1,7 @@
 /**
- * @brief Slope-Trick
+ * @brief Slope-Queue
  * @see https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8
+ * @docs docs/slope-queue.md
  */
 template< typename T >
 struct SlopeQueue {
