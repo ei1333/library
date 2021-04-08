@@ -1,7 +1,6 @@
 /**
- * @brief Slope-Queue
+ * @brief Slope-Trick
  * @see https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8
- * @docs docs/slope-queue.md
  */
 template< typename T >
 struct SlopeQueue {
@@ -40,6 +39,10 @@ private:
     T val = top_L();
     L.pop();
     return val;
+  }
+
+  size_t size() {
+    return L.size() + R.size() - 2;
   }
 
 public:
@@ -99,7 +102,7 @@ public:
 
   // \/ -> \_/
   // f_{new} (x) = min f(y) (x-b <= y <= x-a)
-  void shift(const T& a, const T& b) {
+  void shift(const T &a, const T &b) {
     assert(a <= b);
     add_l += a;
     add_r += b;
@@ -111,15 +114,33 @@ public:
     shift(a, a);
   }
 
-  // L, R を破壊する
+  // return f(x) L, R を破壊する
   T get(const T &x) {
     T ret = min_f;
-    while(!L.empty()) {
+    while(L.size() >= 2) {
       ret += max(T(0), pop_L() - x);
     }
-    while(!R.empty()) {
+    while(R.size() >= 2) {
       ret += max(T(0), x - pop_R());
     }
     return ret;
+  }
+
+  // f(x) += g(x)
+  void merge(SlopeQueue &g) {
+    if(g.size() > size()) {
+      swap(g.L, L);
+      swap(g.R, R);
+      swap(g.add_l, add_l);
+      swap(g.add_r, add_r);
+      swap(g.min_f, min_f);
+    }
+    while(g.R.size() >= 2) {
+      push_R(g.pop_R());
+    }
+    while(g.L.size() >= 2) {
+      push_L(g.pop_L());
+    }
+    min_f += g.min_f;
   }
 };
