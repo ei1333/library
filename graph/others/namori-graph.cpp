@@ -76,7 +76,6 @@ public:
       }
     }
     loop.pop_back();
-    loop_edges.back().to = 0;
     mark_id.resize(n);
     id.resize(n);
     int ptr = 0;
