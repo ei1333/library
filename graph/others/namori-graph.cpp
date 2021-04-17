@@ -1,3 +1,5 @@
+#include "../graph-template.cpp"
+
 /**
  * @brief Namori-Graph
  * @docs docs/namori-graph.md
@@ -22,7 +24,7 @@ public:
   int inv(int forest_id, int k) {
     return iv[forest_id][k];
   }
-
+  
   void build() {
     int n = (int) g.size();
     vector< int > deg(n), used(n);
@@ -55,24 +57,25 @@ public:
     vector< int > edge_used(mx + 1);
     vector< int > loop;
     for(int v = 0; v < n; v++) {
-      if(used[v]) {
-        continue;
-      }
-      while(!used[v]) {
-        loop.emplace_back(v);
-        for(auto &e : g[v]) {
-          if(used[e.to] or edge_used[e.idx]) {
-            continue;
+      if(!used[v]) {
+        for(bool update = true; update;) {
+          update = false;
+          loop.emplace_back(v);
+          for(auto &e : g[v]) {
+            if(used[e.to] or edge_used[e.idx]) {
+              continue;
+            }
+            edge_used[e.idx] = true;
+            loop_edges.emplace_back(loop.size() - 1, loop.size(), e.cost, e.idx);
+            v = e.to;
+            update = true;
+            break;
           }
-          loop_edges.emplace_back(loop.size() - 1, loop.size(), e.cost, e.idx);
-          v = e.to;
-          used[e.to] = true;
-          edge_used[e.idx] = true;
-          break;
         }
+        break;
       }
-      break;
     }
+    loop.pop_back();
     loop_edges.back().to = 0;
     mark_id.resize(n);
     id.resize(n);
@@ -88,14 +91,14 @@ public:
       for(auto &e : g[loop[i]]) {
         if(e.to != pre and e.to != nxt) {
           mark_dfs(e.to, loop[i], ptr, sz);
-          build_dfs(e.to, loop[i]);
         }
       }
       Graph< T > tree(sz);
-      for(auto &e : g[loop_vers[i]]) {
+      for(auto &e : g[loop[i]]) {
         if(e.to != pre and e.to != nxt) {
-          tree.add_edge(id[loop_vers[i]], id[e.to], e.cost, e.idx);
-          build_dfs(e.to, loop_vers[i], tree);
+          tree.g[id[loop[i]]].emplace_back(id[loop[i]], id[e.to], e.cost, e.idx);
+          tree.g[id[e.to]].emplace_back(id[e.to], id[loop[i]], e.cost, e.idx);
+          build_dfs(e.to, loop[i], tree);
         }
       }
       forest.emplace_back(tree);
@@ -112,7 +115,7 @@ private:
     iv.back().emplace_back(idx);
     for(auto &e : g[idx]) {
       if(e.to != par) {
-        mark_dfs(e.to, idx, k);
+        mark_dfs(e.to, idx, k, l);
       }
     }
   }
@@ -120,7 +123,8 @@ private:
   void build_dfs(int idx, int par, Graph< T > &tree) {
     for(auto &e : g[idx]) {
       if(e.to != par) {
-        tree.add_edge(id[idx], id[e.to], e.cost, e.idx);
+        tree.g[id[idx]].emplace_back(id[idx], id[e.to], e.cost, e.idx);
+        tree.g[id[e.to]].emplace_back(id[e.to], id[idx], e.cost, e.idx);
         build_dfs(e.to, idx, tree);
       }
     }
