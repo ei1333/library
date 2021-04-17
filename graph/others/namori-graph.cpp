@@ -14,17 +14,17 @@ public:
   Edges< T > loop_edges;
 
   struct Info {
-    int forest_id, id;
+    int tree_id, id;
   };
 
   Info operator[](const int &k) const {
     return (Info) {mark_id[k], id[k]};
   }
 
-  int inv(int forest_id, int k) {
-    return iv[forest_id][k];
+  int inv(int tree_id, int k) {
+    return iv[tree_id][k];
   }
-  
+
   void build() {
     int n = (int) g.size();
     vector< int > deg(n), used(n);
