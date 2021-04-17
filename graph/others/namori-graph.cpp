@@ -66,7 +66,7 @@ public:
               continue;
             }
             edge_used[e.idx] = true;
-            loop_edges.emplace_back(loop.size() - 1, loop.size(), e.cost, e.idx);
+            loop_edges.emplace_back(v, e.to, e.cost, e.idx);
             v = e.to;
             update = true;
             break;
