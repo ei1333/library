@@ -78,18 +78,17 @@ public:
     loop.pop_back();
     mark_id.resize(n);
     id.resize(n);
-    int ptr = 0;
     for(int i = 0; i < (int) loop.size(); i++) {
       int pre = loop[(i + loop.size() - 1) % loop.size()];
       int nxt = loop[(i + 1) % loop.size()];
       int sz = 0;
-      mark_id[loop[i]] = ptr;
+      mark_id[loop[i]] = i;
       iv.emplace_back();
       id[loop[i]] = sz++;
       iv.back().emplace_back(loop[i]);
       for(auto &e : g[loop[i]]) {
         if(e.to != pre and e.to != nxt) {
-          mark_dfs(e.to, loop[i], ptr, sz);
+          mark_dfs(e.to, loop[i], i, sz);
         }
       }
       Graph< T > tree(sz);
