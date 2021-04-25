@@ -1,10 +1,14 @@
+/**
+ * @brief Slope-Trick
+ * @see https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8
+ */
 template< typename T >
-struct SplayTree {
+struct LazySplayTree {
 public:
 
   struct Node {
     Node *l, *r, *p;
-    T key;
+    T key, sum;
     size_t sz;
     T add;
 
@@ -13,10 +17,10 @@ public:
     }
 
     Node(const T &key, const T &add) :
-        key(key), sz(1), add(add), l(nullptr), r(nullptr), p(nullptr) {}
+        key(key), sum(key), sz(1), add(add), l(nullptr), r(nullptr), p(nullptr) {}
   };
 
-  SplayTree() = default;
+  LazySplayTree() = default;
 
   inline size_t count(const Node *t) { return t ? t->sz : 0; }
 
@@ -163,13 +167,15 @@ public:
 
   Node *update(Node *t) {
     t->sz = 1;
-    if(t->l) t->sz += t->l->sz;
-    if(t->r) t->sz += t->r->sz;
+    t->sum = t->key;
+    if(t->l) t->sz += t->l->sz, t->sum += t->l->sum;
+    if(t->r) t->sz += t->r->sz, t->sum += t->r->sum;
     return t;
   }
 
   void propagate(Node *t, const T &x) {
     t->add += x;
+    t->sum += count(t) * x;
     t->key += x;
   }
 
@@ -211,18 +217,14 @@ private:
   }
 };
 
-/**
- * @brief Slope-Trick
- * @see https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8
- */
 template< typename T >
 struct SlopeTrick {
 
   const T INF = numeric_limits< T >::max() / 3;
 
   T min_f;
-  SplayTree< T > st;
-  typename SplayTree< T >::Node *L, *R;
+  LazySplayTree< T > st;
+  typename LazySplayTree< T >::Node *L, *R;
 private:
   void push_R(const T &a) {
     R = st.insert_lower_bound(R, a);
@@ -336,11 +338,21 @@ public:
   // return f(x) L, R を破壊する
   T get(const T &x) {
     T ret = min_f;
-    while(st.count(L) >= 1) {
-      ret += max(T(0), pop_L() - x);
+    {
+      auto[l, r] = st.split_lower_bound(L, x);
+      if(r) {
+        ret += r->sum;
+        ret -= x * (T) st.count(r);
+      }
+      L = st.merge(l, r);
     }
-    while(st.count(R) >= 1) {
-      ret += max(T(0), x - pop_R());
+    {
+      auto[l, r] = st.split_lower_bound(R, x);
+      if(l) {
+        ret += x * (T) st.count(r);
+        ret -= l->sum;
+      }
+      R = st.merge(l, r);
     }
     return ret;
   }
