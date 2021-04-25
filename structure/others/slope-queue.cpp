@@ -135,10 +135,10 @@ public:
       swap(st.min_f, min_f);
     }
     while(not st.R.empty()) {
-      push_R(st.pop_R());
+      add_x_minus_a(st.pop_R());
     }
     while(not st.L.empty()) {
-      push_L(st.pop_L());
+      add_a_minus_x(st.pop_L());
     }
     min_f += st.min_f;
   }
