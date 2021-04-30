@@ -17,6 +17,6 @@ int main() {
   for(int i = 0; i < q; i++) {
     int l, r;
     cin >> l >> r;
-    cout << cs.query(r - 1) - cs.query(l - 1) << "\n";
+    cout << cs.fold(l, r) << "\n";
   }
 }
