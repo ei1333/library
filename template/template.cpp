@@ -8,15 +8,13 @@ const int mod = 1e9 + 7;
 const int64 infll = (1LL << 62) - 1;
 const int inf = (1 << 30) - 1;
 
-struct IoSetup {
-  IoSetup() {
-    cin.tie(nullptr);
-    ios::sync_with_stdio(false);
-    cout << fixed << setprecision(10);
-    cerr << fixed << setprecision(10);
-  }
-} iosetup;
-
+__attribute__((constructor))
+void io_setup() {
+  cin.tie(nullptr);
+  ios::sync_with_stdio(false);
+  cout << fixed << setprecision(10);
+  cerr << fixed << setprecision(10);
+}
 
 template< typename T1, typename T2 >
 ostream &operator<<(ostream &os, const pair< T1, T2 >& p) {
@@ -72,8 +70,8 @@ typename enable_if< is_class< T >::value != 0 >::type fill_v(T &t, const V &v) {
 
 template< typename F >
 struct FixPoint : F {
-  FixPoint(F &&f) : F(forward< F >(f)) {}
- 
+  explicit FixPoint(F &&f) : F(forward< F >(f)) {}
+
   template< typename... Args >
   decltype(auto) operator()(Args &&... args) const {
     return F::operator()(*this, forward< Args >(args)...);
