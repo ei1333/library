@@ -4,13 +4,13 @@
  */
 template< typename Monoid, typename F >
 struct SegmentTree {
-  int sz;
+  int n, sz;
   vector< Monoid > seg;
 
   const F f;
   const Monoid M1;
   
-  SegmentTree(int n, const F f, const Monoid &M1) : f(f), M1(M1) {
+  SegmentTree(int n, const F f, const Monoid &M1) : n(n), f(f), M1(M1) {
     sz = 1;
     while(sz < n) sz <<= 1;
     seg.assign(2 * sz, M1);
@@ -62,7 +62,7 @@ struct SegmentTree {
     Monoid L = M1;
     if(a <= 0) {
       if(check(f(L, seg[1]))) return find_subtree(1, check, L, false);
-      return -1;
+      return n;
     }
     int b = sz;
     for(a += sz, b += sz; a < b; a >>= 1, b >>= 1) {
@@ -73,7 +73,7 @@ struct SegmentTree {
         ++a;
       }
     }
-    return -1;
+    return n;
   }
 
   template< typename C >

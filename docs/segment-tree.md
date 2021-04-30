@@ -15,8 +15,8 @@
 * `query(a, b)`: 区間 $[a, b)$ に対して二項演算した結果を返す.
 * `update(k, x)`: `k` 番目の要素を `x` に変更する.
 * `operator[k]`: `k` 番目の要素を返す.
-* `find_first(a, check)`: $[a, x)$ が `check` を満たす最初の要素位置 $x$ を返す.
-* `find_last(b, check)`: $[x, b)$ が `check` を満たす最後の要素位置 $x$ を返す.
+* `find_first(a, check)`: $[a, x)$ が `check` を満たす最初の要素位置 $x$ を返す. 存在しないとき $n$ を返す.
+* `find_last(b, check)`: $[x, b)$ が `check` を満たす最後の要素位置 $x$ を返す. 存在しないとき $-1$ を返す.
 
 ## 計算量
 

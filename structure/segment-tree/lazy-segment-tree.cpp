@@ -4,7 +4,7 @@
  */
 template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
 struct LazySegmentTree {
-  int sz, height;
+  int n, sz, height;
   vector< Monoid > data;
   vector< OperatorMonoid > lazy;
   const F f;
@@ -15,7 +15,7 @@ struct LazySegmentTree {
 
   LazySegmentTree(int n, const F f, const G g, const H h,
                   const Monoid &M1, const OperatorMonoid OM0)
-      : f(f), g(g), h(h), M1(M1), OM0(OM0) {
+      : n(n), f(f), g(g), h(h), M1(M1), OM0(OM0) {
     sz = 1;
     height = 0;
     while(sz < n) sz <<= 1, height++;
@@ -98,7 +98,7 @@ struct LazySegmentTree {
     Monoid L = M1;
     if(a <= 0) {
       if(check(f(L, apply(1)))) return find_subtree(1, check, L, false);
-      return -1;
+      return n;
     }
     thrust(a + sz);
     int b = sz;
@@ -110,7 +110,7 @@ struct LazySegmentTree {
         ++a;
       }
     }
-    return -1;
+    return n;
   }
   
   template< typename C >

@@ -10,9 +10,8 @@
 * `query(a, b)`: 区間 $[a, b)$ に対して二項演算した結果を返す.
 * `update(a, b, x)`: 区間 $[a, b)$ に対して作用素 `x` を適用する.
 * `operator[k]`: `k` 番目の要素を返す.
-* `find_first(a, check)`: $[a,x)$ が `check` を満たす最初の要素位置 $x$ を返す.
-* `find_last(b, check)`: $[x,b)$ が `check` を満たす最後の要素位置 $x$ を返す.
-
+* `find_first(a, check)`: $[a,x)$ が `check` を満たす最初の要素位置 $x$ を返す. 存在しないとき $n$ を返す.
+* `find_last(b, check)`: $[x,b)$ が `check` を満たす最後の要素位置 $x$ を返す. 存在しないとき $-1$ を返す.
 `auto seg = get_lazy_segment_tree(N, f, g, h, M1, OM0);` のようにすると `decltype(f)` などを用いなくてすむ.
 
 ## 計算量
