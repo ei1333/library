@@ -8,13 +8,14 @@ const int mod = 1e9 + 7;
 const int64 infll = (1LL << 62) - 1;
 const int inf = (1 << 30) - 1;
 
-__attribute__((constructor))
-void io_setup() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << fixed << setprecision(10);
-  cerr << fixed << setprecision(10);
-}
+struct IoSetup {
+  IoSetup() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cout << fixed << setprecision(10);
+    cerr << fixed << setprecision(10);
+  }
+} iosetup;
 
 template< typename T1, typename T2 >
 ostream &operator<<(ostream &os, const pair< T1, T2 >& p) {
