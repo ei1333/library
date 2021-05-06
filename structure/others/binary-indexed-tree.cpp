@@ -24,14 +24,14 @@ public:
     for(++k; k < (int) data.size(); k += k & -k) data[k] += x;
   }
 
-  T sum(int r) const {
+  T fold(int r) const {
     T ret = T();
     for(; r > 0; r -= r & -r) ret += data[r];
     return ret;
   }
 
-  T sum(int l, int r) const {
-    return sum(r) - sum(l);
+  T fold(int l, int r) const {
+    return fold(r) - fold(l);
   }
 
   int lower_bound(T x) const {
