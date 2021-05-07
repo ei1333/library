@@ -10,10 +10,10 @@ int main() {
   vector< int > A(N);
   cin >> A;
   auto f = [](int a, int b) { return min(a, b); };
-  DisjointSparseTable< int > st(A, f);
+  auto st = get_disjoint_sparse_table(A, f);
   while(Q--) {
     int l, r;
     cin >> l >> r;
-    cout << st.query(l, r) << "\n";
+    cout << st.fold(l, r) << "\n";
   }
 }

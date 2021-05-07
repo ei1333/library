@@ -2,9 +2,8 @@
  * @brief Disjoint-Sparse-Table
  * @docs docs/disjoint-sparse-table.md
  */
-template< typename Semigroup >
+template< typename Semigroup, typename F >
 struct DisjointSparseTable {
-  using F = function< Semigroup(Semigroup, Semigroup) >;
   const F f;
   vector< vector< Semigroup > > st;
   vector< int > lookup;
@@ -32,9 +31,14 @@ struct DisjointSparseTable {
     }
   }
 
-  Semigroup query(int l, int r) {
+  Semigroup fold(int l, int r) {
     if(l >= --r) return st[0][l];
     int p = lookup[l ^ r];
     return f(st[p][l], st[p][r]);
   }
 };
+
+template< typename SemiGroup, typename F >
+DisjointSparseTable< SemiGroup, F > get_disjoint_sparse_table(const vector< SemiGroup >& v, const F& f) {
+  return {v, f};
+}

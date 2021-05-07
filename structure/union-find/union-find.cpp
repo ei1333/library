@@ -30,4 +30,16 @@ struct UnionFind {
   bool same(int x, int y) {
     return find(x) == find(y);
   }
+
+  vector< vector< int > > groups() {
+    int n = (int) data.size();
+    vector< vector< int > > ret(n);
+    for(int i = 0; i < n; i++) {
+      ret[find(i)].emplace_back(i);
+    }
+    ret.erase(remove_if(begin(ret), end(ret), [&](const vector< int > &v) {
+      return v.empty();
+    }));
+    return ret;
+  }
 };
