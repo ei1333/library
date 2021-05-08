@@ -41,11 +41,7 @@ public:
 
   using super::splay;
   using super::split;
-  using super::count;
   using super::merge;
-  using super::build_node;
-  using super::toggle;
-  using super::insert_node;
 
   NP alloc(const T &x) override { return new Node(x, OM0); }
 
@@ -82,7 +78,4 @@ private:
     t->key = g(t->key, x);
     t->sum = g(t->sum, x);
   }
-};
-
-template< typename T, typename E >
-using LRST = LazyReversibleSplayTree< LazyReversibleSplayTreeNode< T, E > >;
+}
