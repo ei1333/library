@@ -162,4 +162,4 @@ protected:
     delete y.first;
     return merge(x.first, y.second);
   }
-}
+};
