@@ -4,13 +4,13 @@
 template< typename Node >
 struct SplayTreeBase {
 public:
-  bool is_root(Node *t) const {
-    return !t->p || (t->p->l != t && t->p->r != t);
-  }
+  using NP = Node *;
 
-  inline size_t count(Node *t) const { return t ? t->sz : 0; }
+  bool is_root(const NP &t) const { return !t->p || (t->p->l != t && t->p->r != t); }
 
-  void splay(Node *t) {
+  inline size_t count(const NP &t) const { return t ? t->sz : 0; }
+
+  void splay(NP t) {
     push(t);
     while(!is_root(t)) {
       auto *q = t->p;
@@ -32,7 +32,7 @@ public:
     }
   }
 
-  Node *erase(Node *t) {
+  NP erase(NP t) {
     splay(t);
     Node *x = t->l, *y = t->r;
     delete t;
@@ -52,17 +52,21 @@ public:
     return t;
   }
 
-  Node *get_left(Node *t) const {
+  NP splay_front(NP t) {
+    splay(t);
     while(t->l) t = t->l;
+    splay(t);
     return t;
   }
 
-  Node *get_right(Node *t) const {
+  NP splay_back(NP t) {
+    splay(t);
     while(t->r) t = t->r;
+    splay(t);
     return t;
   }
 
-  pair< Node *, Node * > split(Node *t, int k) {
+  pair< NP, NP > split(NP t, int k) {
     if(!t) return {nullptr, nullptr};
     push(t);
     if(k <= count(t->l)) {
@@ -80,35 +84,37 @@ public:
     }
   }
 
-  template< typename ... Args >
-  Node *merge(Node *l, Args ...rest) {
-    Node *r = merge(rest...);
+  template< typename... Args >
+  NP merge(NP p, Args... args) {
+    return merge(p, merge(args...));
+  }
+
+  NP merge(NP l, NP r) {
     if(!l && !r) return nullptr;
     if(!l) return splay(r), r;
     if(!r) return splay(l), l;
     splay(l), splay(r);
-    l = get_right(l);
-    splay(l);
+    l = splay_back(l);
     l->r = r;
     r->p = l;
     update(l);
     return l;
   }
 
-  tuple< Node *, Node *, Node * > split3(Node *t, int a, int b) {
+  tuple< NP, NP, NP > split3(NP t, int a, int b) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     return make_tuple(x.first, y.first, y.second);
   }
 
-  virtual void push(Node *t) = 0;
+  virtual void push(NP t) = 0;
 
-  virtual Node *update(Node *t) = 0;
+  virtual Node *update(NP t) = 0;
 
 private:
 
-  void rotr(Node *t) {
+  void rotr(NP t) {
     auto *x = t->p, *y = x->p;
     if((x->l = t->r)) t->r->p = x;
     t->r = x, x->p = t;
@@ -120,7 +126,7 @@ private:
     }
   }
 
-  void rotl(Node *t) {
+  void rotl(NP t) {
     auto *x = t->p, *y = x->p;
     if((x->r = t->l)) t->l->p = x;
     t->l = x, x->p = t;
@@ -132,60 +138,28 @@ private:
     }
   }
 
+  NP build(int l, int r, const vector< NP > &v) {
+    if(l + 1 >= r) return v[l];
+    return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
+  }
+
 protected:
 
-  Node *merge(Node *l) {
-    return l;
+  NP build_node(const vector< NP > &v) {
+    return build(0, v.size(), v);
   }
 
-  Node *build_node(const vector< Node * > &v) {
-    return build_node(0, v.size(), v);
-  }
-
-  Node *build_node(int l, int r, const vector< Node * > &v) {
-    if(l + 1 >= r) return v[l];
-    return merge(build_node(l, (l + r) >> 1, v), build_node((l + r) >> 1, r, v));
-  }
-
-  Node *push_front_node(Node *t, Node *z) {
-    if(!t) {
-      return z;
-    } else {
-      splay(t);
-      Node *cur = get_left(t);
-      splay(cur);
-      z->p = cur;
-      cur->l = z;
-      splay(z);
-      return z;
-    }
-  }
-
-  Node *push_back_node(Node *t, Node *z) {
-    if(!t) {
-      return z;
-    } else {
-      splay(t);
-      Node *cur = get_right(t);
-      splay(cur);
-      z->p = cur;
-      cur->r = z;
-      splay(z);
-      return z;
-    }
-  }
-
-  void insert_node(Node *&t, int k, Node *v) {
+  NP insert_node(NP t, int k, NP v) {
     splay(t);
     auto x = split(t, k);
-    t = merge(merge(x.first, v), x.second);
+    return merge(x.first, v, x.second);
   }
 
-  void erase_node(Node *&t, int k) {
+  NP erase_node(NP t, int k) {
     splay(t);
     auto x = split(t, k);
     auto y = split(x.second, 1);
     delete y.first;
-    t = merge(x.first, y.second);
+    return merge(x.first, y.second);
   }
-};
+}

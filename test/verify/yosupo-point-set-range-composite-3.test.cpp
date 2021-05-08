@@ -30,7 +30,7 @@ int main() {
       int p;
       mint a, b;
       cin >> p >> a >> b;
-      seg.set_element(root, p, pi(a, b));
+      root = seg.set_element(root, p, pi(a, b));
     } else {
       int l, r;
       mint x;

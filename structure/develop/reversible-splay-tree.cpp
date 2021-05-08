@@ -23,6 +23,7 @@ public:
   using F = function< T(T, T) >;
   using S = function< T(T) >;
   using super = SplayTreeBase< Node >;
+  using NP = typename super::NP;
 
   explicit ReversibleSplayTree(const F &f, const S &s, const T &M1) :
       f(f), s(s), M1(M1) {}
@@ -32,15 +33,13 @@ public:
   using super::count;
   using super::merge;
   using super::build_node;
-  using super::push_back_node;
-  using super::push_front_node;
   using super::insert_node;
 
-  inline const T &sum(const Node *t) { return t ? t->sum : M1; }
+  inline const T &sum(const NP t) { return t ? t->sum : M1; }
 
-  virtual Node *alloc(const T &x) { return new Node(x); }
+  NP alloc(const T &x) { return new Node(x); }
 
-  T query(Node *&t, int a, int b) {
+  T query(NP &t, int a, int b) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
@@ -49,19 +48,19 @@ public:
     return ret;
   }
 
-  virtual Node *build(const vector< T > &v) {
-    vector< Node * > vs(v.size());
-    for(int i = 0; i < v.size(); i++) vs[i] = new Node(v[i]);
+  NP build(const vector< T > &v) {
+    vector< NP > vs(v.size());
+    for(int i = 0; i < v.size(); i++) vs[i] = alloc(v[i]);
     return build_node(vs);
   }
 
-  void toggle(Node *t) {
+  void toggle(NP t) {
     swap(t->l, t->r);
     t->sum = s(t->sum);
     t->rev ^= true;
   }
 
-  Node *update(Node *t) override {
+  NP update(NP t) override {
     t->sz = 1;
     t->sum = t->key;
     if(t->l) t->sz += t->l->sz, t->sum = f(t->l->sum, t->sum);
@@ -69,7 +68,7 @@ public:
     return t;
   }
 
-  void push(Node *t) override {
+  void push(NP t) override {
     if(t->rev) {
       if(t->l) toggle(t->l);
       if(t->r) toggle(t->r);
@@ -77,21 +76,31 @@ public:
     }
   }
 
-  void set_element(Node *&t, int k, const T &x) {
+  NP insert(NP t, int k, const T &x) {
+    return insert_node(t, k, alloc(x));
+  }
+
+  NP set_element(NP t, int k, const T &x) {
     splay(t);
-    sub_set_element(t, k, x);
+    return imp_set_element(t, k, x);
   }
 
-  virtual Node *push_front(Node *t, const T &x) {
-    return push_front_node(t, new Node(x));
-  }
-
-  virtual Node *push_back(Node *t, const T &x) {
-    return push_back_node(t, new Node(x));
-  }
-
-  virtual void insert(Node *&t, int k, const T &x) {
-    insert_node(t, k, new Node(x));
+  pair< NP , NP > split_lower_bound(NP t, const T &key) {
+    if(!t) return {nullptr, nullptr};
+    push(t);
+    if(key <= t->key) {
+      auto x = split_lower_bound(t->l, key);
+      t->l = x.second;
+      t->p = nullptr;
+      if(x.second) x.second->p = t;
+      return {x.first, update(t)};
+    } else {
+      auto x = split_lower_bound(t->r, key);
+      t->r = x.first;
+      t->p = nullptr;
+      if(x.first) x.first->p = t;
+      return {update(t), x.second};
+    }
   }
 
 private:
@@ -99,16 +108,16 @@ private:
   const F f;
   const S s;
 
-  Node *sub_set_element(Node *&t, int k, const T &x) {
+  NP imp_set_element(NP t, int k, const T &x) {
     push(t);
     if(k < count(t->l)) {
-      return sub_set_element(t->l, k, x);
+      return imp_set_element(t->l, k, x);
     } else if(k == count(t->l)) {
       t->key = x;
       splay(t);
       return t;
     } else {
-      return sub_set_element(t->r, k - count(t->l) - 1, x);
+      return imp_set_element(t->r, k - count(t->l) - 1, x);
     }
   }
 };
