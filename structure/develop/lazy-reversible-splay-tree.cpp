@@ -32,6 +32,7 @@ public:
   using G = function< T(T, E) >;
   using H = function< E(E, E) >;
   using S = typename super::S;
+  using NP = typename super::NP;
 
   explicit LazyReversibleSplayTree(const F &f, const G &g, const H &h, const S &s,
                                    const T &M1, const E &OM0) :
@@ -44,52 +45,28 @@ public:
   using super::merge;
   using super::build_node;
   using super::toggle;
-  using super::push_back_node;
-  using super::push_front_node;
   using super::insert_node;
 
-  Node *alloc(const T &x) override { return new Node(x, OM0); }
+  NP alloc(const T &x) override { return new Node(x, OM0); }
 
-  void push(Node *t) override {
+  void push(NP t) override {
     if(t->lazy != OM0) {
       if(t->l) propagate(t->l, t->lazy);
       if(t->r) propagate(t->r, t->lazy);
       t->lazy = OM0;
     }
-    if(t->rev) {
-      if(t->l) toggle(t->l);
-      if(t->r) toggle(t->r);
-      t->rev = false;
-    }
+    super::push(t);
   }
 
-  Node *build(const vector< T > &v) override {
-    vector< Node * > vs(v.size());
-    for(int i = 0; i < v.size(); i++) vs[i] = new Node(v[i], OM0);
-    return build_node(vs);
-  }
-
-  Node *push_front(Node *t, const T &x) override {
-    return push_front_node(t, new Node(x, OM0));
-  }
-
-  Node *push_back(Node *t, const T &x) override {
-    return push_back_node(t, new Node(x, OM0));
-  }
-
-  void insert(Node *&t, int k, const T &x) override {
-    insert_node(t, k, new Node(x, OM0));
-  }
-
-  void set_propagate(Node *&t, int a, int b, const E &pp) {
+  NP set_propagate(NP t, int a, int b, const E &pp) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     set_propagate(y.first, pp);
-    t = merge(x.first, y.first, y.second);
+    return merge(x.first, y.first, y.second);
   }
 
-  void set_propagate(Node *&t, const E &pp) {
+  void set_propagate(NP t, const E &pp) {
     splay(t);
     propagate(t, pp);
     push(t);
@@ -100,7 +77,7 @@ private:
   const G g;
   const H h;
 
-  void propagate(Node *t, const E &x) {
+  void propagate(NP t, const E &x) {
     t->lazy = h(t->lazy, x);
     t->key = g(t->key, x);
     t->sum = g(t->sum, x);
