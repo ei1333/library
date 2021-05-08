@@ -58,12 +58,12 @@ public:
     super::push(t);
   }
 
-  NP set_propagate(NP t, int a, int b, const E &pp) {
+  NP set_propagate(NP& t, int a, int b, const E &pp) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     set_propagate(y.first, pp);
-    return merge(x.first, y.first, y.second);
+    return t = merge(x.first, y.first, y.second);
   }
 
   void set_propagate(NP t, const E &pp) {
