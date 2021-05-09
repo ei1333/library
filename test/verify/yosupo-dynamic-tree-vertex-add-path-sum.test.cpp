@@ -2,26 +2,19 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/bbst/reversible-splay-tree.cpp"
-
 #include "../../structure/others/link-cut-tree.cpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  using LCT = LinkCutTree< ReversibleSplayTree, int64 >;
-
   auto add = [](int64 a, int64 b) { return a + b; };
   auto s = [](int64 a) { return a; };
-  LCT lct(add, s, 0);
+  auto lct = get_link_cut_tree< int64 >(add, s);
 
-  vector< int > A(N);
+  vector< int64 > A(N);
   cin >> A;
 
-  vector< LCT::Node * > vs(N);
-  for(int i = 0; i < N; i++) {
-    vs[i] = lct.alloc(A[i]);
-  }
+  auto vs = lct.build(A);
   for(int i = 1; i < N; i++) {
     int a, b;
     cin >> a >> b;
@@ -42,15 +35,11 @@ int main() {
     } else if(T == 1) {
       int P, X;
       cin >> P >> X;
-      lct.expose(vs[P]);
-      vs[P]->key += X;
-      lct.update(vs[P]);
+      lct.set_key(vs[P], vs[P]->key + X);
     } else {
       int U, V;
       cin >> U >> V;
-      lct.evert(vs[U]);
-      cout << lct.query(vs[V]) << "\n";
+      cout << lct.query(vs[U], vs[V]) << "\n";
     }
   }
 }
-

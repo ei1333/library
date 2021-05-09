@@ -2,14 +2,11 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/bbst/lazy-reversible-splay-tree.cpp"
-
-#include "../../structure/others/link-cut-tree.cpp"
+#include "../../structure/others/lazy-link-cut-tree.cpp"
 
 int main() {
   int N, Q, S[200000];
   cin >> N >> Q;
-
 
   struct Node {
     int64 ans, all, left, right, length;
@@ -40,9 +37,8 @@ int main() {
   };
 
 
-  using LCT = LinkCutTree< LazyReversibleSplayTree, Node, int64 >;
-  LCT lct(F, G, H, T, Node(), infll);
-  vector< LCT::Node * > vs(N);
+  auto lct = get_lazy_link_cut_tree< Node >(F, G, H, T, infll);
+  vector< decltype(lct)::NP > vs(N);
 
   for(int i = 0; i < N; i++) {
     cin >> S[i];
@@ -60,12 +56,9 @@ int main() {
     cin >> X >> A >> B >> C;
     --A, --B;
     if(X == 1) {
-      lct.evert(vs[A]);
-      lct.expose(vs[B]);
-      lct.set_propagate(vs[B], C);
+      lct.set_propagate(vs[A], vs[B], C);
     } else {
-      lct.evert(vs[A]);
-      cout << lct.query(vs[B]).ans << "\n";
+      cout << lct.query(vs[A], vs[B]).ans << "\n";
     }
   }
 }

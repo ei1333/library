@@ -2,8 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/bbst/reversible-splay-tree.cpp"
-
 #include "../../structure/others/link-cut-tree.cpp"
 
 #include "../../math/combinatorics/mod-int.cpp"
@@ -16,13 +14,12 @@ int main() {
 
   using pi = pair< mint, mint >;
   using pii = pair< pi, pi >;
-  using LCT = LinkCutTree< ReversibleSplayTree, pair< pi, pi > >;
   auto f = [](const pi &x, const pi &y) { return pi(x.first * y.first, x.second * y.first + y.second); };
   auto ff = [&](const pii &a, const pii &b) { return pii(f(a.first, b.first), f(b.second, a.second)); };
   auto flip = [&](const pii &a) { return pii(a.second, a.first); };
-  LCT lct(ff, flip, pii());
+  auto lct = get_link_cut_tree< pii >(ff, flip);
 
-  vector< LCT::Node * > vs(N);
+  vector< decltype(lct)::NP > vs(N);
   for(int i = 0; i < N; i++) {
     mint x, y;
     cin >> x >> y;
@@ -49,18 +46,13 @@ int main() {
       int P;
       mint a, b;
       cin >> P >> a >> b;
-      lct.expose(vs[P]);
-      vs[P]->key = pii(pi(a, b), pi(a, b));
-      lct.update(vs[P]);
+      lct.set_key(vs[P], pii(pi(a, b), pi(a, b)));
     } else {
       int U, V;
       mint X;
       cin >> U >> V >> X;
-      lct.evert(vs[U]);
-      auto ret = lct.query(vs[V]).first;
+      auto ret = lct.query(vs[U], vs[V]).first;
       cout << ret.first * X + ret.second << "\n";
     }
   }
 }
-
-

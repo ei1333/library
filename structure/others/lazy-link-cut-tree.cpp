@@ -1,21 +1,25 @@
 /**
- * @brief Link-Cut-Tree
+ * @brief Lazy-Link-Cut-Tree
  */
-template< typename T, typename F, typename S >
-struct LinkCutTree {
+template< typename T, typename E, typename F, typename G, typename H, typename S >
+struct LazyLinkCutTree {
 
 private:
   F f;
+  G g;
+  H h;
   S s;
+  E e0;
 
   struct Node {
     Node *l, *r, *p;
     T key, sum;
+    E lazy;
     bool rev;
     size_t sz;
 
-    explicit Node(const T &v) : key(v), sum(v), sz(1), rev(false),
-                                l(nullptr), r(nullptr), p(nullptr) {}
+    explicit Node(const T &v, const E &e) : key(v), sum(v), lazy(e), sz(1), rev(false),
+                                            l(nullptr), r(nullptr), p(nullptr) {}
 
     bool is_root() const {
       return not p or (p->l != this and p->r != this);
@@ -64,7 +68,18 @@ private:
     t->rev ^= true;
   }
 
+  void propagate(NP t, const E &e) {
+    t->lazy = h(t->lazy, e);
+    t->key = g(t->key, e);
+    t->sum = g(t->sum, e);
+  }
+
   void push(NP t) {
+    if(t->lazy != e0) {
+      if(t->l) propagate(t->l, t->lazy);
+      if(t->r) propagate(t->r, t->lazy);
+      t->lazy = e0;
+    }
     if(t->rev) {
       if(t->l) toggle(t->l);
       if(t->r) toggle(t->r);
@@ -95,10 +110,11 @@ private:
   }
 
 public:
-  LinkCutTree(const F &f, const S &s) : f(f), s(s) {}
+  LazyLinkCutTree(const F &f, const G &g, const H &h, const S &s, const E &e0) :
+      f(f), g(g), h(h), s(s), e0(e0) {}
 
   NP alloc(const T &v = T()) {
-    return new Node(v);
+    return new Node(v, e0);
   }
 
   vector< NP > build(vector< T > &vs) {
@@ -184,9 +200,20 @@ public:
     t->key = v;
     update(t);
   }
+
+  void set_propagate(NP t, const E &e) {
+    expose(t);
+    propagate(t, e);
+    push(t);
+  }
+
+  void set_propagate(NP u, NP v, const E &e) {
+    evert(u);
+    set_propagate(v, e);
+  }
 };
 
-template< typename T, typename F, typename S >
-LinkCutTree< T, F, S > get_link_cut_tree(const F &f, const S &s) {
-  return {f, s};
+template< typename T, typename E, typename F, typename G, typename H, typename S >
+LazyLinkCutTree< T, E, F, G, H, S > get_lazy_link_cut_tree(const F &f, const G &g, const H &h, const S &s, const E &e0) {
+  return {f, g, h, s, e0};
 }
