@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/others/link-cut-tree-subtree.cpp"
+#include "../../structure/lct/link-cut-tree-subtree.cpp"
 
 int main() {
   int N, Q;

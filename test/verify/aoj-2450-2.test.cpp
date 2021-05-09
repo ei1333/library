@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/others/lazy-link-cut-tree.cpp"
+#include "../../structure/lct/link-cut-tree-lazy-path.cpp"
 
 int main() {
   int N, Q, S[200000];
@@ -37,7 +37,7 @@ int main() {
   };
 
 
-  auto lct = get_lazy_link_cut_tree< Node >(F, G, H, T, infll);
+  auto lct = get_link_cut_tree_lazy_path< Node >(F, G, H, T, infll);
   vector< decltype(lct)::NP > vs(N);
 
   for(int i = 0; i < N; i++) {

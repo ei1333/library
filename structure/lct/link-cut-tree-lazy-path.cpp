@@ -1,8 +1,8 @@
 /**
- * @brief Lazy-Link-Cut-Tree
+ * @brief Link-Cut-Tree-Lazy-Path
  */
 template< typename T, typename E, typename F, typename G, typename H, typename S >
-struct LazyLinkCutTree {
+struct LinkCutTreeLazyPath {
 
 private:
   F f;
@@ -110,7 +110,7 @@ private:
   }
 
 public:
-  LazyLinkCutTree(const F &f, const G &g, const H &h, const S &s, const E &e0) :
+  LinkCutTreeLazyPath(const F &f, const G &g, const H &h, const S &s, const E &e0) :
       f(f), g(g), h(h), s(s), e0(e0) {}
 
   NP alloc(const T &v = T()) {
@@ -214,6 +214,6 @@ public:
 };
 
 template< typename T, typename E, typename F, typename G, typename H, typename S >
-LazyLinkCutTree< T, E, F, G, H, S > get_lazy_link_cut_tree(const F &f, const G &g, const H &h, const S &s, const E &e0) {
+LinkCutTreeLazyPath< T, E, F, G, H, S > get_link_cut_tree_lazy_path(const F &f, const G &g, const H &h, const S &s, const E &e0) {
   return {f, g, h, s, e0};
 }
