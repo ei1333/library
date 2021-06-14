@@ -359,7 +359,7 @@ public:
   }
 
   // f(x) += g(x)
-  void merge(SlopeTrick &g) {
+  void merge(GeneralizedSlopeTrick &g) {
     L = st.merge_wuh(L, g.L);
     R = st.merge_wuh(R, g.R);
     min_f += g.min_f;
