@@ -126,7 +126,7 @@ public:
     return ret;
   }
  
-  void merge(SlopeQueue &st) {
+  void merge(SlopeTrick &st) {
     if(st.size() > size()) {
       swap(st.L, L);
       swap(st.R, R);
