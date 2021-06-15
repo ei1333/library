@@ -43,7 +43,7 @@ public:
     return table[0][u];
   }
 
-  int climb(int u, int k) const {
+  int climb(int u, int k) {
     if(dep[u] < k) return -1;
     for(int i = LOG - 1; i >= 0; i--) {
       if((k >> i) & 1) u = table[i][u];
@@ -51,7 +51,7 @@ public:
     return u;
   }
 
-  T dist(int u, int v) const {
+  T dist(int u, int v) {
     return sum[u] + sum[v] - 2 * sum[lca(u, v)];
   }
 
