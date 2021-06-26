@@ -3,26 +3,21 @@
 #include "../../template/template.cpp"
 
 #include "../../math/combinatorics/mod-int.cpp"
-#include "../../math/fft/number-theoretic-transform-friendly-mod-int.cpp"
-
 #include "../../math/combinatorics/mod-pow.cpp"
 #include "../../math/combinatorics/mod-sqrt.cpp"
 
-#include "../../math/fps/sqrt.cpp"
+#include "../../math/fps/formal-power-series-friendly-ntt.cpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;
 
 int main() {
-  NumberTheoreticTransformFriendlyModInt< mint > ntt;
-  using FPS = FormalPowerSeries< mint >;
-  FPS::set_fft([&](FPS &a) { ntt.ntt(a); }, [&](FPS &a) { ntt.intt(a); });
-  FPS::set_sqrt([](mint a) { return mod_sqrt< int64_t >(a.x, MOD); });
   int N;
   cin >> N;
-  FPS F(N);
-  cin >> F;
-  auto ret = F.sqrt();
-  if(ret.empty()) cout << -1 << endl;
-  else cout << ret << endl;
+  FPS< mint > f(N);
+  cin >> f;
+  auto get_sqrt = [&](mint x) { return mod_sqrt< int64 >(x.x, mint::get_mod()); };
+  f = f.sqrt(get_sqrt);
+  if(f.empty()) cout << "-1\n";
+  else cout << f << "\n";
 }
