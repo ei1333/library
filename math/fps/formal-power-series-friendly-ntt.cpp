@@ -75,6 +75,12 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
     return *this -= *this / r * r;
   }
 
+  // https://judge.yosupo.jp/problem/division_of_polynomials
+  pair< P, P > div_mod(const P &r) {
+    P q = *this / r;
+    return make_pair(q, *this - q * r);
+  }
+
   P operator-() const {
     P ret(this->size());
     for(int i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
@@ -147,10 +153,9 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
     assert(((*this)[0]) != T(0));
     const int n = (int) this->size();
     if(deg == -1) deg = n;
-
     P res(deg);
     res[0] = {T(1) / (*this)[0]};
-    for(int d = 1; d < n; d <<= 1) {
+    for(int d = 1; d < deg; d <<= 1) {
       P f(2 * d), g(2 * d);
       for(int j = 0; j < min(n, 2 * d); j++) f[j] = (*this)[j];
       for(int j = 0; j < d; j++) g[j] = res[j];
@@ -340,6 +345,7 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
     return p;
   }
 };
+
 
 template< typename Mint >
 using FPS = FormalPowerSeriesFriendlyNTT< Mint >;
