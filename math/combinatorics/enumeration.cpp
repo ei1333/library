@@ -9,14 +9,14 @@ private:
       _fact.resize(sz + 1, T(1));
       _finv.resize(sz + 1, T(1));
       _inv.resize(sz + 1, T(1));
-      for(int i = pre_sz; i <= sz; i++) {
+      for(int i = pre_sz; i <= (int) sz; i++) {
         _fact[i] = _fact[i - 1] * T(i);
       }
       _finv[sz] = T(1) / _fact[sz];
       for(int i = (int) sz - 1; i >= pre_sz; i--) {
         _finv[i] = _finv[i + 1] * T(i + 1);
       }
-      for(int i = pre_sz; i <= sz; i++) {
+      for(int i = pre_sz; i <= (int) sz; i++) {
         _inv[i] = _finv[i] * _fact[i - 1];
       }
     }
