@@ -43,7 +43,7 @@ public:
   using super::split;
   using super::merge;
 
-  NP alloc(const T &x) override { return new Node(x, OM0); }
+  NP alloc(const T &x) { return new Node(x, OM0); }
 
   void push(NP t) override {
     if(t->lazy != OM0) {
@@ -78,4 +78,7 @@ private:
     t->key = g(t->key, x);
     t->sum = g(t->sum, x);
   }
-}
+};
+
+template< typename T, typename E >
+using LRST = LazyReversibleSplayTree< LazyReversibleSplayTreeNode< T, E > >;
