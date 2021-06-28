@@ -2,6 +2,7 @@
 
 /**
  * @brief Formal-Power-Series-Friendly-NTT(NTTmod用形式的冪級数)
+ * @docs docs/formal-power-series-friendly-ntt.md
  */
 template< typename T >
 struct FormalPowerSeriesFriendlyNTT : vector< T > {
