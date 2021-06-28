@@ -182,6 +182,7 @@
 "test/verify/yukicoder-1254.test.cpp": "2021-05-01 00:06:55 +0900",
 "test/verify/yukicoder-184.test.cpp": "2021-05-01 00:06:55 +0900",
 "test/verify/yukicoder-430.test.cpp": "2021-05-01 00:06:55 +0900",
+"test/verify/yukicoder-502.test.cpp": "2021-06-29 02:11:11 +0900",
 "test/verify/yukicoder-583.test.cpp": "2021-05-07 20:07:14 +0900",
 "test/verify/yukicoder-650.test.cpp": "2021-05-01 00:53:32 +0900",
 "test/verify/yukicoder-703.test.cpp": "2021-05-01 00:06:55 +0900",
