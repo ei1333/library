@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../../math/combinatorics/mod-int.cpp"
 
-#include "../../graph/others/tree-decomposition.cpp"
+#include "../../graph/others/tree-decomposition.hpp"
 
 const int MOD = 1000003;
 using Mint = ModInt< MOD >;

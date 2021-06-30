@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Centroid(木の重心)
  * @docs docs/centroid.md

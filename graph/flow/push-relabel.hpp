@@ -55,12 +55,12 @@ struct PushRelabel {
     int idx;
   };
 
-  vector< vector< edge > > graph;
-  vector< int > potential, cur_edge;
-  vector< flow_t > ex;
   int V, height, relabels;
+  vector< flow_t > ex;
+  vector< int > potential, cur_edge;
   List all_ver;
   Stack act_ver;
+  vector< vector< edge > > graph;
 
   PushRelabel(int V)
       : V(V), height(-1), relabels(0), ex(V, flow_t(0)), potential(V, 0), cur_edge(V), all_ver(V, V), act_ver(V, V), graph(V) {}
@@ -128,7 +128,7 @@ struct PushRelabel {
   }
 
   int discharge(int u, int t) {
-    for(int &i = cur_edge[u]; i < graph[u].size(); i++) {
+    for(int &i = cur_edge[u]; i < (int)graph[u].size(); i++) {
       auto &e = graph[u][i];
       if(potential[u] == potential[e.to] + 1 && e.cap > 0) {
         if(push(u, t, e)) return potential[u];

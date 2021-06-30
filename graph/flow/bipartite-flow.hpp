@@ -10,7 +10,7 @@ struct BipartiteFlow {
 
 public:
   explicit BipartiteFlow(size_t n, size_t m) :
-      n(n), m(m), g(n), rg(m), match_l(n, -1), match_r(m, -1), used(n), alive(n, 1), time_stamp(0), matched(false) {}
+      n(n), m(m), time_stamp(0), g(n), rg(m), match_l(n, -1), match_r(m, -1), used(n), alive(n, 1), matched(false) {}
 
   void add_edge(int u, int v) {
     g[u].push_back(v);
@@ -23,13 +23,13 @@ public:
       build_augment_path();
       ++time_stamp;
       int flow = 0;
-      for(int i = 0; i < n; i++) {
+      for(int i = 0; i < (int)n; i++) {
         if(match_l[i] == -1) flow += find_min_dist_augment_path(i);
       }
       if(flow == 0) break;
     }
     vector< pair< int, int > > ret;
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < (int)n; i++) {
       if(match_l[i] >= 0) ret.emplace_back(i, match_l[i]);
     }
     return ret;
@@ -50,7 +50,7 @@ public:
     if(!matched) max_matching();
     for(auto &vs : g) sort(begin(vs), end(vs));
     vector< pair< int, int > > es;
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < (int)n; i++) {
       if(match_l[i] == -1 || alive[i] == 0) {
         continue;
       }
@@ -67,8 +67,8 @@ public:
   vector< int > min_vertex_cover() {
     auto visited = find_residual_path();
     vector< int > ret;
-    for(int i = 0; i < n + m; i++) {
-      if(visited[i] ^ (i < n)) {
+    for(int i = 0; i < (int)(n + m); i++) {
+      if(visited[i] ^ (i < (int)n)) {
         ret.emplace_back(i);
       }
     }
@@ -80,7 +80,7 @@ public:
     assert(ord.size() == n + m);
     auto res = build_risidual_graph();
     vector< vector< int > > r_res(n + m + 2);
-    for(int i = 0; i < n + m + 2; i++) {
+    for(int i = 0; i < (int)(n + m + 2); i++) {
       for(auto &j : res[i]) r_res[j].emplace_back(i);
     }
     queue< int > que;
@@ -117,7 +117,7 @@ public:
     expand_left(n + m + 1);
     vector< int > ret;
     for(auto &t : ord) {
-      if(t < n) {
+      if(t < (int)n) {
         expand_left(t);
         if(visited[t] & 1) ret.emplace_back(t);
       } else {
@@ -132,8 +132,8 @@ public:
   vector< int > max_independent_set() {
     auto visited = find_residual_path();
     vector< int > ret;
-    for(int i = 0; i < n + m; i++) {
-      if(visited[i] ^ (i >= n)) {
+    for(int i = 0; i < (int)(n + m); i++) {
+      if(visited[i] ^ (i >= (int)n)) {
         ret.emplace_back(i);
       }
     }
@@ -142,7 +142,7 @@ public:
 
   vector< pair< int, int > > min_edge_cover() {
     auto es = max_matching();
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < (int)n; i++) {
       if(match_l[i] >= 0) {
         continue;
       }
@@ -151,7 +151,7 @@ public:
       }
       es.emplace_back(i, g[i][0]);
     }
-    for(int i = 0; i < m; i++) {
+    for(int i = 0; i < (int)m; i++) {
       if(match_r[i] >= 0) {
         continue;
       }
@@ -169,15 +169,15 @@ public:
     const size_t S = n + m;
     const size_t T = n + m + 1;
     vector< vector< int > > ris(n + m + 2);
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < (int)n; i++) {
       if(match_l[i] == -1) ris[S].emplace_back(i);
       else ris[i].emplace_back(S);
     }
-    for(int i = 0; i < m; i++) {
+    for(int i = 0; i < (int)m; i++) {
       if(match_r[i] == -1) ris[i + n].emplace_back(T);
       else ris[T].emplace_back(i + n);
     }
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < (int)n; i++) {
       for(auto &j : g[i]) {
         if(match_l[i] == j) ris[j + n].emplace_back(i);
         else ris[i].emplace_back(j + n);
@@ -208,7 +208,7 @@ private:
   void build_augment_path() {
     queue< int > que;
     dist.assign(g.size(), -1);
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < (int)n; i++) {
       if(match_l[i] == -1) {
         que.emplace(i);
         dist[i] = 0;
@@ -231,7 +231,7 @@ private:
     used[a] = time_stamp;
     for(auto &b : g[a]) {
       int c = match_r[b];
-      if(c < 0 || (used[c] != time_stamp && dist[c] == dist[a] + 1 && find_min_dist_augment_path(c))) {
+      if(c < 0 || (used[c] != (int)time_stamp && dist[c] == dist[a] + 1 && find_min_dist_augment_path(c))) {
         match_r[b] = a;
         match_l[a] = b;
         return true;
@@ -244,7 +244,7 @@ private:
     used[a] = time_stamp;
     for(auto &b : g[a]) {
       int c = match_r[b];
-      if(c < 0 || (alive[c] == 1 && used[c] != time_stamp && find_augment_path(c))) {
+      if(c < 0 || (alive[c] == 1 && used[c] != (int)time_stamp && find_augment_path(c))) {
         match_r[b] = a;
         match_l[a] = b;
         return true;

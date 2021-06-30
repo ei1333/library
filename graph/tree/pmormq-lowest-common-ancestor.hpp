@@ -1,3 +1,6 @@
+#pragma once
+
+#include "../graph-template.hpp"
 #include "../../structure/others/plus-minus-one-rmq.cpp"
 
 /**

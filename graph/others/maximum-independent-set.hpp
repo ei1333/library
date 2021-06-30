@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../../graph/template.hpp"
+
 template< typename T >
 vector< int > maximum_independent_set(const Matrix< T > &g, int trial = 1000000) {
 
@@ -18,7 +22,7 @@ vector< int > maximum_independent_set(const Matrix< T > &g, int trial = 1000000)
   iota(begin(ord), end(ord), 0);
   mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());
   int ret = 0;
-  uint64_t ver;
+  uint64_t ver = 0;
   for(int i = 0; i < trial; i++) {
     shuffle(begin(ord), end(ord), mt);
     uint64_t used = 0;

@@ -1,4 +1,6 @@
-#include "../connected-components/strongly-connected-components.cpp"
+#pragma once
+
+#include "../connected-components/strongly-connected-components.hpp"
 
 /**
  * @brief 2-SAT
@@ -10,7 +12,7 @@ public:
   using StronglyConnectedComponents< bool >::add_edge;
   size_t sz;
 
-  explicit TwoSatisfiability(size_t v) : sz(v), StronglyConnectedComponents< bool >(v + v) {}
+  explicit TwoSatisfiability(size_t v) : StronglyConnectedComponents< bool >(v + v), sz(v) {}
 
   void add_if(int u, int v) {
     // u -> v <=> !v -> !u
@@ -39,14 +41,14 @@ public:
   }
 
   inline int rev(int x) {
-    if(x >= sz) return x - sz;
+    if(x >= (int)sz) return x - sz;
     return x + sz;
   }
 
   vector< int > solve() {
     StronglyConnectedComponents< bool >::build();
     vector< int > ret(sz);
-    for(int i = 0; i < sz; i++) {
+    for(size_t i = 0; i < sz; i++) {
       if(comp[i] == comp[rev(i)]) return {};
       ret[i] = comp[i] > comp[rev(i)];
     }

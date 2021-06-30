@@ -1,12 +1,10 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
 #include "../../structure/union-find/union-find.cpp"
 
-#include "../../graph/tree/centroid.cpp"
-#include "../../graph/tree/tree-isomorphism.cpp"
+#include "../../graph/tree/tree-isomorphism.hpp"
 
 int main() {
   int N, M;

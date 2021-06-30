@@ -1,4 +1,7 @@
-#include "../connected-components/bi-connected-components.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
+#include "../connected-components/bi-connected-components.hpp"
 
 /**
  * @brief Block-Cut-Tree

@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief BFS(幅優先探索)
  */

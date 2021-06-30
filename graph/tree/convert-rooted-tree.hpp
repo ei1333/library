@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Convert-Rooted-Tree(根付き木に変換)
  */

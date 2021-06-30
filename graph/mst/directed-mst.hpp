@@ -1,4 +1,6 @@
-#include "../graph-template.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
 #include "../../structure/heap/skew-heap.cpp"
 
 /**

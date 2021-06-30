@@ -4,9 +4,8 @@
 
 #include "../../structure/union-find/union-find.cpp"
 
-#include "../../graph/others/block-cut-tree.cpp"
-
-#include "../../graph/tree/centroid-decomposition.cpp"
+#include "../../graph/others/block-cut-tree.hpp"
+#include "../../graph/tree/centroid-decomposition.hpp"
 
 int main() {
   int N, M;

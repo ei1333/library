@@ -1,4 +1,6 @@
-#include "../graph-template.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
 
 /**
  * @brief Low-Link(橋/関節点)

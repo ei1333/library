@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief K-Shortest-Walk
  * @docs docs/k-shortest-walk.md
@@ -55,7 +59,7 @@ vector< T > k_shortest_walk(const Graph< T > &g, int s, int t, int k) {
     tie(cost, cur) = que.top();
     que.pop();
     ans.emplace_back(cost);
-    if(ans.size() == k) break;
+    if((int)ans.size() == k) break;
     if(cur->l) que.emplace(cost + cur->l->key - cur->key, cur->l);
     if(cur->r) que.emplace(cost + cur->r->key - cur->key, cur->r);
     if(h[cur->idx]) que.emplace(cost + h[cur->idx]->key, h[cur->idx]);

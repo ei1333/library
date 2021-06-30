@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/connected-components/two-edge-connected-components.cpp"
+#include "../../graph/connected-components/two-edge-connected-components.hpp"
 
 int main() {
   int N, M;

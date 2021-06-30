@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @brief Bipartite-Graph-Edge-Coloring(二部グラフの辺彩色)
  * @see https://ei1333.hateblo.jp/entry/2020/08/25/015955
@@ -143,7 +144,7 @@ public:
     vector< vector< int > > res;
     for(int i = 0; i < (int) ans.size(); i++) {
       res.emplace_back();
-      for(auto &j : ans[i]) if(j < A.size()) res.back().emplace_back(j);
+      for(auto &j : ans[i]) if(j < (int)A.size()) res.back().emplace_back(j);
     }
     return res;
   }

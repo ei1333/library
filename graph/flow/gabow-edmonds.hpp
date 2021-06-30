@@ -29,7 +29,7 @@ struct GabowEdmonds {
     int t = mate[v];
     mate[v] = w;
     if(mate[t] != v) return;
-    if(label[v] < g.size()) {
+    if(label[v] < (int)g.size()) {
       mate[t] = label[v];
       rematch(label[v], t);
     } else {
@@ -99,12 +99,12 @@ struct GabowEdmonds {
   }
 
   vector< pair< int, int > > max_matching() {
-    for(int i = 1; i < g.size(); i++) {
+    for(int i = 1; i < (int)g.size(); i++) {
       if(mate[i] != 0) continue;
       if(augment_check(i)) label.assign(g.size(), -1);
     }
     vector< pair< int, int > > ret;
-    for(int i = 1; i < g.size(); i++) {
+    for(int i = 1; i < (int)g.size(); i++) {
       if(i < mate[i]) ret.emplace_back(i - 1, mate[i] - 1);
     }
     return ret;

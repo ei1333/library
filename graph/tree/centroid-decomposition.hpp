@@ -1,4 +1,6 @@
-#include "../graph-template.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
 
 /**
  * @brief Centroid-Decomosition(重心分解)

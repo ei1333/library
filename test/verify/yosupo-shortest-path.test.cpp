@@ -2,9 +2,8 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-
-#include "../../graph/shortest-path/dijkstra.cpp"
+#include "../../graph/graph-template.hpp"
+#include "../../graph/shortest-path/dijkstra.hpp"
 
 int main() {
   int N, M, S, T;

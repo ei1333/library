@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Complement-Shortest-Path(補グラフ最短路)
  */

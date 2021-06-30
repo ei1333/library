@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/hungarian.cpp"
+#include "../../graph/flow/hungarian.hpp"
 
 int main() {
   int M, N, B[500], R[500];

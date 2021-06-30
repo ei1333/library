@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../template.hpp"
+
 /**
  * @brief Enumerate-Cliques(クリーク全列挙)
  * @see https://www.slideshare.net/wata_orz/ss-12131479
@@ -25,7 +29,7 @@ vector< vector< int > > enumerate_cliques(Matrix< bool > g) {
     }
     for(int i = 1 - last; i < (1 << neighbor.size()); i++) {
       bool ok = true;
-      for(int j = 0; j < neighbor.size(); j++) {
+      for(int j = 0; j < (int)neighbor.size(); j++) {
         if((i >> j) & 1) {
           if(i & neighbor[j]) {
             ok = false;
@@ -36,7 +40,7 @@ vector< vector< int > > enumerate_cliques(Matrix< bool > g) {
       if(ok) {
         vector< int > clique;
         if(last) clique.emplace_back(rem.back());
-        for(int j = 0; j < neighbor.size(); j++) {
+        for(int j = 0; j < (int)neighbor.size(); j++) {
           if((i >> j) & 1) clique.emplace_back(rem[j]);
         }
         cliques.emplace_back(clique);

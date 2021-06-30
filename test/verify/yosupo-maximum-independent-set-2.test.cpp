@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/maximum-clique.cpp"
+#include "../../graph/others/maximum-clique.hpp"
 
 int main() {
   int V, E;

@@ -1,4 +1,7 @@
-#include "../others/low-link.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
+#include "../others/low-link.hpp"
 
 /**
  * @brief Two-Edge-Connected-Components(二重辺連結成分分解)

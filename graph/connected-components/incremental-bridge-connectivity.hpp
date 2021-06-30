@@ -1,3 +1,6 @@
+#pragma once
+
+#include "../graph-template.hpp"
 #include "../../structure/union-find/union-find.cpp"
 
 /**

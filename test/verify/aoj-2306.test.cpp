@@ -1,9 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2306"
 
 #include "../../template/template.cpp"
-#include "../../graph/template.cpp"
 
-#include "../../graph/others/enumerate-cliques.cpp"
+#include "../../graph/others/enumerate-cliques.hpp"
 
 int main() {
   int N, M;

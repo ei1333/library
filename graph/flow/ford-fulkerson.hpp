@@ -12,9 +12,9 @@ struct FordFulkerson {
     int idx;
   };
 
+  const flow_t INF;
   vector< vector< edge > > graph;
   vector< int > used;
-  const flow_t INF;
   int timestamp;
 
   explicit FordFulkerson(int V) : INF(numeric_limits< flow_t >::max()), graph(V), used(V, -1), timestamp(0) {}

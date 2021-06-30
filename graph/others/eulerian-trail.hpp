@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @brief Eulerian-Trail(オイラー路)
  * @docs docs/eulerian-trail.md
@@ -9,7 +11,7 @@ struct EulerianTrail {
   int M;
   vector< int > used_vertex, used_edge, deg;
 
-  explicit EulerianTrail(int V) : g(V), M(0), deg(V), used_vertex(V) {}
+  explicit EulerianTrail(int V) : g(V), M(0), used_vertex(V), deg(V) {}
 
   void add_edge(int a, int b) {
     es.emplace_back(a, b);

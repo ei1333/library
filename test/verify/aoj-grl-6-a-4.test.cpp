@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/dinic-capacity-scaling.cpp"
+#include "../../graph/flow/dinic-capacity-scaling.hpp"
 
 int main() {
   int V, E;

@@ -1,11 +1,10 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
 #include "../../structure/heap/radix-heap.cpp"
 
-#include "../../graph/shortest-path/dijkstra-radix-heap.cpp"
+#include "../../graph/shortest-path/dijkstra-radix-heap.hpp"
 
 int main() {
   int V, E, R;

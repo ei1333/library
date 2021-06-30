@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief K-Shortest-Path
  * @docs docs/k-shortest-path.md

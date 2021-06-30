@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Doubling-Lowest-Common-Ancestor(最小共通祖先)
  * @docs docs/doubling-lowest-common-ancestor.md
@@ -12,7 +16,7 @@ public:
   const int LOG;
 
   explicit DoublingLowestCommonAncestor(int n)
-      : LOG(32 - __builtin_clz(g.size())), Graph< T >(n) {}
+      : Graph< T >(n), LOG(32 - __builtin_clz(g.size())) {}
 
   explicit DoublingLowestCommonAncestor(const Graph< T > &g)
       : LOG(32 - __builtin_clz(g.size())), Graph< T >(g) {}
@@ -23,7 +27,7 @@ public:
     table.assign(LOG, vector< int >(g.size(), -1));
     dfs(0, -1, 0);
     for(int k = 0; k + 1 < LOG; k++) {
-      for(int i = 0; i < table[k].size(); i++) {
+      for(int i = 0; i < (int)table[k].size(); i++) {
         if(table[k][i] == -1) table[k + 1][i] = -1;
         else table[k + 1][i] = table[k][table[k][i]];
       }

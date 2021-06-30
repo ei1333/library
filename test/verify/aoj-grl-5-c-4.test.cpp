@@ -1,9 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
-#include "../../graph/tree/pmormq-lowest-common-ancestor.cpp"
+#include "../../graph/tree/pmormq-lowest-common-ancestor.hpp"
 
 int main() {
   int N, Q;

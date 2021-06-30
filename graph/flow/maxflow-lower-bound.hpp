@@ -6,7 +6,7 @@ struct MaxFlowLowerBound {
   int X, Y, V;
   flow_t sum;
 
-  MaxFlowLowerBound(int V) : V(V), flow(V + 2), X(V), Y(V + 1), sum(0), in(V) {}
+  MaxFlowLowerBound(int V) : flow(V + 2), in(V), X(V), Y(V + 1), V(V), sum(0) {}
 
   void add_edge(int from, int to, flow_t low, flow_t high) {
     assert(from != to);

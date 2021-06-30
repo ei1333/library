@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Shortest-Path-Faster-Algorithm(単一始点最短路)
  */
@@ -22,7 +26,7 @@ vector< T > shortest_path_faster_algorithm(const Graph< T > &g, int s) {
       if(next_cost >= dist[e.to]) continue;
       dist[e.to] = next_cost;
       if(!pending[e.to]) {
-        if(++times[e.to] >= g.size()) return vector< T >();
+        if(++times[e.to] >= (int)g.size()) return vector< T >();
         pending[e.to] = true;
         que.emplace(e.to);
       }

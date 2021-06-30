@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Bellman-Ford(単一始点最短路)
  * @docs docs/bellman-ford.md

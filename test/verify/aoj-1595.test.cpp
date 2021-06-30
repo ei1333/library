@@ -2,10 +2,10 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/tree/rerooting.cpp"
+#include "../../graph/tree/rerooting.hpp"
 
 int main() {
-  int N, D;
+  int N;
   cin >> N;
 
   auto f1 = [](int a, int b) {

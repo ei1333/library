@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/bipartite-flow.cpp"
+#include "../../graph/flow/bipartite-flow.hpp"
 
 int main() {
   int L, R, M;

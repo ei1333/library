@@ -44,7 +44,7 @@ struct Dinic {
 
   flow_t find_min_dist_augment_path(int idx, const int t, flow_t flow) {
     if(idx == t) return flow;
-    for(int &i = iter[idx]; i < graph[idx].size(); i++) {
+    for(int &i = iter[idx]; i < (int)graph[idx].size(); i++) {
       edge &e = graph[idx][i];
       if(e.cap > 0 && min_cost[idx] < min_cost[e.to]) {
         flow_t d = find_min_dist_augment_path(e.to, t, min(flow, e.cap));

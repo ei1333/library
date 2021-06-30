@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../../math/matrix/square-matrix.cpp"
 
-#include "../../graph/others/chromatic-number.cpp"
+#include "../../graph/others/chromatic-number.hpp"
 
 const double EPS = 1e-10;
 

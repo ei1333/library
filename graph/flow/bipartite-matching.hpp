@@ -2,9 +2,13 @@
  * @brief Bipartite-Matching(二部グラフの最大マッチング)
  * @docs docs/bipartite-matching.md
  */
+#pragma once
+
+#include "../graph-template.hpp"
+
 struct BipartiteMatching {
   vector< vector< int > > graph;
-  vector< int > match, alive, used;
+  vector< int > alive, used, match;
   int timestamp;
 
   explicit BipartiteMatching(int n) : graph(n), alive(n, 1), used(n, 0), match(n, -1), timestamp(0) {}

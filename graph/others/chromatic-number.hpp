@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @brief Chromatic-Number(彩色数)
  * @docs docs/chromatic-number.md
@@ -7,8 +8,8 @@ template< typename Matrix >
 int chromatic_number(Matrix &g) {
   int N = (int) g.size();
   vector< int > es(N);
-  for(int i = 0; i < g.size(); i++) {
-    for(int j = 0; j < g.size(); j++) {
+  for(int i = 0; i < (int)g.size(); i++) {
+    for(int j = 0; j < (int)g.size(); j++) {
       if(g[i][j] != 0) es[i] |= 1 << j;
     }
   }

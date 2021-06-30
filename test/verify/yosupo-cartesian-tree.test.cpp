@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/cartesian-tree.cpp"
+#include "../../graph/others/cartesian-tree.hpp"
 
 int main() {
   int N;

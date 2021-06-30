@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @brief Maximum-Clique(最大クリーク)
  */
@@ -61,7 +63,7 @@ struct MaximumClique {
 
   vector< int > solve() {
     vector< P > remark;
-    for(int i = 0; i < g.size(); i++) {
+    for(size_t i = 0; i < g.size(); i++) {
       remark.emplace_back(i, -1, (int) g[i].size());
     }
     dfs(remark);

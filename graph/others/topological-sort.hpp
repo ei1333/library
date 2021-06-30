@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Topological-Sort(トポロジカルソート)
  * @docs docs/topological-sort.md

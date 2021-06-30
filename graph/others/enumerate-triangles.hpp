@@ -1,4 +1,6 @@
-#include "../graph-template.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
 
 /**
  * @brief Enumerate-Triangles(三角形全列挙)

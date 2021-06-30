@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @brief Tree-Decomposition(木分解)
  * @see https://ei1333.hateblo.jp/entry/2020/02/12/150319

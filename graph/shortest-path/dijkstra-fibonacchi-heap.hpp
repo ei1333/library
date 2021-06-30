@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Dijkstra-Fibonacchi-Heap(単一始点最短路)
  * @docs docs/dijkstra-fibonacchi-heap.md
@@ -7,7 +11,6 @@ vector< T > dijkstra_fibonacchi_heap(Graph< T > &g, int s) {
   const auto INF = numeric_limits< T >::max();
   using Heap = FibonacchiHeap< T, int >;
   using Node = typename Heap::Node;
-  using Pi = pair< T, int >;
 
   Heap heap;
   vector< Node * > keep(g.size(), nullptr);

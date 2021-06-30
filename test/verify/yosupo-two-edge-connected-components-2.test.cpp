@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/connected-components/incremental-bridge-connectivity.cpp"
+#include "../../graph/connected-components/incremental-bridge-connectivity.hpp"
 
 int main() {
   int n, m;

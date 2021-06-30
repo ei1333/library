@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @brief Cartesian-Tree
  * @docs docs/cartesian-tree.md

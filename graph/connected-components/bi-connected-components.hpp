@@ -1,4 +1,5 @@
-#include "../others/low-link.cpp"
+#include "../graph-template.hpp"
+#include "../others/low-link.hpp"
 
 /**
  * @brief Bi-Connected-Components(二重頂点連結成分分解)
@@ -17,7 +18,7 @@ public:
   void build() override {
     LowLink< T >::build();
     used.assign(g.size(), 0);
-    for(int i = 0; i < used.size(); i++) {
+    for(int i = 0; i < (int)used.size(); i++) {
       if(!used[i]) dfs(i, -1);
     }
   }

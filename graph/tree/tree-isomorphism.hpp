@@ -1,3 +1,8 @@
+#pragma once
+
+#include "../graph-template.hpp"
+#include "./centroid.hpp"
+
 /**
  * @brief Tree-Isomorphism(木の同型性判定)
  */

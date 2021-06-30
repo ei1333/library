@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/bipartite-matching.cpp"
+#include "../../graph/flow/bipartite-matching.hpp"
 
 int main() {
   int X, Y, E;

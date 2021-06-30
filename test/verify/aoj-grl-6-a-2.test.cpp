@@ -2,8 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/ford-fulkerson.cpp"
-
+#include "../../graph/flow/ford-fulkerson.hpp"
 
 int main() {
   int V, E;

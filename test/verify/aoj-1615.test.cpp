@@ -2,8 +2,8 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/dinic.cpp"
-#include "../../graph/flow/maxflow-lower-bound.cpp"
+#include "../../graph/flow/dinic.hpp"
+#include "../../graph/flow/maxflow-lower-bound.hpp"
 
 int main() {
   int N, M;

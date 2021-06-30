@@ -1,3 +1,5 @@
+#pragma once
+
 template< typename T >
 struct edge {
   int src, to;

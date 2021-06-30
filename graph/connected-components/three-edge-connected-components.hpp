@@ -1,5 +1,7 @@
-#include "../graph-template.cpp"
-#include "incremental-bridge-connectivity.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
+#include "incremental-bridge-connectivity.hpp"
 
 /**
  * @brief Three-Edge-Connected-Components(三重辺連結成分分解)
@@ -19,13 +21,13 @@ public:
     out.assign(g.size(), 0);
     deg.assign(g.size(), 0);
     low.assign(g.size(), g.size());
-    for(int from = 0; from < g.size(); from++) {
+    for(size_t from = 0; from < g.size(); from++) {
       for(auto &to : g[from]) {
-        if(from < to) bcc.add_edge(from, to);
+        if((T)from < to) bcc.add_edge(from, to);
       }
     }
     int cnt = 0;
-    for(int i = 0; i < g.size(); i++) {
+    for(size_t i = 0; i < g.size(); i++) {
       if(used[i]) continue;
       vector< int > tmp;
       dfs(i, -1, tmp, cnt);
@@ -33,11 +35,11 @@ public:
     }
     vector< int > id(g.size(), -1);
     cnt = 0;
-    for(int i = 0; i < g.size(); i++) {
+    for(size_t i = 0; i < g.size(); i++) {
       if(id[uf.find(i)] == -1) id[uf.find(i)] = cnt++;
     }
     group.resize(cnt);
-    for(int i = 0; i < g.size(); i++) {
+    for(size_t i = 0; i < g.size(); i++) {
       group[id[uf.find(i)]].emplace_back(i);
     }
   }

@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../graph-template.hpp"
+
 /**
  * @brief Dijkstra-Radix-Heap(単一始点最短路)
  */
@@ -6,7 +10,6 @@ vector< T > dijkstra_radix_heap(Graph< T > &g, int s) {
   const auto INF = numeric_limits< T >::max();
   vector< T > dist(g.size(), INF);
 
-  using Pi = pair< T, int >;
   RadixHeap< T, int > heap;
   dist[s] = 0;
   heap.push(dist[s], s);

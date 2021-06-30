@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/mst/prim.cpp"
+#include "../../graph/mst/prim.hpp"
 
 int main() {
   int V, E;

@@ -2,10 +2,9 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-#include "../../graph/tree/pmormq-lowest-common-ancestor.cpp"
-
-#include "../../graph/others/cartesian-tree.cpp"
+#include "../../graph/graph-template.hpp"
+#include "../../graph/tree/pmormq-lowest-common-ancestor.hpp"
+#include "../../graph/others/cartesian-tree.hpp"
 
 int main() {
   int N, Q;

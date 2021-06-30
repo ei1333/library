@@ -2,8 +2,8 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/mst/manhattan-mst.cpp"
-#include "../../graph/mst/kruskal.cpp"
+#include "../../graph/mst/manhattan-mst.hpp"
+#include "../../graph/mst/kruskal.hpp"
 
 int main() {
   int N;

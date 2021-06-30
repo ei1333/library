@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/mst/kruskal.cpp"
+#include "../../graph/mst/kruskal.hpp"
 
 int main() {
   int V, E;

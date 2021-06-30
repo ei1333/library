@@ -4,9 +4,9 @@
 
 #include "../../structure/union-find/union-find.cpp"
 
-#include "../../graph/flow/bipartite-flow.cpp"
-#include "../../graph/others/eulerian-trail.cpp"
-#include "../../graph/others/bipartite-graph-edge-coloring.cpp"
+#include "../../graph/flow/bipartite-flow.hpp"
+#include "../../graph/others/eulerian-trail.hpp"
+#include "../../graph/others/bipartite-graph-edge-coloring.hpp"
 
 int main() {
   int L, R, M;

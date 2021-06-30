@@ -1,4 +1,6 @@
-#include "../graph-template.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
 
 /**
  * @brief Dominator-Tree
@@ -40,11 +42,11 @@ public:
       bucket[par[x]].clear();
       uf.link(par[x], x);
     }
-    for(int i = 1; i < ord.size(); i++) {
+    for(int i = 1; i < (int)ord.size(); i++) {
       int x = ord[i], u = U[x];
       idom[x] = semi[x] == semi[u] ? semi[x] : idom[u];
     }
-    for(int i = 1; i < ord.size(); i++) {
+    for(int i = 1; i < (int)ord.size(); i++) {
       int x = ord[i];
       idom[x] = ord[idom[x]];
     }

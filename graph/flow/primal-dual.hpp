@@ -1,7 +1,5 @@
 template< typename flow_t, typename cost_t >
 struct PrimalDual {
-  const cost_t INF;
-
   struct edge {
     int to;
     flow_t cap;
@@ -9,9 +7,11 @@ struct PrimalDual {
     int rev;
     bool isrev;
   };
+
   vector< vector< edge > > graph;
   vector< cost_t > potential, min_cost;
   vector< int > prevv, preve;
+  const cost_t INF;
 
   PrimalDual(int V) : graph(V), INF(numeric_limits< cost_t >::max()) {}
 
@@ -37,7 +37,7 @@ struct PrimalDual {
         Pi p = que.top();
         que.pop();
         if(min_cost[p.second] < p.first) continue;
-        for(int i = 0; i < graph[p.second].size(); i++) {
+        for(int i = 0; i < (int)graph[p.second].size(); i++) {
           edge &e = graph[p.second][i];
           cost_t nextCost = min_cost[p.second] + e.cost + potential[p.second] - potential[e.to];
           if(e.cap > 0 && min_cost[e.to] > nextCost) {

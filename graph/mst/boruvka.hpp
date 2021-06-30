@@ -8,8 +8,8 @@ template< typename T >
 struct Boruvka {
 private:
   size_t V;
-  const T INF;
   UnionFind uf;
+  const T INF;
 
 public:
   explicit Boruvka(size_t V, T INF = numeric_limits< T >::max()) : V(V), uf(V), INF(INF) {}
@@ -21,11 +21,11 @@ public:
   template< typename F >
   T build(const F &update) {
     T ret = T();
-    while(uf.size(0) < V) {
+    while(uf.size(0) < (int)V) {
       vector< pair< T, int > > v(V, make_pair(INF, -1));
       update(v);
       bool con = false;
-      for(int i = 0; i < V; i++) {
+      for(int i = 0; i < (int)V; i++) {
         if(v[i].second >= 0 && uf.unite(i, v[i].second)) {
           ret += v[i].first;
           con = true;

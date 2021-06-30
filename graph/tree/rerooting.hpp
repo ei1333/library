@@ -10,10 +10,10 @@ struct ReRooting {
   using G = function< sum_t(sum_t, key_t) >;
 
   vector< vector< Edge > > g;
-  vector< sum_t > subdp, dp;
-  const sum_t ident;
   const F f;
   const G gg;
+  const sum_t ident;
+  vector< sum_t > subdp, dp;
 
   ReRooting(int V, const F f, const G g, const sum_t &ident)
       : g(V), f(f), gg(g), ident(ident), subdp(V, ident), dp(V, ident) {}

@@ -49,7 +49,7 @@ struct DinicCapacityScaling {
   flow_t find_augment_path(int idx, const int t, flow_t base, flow_t flow) {
     if(idx == t) return flow;
     flow_t sum = 0;
-    for(int &i = iter[idx]; i < graph[idx].size(); i++) {
+    for(int &i = iter[idx]; i < (int)graph[idx].size(); i++) {
       edge &e = graph[idx][i];
       if(e.cap >= base && min_cost[idx] < min_cost[e.to]) {
         flow_t d = find_augment_path(e.to, t, base, min(flow - sum, e.cap));

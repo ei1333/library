@@ -1,4 +1,6 @@
-#include "../graph-template.cpp"
+#pragma once
+
+#include "../graph-template.hpp"
 #include "../../structure/heap/fibonacchi-heap.cpp"
 
 /**
@@ -13,10 +15,8 @@ struct MinimumSpanningTree {
 
 template< typename T >
 MinimumSpanningTree< T > prim_fibonacchi_heap(Graph< T > &g) {
-  const auto INF = numeric_limits< T >::max();
   using Heap = FibonacchiHeap< T, int >;
   using Node = typename Heap::Node;
-  using Pi = pair< T, int >;
 
   T total = 0;
   vector< Edge< T > * > dist(g.size());

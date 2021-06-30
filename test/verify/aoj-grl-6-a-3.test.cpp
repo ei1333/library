@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/push-relabel.cpp"
+#include "../../graph/flow/push-relabel.hpp"
 
 int main() {
   int V, E;
