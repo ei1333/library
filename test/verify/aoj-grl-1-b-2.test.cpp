@@ -1,9 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
-#include "../../graph/shortest-path/shortest-path-faster-algorithm.cpp"
+#include "../../graph/shortest-path/shortest-path-faster-algorithm.hpp"
 
 int main() {
   int V, E, R;

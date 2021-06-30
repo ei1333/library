@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/namori-graph.cpp"
+#include "../../graph/others/namori-graph.hpp"
 
 int main() {
   int N;

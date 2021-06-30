@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/mst/prim-fibonacchi-heap.cpp"
+#include "../../graph/mst/prim-fibonacchi-heap.hpp"
 
 int main() {
   int V, E;

@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/low-link.cpp"
+#include "../../graph/others/low-link.hpp"
 
 int main() {
   int V, E;

@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/tree/centroid-decomposition.cpp"
+#include "../../graph/tree/centroid-decomposition.hpp"
 
 #include "../../math/fft/fast-fourier-transform.cpp"
 

@@ -2,13 +2,11 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-
-#include "../../graph/shortest-path/bfs.cpp"
+#include "../../graph/shortest-path/bfs.hpp"
 
 
 int main() {
-  int N, X, Y;
+  int N;
   cin >> N;
   Graph<> g(N);
   for(int i = 0; i < N; i++) {

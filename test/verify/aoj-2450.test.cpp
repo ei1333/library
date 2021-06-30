@@ -4,7 +4,7 @@
 
 #include "../../structure/segment-tree/lazy-segment-tree.cpp"
 
-#include "../../graph/tree/heavy-light-decomposition.cpp"
+#include "../../graph/tree/heavy-light-decomposition.hpp"
 
 int main() {
   int N, Q, S[200000];

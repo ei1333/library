@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/enumerate-triangles.cpp"
+#include "../../graph/others/enumerate-triangles.hpp"
 
 int main() {
     int N, M;

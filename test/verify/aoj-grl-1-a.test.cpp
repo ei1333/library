@@ -1,9 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
-#include "../../graph/shortest-path/dijkstra.cpp"
+#include "../../graph/shortest-path/dijkstra.hpp"
 
 int main() {
   int V, E, R;

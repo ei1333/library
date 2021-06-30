@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/cycle-detection.cpp"
+#include "../../graph/others/cycle-detection.hpp"
 
 int main() {
     int N, M;

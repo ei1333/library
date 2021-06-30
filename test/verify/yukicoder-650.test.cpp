@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/tree/heavy-light-decomposition.cpp"
+#include "../../graph/tree/heavy-light-decomposition.hpp"
 
 #include "../../structure/segment-tree/segment-tree.cpp"
 

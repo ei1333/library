@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/block-cut-tree.cpp"
+#include "../../graph/others/block-cut-tree.hpp"
 
 int main() {
   int N, M;
@@ -30,7 +30,7 @@ int main() {
       sum += res;
       chmax(mx, res);
     }
-    if(idx >= bct.bc.size()) {
+    if(idx >= (int)bct.bc.size()) {
       ans[bct.group[idx][0]] = max(all - sum - weight[idx], mx);
     }
     return sum + weight[idx];

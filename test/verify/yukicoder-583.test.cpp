@@ -4,7 +4,7 @@
 
 #include "../../structure/union-find/union-find.cpp"
 
-#include "../../graph/others/eulerian-trail.cpp"
+#include "../../graph/others/eulerian-trail.hpp"
 
 int main() {
   int N, M;

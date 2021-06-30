@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/others/dominator-tree.cpp"
+#include "../../graph/others/dominator-tree.hpp"
 
 int main() {
   int N, M, S;

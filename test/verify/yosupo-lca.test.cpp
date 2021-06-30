@@ -2,9 +2,8 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-
-#include "../../graph/tree/pmormq-lowest-common-ancestor.cpp"
+#include "../../graph/graph-template.hpp"
+#include "../../graph/tree/pmormq-lowest-common-ancestor.hpp"
 
 #include "../../other/scanner.cpp"
 #include "../../other/printer.cpp"

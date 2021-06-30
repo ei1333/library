@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/gabow-edmonds.cpp"
+#include "../../graph/flow/gabow-edmonds.hpp"
 
 int main() {
   int N, M;

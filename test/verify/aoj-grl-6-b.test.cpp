@@ -2,8 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/primal-dual.cpp"
-
+#include "../../graph/flow/primal-dual.hpp"
 
 int main() {
   int V, E, F;

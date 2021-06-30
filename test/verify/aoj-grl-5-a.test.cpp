@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/tree/tree-diameter.cpp"
+#include "../../graph/tree/tree-diameter.hpp"
 
 int main() {
   int N;

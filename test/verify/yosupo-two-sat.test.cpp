@@ -5,7 +5,7 @@
 #include "../../other/scanner.cpp"
 #include "../../other/printer.cpp"
 
-#include "../../graph/others/two-satisfiability.cpp"
+#include "../../graph/others/two-satisfiability.hpp"
 
 int main() {
   Scanner input(stdin);
@@ -30,7 +30,7 @@ int main() {
   } else {
     output.writeln("s SATISFIABLE");
     output.write("v ");
-    for(int i = 0; i < ret.size(); i++) {
+    for(size_t i = 0; i < ret.size(); i++) {
       if(ret[i]) ret[i] = i + 1;
       else ret[i] = -i - 1;
     }

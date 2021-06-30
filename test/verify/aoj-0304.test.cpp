@@ -1,9 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0304"
 
 #include "../../template/template.cpp"
-#include "../../graph/graph-template.cpp"
 
-#include "../../graph/shortest-path/bellman-ford.cpp"
+#include "../../graph/shortest-path/bellman-ford.hpp"
 
 int main() {
   int N, C;

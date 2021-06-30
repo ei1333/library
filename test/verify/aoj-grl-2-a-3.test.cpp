@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/mst/boruvka.cpp"
+#include "../../graph/mst/boruvka.hpp"
 
 int main() {
   int V, E;

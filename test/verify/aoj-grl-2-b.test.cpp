@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/mst/directed-mst.cpp"
+#include "../../graph/mst/directed-mst.hpp"
 
 int main() {
   int V, E, R;

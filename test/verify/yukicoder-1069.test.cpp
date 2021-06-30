@@ -3,8 +3,8 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/graph-template.cpp"
-#include "../../graph/shortest-path/k-shortest-path.cpp"
+#include "../../graph/graph-template.hpp"
+#include "../../graph/shortest-path/k-shortest-path.hpp"
 
 int main() {
   int N, M, K;

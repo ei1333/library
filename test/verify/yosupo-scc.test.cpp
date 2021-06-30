@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/connected-components/strongly-connected-components.cpp"
+#include "../../graph/connected-components/strongly-connected-components.hpp"
 
 int main() {
   int N, M;

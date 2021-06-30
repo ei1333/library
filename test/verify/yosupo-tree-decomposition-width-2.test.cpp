@@ -7,7 +7,7 @@
 
 #include "../../structure/union-find/union-find.cpp"
 
-#include "../../graph/others/tree-decomposition.cpp"
+#include "../../graph/others/tree-decomposition.hpp"
 
 int main() {
   string x;
@@ -34,7 +34,7 @@ int main() {
     }
   }
   TreeDecomposition td(N);
-  for(int i = 0; i < A.size(); i++) {
+  for(size_t i = 0; i < A.size(); i++) {
     td.add_edge(A[i], B[i]);
   }
   auto tap = td.build();
@@ -43,11 +43,11 @@ int main() {
     return 0;
   }
   pout.writeln("s", "td", tap.size(), 2, N);
-  for(int i = 0; i < tap.size(); i++) {
+  for(size_t i = 0; i < tap.size(); i++) {
     for(auto &t : tap[i].bag) ++t;
     pout.writeln("b", i + 1, tap[i].bag);
   }
-  for(int i = 0; i < tap.size(); i++) {
+  for(size_t i = 0; i < tap.size(); i++) {
     for(auto &t : tap[i].child) pout.writeln(i + 1, t + 1);
   }
 }

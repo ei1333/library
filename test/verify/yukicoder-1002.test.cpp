@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/tree/centroid-decomposition.cpp"
+#include "../../graph/tree/centroid-decomposition.hpp"
 
 int main() {
   int N, K;

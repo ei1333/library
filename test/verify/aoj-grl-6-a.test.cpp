@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../graph/flow/dinic.cpp"
+#include "../../graph/flow/dinic.hpp"
 
 int main() {
   int V, E;
