@@ -122,6 +122,7 @@
 "test/verify/yosupo-find-linear-recurrence.test.cpp": "2021-07-02 23:41:25 +0900",
 "test/verify/yosupo-frequency-table-of-tree-distance.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-general-matching.test.cpp": "2021-07-01 02:53:34 +0900",
+"test/verify/yosupo-inv-of-formal-power-series.test.cpp": "2021-07-03 01:50:07 +0900",
 "test/verify/yosupo-k-shortest-walk.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-kth-root-integer.test.cpp": "2021-05-01 00:06:55 +0900",
 "test/verify/yosupo-lca-2.test.cpp": "2021-07-01 02:53:34 +0900",
