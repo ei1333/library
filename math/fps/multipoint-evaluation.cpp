@@ -1,16 +1,12 @@
-#include "formal-power-series.cpp"
-#include "inv.cpp"
-
-template< typename T >
+template< template< typename > class FPS, typename Mint >
 struct PolyBuf {
-  using FPS = FormalPowerSeries< T >;
-  const FPS xs;
+  const FPS< Mint > xs;
   using pi = pair< int, int >;
-  map< pi, FPS > buf;
+  map< pi, FPS< Mint > > buf;
 
-  PolyBuf(const FPS &xs) : xs(xs) {}
+  PolyBuf(const FPS< Mint > &xs) : xs(xs) {}
 
-  const FPS &query(int l, int r) {
+  const FPS< Mint > &query(int l, int r) {
     if(buf.count({l, r})) return buf[{l, r}];
     if(l + 1 == r) return buf[{l, r}] = {-xs[l], 1};
     return buf[{l, r}] = query(l, (l + r) >> 1) * query((l + r) >> 1, r);
@@ -18,12 +14,11 @@ struct PolyBuf {
 };
 
 
-template< typename T >
-FormalPowerSeries< T > multipoint_evaluation(const FormalPowerSeries< T > &as, const FormalPowerSeries< T > &xs, PolyBuf< T > &buf) {
-  using FPS = FormalPowerSeries< T >;
-  FPS ret;
+template< template< typename > class FPS, typename Mint >
+FPS< Mint > multipoint_evaluation(const FPS< Mint > &as, const FPS< Mint > &xs, PolyBuf< FPS, Mint > &buf) {
+  FPS< Mint > ret;
   const int B = 64;
-  function< void(FPS, int, int) > rec = [&](FPS a, int l, int r) -> void {
+  function< void(FPS< Mint >, int, int) > rec = [&](FPS< Mint > a, int l, int r) -> void {
     a %= buf.query(l, r);
     if(a.size() <= B) {
       for(int i = l; i < r; i++) ret.emplace_back(a(xs[i]));
@@ -36,9 +31,9 @@ FormalPowerSeries< T > multipoint_evaluation(const FormalPowerSeries< T > &as, c
   return ret;
 };
 
-template< typename T >
-FormalPowerSeries< T > multipoint_evaluation(const FormalPowerSeries< T > &as, const FormalPowerSeries< T > &xs) {
-  PolyBuf< T > buff(xs);
+template< template< typename > class FPS, typename Mint >
+FPS< Mint > multipoint_evaluation(const FPS< Mint > &as, const FPS< Mint > &xs) {
+  PolyBuf< FPS, Mint > buff(xs);
   return multipoint_evaluation(as, xs, buff);
 }
 
