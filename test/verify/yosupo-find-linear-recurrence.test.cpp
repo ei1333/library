@@ -3,9 +3,7 @@
 #include "../../template/template.cpp"
 
 #include "../../math/combinatorics/mod-int.cpp"
-
-#include "../../math/fps/formal-power-series.cpp"
-
+#include "../../math/fps/formal-power-series-friendly-ntt.cpp"
 #include "../../math/fps/berlekamp-massey.cpp"
 
 const int MOD = 998244353;
@@ -14,11 +12,11 @@ using mint = ModInt< MOD >;
 int main() {
   int N;
   cin >> N;
-  FormalPowerSeries< mint > A(N);
-  cin >> A;
-  auto C = berlekamp_massey(A);
-  const int d = (int) C.size() - 1;
-  cout << d << endl;
-  for(int j = 1; j <= d; j++) cout << C[d - j] << " ";
-  cout << endl;
+  FPS< mint > a(N);
+  cin >> a;
+  auto c = berlekamp_massey(a);
+  c.pop_back();
+  reverse(begin(c), end(c));
+  cout << c.size() << "\n";
+  cout << c << "\n";
 }

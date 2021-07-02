@@ -1,14 +1,14 @@
-#pragma once
-#include "formal-power-series.cpp"
-
-template< typename T >
-FormalPowerSeries< T > stirling_second(int N) {
-  FormalPowerSeries< T > A(N + 1), B(N + 1);
-  T tmp = 1;
+/**
+ * @brief Stirling-Second(第二種スターリング数)
+ */
+template< template< typename > class FPS, typename Mint >
+FPS< Mint > stirling_second(int N) {
+  FPS< Mint > A(N + 1), B(N + 1);
+  Mint tmp = 1;
   for(int i = 0; i <= N; i++) {
-    T rev = T(1) / tmp;
-    A[i] = T(i).pow(N) * rev;
-    B[i] = T(1) * rev;
+    Mint rev = Mint(1) / tmp;
+    A[i] = Mint(i).pow(N) * rev;
+    B[i] = Mint(1) * rev;
     if(i & 1) B[i] *= -1;
     tmp *= i + 1;
   }
