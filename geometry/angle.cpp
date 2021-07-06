@@ -11,7 +11,7 @@ namespace geometry {
 
   // smaller angle of the a-b-c
   Real get_smaller_angle(const Point &a, const Point &b, const Point &c) {
-    const Point v(b - a), w(c - b);
+    const Point v(a - b), w(c - b);
     auto alpha = atan2(imag(v), real(v));
     auto beta = atan2(imag(w), real(w));
     if(alpha > beta) swap(alpha, beta);
