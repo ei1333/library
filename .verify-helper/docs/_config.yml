@@ -6,9 +6,6 @@ plugins:
 - jemoji
 - jekyll-remote-theme
 
-remote_theme: ei1333/minima
-theme: null
-
 lang: ja
 
 timezone: Asia/Tokyo
