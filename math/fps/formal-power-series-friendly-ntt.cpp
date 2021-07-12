@@ -323,9 +323,11 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
       if(k & 1) {
         ret *= x;
         ret -= get_div(ret) * g;
+        ret.shrink();
       }
       x *= x;
       x -= get_div(x) * g;
+      x.shrink();
       k >>= 1;
     }
     return ret;

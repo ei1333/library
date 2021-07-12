@@ -232,6 +232,7 @@ struct FormalPowerSeries : vector< T > {
     return *this;
   }
 
+  // https://yukicoder.me/problems/no/215
   P mod_pow(int64_t k, P g) const {
     P modinv = g.rev().inv();
     auto get_div = [&](P base) {
@@ -247,9 +248,11 @@ struct FormalPowerSeries : vector< T > {
       if(k & 1) {
         ret *= x;
         ret -= get_div(ret) * g;
+        ret.shrink();
       }
       x *= x;
       x -= get_div(x) * g;
+      x.shrink();
       k >>= 1;
     }
     return ret;

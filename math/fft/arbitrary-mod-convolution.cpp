@@ -10,7 +10,7 @@ struct ArbitraryModConvolution {
 
   ArbitraryModConvolution() = default;
 
-  vector< T > multiply(const vector< T > &a, const vector< T > &b, int need = -1) {
+  static vector< T > multiply(const vector< T > &a, const vector< T > &b, int need = -1) {
     if(need == -1) need = a.size() + b.size() - 1;
     int nbase = 0;
     while((1 << nbase) < need) nbase++;
