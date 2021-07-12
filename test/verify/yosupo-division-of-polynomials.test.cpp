@@ -31,7 +31,6 @@ int main() {
     g.emplace_back(x);
   }
   auto[q, r] = f.div_mod(g);
-  r.shrink();
   out.writeln(q.size(), r.size());
   for(int i = 0; i < q.size(); i++) {
     if(i > 0) out.write(' ');

@@ -12,7 +12,7 @@ using mint = ModInt< MOD >;
 int main() {
   int N, M;
   cin >> N >> M;
-  FPS< mint > as(N), xs(M);
-  cin >> as >> xs;
-  cout << multipoint_evaluation(as, xs) << endl;
+  FPS< mint > f(N), xs(M);
+  cin >> f >> xs;
+  cout << multipoint_evaluation(f, xs) << endl;
 }

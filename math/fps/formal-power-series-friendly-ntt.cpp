@@ -73,13 +73,17 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
   }
 
   P &operator%=(const P &r) {
-    return *this -= *this / r * r;
+    *this -= *this / r * r;
+    shrink();
+    return *this;
   }
 
   // https://judge.yosupo.jp/problem/division_of_polynomials
   pair< P, P > div_mod(const P &r) {
     P q = *this / r;
-    return make_pair(q, *this - q * r);
+    P x = *this - q * r;
+    x.shrink();
+    return make_pair(q, x);
   }
 
   P operator-() const {
