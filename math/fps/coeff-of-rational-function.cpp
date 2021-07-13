@@ -1,9 +1,9 @@
 /**
- * @brief Linear-Recursion-Formula
- * @docs docs/linear-recursion-formula.md
+ * @brief Coeff of Rational Function
+ * @docs docs/coeff-of-rational-function.md
  */
 template< template< typename > class FPS, typename Mint >
-Mint linear_recursion_formula(FPS< Mint > P, FPS< Mint > Q, int64_t k) {
+Mint coeff_of_rational_function(FPS< Mint > P, FPS< Mint > Q, int64_t k) {
   // compute the coefficient [x^k] P/Q of rational power series
   Mint ret = 0;
   if(P.size() >= Q.size()) {
