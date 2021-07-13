@@ -1,3 +1,6 @@
+/**
+ * @brief Enumeration(組み合わせ)
+ */
 template< typename T >
 struct Enumeration {
 private:
