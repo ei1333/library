@@ -1,5 +1,5 @@
 /**
- * @brief Mod-Tetration(テトレーション)
+ * @brief Mod Tetration(テトレーション)
  * @docs docs/mod-tetration.md
  */
 template< typename T >

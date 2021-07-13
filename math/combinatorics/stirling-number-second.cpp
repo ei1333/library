@@ -1,7 +1,7 @@
 #include "enumeration.cpp"
 
 /**
- * @brief Stirling-Number-Second(第2種スターリング数)
+ * @brief Stirling Number Second(第2種スターリング数)
  * @docs docs/stirling-number-second.md
  */
 template< typename T >

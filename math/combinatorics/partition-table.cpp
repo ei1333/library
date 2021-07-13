@@ -1,5 +1,5 @@
 /**
- * @brief Partition-Table(分割数テーブル)
+ * @brief Partition Table(分割数テーブル)
  * @docs docs/partition-table.md
  */
 template< typename T >

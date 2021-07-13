@@ -1,3 +1,6 @@
+/**
+ * @brief Mod Sqrt
+ */
 template< typename T >
 T mod_sqrt(const T &a, const T &p) {
   if(a == 0) return 0;

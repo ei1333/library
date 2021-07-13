@@ -1,5 +1,5 @@
 /**
- * @brief Mod-Pow(べき乗)
+ * @brief Mod Pow(べき乗)
  * @docs docs/mod-pow.md
  */
 template< typename T >

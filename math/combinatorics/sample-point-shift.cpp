@@ -1,7 +1,7 @@
 #include "enumeration.cpp"
 
 /**
- * @brief Sample-Point-Shift
+ * @brief Sample Point Shift(標本点シフト)
  */
 template< typename Mint, typename F >
 vector< Mint > sample_point_shift(const vector< Mint > &ys, const Mint &m, const F &multiply) {
