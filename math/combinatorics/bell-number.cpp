@@ -1,7 +1,7 @@
 #include "enumeration.cpp"
 
 /**
- * @brief Bell-Number(ベル数)
+ * @brief Bell Number(ベル数)
  * @docs docs/bell-number.md
  */
 template< typename T >

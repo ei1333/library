@@ -1,7 +1,7 @@
 #include "fast-fourier-transform.cpp"
 
 /*
- * @brief Arbitrary-Mod-Convolution(任意mod畳み込み)
+ * @brief Arbitrary Mod Convolution(任意mod畳み込み)
  */
 template< typename T >
 struct ArbitraryModConvolution {

@@ -1,5 +1,5 @@
 /**
- * @brief Number-Theoretic-Transform-Friendly-Mod-Int
+ * @brief Number Theoretic Transform Friendly Mod Int
  */
 template< typename Mint >
 struct NumberTheoreticTransformFriendlyModInt {
