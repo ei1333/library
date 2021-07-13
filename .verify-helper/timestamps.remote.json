@@ -125,6 +125,7 @@
 "test/verify/yosupo-inv-of-formal-power-series.test.cpp": "2021-07-13 01:03:05 +0900",
 "test/verify/yosupo-k-shortest-walk.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-kth-root-integer.test.cpp": "2021-05-01 00:06:55 +0900",
+"test/verify/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp": "2021-07-13 19:38:41 +0900",
 "test/verify/yosupo-lca-2.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-lca-3.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-lca.test.cpp": "2021-07-01 02:53:34 +0900",
