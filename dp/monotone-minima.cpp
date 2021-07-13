@@ -1,5 +1,5 @@
 /**
- * @brief Monotone-Minima
+ * @brief Monotone Minima
  * @docs docs/monotone-minima.md
  */
 template< typename T, typename Compare = less< T > >

@@ -1,5 +1,5 @@
 /**
- * @brief Knapsack-Limitations(個数制限つきナップサック問題) $O(NW)$
+ * @brief Knapsack Limitations(個数制限つきナップサック問題) $O(NW)$
  * @docs docs/knapsack-limitations.md
  */
 template< typename T, typename Compare = greater< T > >

@@ -1,5 +1,5 @@
 /**
- * @brief Edit-Distance(編集距離)
+ * @brief Edit Distance(編集距離)
  * @docs docs/edit-distance.md
  */
 int edit_distance(const string &S, const string &T) {

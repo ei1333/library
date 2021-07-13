@@ -1,7 +1,7 @@
 #include "monotone-minima.cpp"
 
 /**
- * @brief Divide-And-Conquer-Optimization
+ * @brief Divide And Conquer Optimization
  * @docs docs/divide-and-conquer-optimization.md
  */
 template< typename T, typename Compare = less< T > >

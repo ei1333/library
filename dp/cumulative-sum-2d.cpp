@@ -1,5 +1,5 @@
 /**
- * @brief Cumulative-Sum-2D(二次元累積和)
+ * @brief Cumulative Sum 2D(二次元累積和)
  * @docs docs/cumulative-sum-2d.md
 */
 template< class T >

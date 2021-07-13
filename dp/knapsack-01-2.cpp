@@ -1,5 +1,5 @@
 /**
- * @brief Knapsack-01(0-1ナップサック問題) $O(N \sum {v_i})$
+ * @brief Knapsack 01(0-1ナップサック問題) $O(N \sum {v_i})$
  * @docs docs/knapsack-01-2.md
  */
 template< typename T >

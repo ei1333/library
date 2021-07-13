@@ -1,5 +1,5 @@
 /**
- * @brief Knapsack-01(0-1ナップサック問題) $O(NW)$
+ * @brief Knapsack 01(0-1ナップサック問題) $O(NW)$
  * @docs docs/knapsack-01.md
  */
 template< typename T, typename Compare = greater< T > >

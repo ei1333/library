@@ -1,7 +1,7 @@
 #include "monotone-minima.cpp"
 
 /**
- * @brief  Online-Offline-DP(オンライン・オフライン変換)
+ * @brief  Online Offline DP(オンライン・オフライン変換)
  * @docs docs/online-offline-dp.md
  */
 template< typename T, typename Compare = less< T > >

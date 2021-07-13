@@ -1,9 +1,5 @@
 /**
- * @brief Cumulative-Sum(一次元累積和)
- * @docs docs/cumulative-sum.md
- */
-/**
- * @brief Cumulative-Sum(一次元累積和)
+ * @brief Cumulative Sum(一次元累積和)
  * @docs docs/cumulative-sum.md
  */
 template< class T >
