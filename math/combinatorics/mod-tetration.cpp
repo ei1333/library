@@ -1,5 +1,5 @@
 #include "mod-pow.cpp"
-#include "euler-phi.cpp"
+#include "../number-theory/euler-phi.cpp"
 
 /**
  * @brief Mod Tetration(テトレーション)

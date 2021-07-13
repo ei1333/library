@@ -2,9 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../math/combinatorics/mod-pow.cpp"
-#include "../../math/number-theory/euler-phi.cpp"
-
 #include "../../math/combinatorics/mod-tetration.cpp"
 
 int main() {
