@@ -1,5 +1,5 @@
 /**
- * @brief Berlekamp-Massey
+ * @brief Berlekamp Massey
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > berlekamp_massey(const FPS< Mint > &s) {

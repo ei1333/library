@@ -1,5 +1,5 @@
 /**
- * @brief Coeff-Of-Rational-Function
+ * @brief Coeff of Rational Function
  * @docs docs/coeff-of-rational-function.md
  */
 template< template< typename > class FPS, typename Mint >

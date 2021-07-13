@@ -1,7 +1,7 @@
 #include "subproduct-tree.cpp"
 
 /**
- * @brief Polynomial-Interpolation(多項式補間)
+ * @brief Polynomial Interpolation(多項式補間)
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > polynomial_interpolation(const FPS< Mint > &xs, const FPS< Mint > &ys) {

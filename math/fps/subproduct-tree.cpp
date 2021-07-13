@@ -1,5 +1,5 @@
 /**
- * @brief Subproduct-Tree
+ * @brief Subproduct Tree
  */
 template< template< typename > class FPS, typename Mint >
 vector< FPS< Mint > > subproduct_tree(const FPS< Mint > &xs) {

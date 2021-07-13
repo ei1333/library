@@ -1,7 +1,7 @@
 #include "subproduct-tree.cpp"
 
 /**
- * @brief Multipoint-Evaluation
+ * @brief Multipoint Evaluation
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > multipoint_evaluation(const FPS< Mint > &f, const FPS< Mint > &xs) {

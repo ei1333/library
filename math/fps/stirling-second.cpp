@@ -1,5 +1,5 @@
 /**
- * @brief Stirling-Second(第二種スターリング数)
+ * @brief Stirling Second(第二種スターリング数)
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > stirling_second(int N) {

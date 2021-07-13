@@ -1,5 +1,5 @@
 /**
- * @brief Stirling-First(第一種スターリング数)
+ * @brief Stirling First(第一種スターリング数)
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > stirling_first(int N) {

@@ -1,7 +1,7 @@
 #include "../fft/arbitrary-mod-convolution.cpp"
 
 /**
- * @brief Formal-Power-Series(形式的冪級数)
+ * @brief Formal Power Series(形式的冪級数)
  */
 template< typename T >
 struct FormalPowerSeries : vector< T > {

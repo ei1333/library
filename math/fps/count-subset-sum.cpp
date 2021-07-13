@@ -1,5 +1,5 @@
 /**
- * @brief Count-Subset-Sum
+ * @brief Count Subset Sum
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > count_subset_sum(vector< Mint > &c) {
