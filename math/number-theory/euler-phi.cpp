@@ -1,5 +1,5 @@
 /**
- * @brief Euler's-Phi-Function(オイラーのφ関数)
+ * @brief Euler's Phi(オイラーのφ関数)
  * @docs docs/euler-phi.md
  */
 template< typename T >

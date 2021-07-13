@@ -1,5 +1,5 @@
 /**
- * @brief Convert-Base(進数変換)
+ * @brief Convert Base(進数変換)
  * @docs docs/convert-base.md
  */
 template< typename T >

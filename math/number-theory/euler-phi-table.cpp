@@ -1,5 +1,5 @@
 /**
- * @brief Euler’s-Phi-Function-Table(オイラーのφ関数テーブル)
+ * @brief Euler’s Phi Table(オイラーのφ関数テーブル)
  * @docs docs/euler-phi-table.md
  */
 vector< int > euler_phi_table(int n) {

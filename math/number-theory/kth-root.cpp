@@ -1,5 +1,5 @@
 /**
- * @brief Kth-Root
+ * @brief Kth Root
  * @docs docs/kth-root.md
  */
 uint64_t kth_root(uint64_t a, int k) {

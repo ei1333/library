@@ -1,7 +1,7 @@
 #include "prime-table.cpp"
 
 /**
- * @brief Enumerate-Primes(素数列挙)
+ * @brief Enumerate Primes(素数列挙)
  * @docs docs/enumerate-primes.md
  */
 vector< int > enumerate_primes(int n) {

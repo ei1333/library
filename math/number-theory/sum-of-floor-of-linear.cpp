@@ -1,5 +1,5 @@
 /**
- * @brief Sum-Of-Floor-Of-Linear(一次関数の床関数の和)
+ * @brief Sum of Floor of Linear(一次関数の床関数の和)
  * @docs docs/sum-of-floor-of-linear.md
  */
 template< typename T >

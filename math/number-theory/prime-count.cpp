@@ -1,5 +1,5 @@
 /**
- * @brief Prime-Count(素数の個数)
+ * @brief Prime Count(素数の個数)
  */
 template< int64_t LIM = 100000000000LL >
 struct PrimeCount {
