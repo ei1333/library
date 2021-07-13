@@ -1,5 +1,6 @@
 /**
  * @brief Linear-Recursion-Formula
+ * @docs docs/linear-recursion-formula.md
  */
 template< template< typename > class FPS, typename Mint >
 Mint linear_recursion_formula(FPS< Mint > P, FPS< Mint > Q, int64_t k) {
