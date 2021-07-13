@@ -1,13 +1,10 @@
-#pragma once
-
-#include "../../graph/template.hpp"
-
-template< typename T >
-vector< int > maximum_independent_set(const Matrix< T > &g, int trial = 1000000) {
-
+/**
+ * @brief Maximum Independent Set(最大独立集合)
+ */
+template< typename Matrix >
+vector< int > maximum_independent_set(const Matrix &g, int trial = 1000000) {
   int N = (int) g.size();
   vector< uint64_t > bit(N);
-
   assert(N <= 64);
   for(int i = 0; i < N; i++) {
     for(int j = 0; j < N; j++) {

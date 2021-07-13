@@ -2,13 +2,14 @@
 
 #include "../../template/template.cpp"
 
+#include "../../math/matrix/square-matrix.cpp"
 #include "../../graph/others/enumerate-cliques.hpp"
 
 int main() {
   int N, M;
   cin >> N >> M;
-  Matrix< bool > g(N, vector< bool >(N));
-  Matrix< int > h(N, vector< int >(N));
+  SquareMatrix< bool, 100 > g;
+  SquareMatrix< int, 100 > h;
   for(int i = 0; i < M; i++) {
     int x, y, z;
     cin >> x >> y >> z;

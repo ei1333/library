@@ -2,12 +2,13 @@
 
 #include "../../template/template.cpp"
 
+#include "../../math/matrix/matrix.cpp"
 #include "../../graph/others/maximum-independent-set.hpp"
 
 int main() {
   int N, M;
   cin >> N >> M;
-  Matrix < int > mat(N, vector< int >(N));
+  Matrix< bool > mat(N);
   for(int i = 0; i < M; i++) {
     int a, b;
     cin >> a >> b;

@@ -2,13 +2,18 @@
 
 #include "../../template/template.cpp"
 
+#include "../../math/matrix/square-matrix.cpp"
 #include "../../graph/shortest-path/warshall-floyd.hpp"
 
 int main() {
   int V, E;
   scanf("%d %d", &V, &E);
-  Matrix< int > mat(V, vector< int >(V, INT_MAX));
-  for(int i = 0; i < V; i++) mat[i][i] = 0;
+  SquareMatrix< int, 100 > mat;
+  for(int i = 0; i < 100; i++) {
+    for(int j = 0; j < 100; j++) {
+      if(i != j) mat[i][j] = INT_MAX;
+    }
+  }
   for(int i = 0; i < E; i++) {
     int x, y, z;
     scanf("%d %d %d", &x, &y, &z);

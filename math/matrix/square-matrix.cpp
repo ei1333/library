@@ -5,9 +5,9 @@ template< class T, size_t N >
 struct SquareMatrix {
   array< array< T, N >, N > A;
 
-  SquareMatrix() = default;
+  SquareMatrix() : A{{}} {}
 
-  size_t size() { return N; }
+  size_t size() const { return N; }
 
   inline const array< T, N > &operator[](int k) const {
     return (A.at(k));

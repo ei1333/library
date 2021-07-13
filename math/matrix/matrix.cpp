@@ -8,6 +8,12 @@ struct Matrix {
 
   Matrix(size_t n) : A(n, vector< T >(n, 0)) {};
 
+  size_t size() const {
+     if(A.empty()) return 0;
+     assert(A.size() == A[0].size());
+     return A.size();
+  }
+
   size_t height() const {
     return (A.size());
   }
