@@ -1,5 +1,5 @@
 /**
- * @brief Prime-Table(素数テーブル)
+ * @brief Prime Table(素数テーブル)
  * @docs docs/prime-table.md
  */
 vector< bool > prime_table(int n) {
