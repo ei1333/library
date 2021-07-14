@@ -1,5 +1,6 @@
 /**
  * @brief Bell(ベル数)
+ * @docs docs/bell.md
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > bell(int N) {
@@ -8,7 +9,7 @@ FPS< Mint > bell(int N) {
   poly = poly.exp();
   poly[0] -= 1;
   poly = poly.exp();
-  FPS mul = 1;
+  Mint mul = 1;
   for(int i = 0; i <= N; i++) {
     ret[i] = poly[i] * mul;
     mul *= i + 1;
