@@ -1,4 +1,9 @@
 // https://qiita.com/Kutimoti_T/items/5b579773e0a24d650bdf
+
+/**
+ * @brief Gabow Edmonds(一般グラフの最大マッチング)
+ * @docs docs/gabow-edmonds.md
+ */
 struct GabowEdmonds {
 
   struct edge {

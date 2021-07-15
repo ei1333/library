@@ -1,3 +1,7 @@
+/**
+ * @brief Primal Dual
+ * @docs docs/primal-dual.md
+ */
 template< typename flow_t, typename cost_t >
 struct PrimalDual {
   struct edge {
