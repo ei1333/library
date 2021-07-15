@@ -4,7 +4,7 @@
 #include "../../structure/heap/skew-heap.cpp"
 
 /**
- * @brief Directed-MST(最小有向全域木)
+ * @brief Directed MST(最小有向全域木)
  * @docs docs/directed-mst.md
  */
 template< typename T >

@@ -3,7 +3,7 @@
 #include "../graph-template.hpp"
 
 /**
- * @brief Manhattan-MST
+ * @brief Manhattan MST
  */
 template< typename T >
 Edges< T > manhattan_mst(vector< T > xs, vector< T > ys) {

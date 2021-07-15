@@ -4,7 +4,7 @@
 #include "../../structure/heap/fibonacchi-heap.cpp"
 
 /**
- * @brief Prim-Fibonacchi-Heap(最小全域木)
+ * @brief Prim Fibonacchi Heap(最小全域木)
  * @docs docs/prim-fibonacchi-heap.md
  */
 template< typename T >

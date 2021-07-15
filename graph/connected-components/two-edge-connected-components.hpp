@@ -4,7 +4,7 @@
 #include "../others/low-link.hpp"
 
 /**
- * @brief Two-Edge-Connected-Components(二重辺連結成分分解)
+ * @brief Two Edge Connected Components(二重辺連結成分分解)
  * @docs docs/two-edge-connected-components.md
  */
 template< typename T = int >

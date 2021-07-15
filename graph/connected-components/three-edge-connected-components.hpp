@@ -4,7 +4,7 @@
 #include "incremental-bridge-connectivity.hpp"
 
 /**
- * @brief Three-Edge-Connected-Components(三重辺連結成分分解)
+ * @brief Three Edge Connected Components(三重辺連結成分分解)
  */
 template< typename T = int >
 struct ThreeEdgeConnectedComponents : Graph< T > {
