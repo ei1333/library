@@ -1,4 +1,7 @@
-vector< int > moebius_mu_table(int n) {
+/**
+ * @brief Moebius Table(メビウス関数テーブル)
+ */
+vector< int > moebius_table(int n) {
   vector< int > mu(n + 1, 1), p(n + 1, 1);
   for(int i = 2; i <= n; i++) {
     if(p[i] == 1) {
