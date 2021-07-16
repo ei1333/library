@@ -2,8 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../math/number-theory/kth-root.cpp"
-#include "../../math/number-theory/prime-table.cpp"
 #include "../../math/number-theory/prime-count.cpp"
 
 int main() {
