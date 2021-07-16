@@ -3,7 +3,7 @@
 #include "../../template/template.cpp"
 #include "../../math/combinatorics/mod-int.cpp"
 
-#include "../../graph/others/tree-decomposition.hpp"
+#include "../../graph/others/tree-decomposition-width-2.hpp"
 
 const int MOD = 1000003;
 using Mint = ModInt< MOD >;
@@ -11,7 +11,7 @@ using Mint = ModInt< MOD >;
 int main() {
   int N, M;
   while(cin >> N >> M, N) {
-    TreeDecomposition td(N);
+    TreeDecompositionWidth2 td(N);
     set< pair< int, int > > edges;
     for(int i = 0; i < N; i++) {
       td.add_edge(i, (i + 1) % N);

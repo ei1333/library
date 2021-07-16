@@ -7,7 +7,7 @@
 
 #include "../../structure/union-find/union-find.cpp"
 
-#include "../../graph/others/tree-decomposition.hpp"
+#include "../../graph/others/tree-decomposition-width-2.hpp"
 
 int main() {
   string x;
@@ -33,7 +33,7 @@ int main() {
       }
     }
   }
-  TreeDecomposition td(N);
+  TreeDecompositionWidth2 td(N);
   for(size_t i = 0; i < A.size(); i++) {
     td.add_edge(A[i], B[i]);
   }

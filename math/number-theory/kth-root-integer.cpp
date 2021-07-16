@@ -1,8 +1,8 @@
 /**
- * @brief Kth Root
- * @docs docs/kth-root.md
+ * @brief Kth Root Integer
+ * @docs docs/kth-root-integer.md
  */
-uint64_t kth_root(uint64_t a, int k) {
+uint64_t kth_root_integer(uint64_t a, int k) {
   if(k == 1) return a;
   auto check = [&](uint32_t x) {
     uint64_t mul = 1;

@@ -1,9 +1,9 @@
 #pragma once
 
 /**
- * @brief Tree-Decomposition(木分解)
+ * @brief Tree Decomposition Width 2(木幅2の木分解)
  * @see https://ei1333.hateblo.jp/entry/2020/02/12/150319
- * @docs docs/tree-decomposition.md
+ * @docs docs/tree-decomposition-width-2.md
  */
 struct DecompNode {
   vector< int > bag, child;
@@ -11,11 +11,11 @@ struct DecompNode {
   DecompNode() = default;
 };
 
-struct TreeDecomposition {
+struct TreeDecompositionWidth2 {
 
   vector< vector< int > > g;
 
-  explicit TreeDecomposition(int V) : g(V) {}
+  explicit TreeDecompositionWidth2(int V) : g(V) {}
 
   void add_edge(int a, int b) {
     g[a].emplace_back(b);
