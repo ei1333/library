@@ -107,6 +107,7 @@
 "test/verify/yosupo-cartesian-tree.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-chromatic-number.test.cpp": "2021-07-16 02:43:54 +0900",
 "test/verify/yosupo-convolution-mod.test.cpp": "2021-05-01 00:06:55 +0900",
+"test/verify/yosupo-counting-primes.test.cpp": "2021-07-17 08:42:53 +0900",
 "test/verify/yosupo-cycle-detection.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-directedmst.test.cpp": "2021-07-16 02:06:57 +0900",
 "test/verify/yosupo-discrete-logarithm-mod.test.cpp": "2021-07-13 21:04:36 +0900",
