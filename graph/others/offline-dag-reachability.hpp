@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../graph-template.hpp"
+#include "topological-sort.hpp"
 
 /**
  * @brief Offline-Dag-Reachability(DAGの到達可能性クエリ)

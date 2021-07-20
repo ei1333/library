@@ -2,7 +2,6 @@
 
 #include "../../template/template.cpp"
 #include "../../graph/shortest-path/dijkstra.hpp"
-#include "../../graph/others/topological-sort.hpp"
 #include "../../graph/others/offline-dag-reachability.hpp"
 
 int main() {

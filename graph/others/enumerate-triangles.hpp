@@ -3,7 +3,8 @@
 #include "../graph-template.hpp"
 
 /**
- * @brief Enumerate-Triangles(三角形全列挙)
+ * @brief Enumerate Triangles(三角形全列挙)
+ * @docs docs/enumerate-triangles.md
  */
 template< typename T >
 vector< tuple< int, int, int > > enumerate_triangles(const Graph< T >& g) {
