@@ -3,7 +3,7 @@
 #include "../graph-template.hpp"
 
 /**
- * @brief Dominator-Tree
+ * @brief Dominator Tree
  * @docs docs/dominator-tree.md
  * @see http://sigma425.hatenablog.com/entry/2015/12/25/224053
  */

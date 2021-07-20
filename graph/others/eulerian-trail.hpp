@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @brief Eulerian-Trail(オイラー路)
+ * @brief Eulerian Trail(オイラー路)
  * @docs docs/eulerian-trail.md
  */
 template< bool directed >

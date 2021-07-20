@@ -4,7 +4,7 @@
 #include "../connected-components/bi-connected-components.hpp"
 
 /**
- * @brief Block-Cut-Tree
+ * @brief Block Cut Tree
  * @see https://ei1333.hateblo.jp/entry/2020/03/25/010057
  */
 template< typename T = int >

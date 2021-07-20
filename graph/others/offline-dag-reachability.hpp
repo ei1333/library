@@ -4,7 +4,7 @@
 #include "topological-sort.hpp"
 
 /**
- * @brief Offline-Dag-Reachability(DAGの到達可能性クエリ)
+ * @brief Offline Dag Reachability(DAGの到達可能性クエリ)
  * @docs docs/offline-dag-reachability.md
  */
 

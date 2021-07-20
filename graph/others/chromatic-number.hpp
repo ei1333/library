@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @brief Chromatic-Number(彩色数)
+ * @brief Chromatic Number(彩色数)
  * @docs docs/chromatic-number.md
  * @see https://www.slideshare.net/wata_orz/ss-12131479
  */

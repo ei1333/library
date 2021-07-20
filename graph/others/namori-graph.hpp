@@ -3,7 +3,7 @@
 #include "../graph-template.hpp"
 
 /**
- * @brief Namori-Graph
+ * @brief Namori Graph
  * @docs docs/namori-graph.md
  */
 template< typename T = int >
