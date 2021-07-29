@@ -21,11 +21,11 @@ public:
   explicit DoublingLowestCommonAncestor(const Graph< T > &g)
       : LOG(32 - __builtin_clz(g.size())), Graph< T >(g) {}
 
-  void build() {
+  void build(int root = 0) {
     dep.assign(g.size(), 0);
     sum.assign(g.size(), 0);
     table.assign(LOG, vector< int >(g.size(), -1));
-    dfs(0, -1, 0);
+    dfs(root, -1, 0);
     for(int k = 0; k + 1 < LOG; k++) {
       for(int i = 0; i < (int)table[k].size(); i++) {
         if(table[k][i] == -1) table[k + 1][i] = -1;
