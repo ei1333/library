@@ -2,8 +2,9 @@
  * @brief Lagrange Polynomial(多項式補間, 値)
  */
 template< typename Mint, typename F >
-vector< Mint > lagrange_polynomial(const vector< Mint > &y, const int64_t &T, const int &m, const F &multiply) {
+vector< Mint > lagrange_polynomial(const vector< Mint > &y, int64_t T, const int &m, const F &multiply) {
   int k = (int) y.size() - 1;
+  T %= Mint::get_mod();
   if(T <= k) {
     vector< Mint > ret(m);
     int ptr = 0;
@@ -18,7 +19,13 @@ vector< Mint > lagrange_polynomial(const vector< Mint > &y, const int64_t &T, co
     }
     return ret;
   }
-
+  if(T + m > Mint::get_mod()) {
+    auto pref = lagrange_polynomial(y, T, Mint::get_mod() - T, multiply);
+    auto suf = lagrange_polynomial(y, 0, m - pref.size(), multiply);
+    copy(begin(suf), end(suf), back_inserter(pref));
+    return pref;
+  }
+  
   vector< Mint > finv(k + 1, 1), d(k + 1);
   for(int i = 2; i <= k; i++) finv[k] *= i;
   finv[k] = Mint(1) / finv[k];
@@ -29,7 +36,9 @@ vector< Mint > lagrange_polynomial(const vector< Mint > &y, const int64_t &T, co
   }
 
   vector< Mint > h(m + k);
-  for(int i = 0; i < m + k; i++) h[i] = Mint(1) / (T - k + i);
+  for(int i = 0; i < m + k; i++) {
+    h[i] = Mint(1) / (T - k + i);
+  }
 
   auto dh = multiply(d, h);
 
