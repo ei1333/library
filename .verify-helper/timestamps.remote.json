@@ -163,6 +163,7 @@
 "test/verify/yosupo-segment-add-get-min.test.cpp": "2021-05-01 00:06:55 +0900",
 "test/verify/yosupo-set-xor-min.test.cpp": "2021-05-01 00:06:55 +0900",
 "test/verify/yosupo-sharp-p-subset-sum.test.cpp": "2021-07-13 20:39:58 +0900",
+"test/verify/yosupo-shift-of-sampling-points-of-polynomial.test.cpp": "2021-08-02 23:29:30 +0900",
 "test/verify/yosupo-shortest-path.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-sparse-matrix-det.test.cpp": "2021-07-13 20:39:58 +0900",
 "test/verify/yosupo-sqrt-mod.test.cpp": "2021-07-13 21:04:36 +0900",
