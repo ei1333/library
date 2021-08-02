@@ -105,6 +105,7 @@
 "test/verify/yosupo-bipartite-edge-coloring.test.cpp": "2021-07-21 02:10:43 +0900",
 "test/verify/yosupo-bipartitematching.test.cpp": "2021-07-01 02:53:34 +0900",
 "test/verify/yosupo-bitwise-and-convolution-2.test.cpp": "2021-08-02 23:35:50 +0900",
+"test/verify/yosupo-bitwise-and-convolution-3.test.cpp": "2021-08-02 23:42:42 +0900",
 "test/verify/yosupo-bitwise-and-convolution.test.cpp": "2021-08-01 19:41:34 +0900",
 "test/verify/yosupo-bitwise-xor-convolution.test.cpp": "2021-08-01 19:15:32 +0900",
 "test/verify/yosupo-cartesian-tree.test.cpp": "2021-07-21 02:10:43 +0900",
