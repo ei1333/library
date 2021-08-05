@@ -110,6 +110,7 @@
 "test/verify/yosupo-bitwise-xor-convolution.test.cpp": "2021-08-01 19:15:32 +0900",
 "test/verify/yosupo-cartesian-tree.test.cpp": "2021-07-21 02:10:43 +0900",
 "test/verify/yosupo-chromatic-number.test.cpp": "2021-07-21 02:10:43 +0900",
+"test/verify/yosupo-convolution-mod-2.test.cpp": "2021-08-06 03:07:08 +0900",
 "test/verify/yosupo-convolution-mod.test.cpp": "2021-05-01 00:06:55 +0900",
 "test/verify/yosupo-counting-primes.test.cpp": "2021-07-17 08:42:53 +0900",
 "test/verify/yosupo-cycle-detection.test.cpp": "2021-07-21 02:10:43 +0900",
