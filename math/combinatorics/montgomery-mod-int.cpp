@@ -1,5 +1,5 @@
 /**
- * @brief Montgomery Mod Int
+ * @brief Montgomery ModInt
  */
 template< uint32_t mod, bool fast = false >
 struct MontgomeryModInt {
@@ -30,7 +30,7 @@ struct MontgomeryModInt {
       : x(reduce(u64(fast ? a : (a % mod + mod)) * n2)) {}
 
   static constexpr u32 reduce(const u64 &b) {
-    return (b + u64(u32(b) * (-r)) * mod) >> 32;
+    return u32(b >> 32) + mod - u32((u64(u32(b) * r) * mod) >> 32);
   }
 
   mint &operator+=(const mint &p) {
