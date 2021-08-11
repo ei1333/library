@@ -43,13 +43,13 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
 
   P &operator+=(const P &r) {
     if(r.size() > this->size()) this->resize(r.size());
-    for(int i = 0; i < r.size(); i++) (*this)[i] += r[i];
+    for(int i = 0; i < (int) r.size(); i++) (*this)[i] += r[i];
     return *this;
   }
 
   P &operator-=(const P &r) {
     if(r.size() > this->size()) this->resize(r.size());
-    for(int i = 0; i < r.size(); i++) (*this)[i] -= r[i];
+    for(int i = 0; i < (int) r.size(); i++) (*this)[i] -= r[i];
     return *this;
   }
 
@@ -88,7 +88,7 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
 
   P operator-() const {
     P ret(this->size());
-    for(int i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
+    for(int i = 0; i < (int) this->size(); i++) ret[i] = -(*this)[i];
     return ret;
   }
 
@@ -105,18 +105,18 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
   }
 
   P &operator*=(const T &v) {
-    for(int i = 0; i < this->size(); i++) (*this)[i] *= v;
+    for(int i = 0; i < (int) this->size(); i++) (*this)[i] *= v;
     return *this;
   }
 
   P dot(P r) const {
     P ret(min(this->size(), r.size()));
-    for(int i = 0; i < ret.size(); i++) ret[i] = (*this)[i] * r[i];
+    for(int i = 0; i < (int) ret.size(); i++) ret[i] = (*this)[i] * r[i];
     return ret;
   }
 
   P operator>>(int sz) const {
-    if(this->size() <= sz) return {};
+    if((int) this->size() <= sz) return {};
     P ret(*this);
     ret.erase(ret.begin(), ret.begin() + sz);
     return ret;
@@ -198,7 +198,7 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
           auto ret = (*this >> i).sqrt(deg - i / 2, get_sqrt);
           if(ret.empty()) return {};
           ret = ret << (i / 2);
-          if(ret.size() < deg) ret.resize(deg, T(0));
+          if((int) ret.size() < deg) ret.resize(deg, T(0));
           return ret;
         }
       }
@@ -301,7 +301,7 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
         P ret = (((*this * rev) >> i).log() * k).exp() * ((*this)[i].pow(k));
         if(i * k > deg) return P(deg, T(0));
         ret = (ret << (i * k)).pre(deg);
-        if(ret.size() < deg) ret.resize(deg, T(0));
+        if((int) ret.size() < deg) ret.resize(deg, T(0));
         return ret;
       }
     }
@@ -352,7 +352,3 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
     return p;
   }
 };
-
-
-template< typename Mint >
-using FPS = FormalPowerSeriesFriendlyNTT< Mint >;
