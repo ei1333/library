@@ -352,3 +352,6 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
     return p;
   }
 };
+
+template< typename Mint >
+using FPS = FormalPowerSeriesFriendlyNTT< Mint >;
