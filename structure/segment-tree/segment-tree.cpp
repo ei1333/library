@@ -34,13 +34,17 @@ struct SegmentTree {
     }
   }
 
-  Monoid query(int a, int b) {
+  Monoid prod(int a, int b) {
     Monoid L = M1, R = M1;
     for(a += sz, b += sz; a < b; a >>= 1, b >>= 1) {
       if(a & 1) L = f(L, seg[a++]);
       if(b & 1) R = f(seg[--b], R);
     }
     return f(L, R);
+  }
+
+  Monoid all_prod() {
+    return seg[1];
   }
 
   Monoid operator[](const int &k) const {

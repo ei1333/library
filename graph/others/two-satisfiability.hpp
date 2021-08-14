@@ -3,7 +3,7 @@
 #include "../connected-components/strongly-connected-components.hpp"
 
 /**
- * @brief 2-SAT
+ * @brief Two Satisfiability(2-SAT)
  * @docs docs/two-satisfiability.md
  */
 struct TwoSatisfiability : StronglyConnectedComponents< bool > {

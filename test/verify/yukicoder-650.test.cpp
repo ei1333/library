@@ -39,7 +39,7 @@ int main() {
     } else {
       int y, z;
       cin >> y >> z;
-      auto mat = g.query(y, z, Mat::mul_identity(), [&](int a, int b) { return seg.query(a, b); }, f, true);
+      auto mat = g.query(y, z, Mat::mul_identity(), [&](int a, int b) { return seg.prod(a, b); }, f, true);
       cout << mat[0][0] << " " << mat[0][1] << " " << mat[1][0] << " " << mat[1][1] << "\n";
     }
   }

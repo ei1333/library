@@ -1,5 +1,5 @@
 /**
- * @brief Bipartite-Flow(二部グラフのフロー)
+ * @brief Bipartite Flow(二部グラフのフロー)
  * @docs docs/bipartite-flow.md
  */
 struct BipartiteFlow {

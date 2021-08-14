@@ -1,5 +1,5 @@
 /**
- * @brief Dinic-Capacity-Scaling(最大流)
+ * @brief Dinic Capacity Scaling(最大流)
  * @docs docs/dinic-capacity-scaling.md
  */
 template< typename flow_t >

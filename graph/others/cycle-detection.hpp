@@ -39,8 +39,8 @@ struct CycleDetection : Graph< T > {
         pre.resize(g.size());
         for(int i = 0; i < (int)g.size(); i++) {
             if(used[i] == 0 && dfs(i)) {
-                reverse(begin(cyrcle), end(cyrcle));
-                return cyrcle;
+                reverse(begin(cycle), end(cycle));
+                return cycle;
             }
         }
         return {};
