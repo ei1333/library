@@ -12,7 +12,7 @@ struct CycleDetection : Graph< T > {
     using Graph< T >::g;
 
     vector< int > used;
-    Edges< T > pre, cyrcle;
+    Edges< T > pre, cycle;
 
     bool dfs(int idx) {
         used[idx] = 1;
@@ -23,10 +23,10 @@ struct CycleDetection : Graph< T > {
             } else if(used[e] == 1) {
                 int cur = idx;
                 while(cur != e) {
-                    cyrcle.emplace_back(pre[cur]);
+                    cycle.emplace_back(pre[cur]);
                     cur = pre[cur].from;
                 }
-                cyrcle.emplace_back(e);
+                cycle.emplace_back(e);
                 return true;
             }
         }

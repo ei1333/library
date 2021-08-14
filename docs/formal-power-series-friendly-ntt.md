@@ -15,7 +15,7 @@ TODO 解説
 * `-`: $f(x) - g(x)$ を返す。$O(n)$
 * `*`: $f(x) \times g(x)$ を返す。
 * `/`: $f(x) = q (x)\times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $q(x)$ を返す。
-* `%`: $f(x) = q(x) \times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $g(x)$ を返す。
+* `%`: $f(x) = q(x) \times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $r(x)$ を返す。
 * `div_mod()`: 剰余を返す。`/` と `%` をそれぞれ呼び出すよりも効率的。
 * `operator(x)`: $f(x)$ の値を評価して返す。$O(n)$
 * `diff()`: $f(x)'$ を返す。$O(n)$
