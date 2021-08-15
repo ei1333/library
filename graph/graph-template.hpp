@@ -1,5 +1,8 @@
 #pragma once
 
+/**
+ * @brief Graph Template(グラフテンプレート)
+ */
 template< typename T = int >
 struct Edge {
   int from, to;
@@ -46,6 +49,14 @@ struct Graph {
       if(directed) add_directed_edge(a, b, c);
       else add_edge(a, b, c);
     }
+  }
+
+  inline vector< Edge< T > > &operator[](const int &k) {
+    return g[k];
+  }
+
+  inline const vector< Edge< T > > &operator[](const int &k) const {
+    return g[k];
   }
 };
 
