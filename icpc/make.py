@@ -1,5 +1,3 @@
-# verification-helper: IGNORE
-
 import os
 
 print("ICPC Library @ tapu")
