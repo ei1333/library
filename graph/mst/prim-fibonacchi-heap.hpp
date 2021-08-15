@@ -33,7 +33,7 @@ MinimumSpanningTree< T > prim_fibonacchi_heap(Graph< T > &g) {
     used[idx] = true;
     total += cost;
     if(dist[idx]) es.emplace_back(*dist[idx]);
-    for(auto &e : g.g[idx]) {
+    for(auto &e : g[idx]) {
       if(used[e.to] || (dist[e.to] && dist[e.to]->cost <= e.cost)) continue;
       if(keep[e.to] == nullptr) {
         dist[e.to] = &e;

@@ -24,7 +24,7 @@ vector< T > dijkstra_fibonacchi_heap(Graph< T > &g, int s) {
     int idx;
     tie(cost, idx) = heap.pop();
     if(dist[idx] < cost) continue;
-    for(auto &e : g.g[idx]) {
+    for(auto &e : g[idx]) {
       auto next_cost = cost + e.cost;
       if(dist[e.to] <= next_cost) continue;
       if(keep[e.to] == nullptr) {

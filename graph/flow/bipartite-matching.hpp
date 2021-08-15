@@ -2,10 +2,6 @@
  * @brief Bipartite-Matching(二部グラフの最大マッチング)
  * @docs docs/bipartite-matching.md
  */
-#pragma once
-
-#include "../graph-template.hpp"
-
 struct BipartiteMatching {
   vector< vector< int > > graph;
   vector< int > alive, used, match;

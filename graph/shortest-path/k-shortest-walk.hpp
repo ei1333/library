@@ -12,7 +12,7 @@ vector< T > k_shortest_walk(const Graph< T > &g, int s, int t, int k) {
   int N = (int) g.size();
   Graph< T > rg(N);
   for(int i = 0; i < N; i++) {
-    for(auto &e : g.g[i]) rg.add_directed_edge(e.to, i, e.cost);
+    for(auto &e : g[i]) rg.add_directed_edge(e.to, i, e.cost);
   }
   auto dist = dijkstra(rg, t);
   if(dist.from[s] == -1) return {};
@@ -35,7 +35,7 @@ vector< T > k_shortest_walk(const Graph< T > &g, int s, int t, int k) {
         h[idx] = heap.meld(h[idx], h[dist.from[idx]]);
       }
       bool used = true;
-      for(auto &e : g.g[idx]) {
+      for(auto &e : g[idx]) {
         if(e.to != t && dist.from[e.to] == -1) continue;
         if(used && dist.from[idx] == e.to && p[e.to] + e.cost == p[idx]) {
           used = false;

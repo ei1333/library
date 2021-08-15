@@ -12,11 +12,11 @@ vector< pair< T, vector< int > > > k_shortest_path(const Graph< T > &g, int s, i
   assert(s != t);
   int N = (int) g.size();
   int M = 0;
-  for(int i = 0; i < N; i++) M += g.g[i].size();
+  for(int i = 0; i < N; i++) M += (int) g[i].size();
   vector< int > latte(M), malta(M);
   vector< T > cost(M);
   for(int i = 0; i < N; i++) {
-    for(auto &e : g.g[i]) {
+    for(auto &e : g[i]) {
       latte[e.idx] = i;
       malta[e.idx] = e.to;
       cost[e.idx] = e.cost;
@@ -36,7 +36,7 @@ vector< pair< T, vector< int > > > k_shortest_path(const Graph< T > &g, int s, i
       que.pop();
       if(dist[idx] < cost) continue;
       if(idx == t) return;
-      for(auto &e : g.g[idx]) {
+      for(auto &e : g[idx]) {
         auto next_cost = cost + e.cost;
         if(dist[e.to] <= next_cost) continue;
         if(dame[e.idx] == timestamp) continue;

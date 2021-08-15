@@ -33,7 +33,7 @@ public:
     vector< int > U(N);
     for(int i = (int) ord.size() - 1; i >= 0; i--) {
       int x = ord[i];
-      for(int v : rg.g[x]) {
+      for(int v : rg[x]) {
         v = uf.eval(v);
         if(semi[x] > semi[v]) semi[x] = semi[v];
       }

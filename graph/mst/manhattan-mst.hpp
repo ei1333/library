@@ -1,7 +1,3 @@
-#pragma once
-
-#include "../graph-template.hpp"
-
 /**
  * @brief Manhattan MST
  */

@@ -28,7 +28,7 @@ MinimumSpanningTree< T > prim(const Graph< T > &g) {
     used[p.second] = true;
     total += p.first;
     if(dist[p.second]) edges.emplace_back(*dist[p.second]);
-    for(auto &e : g.g[p.second]) {
+    for(auto &e : g[p.second]) {
       if(used[e.to] || (dist[e.to] && dist[e.to]->cost <= e.cost)) continue;
       que.emplace(e.cost, e.to);
     }
