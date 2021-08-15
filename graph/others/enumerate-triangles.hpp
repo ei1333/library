@@ -12,11 +12,11 @@ vector< tuple< int, int, int > > enumerate_triangles(const Graph< T > &g) {
   using pi = pair< int, int >;
   vector< pi > vp(N);
   for(int i = 0; i < N; i++) {
-    vp[i] = {(int) g.g[i].size(), i};
+    vp[i] = {(int) g[i].size(), i};
   }
   vector< vector< int > > h(N);
   for(int i = 0; i < N; i++) {
-    for(auto &j : g.g[i]) {
+    for(auto &j : g[i]) {
       if(vp[i] > vp[j]) {
         h[i].emplace_back(j);
       }
