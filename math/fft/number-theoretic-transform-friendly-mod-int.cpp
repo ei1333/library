@@ -4,7 +4,7 @@
 template< typename Mint >
 struct NumberTheoreticTransformFriendlyModInt {
 
-  static vector< Mint > roots, iroots, rate2, rate3, irate2, irate3;
+  static vector< Mint > roots, iroots, rate3, irate3;
   static int max_base;
 
   NumberTheoreticTransformFriendlyModInt() = default;
@@ -24,8 +24,6 @@ struct NumberTheoreticTransformFriendlyModInt {
 
       roots.resize(max_base + 1);
       iroots.resize(max_base + 1);
-      rate2.resize(max_base + 1);
-      irate2.resize(max_base + 1);
       rate3.resize(max_base + 1);
       irate3.resize(max_base + 1);
 
@@ -34,15 +32,6 @@ struct NumberTheoreticTransformFriendlyModInt {
       for(int i = max_base - 1; i >= 0; i--) {
         roots[i] = roots[i + 1] * roots[i + 1];
         iroots[i] = iroots[i + 1] * iroots[i + 1];
-      }
-      {
-        Mint prod = 1, iprod = 1;
-        for(int i = 0; i <= max_base - 2; i++) {
-          rate2[i] = roots[i + 2] * prod;
-          irate2[i] = iroots[i + 2] * iprod;
-          prod *= iroots[i + 2];
-          iprod *= roots[i + 2];
-        }
       }
       {
         Mint prod = 1, iprod = 1;
@@ -92,7 +81,7 @@ struct NumberTheoreticTransformFriendlyModInt {
           a[i + 3 * p] = a0na2 - a1na3imag;
         }
       }
-      Mint rot = rate3[__builtin_ctz(~0)];
+      Mint rot = rate3[0];
       for(int s = 1; s < (1 << len); s++) {
         int offset = s << (h - len);
         Mint rot2 = rot * rot;
@@ -142,7 +131,7 @@ struct NumberTheoreticTransformFriendlyModInt {
           a[i + 3 * p] = (a0na1 - a2na3iimag);
         }
       }
-      Mint irot = irate3[__builtin_ctz(~0)];
+      Mint irot = irate3[0];
       for(int s = 1; s < (1 << (len - 2)); s++) {
         int offset = s << (h - len + 2);
         Mint irot2 = irot * irot;
@@ -199,10 +188,6 @@ template< typename Mint >
 vector< Mint > NumberTheoreticTransformFriendlyModInt< Mint >::roots = vector< Mint >();
 template< typename Mint >
 vector< Mint > NumberTheoreticTransformFriendlyModInt< Mint >::iroots = vector< Mint >();
-template< typename Mint >
-vector< Mint > NumberTheoreticTransformFriendlyModInt< Mint >::rate2 = vector< Mint >();
-template< typename Mint >
-vector< Mint > NumberTheoreticTransformFriendlyModInt< Mint >::irate2 = vector< Mint >();
 template< typename Mint >
 vector< Mint > NumberTheoreticTransformFriendlyModInt< Mint >::rate3 = vector< Mint >();
 template< typename Mint >
