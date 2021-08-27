@@ -1,5 +1,5 @@
 /**
- * @brief Segment-Tree(セグメント木)
+ * @brief Segment Tree(セグメント木)
  * @docs docs/segment-tree.md
  */
 template< typename Monoid, typename F >

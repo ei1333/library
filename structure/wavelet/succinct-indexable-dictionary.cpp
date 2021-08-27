@@ -1,3 +1,6 @@
+/**
+ * @brief Succinct Indexable Dictionary(完備辞書)
+ */
 struct SuccinctIndexableDictionary {
   size_t length;
   size_t blocks;

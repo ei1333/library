@@ -2,7 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/wavelet/succinct-indexable-dictionary.cpp"
 #include "../../structure/wavelet/wavelet-matrix.cpp"
 
 int main() {

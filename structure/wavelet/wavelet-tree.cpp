@@ -1,5 +1,5 @@
 /*
- * @brief Wavelet-Tree(ウェーブレット木)
+ * @brief Wavelet Tree(ウェーブレット木)
  * @docs docs/wavelet-tree.md
  */
 template< typename T, int MAXLOG >

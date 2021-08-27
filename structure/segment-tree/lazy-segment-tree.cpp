@@ -1,5 +1,5 @@
 /**
- * @brief Lazy-Segment-Tree(遅延伝搬セグメント木)
+ * @brief Lazy Segment Tree(遅延伝搬セグメント木)
  * @docs docs/lazy-segment-tree.md
  */
 template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >

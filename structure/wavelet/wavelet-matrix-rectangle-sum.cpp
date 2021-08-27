@@ -1,5 +1,5 @@
 /*
- * @brief Wavelet-Matrix-Rectangle-Sum
+ * @brief Wavelet Matrix Rectangle Sum
  * @docs docs/wavelet-matrix-rectangle-sum.md
  */
 template< typename T, int MAXLOG, typename D >
