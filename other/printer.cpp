@@ -30,7 +30,6 @@ private:
   static constexpr size_t line_size = 1 << 16;
   static constexpr size_t int_digits = 20;
   char line[line_size + 1] = {};
-  char small[32] = {};
   char *st = line;
 
   template< bool f = false >
@@ -44,28 +43,11 @@ private:
   template< typename T, enable_if_t< is_integral< T >::value, int > = 0 >
   void write_single(T s) {
     if(st + int_digits >= line + line_size) flush();
-    if(s == 0) {
-      write_single('0');
-      return;
-    }
-    if(s < 0) {
-      write_single('-');
-      s = -s;
-    }
-    char *mp = small + sizeof(small);
-    typename make_unsigned< T >::type y = s;
-    size_t len = 0;
-    while(y > 0) {
-      *--mp = y % 10 + '0';
-      y /= 10;
-      ++len;
-    }
-    memmove(st, mp, len);
-    st += len;
+    st += to_chars(st, st + int_digits, s).ptr - st;
   }
 
   void write_single(const string &s) {
-    for(auto &c : s) write_single(c);
+    for(auto &c: s) write_single(c);
   }
 
   void write_single(const char *s) {
