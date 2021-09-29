@@ -1,21 +1,20 @@
 /**
  * @brief 何でもできるLCT(高い確率でバグっています)
- * @see https://judge.yosupo.jp/submission/61810
  */
-template< typename Info, typename AllLazy >
+template< typename LInfo, typename AllLazy >
 struct SplayTree {
   struct Node {
     Node *l, *r, *p;
-    Info info;
+    LInfo info;
     AllLazy lazy, lbuf;
 
-    explicit Node(const Info &info) : info(info), l(nullptr), r(nullptr),
-                                      p(nullptr), lazy(AllLazy()), lbuf(AllLazy()) {}
+    explicit Node(const LInfo &info) : info(info), l(nullptr), r(nullptr),
+                                       p(nullptr), lazy(AllLazy()), lbuf(AllLazy()) {}
   };
 
-  const Info e;
+  const LInfo e;
 
-  SplayTree() : e(Info()) {}
+  SplayTree() : e(LInfo()) {}
 
   using NP = Node *;
 
@@ -43,7 +42,7 @@ struct SplayTree {
     }
   }
 
-  const Info &get_info(NP t) {
+  const LInfo &get_info(NP t) {
     return t ? t->info : e;
   }
 
@@ -56,7 +55,7 @@ struct SplayTree {
     return t;
   }
 
-  NP alloc(const Info &v) {
+  NP alloc(const LInfo &v) {
     auto t = new Node(v);
     update(t);
     return t;
@@ -71,7 +70,7 @@ struct SplayTree {
   void push(NP t) {
     if(t->l) propagate(t->l, t->lazy);
     if(t->r) propagate(t->r, t->lazy);
-    t->lazy.clear();
+    t->lazy = AllLazy();
   }
 
   void splay(NP t) {
@@ -96,7 +95,7 @@ struct SplayTree {
     }
   }
 
-  NP insert(NP t, const Info &v) {
+  NP insert(NP t, const LInfo &v) {
     if(not t) {
       t = alloc(v);
       return t;
@@ -133,8 +132,12 @@ struct SplayTree {
   }
 };
 
-template< typename Info, typename LInfo, typename AllLazy, typename PathLazy >
+template< template< typename, typename, typename > typename _Info,
+    template< typename > typename _LInfo, typename AllLazy, typename PathLazy >
 struct SuperLinkCutTree {
+  using LInfo = _LInfo< AllLazy >;
+  using Info = _Info< LInfo, AllLazy, PathLazy >;
+
 private:
   struct Node {
     Node *l, *r, *p;
@@ -214,12 +217,12 @@ public:
       if(t->l) propagate_all(t->l, t->all_lazy);
       if(t->r) propagate_all(t->r, t->all_lazy);
       if(t->light) splay_tree.propagate(t->light, t->all_lazy);
-      t->all_lazy.clear();
+      t->all_lazy = AllLazy();
     }
     {
       if(t->l) propagate_path(t->l, t->path_lazy);
       if(t->r) propagate_path(t->r, t->path_lazy);
-      t->path_lazy.clear();
+      t->path_lazy = PathLazy();
     }
   }
 
@@ -328,11 +331,22 @@ public:
     return expose(v);
   }
 
+  void set_key(NP t, const Info &v) {
+    expose(t);
+    t->info = move(v);
+    update(t);
+  }
+
   void set_propagate_path(NP t, const PathLazy &lazy) {
     expose(t);
     propagate_path(t, lazy);
     push(t);
     update(t);
+  }
+
+  void set_propagate_path(NP u, NP v, const PathLazy &lazy) {
+    evert(u);
+    set_propagate_path(v, lazy);
   }
 
   void set_propagate_all(NP t, const AllLazy &lazy) {
@@ -376,32 +390,29 @@ public:
 };
 
 /*
+using T = int64_t;
 // 全体への遅延伝搬をするための作用素
 struct AllLazy {
 
   // 単位元
   AllLazy() {}
 
-  // 初期化 
-  AllLazy(int v) {}
+  // 初期化
+  AllLazy(T v) {}
 
   void propagate(const AllLazy &p) {}
-
-  void clear() {}
 };
 
-// パスへの遅延伝搬をする作用素 
+// パスへの遅延伝搬をする作用素
 struct PathLazy {
 
-  // 単位元 
+  // 単位元
   PathLazy() {}
 
   // 初期化
-  PathLazy(int v) {}
+  PathLazy(T v) {}
 
   void propagate(const PathLazy &p) {}
-
-  void clear() {}
 };
 
 // Light-edge の情報
@@ -412,7 +423,7 @@ struct LInfo {
   LInfo() {}
 
   // 初期化
-  LInfo(int v) {}
+  LInfo(T v) {}
 
   // l, r は Splay-tree の子 (原理上、各ノード区別はない)
   void update(const LInfo &l, const LInfo &r) {}
@@ -429,7 +440,7 @@ struct Info {
   Info() {}
 
   // 初期化
-  Info(int v) {}
+  Info(T v) {}
 
   // 反転
   void toggle() {}
@@ -446,4 +457,6 @@ struct Info {
   // パスの遅延伝搬
   void propagate_path(const PathLazy &p) {}
 };
+
+using LCT = SuperLinkCutTree< Info, LInfo, AllLazy, PathLazy >;
 */
