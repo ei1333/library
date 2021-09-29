@@ -5,32 +5,21 @@
  */
 using T = int64_t;
 
-// 全体への遅延伝搬をするための作用素
-struct AllLazy {
+// 遅延伝搬をするための作用素
+struct Lazy {
 
   // 単位元
-  AllLazy() {}
+  Lazy() {}
 
   // 初期化
-  AllLazy(T v) {}
+  Lazy(T v) {}
 
-  void propagate(const AllLazy &p) {}
-};
-
-// パスへの遅延伝搬をする作用素
-struct PathLazy {
-
-  // 単位元
-  PathLazy() {}
-
-  // 初期化
-  PathLazy(T v) {}
-
-  void propagate(const PathLazy &p) {}
+  // 遅延伝搬
+  void propagate(const Lazy &p) {}
 };
 
 // Light-edge の情報
-template< typename AllLazy >
+template< typename Lazy >
 struct LInfo {
   T sum;
 
@@ -47,12 +36,12 @@ struct LInfo {
     sum_sum = l.sum_sum + sum + r.sum_sum;
   }
 
-  // 全体への遅延伝搬
-  void propagate(const AllLazy &p) {}
+  // 部分木への遅延伝搬
+  void propagate(const Lazy &p) {}
 };
 
 // Heavy-edge の情報
-template< typename LInfo, typename AllLazy, typename PathLazy >
+template< typename LInfo, typename Lazy >
 struct Info {
   T sum;
 
@@ -75,11 +64,8 @@ struct Info {
   // 親と light-edge で繋げる
   LInfo link() const { return LInfo(sum_sum); }
 
-  // 全体への遅延伝搬
-  void propagate_all(const AllLazy &p) {}
-
-  // パスの遅延伝搬
-  void propagate_path(const PathLazy &p) {}
+  // 遅延伝搬
+  void propagate(const Lazy &p) {}
 };
 
-using LCT = SuperLinkCutTree< Info, LInfo, AllLazy, PathLazy >;
+using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;

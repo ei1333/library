@@ -6,35 +6,23 @@
 
 using T = int64_t;
 
-// 全体への遅延伝搬をするための作用素
-struct AllLazy {
-
-  // 単位元
-  AllLazy() {}
-
-  // 初期化
-  AllLazy(T v) {}
-
-  void propagate(const AllLazy &p) {}
-};
-
-// パスへの遅延伝搬をする作用素
-struct PathLazy {
+// 遅延伝搬をする作用素
+struct Lazy {
   int v;
 
   // 単位元
-  PathLazy() : v{inf} {}
+  Lazy() : v{inf} {}
 
   // 初期化
-  PathLazy(int v) : v{v} {}
+  Lazy(int v) : v{v} {}
 
-  void propagate(const PathLazy &p) {
+  void propagate(const Lazy &p) {
     if(p.v != inf) v = p.v;
   }
 };
 
 // Light-edge の情報
-template< typename AllLazy >
+template< typename Lazy >
 struct LInfo {
 
   // 単位元(キーの値はアクセスしないので未初期化でもよい
@@ -46,12 +34,12 @@ struct LInfo {
   // l, r は Splay-tree の子 (原理上、各ノード区別はない)
   void update(const LInfo &l, const LInfo &r) {}
 
-  // 全体への遅延伝搬
-  void propagate(const AllLazy &p) {}
+  // 部分木への遅延伝搬
+  void propagate(const Lazy &p) {}
 };
 
 // Heavy-edge の情報
-template< typename LInfo, typename AllLazy, typename PathLazy >
+template< typename LInfo, typename Lazy >
 struct Info {
   T v;
 
@@ -81,11 +69,8 @@ struct Info {
   // 親と light-edge で繋げる
   LInfo link() const { return LInfo(); }
 
-  // 全体への遅延伝搬
-  void propagate_all(const AllLazy &p) {}
-
   // パスの遅延伝搬
-  void propagate_path(const PathLazy &p) {
+  void propagate(const Lazy &p) {
     if(p.v != inf) {
       v = p.v;
       all = v * sz;
@@ -94,7 +79,7 @@ struct Info {
   }
 };
 
-using LCT = SuperLinkCutTree< Info, LInfo, AllLazy, PathLazy >;
+using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;
 
 
 int main() {
