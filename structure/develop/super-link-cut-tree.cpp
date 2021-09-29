@@ -63,8 +63,8 @@ struct SplayTree {
 
   void propagate(NP t, const Lazy &lazy) {
     t->info.propagate(lazy);
-    t->lbuf.propagate(lazy);
-    t->lazy.propagate(lazy);
+    t->lbuf.propagate(lazy, true);
+    t->lazy.propagate(lazy, true);
   }
 
   void push(NP t) {
@@ -194,7 +194,7 @@ private:
   }
 
   void propagate(NP t, const Lazy &lazy) {
-    t->lazy.propagate(lazy);
+    t->lazy.propagate(lazy, false);
     t->info.propagate(lazy);
   }
 
@@ -383,7 +383,7 @@ struct Lazy {
   Lazy(T v) {}
 
   // 遅延伝搬
-  void propagate(const Lazy &p) {}
+  void propagate(const Lazy &p, bool is_light) {}
 };
 
 // Light-edge の情報

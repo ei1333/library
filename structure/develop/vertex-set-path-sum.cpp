@@ -15,7 +15,7 @@ struct Lazy {
   Lazy(T v) {}
 
   // 遅延伝搬
-  void propagate(const Lazy &p) {}
+  void propagate(const Lazy &p, bool is_light) {}
 };
 
 // Light-edge の情報

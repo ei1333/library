@@ -16,8 +16,10 @@ struct Lazy {
   // 初期化
   Lazy(int v) : v{v} {}
 
-  void propagate(const Lazy &p) {
-    if(p.v != inf) v = p.v;
+  void propagate(const Lazy &p, bool is_light) {
+    if(not is_light) {
+      if(p.v != inf) v = p.v;
+    }
   }
 };
 
