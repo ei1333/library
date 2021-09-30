@@ -15,7 +15,7 @@ struct Lazy {
   // 初期化
   Lazy(T v) : v{v} {}
 
-  void propagate(const Lazy &p, bool is_light) { v += p.v; }
+  void propagate(const Lazy &p) { v += p.v; }
 };
 
 // Light-edge の情報

@@ -63,8 +63,8 @@ struct SplayTree {
 
   void propagate(NP t, const Lazy &lazy) {
     t->info.propagate(lazy);
-    t->lbuf.propagate(lazy, true);
-    t->lazy.propagate(lazy, true);
+    t->lbuf.propagate(lazy);
+    t->lazy.propagate(lazy);
   }
 
   void push(NP t) {
@@ -144,15 +144,15 @@ private:
     Info info;
     typename SplayTree< LInfo, Lazy >::Node *light, *belong;
     bool rev;
-    Lazy lazy;
+    Lazy hlazy, llazy;
 
     bool is_root() const {
       return not p or (p->l != this and p->r != this);
     }
 
     explicit Node(const Info &info)
-        : info(info), l(nullptr), r(nullptr), p(nullptr),
-          rev(false), light(nullptr), belong(nullptr), lazy(Lazy()) {}
+        : info(info), l(nullptr), r(nullptr), p(nullptr), rev(false),
+          light(nullptr), belong(nullptr), hlazy(Lazy()), llazy(Lazy()) {}
   };
 
 public:
@@ -193,9 +193,18 @@ private:
     }
   }
 
-  void propagate(NP t, const Lazy &lazy) {
-    t->lazy.propagate(lazy, false);
-    t->info.propagate(lazy);
+  void propagate_heavy(NP t, const Lazy &hlazy) {
+    t->hlazy.propagate(hlazy);
+    t->info.propagate(hlazy);
+  }
+
+  void propagate_light(NP t, const Lazy &llazy) {
+    t->llazy.propagate(llazy);
+  }
+
+  void propagate_all(NP t, const Lazy &lazy) {
+    propagate_heavy(t, lazy);
+    propagate_light(t, lazy);
   }
 
 public:
@@ -208,10 +217,19 @@ public:
       t->rev = false;
     }
     {
-      if(t->l) propagate(t->l, t->lazy);
-      if(t->r) propagate(t->r, t->lazy);
-      if(t->light) splay_tree.propagate(t->light, t->lazy);
-      t->lazy = Lazy();
+      if(t->l) {
+        propagate_heavy(t->l, t->hlazy);
+        propagate_light(t->l, t->llazy);
+      }
+      if(t->r) {
+        propagate_heavy(t->r, t->hlazy);
+        propagate_light(t->r, t->llazy);
+      }
+      if(t->light) {
+        splay_tree.propagate(t->light, t->llazy);
+      }
+      t->hlazy = Lazy();
+      t->llazy = Lazy();
     }
   }
 
@@ -262,7 +280,7 @@ public:
       cur->r = rp;
       if(cur->r) {
         splay_tree.splay(cur->r->belong);
-        propagate(cur->r, cur->r->belong->lbuf);
+        propagate_all(cur->r, cur->r->belong->lbuf);
         push(cur->r);
         cur->light = splay_tree.erase(cur->r->belong);
       }
@@ -326,23 +344,30 @@ public:
     update(t);
   }
 
-  void set_propagate(NP t, const Lazy &lazy) {
+  void set_propagate_path(NP t, const Lazy &lazy) {
     expose(t);
-    propagate(t, lazy);
+    propagate_heavy(t, lazy);
     push(t);
     update(t);
   }
 
   void set_propagate_path(NP u, NP v, const Lazy &lazy) {
     evert(u);
-    set_propagate(v, lazy);
+    set_propagate_path(v, lazy);
+  }
+
+  void set_propagate_all(NP t, const Lazy &lazy) {
+    expose(t);
+    propagate_all(t, lazy);
+    push(t);
+    update(t);
   }
 
   void set_propagate_subtree(NP t, const Lazy &lazy) {
     expose(t);
     NP l = t->l;
     t->l = nullptr;
-    propagate(t, lazy);
+    propagate_all(t, lazy);
     push(t);
     t->l = l;
     update(t);
@@ -383,7 +408,7 @@ struct Lazy {
   Lazy(T v) {}
 
   // 遅延伝搬
-  void propagate(const Lazy &p, bool is_light) {}
+  void propagate(const Lazy &p) {}
 };
 
 // Light-edge の情報
