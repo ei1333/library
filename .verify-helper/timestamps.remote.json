@@ -126,6 +126,7 @@
 "test/verify/yosupo-dynamic-tree-vertex-add-subtree-sum-2.test.cpp": "2021-10-02 02:34:17 +0900",
 "test/verify/yosupo-dynamic-tree-vertex-add-subtree-sum.test.cpp": "2021-05-09 18:15:58 +0900",
 "test/verify/yosupo-dynamic-tree-vertex-set-path-composite-2.test.cpp": "2021-05-08 18:10:42 +0900",
+"test/verify/yosupo-dynamic-tree-vertex-set-path-composite-3.test.cpp": "2021-10-02 02:49:48 +0900",
 "test/verify/yosupo-dynamic-tree-vertex-set-path-composite.test.cpp": "2021-05-09 20:53:58 +0900",
 "test/verify/yosupo-enumerate-primes.test.cpp": "2021-07-13 22:13:38 +0900",
 "test/verify/yosupo-enumerate-triangles.test.cpp": "2021-08-16 02:49:35 +0900",
