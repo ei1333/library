@@ -66,11 +66,12 @@ struct Info {
     b_sum_c = (c.b_sum_c * a + b) * p.a_sum_c + p.b_sum_c;
   }
 
-  // 親と light-edge で繋げる
-  LInfo link() const { return LInfo(); }
-
-  // 全体への遅延伝搬
+  // 遅延伝搬
   void propagate(const Lazy &p) {}
+
+  // light-edgeに対する遅延伝搬
+  // pathとsubtreeの遅延伝搬が両方ある場合に実装する
+  void propagate_light(const Lazy &p) {}
 };
 
 using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;

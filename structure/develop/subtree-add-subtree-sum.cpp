@@ -77,6 +77,10 @@ struct Info {
     sum_sum += p.v * sz_sum;
     sum += p.v;
   }
+
+  // light-edgeに対する遅延伝搬
+  // pathとsubtreeの遅延伝搬が両方ある場合に実装する
+  void propagate_light(const Lazy &p) {}
 };
 
 using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;

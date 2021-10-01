@@ -69,7 +69,7 @@ struct Info {
   // 親と light-edge で繋げる
   LInfo link() const { return LInfo(); }
 
-  // パスの遅延伝搬
+  // 遅延伝搬
   void propagate(const Lazy &p) {
     if(p.v != inf) {
       v = p.v;
@@ -77,6 +77,11 @@ struct Info {
       dp = dp_c = dp_p = max(v, all);
     }
   }
+
+  // light-edgeに対する遅延伝搬
+  // 基本的にはpropagateのみ実装すれば十分
+  // pathとsubtreeの遅延伝搬が両方ある場合を除く
+  void propagate_light(const Lazy &p) {}
 };
 
 using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;

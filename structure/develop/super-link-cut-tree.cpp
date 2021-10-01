@@ -20,25 +20,25 @@ struct SplayTree {
 
   void rotr(NP t) {
     NP x = t->p, y = x->p;
+    push(x), push(t);
     if((x->l = t->r)) t->r->p = x;
     t->r = x, x->p = t;
     update(x), update(t);
     if((t->p = y)) {
       if(y->l == x) y->l = t;
       if(y->r == x) y->r = t;
-      update(y);
     }
   }
 
   void rotl(NP t) {
     NP x = t->p, y = x->p;
+    push(x), push(t);
     if((x->r = t->l)) t->l->p = x;
     t->l = x, x->p = t;
     update(x), update(t);
     if((t->p = y)) {
       if(y->l == x) y->l = t;
       if(y->r == x) y->r = t;
-      update(y);
     }
   }
 
@@ -78,12 +78,10 @@ struct SplayTree {
     while(t->p) {
       NP q = t->p;
       if(!q->p) {
-        push(q), push(t);
         if(q->l == t) rotr(t);
         else rotl(t);
       } else {
         NP r = q->p;
-        push(r), push(q), push(t);
         if(r->l == q) {
           if(q->l == t) rotr(q), rotr(t);
           else rotl(t), rotr(t);
@@ -171,25 +169,25 @@ private:
 
   void rotr(NP t) {
     NP x = t->p, y = x->p;
+    push(x), push(t);
     if((x->l = t->r)) t->r->p = x;
     t->r = x, x->p = t;
     update(x), update(t);
     if((t->p = y)) {
       if(y->l == x) y->l = t;
       if(y->r == x) y->r = t;
-      update(y);
     }
   }
 
   void rotl(NP t) {
     NP x = t->p, y = x->p;
+    push(x), push(t);
     if((x->r = t->l)) t->l->p = x;
     t->l = x, x->p = t;
     update(x), update(t);
     if((t->p = y)) {
       if(y->l == x) y->l = t;
       if(y->r == x) y->r = t;
-      update(y);
     }
   }
 
@@ -200,6 +198,7 @@ private:
 
   void propagate_light(NP t, const Lazy &llazy) {
     t->llazy.propagate(llazy);
+    t->info.propagate_light(llazy);
   }
 
   void propagate_all(NP t, const Lazy &lazy) {
@@ -233,6 +232,14 @@ public:
     }
   }
 
+  void push_rev(NP t) {
+    if(t->rev) {
+      if(t->l) toggle(t->l);
+      if(t->r) toggle(t->r);
+      t->rev = false;
+    }
+  }
+
   const Info &get_info(NP t) {
     return t ? t->info : e;
   }
@@ -252,12 +259,12 @@ public:
     while(not t->is_root()) {
       NP q = t->p;
       if(q->is_root()) {
-        push(q), push(t);
+        push_rev(q), push_rev(t);
         if(q->l == t) rotr(t);
         else rotl(t);
       } else {
         NP r = q->p;
-        push(r), push(q), push(t);
+        push_rev(r), push_rev(q), push_rev(t);
         if(r->l == q) {
           if(q->l == t) rotr(q), rotr(t);
           else rotl(t), rotr(t);
@@ -449,6 +456,10 @@ struct Info {
 
   // 遅延伝搬
   void propagate(const Lazy &p) {}
+
+  // light-edgeに対する遅延伝搬
+  // pathとsubtreeの遅延伝搬が両方ある場合に実装する
+  void propagate_light(const Lazy &p) {}
 };
 
 using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;
