@@ -101,6 +101,7 @@
 "test/verify/aoj-ntl-1-b.test.cpp": "2021-07-13 21:04:36 +0900",
 "test/verify/aoj-ntl-1-d.test.cpp": "2021-07-13 21:51:53 +0900",
 "test/verify/aoj-ntl-1-e.test.cpp": "2021-05-01 00:06:55 +0900",
+"test/verify/dmoj-ds5.test.cpp": "2021-10-02 02:49:48 +0900",
 "test/verify/yosupo-assignment.test.cpp": "2021-07-16 00:30:06 +0900",
 "test/verify/yosupo-bernoulli-number.test.cpp": "2021-08-17 19:31:02 +0900",
 "test/verify/yosupo-bipartite-edge-coloring.test.cpp": "2021-08-14 14:18:51 +0900",
