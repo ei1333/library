@@ -66,6 +66,9 @@ struct Info {
     b_sum_c = (c.b_sum_c * a + b) * p.a_sum_c + p.b_sum_c;
   }
 
+  // 親と light-edge で繋げる
+  LInfo link() const { return LInfo(); }
+
   // 遅延伝搬
   void propagate(const Lazy &p) {}
 
