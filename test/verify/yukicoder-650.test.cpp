@@ -35,7 +35,7 @@ int main() {
       cin >> v;
       Mat m;
       cin >> m[0][0] >> m[0][1] >> m[1][0] >> m[1][1];
-      seg.update(g.in[Y[v + 1]], m);
+      seg.set(g.in[Y[v + 1]], m);
     } else {
       int y, z;
       cin >> y >> z;

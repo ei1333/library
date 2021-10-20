@@ -11,7 +11,7 @@ int main() {
   while(Q--) {
     int T, X, Y;
     scanf("%d %d %d", &T, &X, &Y);
-    if(T == 0) seg.update(X, Y);
+    if(T == 0) seg.set(X, Y);
     else printf("%d\n", seg.prod(X, Y + 1));
   }
 }
