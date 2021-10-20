@@ -42,9 +42,8 @@ int main() {
   auto H = [](int64 x, int64 y) { return y; };
   auto seg = get_lazy_segment_tree(N, F, G, H, Node(), infll);
   for(int i = 0; i < N; i++) seg.set(i, Node(S[tree.rev[i]], 1));
-  seg.build();
 
-  auto QF = [&](int a, int b) { return seg.query(a, b); };
+  auto QF = [&](int a, int b) { return seg.prod(a, b); };
   auto QG = [](const Node &a, const Node &b) { return a + b; };
   auto QS = [](Node l, const Node &r) {
     swap(l.left, l.right);
@@ -56,7 +55,7 @@ int main() {
     cin >> T >> A >> B >> C;
     --A, --B;
     if(T == 1) {
-      tree.add(A, B, [&](int a, int b) { seg.update(a, b, C); });
+      tree.add(A, B, [&](int a, int b) { seg.apply(a, b, C); });
     } else {
       cout << tree.query(A, B, Node(), QF, QG, QS).ans << "\n";
     }

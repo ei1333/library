@@ -28,7 +28,6 @@ int main() {
     cin >> a;
     seg.set(i, pi(a, 1));
   }
-  seg.build();
   for(int i = 0; i < Q; i++) {
     int t;
     cin >> t;
@@ -36,11 +35,11 @@ int main() {
       int l, r;
       mint b, c;
       cin >> l >> r >> b >> c;
-      seg.update(l, r, qi(b, c));
+      seg.apply(l, r, qi(b, c));
     } else {
       int l, r;
       cin >> l >> r;
-      cout << seg.query(l, r).first << "\n";
+      cout << seg.prod(l, r).first << "\n";
     }
   }
 }
