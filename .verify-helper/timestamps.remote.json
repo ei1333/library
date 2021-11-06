@@ -198,6 +198,7 @@
 "test/verify/yosupo-two-sat.test.cpp": "2021-08-31 21:10:51 +0900",
 "test/verify/yukicoder-1002.test.cpp": "2021-08-16 02:17:26 +0900",
 "test/verify/yukicoder-1069.test.cpp": "2021-08-16 02:34:50 +0900",
+"test/verify/yukicoder-1236.test.cpp": "2021-11-07 01:16:35 +0900",
 "test/verify/yukicoder-1254.test.cpp": "2021-08-16 02:17:26 +0900",
 "test/verify/yukicoder-1602.test.cpp": "2021-07-13 23:17:19 +0900",
 "test/verify/yukicoder-1720.test.cpp": "2021-10-27 21:43:46 +0900",
