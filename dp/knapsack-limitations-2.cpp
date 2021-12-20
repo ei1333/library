@@ -30,7 +30,7 @@ T knapsack_limitations(const vector< T > &w, const vector< T > &m, const vector<
     T rest = W - dp[i], cost = i;
     for(auto &p : ord) {
       auto get = min(mb[p], rest / w[p]);
-      if(get == 0) break;
+      if(get <= 0) continue;
       cost += get * v[p];
       rest -= get * w[p];
     }
