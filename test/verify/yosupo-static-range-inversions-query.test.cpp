@@ -34,7 +34,7 @@ int main() {
     ++all;
   };
   auto erase_left = [&](int idx) {
-    inv -= all - bit.prod(A[idx]);
+    inv -= bit.prod(A[idx]);
     bit.apply(A[idx], -1);
     --all;
   };
