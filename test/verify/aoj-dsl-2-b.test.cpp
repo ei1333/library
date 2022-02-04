@@ -11,7 +11,7 @@ int main() {
   while(Q--) {
     int T, X, Y;
     cin >> T >> X >> Y;
-    if(T == 0) bit.add(X - 1, Y);
-    else cout << bit.fold(X - 1, Y) << "\n";
+    if(T == 0) bit.apply(X - 1, Y);
+    else cout << bit.prod(X - 1, Y) << "\n";
   }
 }

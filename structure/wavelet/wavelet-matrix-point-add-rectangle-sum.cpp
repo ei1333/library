@@ -54,7 +54,7 @@ struct WaveletMatrixPointAddRectangleSum {
     for(int level = MAXLOG - 1; level >= 0; level--) {
       if(((upper >> level) & 1)) {
         auto nxt = succ(false, l, r, level);
-        ret += ds[level].fold(nxt.first, nxt.second);
+        ret += ds[level].prod(nxt.first, nxt.second);
         l = l - nxt.first + mid[level];
         r = r - nxt.second + mid[level];
       } else {
@@ -73,7 +73,7 @@ struct WaveletMatrixPointAddRectangleSum {
     for(int level = MAXLOG - 1; level >= 0; level--) {
       bool f = ((y >> level) & 1);
       k = matrix[level].rank(f, k) + mid[level] * f;
-      ds[level].add(k, x);
+      ds[level].apply(k, x);
     }
   }
 };

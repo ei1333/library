@@ -24,23 +24,23 @@ int main() {
   int64_t inv = 0, all = 0;
   vector< int64_t > ans(Q);
   auto add_left = [&](int idx) {
-    inv += bit.fold(A[idx]);
-    bit.add(A[idx], 1);
+    inv += bit.prod(A[idx]);
+    bit.apply(A[idx], 1);
     all++;
   };
   auto add_right = [&](int idx) {
-    inv += all - bit.fold(A[idx] + 1);
-    bit.add(A[idx], 1);
+    inv += all - bit.prod(A[idx] + 1);
+    bit.apply(A[idx], 1);
     ++all;
   };
   auto erase_left = [&](int idx) {
-    inv -= bit.fold(A[idx]);
-    bit.add(A[idx], -1);
+    inv -= all - bit.prod(A[idx]);
+    bit.apply(A[idx], -1);
     --all;
   };
   auto erase_right = [&](int idx) {
-    inv -= all - bit.fold(A[idx] + 1);
-    bit.add(A[idx], -1);
+    inv -= all - bit.prod(A[idx] + 1);
+    bit.apply(A[idx], -1);
     --all;
   };
   auto out = [&](int idx) {
