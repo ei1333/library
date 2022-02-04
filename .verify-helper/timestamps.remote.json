@@ -177,6 +177,7 @@
 "test/verify/yosupo-sparse-matrix-det.test.cpp": "2021-07-13 20:39:58 +0900",
 "test/verify/yosupo-sqrt-mod.test.cpp": "2021-07-13 21:04:36 +0900",
 "test/verify/yosupo-sqrt-of-formal-power-series.test.cpp": "2021-08-17 19:31:02 +0900",
+"test/verify/yosupo-static-range-inversions-query.test.cpp": "2022-02-04 23:45:00 +0900",
 "test/verify/yosupo-static-range-sum.test.cpp": "2021-07-13 19:53:12 +0900",
 "test/verify/yosupo-staticrmq-2.test.cpp": "2021-05-07 20:07:14 +0900",
 "test/verify/yosupo-staticrmq-3.test.cpp": "2021-05-01 00:06:55 +0900",
