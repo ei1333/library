@@ -48,6 +48,6 @@ AbstractBinaryIndexedTree< T, F > get_abstract_binary_indexed_tree(int n, const 
 }
 
 template< typename T, typename F >
-AbstractBinaryIndexedTree< T, F > get_segment_tree(const vector< T > &v, const F &f, const T &e) {
+AbstractBinaryIndexedTree< T, F > get_abstract_binary_indexed_tree(const vector< T > &v, const F &f, const T &e) {
   return AbstractBinaryIndexedTree{v, f, e};
 }
