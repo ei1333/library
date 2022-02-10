@@ -154,6 +154,7 @@
 "test/verify/yosupo-multipoint-evaluation.test.cpp": "2021-08-29 19:33:00 +0900",
 "test/verify/yosupo-partition-function.test.cpp": "2021-08-17 19:31:02 +0900",
 "test/verify/yosupo-persistent-unionfind.test.cpp": "2021-05-01 00:06:55 +0900",
+"test/verify/yosupo-point-add-rectangle-sum-2.test.cpp": "2022-02-10 22:22:03 +0900",
 "test/verify/yosupo-point-add-rectangle-sum.test.cpp": "2022-02-04 23:35:17 +0900",
 "test/verify/yosupo-point-set-range-composite-2.test.cpp": "2021-05-01 00:06:55 +0900",
 "test/verify/yosupo-point-set-range-composite-3.test.cpp": "2021-05-08 18:10:42 +0900",
