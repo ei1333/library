@@ -2,32 +2,32 @@
  * @brief Lazy-Segment-Tree(遅延伝搬セグメント木)
  * @docs docs/lazy-segment-tree.md
  */
-template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
+template< typename T, typename E, typename F, typename G, typename H >
 struct LazySegmentTree {
 private:
   int n{}, sz{}, height{};
-  vector< Monoid > data;
-  vector< OperatorMonoid > lazy;
+  vector< T > data;
+  vector< E > lazy;
   const F f;
   const G g;
   const H h;
-  const Monoid M1;
-  const OperatorMonoid OM0;
+  const T ti;
+  const E ei;
 
   inline void update(int k) {
     data[k] = f(data[2 * k + 0], data[2 * k + 1]);
   }
 
-  inline void all_apply(int k, const OperatorMonoid &x) {
+  inline void all_apply(int k, const E &x) {
     data[k] = g(data[k], x);
     if(k < sz) lazy[k] = h(lazy[k], x);
   }
 
   inline void propagate(int k) {
-    if(lazy[k] != OM0) {
+    if(lazy[k] != ei) {
       all_apply(2 * k + 0, lazy[k]);
       all_apply(2 * k + 1, lazy[k]);
-      lazy[k] = OM0;
+      lazy[k] = ei;
     }
   }
 
@@ -35,53 +35,53 @@ public:
   LazySegmentTree() = default;
 
   explicit LazySegmentTree(int n, const F f, const G g, const H h,
-                           const Monoid &M1, const OperatorMonoid &OM0)
-      : n(n), f(f), g(g), h(h), M1(M1), OM0(OM0) {
+                           const T &ti, const E &ei)
+      : n(n), f(f), g(g), h(h), ti(ti), ei(ei) {
     sz = 1;
     height = 0;
     while(sz < n) sz <<= 1, height++;
-    data.assign(2 * sz, M1);
-    lazy.assign(2 * sz, OM0);
+    data.assign(2 * sz, ti);
+    lazy.assign(2 * sz, ei);
   }
 
-  explicit LazySegmentTree(const vector< Monoid > &v, const F f, const G g, const H h,
-                           const Monoid &M1, const OperatorMonoid &OM0)
-      : LazySegmentTree(v.size(), f, g, h, M1, OM0) {
+  explicit LazySegmentTree(const vector< T > &v, const F f, const G g, const H h,
+                           const T &ti, const E &ei)
+      : LazySegmentTree(v.size(), f, g, h, ti, ei) {
     build(v);
   }
 
-  void build(const vector< Monoid > &v) {
+  void build(const vector< T > &v) {
     assert(n == (int) v.size());
     for(int k = 0; k < n; k++) data[k + sz] = v[k];
     for(int k = sz - 1; k > 0; k--) update(k);
   }
 
-  void set(int k, const Monoid &x) {
+  void set(int k, const T &x) {
     k += sz;
     for(int i = height; i > 0; i--) propagate(k >> i);
     data[k] = x;
     for(int i = 1; i <= height; i++) update(k >> i);
   }
 
-  Monoid get(int k) {
+  T get(int k) {
     k += sz;
     for(int i = height; i > 0; i--) propagate(k >> i);
     return data[k];
   }
 
-  Monoid operator[](int k) {
+  T operator[](int k) {
     return get(k);
   }
 
-  Monoid prod(int l, int r) {
-    if(l >= r) return M1;
+  T prod(int l, int r) {
+    if(l >= r) return ti;
     l += sz;
     r += sz;
     for(int i = height; i > 0; i--) {
       if(((l >> i) << i) != l) propagate(l >> i);
       if(((r >> i) << i) != r) propagate((r - 1) >> i);
     }
-    Monoid L = M1, R = M1;
+    T L = ti, R = ti;
     for(; l < r; l >>= 1, r >>= 1) {
       if(l & 1) L = f(L, data[l++]);
       if(r & 1) R = f(data[--r], R);
@@ -89,18 +89,18 @@ public:
     return f(L, R);
   }
 
-  Monoid all_prod() const {
+  T all_prod() const {
     return data[1];
   }
 
-  void apply(int k, const OperatorMonoid &x) {
+  void apply(int k, const E &x) {
     k += sz;
     for(int i = height; i > 0; i--) propagate(k >> i);
     data[k] = g(data[k], x);
     for(int i = 1; i <= height; i++) update(k >> i);
   }
 
-  void apply(int l, int r, const OperatorMonoid &x) {
+  void apply(int l, int r, const E &x) {
     if(l >= r) return;
     l += sz;
     r += sz;
@@ -127,7 +127,7 @@ public:
     if(l >= n) return n;
     l += sz;
     for(int i = height; i > 0; i--) propagate(l >> i);
-    Monoid sum = M1;
+    T sum = ti;
     do {
       while((l & 1) == 0) l >>= 1;
       if(check(f(sum, data[l]))) {
@@ -152,7 +152,7 @@ public:
     if(r <= 0) return -1;
     r += sz;
     for(int i = height; i > 0; i--) propagate((r - 1) >> i);
-    Monoid sum = 0;
+    T sum = ti;
     do {
       r--;
       while(r > 1 and (r & 1)) r >>= 1;
@@ -174,14 +174,14 @@ public:
   }
 };
 
-template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
-LazySegmentTree< Monoid, OperatorMonoid, F, G, H > get_lazy_segment_tree
-    (int N, const F &f, const G &g, const H &h, const Monoid &M1, const OperatorMonoid &OM0) {
-  return LazySegmentTree{N, f, g, h, M1, OM0};
+template< typename T, typename E, typename F, typename G, typename H >
+LazySegmentTree< T, E, F, G, H > get_lazy_segment_tree
+    (int N, const F &f, const G &g, const H &h, const T &ti, const E &ei) {
+  return LazySegmentTree{N, f, g, h, ti, ei};
 }
 
-template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
-LazySegmentTree< Monoid, OperatorMonoid, F, G, H > get_lazy_segment_tree
-    (const vector< Monoid > &v, const F &f, const G &g, const H &h, const Monoid &M1, const OperatorMonoid &OM0) {
-  return LazySegmentTree{v, f, g, h, M1, OM0};
+template< typename T, typename E, typename F, typename G, typename H >
+LazySegmentTree< T, E, F, G, H > get_lazy_segment_tree
+    (const vector< T > &v, const F &f, const G &g, const H &h, const T &ti, const E &ei) {
+  return LazySegmentTree{v, f, g, h, ti, ei};
 }

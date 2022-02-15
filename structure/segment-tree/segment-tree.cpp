@@ -2,28 +2,28 @@
  * @brief Segment Tree(セグメント木)
  * @docs docs/segment-tree.md
  */
-template< typename Monoid, typename F >
+template< typename T, typename F >
 struct SegmentTree {
   int n, sz;
-  vector< Monoid > seg;
+  vector< T > seg;
 
   const F f;
-  const Monoid M1;
+  const T ti;
 
   SegmentTree() = default;
 
-  explicit SegmentTree(int n, const F f, const Monoid &M1) : n(n), f(f), M1(M1) {
+  explicit SegmentTree(int n, const F f, const T &ti) : n(n), f(f), ti(ti) {
     sz = 1;
     while(sz < n) sz <<= 1;
-    seg.assign(2 * sz, M1);
+    seg.assign(2 * sz, ti);
   }
 
-  explicit SegmentTree(const vector< Monoid > &v, const F f, const Monoid &M1) :
-      SegmentTree((int) v.size(), f, M1) {
+  explicit SegmentTree(const vector< T > &v, const F f, const T &ti) :
+      SegmentTree((int) v.size(), f, ti) {
     build(v);
   }
 
-  void build(const vector< Monoid > &v) {
+  void build(const vector< T > &v) {
     assert(n == (int) v.size());
     for(int k = 0; k < n; k++) seg[k + sz] = v[k];
     for(int k = sz - 1; k > 0; k--) {
@@ -31,7 +31,7 @@ struct SegmentTree {
     }
   }
 
-  void set(int k, const Monoid &x) {
+  void set(int k, const T &x) {
     k += sz;
     seg[k] = x;
     while(k >>= 1) {
@@ -39,15 +39,15 @@ struct SegmentTree {
     }
   }
 
-  Monoid get(int k) const {
+  T get(int k) const {
     return seg[k + sz];
   }
 
-  Monoid operator[](const int &k) const {
+  T operator[](const int &k) const {
     return get(k);
   }
 
-  void apply(int k, const Monoid &x) {
+  void apply(int k, const T &x) {
     k += sz;
     seg[k] = f(seg[k], x);
     while(k >>= 1) {
@@ -55,8 +55,8 @@ struct SegmentTree {
     }
   }
 
-  Monoid prod(int l, int r) const {
-    Monoid L = M1, R = M1;
+  T prod(int l, int r) const {
+    T L = ti, R = ti;
     for(l += sz, r += sz; l < r; l >>= 1, r >>= 1) {
       if(l & 1) L = f(L, seg[l++]);
       if(r & 1) R = f(seg[--r], R);
@@ -64,7 +64,7 @@ struct SegmentTree {
     return f(L, R);
   }
 
-  Monoid all_prod() const {
+  T all_prod() const {
     return seg[1];
   }
 
@@ -72,7 +72,7 @@ struct SegmentTree {
   int find_first(int l, const C &check) const {
     if(l >= n) return n;
     l += sz;
-    Monoid sum = M1;
+    T sum = ti;
     do {
       while((l & 1) == 0) l >>= 1;
       if(check(f(sum, seg[l]))) {
@@ -95,7 +95,7 @@ struct SegmentTree {
   int find_last(int r, const C &check) const {
     if(r <= 0) return -1;
     r += sz;
-    Monoid sum = 0;
+    T sum = ti;
     do {
       r--;
       while(r > 1 and (r & 1)) r >>= 1;
@@ -116,12 +116,12 @@ struct SegmentTree {
   }
 };
 
-template< typename Monoid, typename F >
-SegmentTree< Monoid, F > get_segment_tree(int N, const F &f, const Monoid &M1) {
-  return SegmentTree{N, f, M1};
+template< typename T, typename F >
+SegmentTree< T, F > get_segment_tree(int N, const F &f, const T &ti) {
+  return SegmentTree{N, f, ti};
 }
 
-template< typename Monoid, typename F >
-SegmentTree< Monoid, F > get_segment_tree(const vector< Monoid > &v, const F &f, const Monoid &M1) {
-  return SegmentTree{v, f, M1};
+template< typename T, typename F >
+SegmentTree< T, F > get_segment_tree(const vector< T > &v, const F &f, const T &ti) {
+  return SegmentTree{v, f, ti};
 }

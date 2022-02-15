@@ -2,25 +2,25 @@
  * @brief Dual-Segment-Tree(双対セグメント木)
  * @docs docs/dual-segment-tree.md
  */
-template< typename OperatorMonoid, typename H >
+template< typename E, typename H >
 struct DualSegmentTree {
   int sz, height;
-  vector< OperatorMonoid > lazy;
+  vector< E > lazy;
   const H h;
-  const OperatorMonoid OM0;
+  const E ei;
 
-  DualSegmentTree(int n, const H h, const OperatorMonoid &OM0) : h(h), OM0(OM0) {
+  DualSegmentTree(int n, const H h, const E &ei) : h(h), ei(ei) {
     sz = 1;
     height = 0;
     while(sz < n) sz <<= 1, height++;
-    lazy.assign(2 * sz, OM0);
+    lazy.assign(2 * sz, ei);
   }
 
   inline void propagate(int k) {
-    if(lazy[k] != OM0) {
+    if(lazy[k] != ei) {
       lazy[2 * k + 0] = h(lazy[2 * k + 0], lazy[k]);
       lazy[2 * k + 1] = h(lazy[2 * k + 1], lazy[k]);
-      lazy[k] = OM0;
+      lazy[k] = ei;
     }
   }
 
@@ -28,7 +28,7 @@ struct DualSegmentTree {
     for(int i = height; i > 0; i--) propagate(k >> i);
   }
 
-  void update(int a, int b, const OperatorMonoid &x) {
+  void update(int a, int b, const E &x) {
     thrust(a += sz);
     thrust(b += sz - 1);
     for(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
@@ -37,13 +37,13 @@ struct DualSegmentTree {
     }
   }
 
-  OperatorMonoid operator[](int k) {
+  E operator[](int k) {
     thrust(k += sz);
     return lazy[k];
   }
 };
 
-template< typename OperatorMonoid, typename H >
-DualSegmentTree< OperatorMonoid, H > get_dual_segment_tree(int N, const H& h, const OperatorMonoid& OM0) {
-  return {N, h, OM0};
+template< typename E, typename H >
+DualSegmentTree< E, H > get_dual_segment_tree(int N, const H& h, const E& ei) {
+  return {N, h, ei};
 }
