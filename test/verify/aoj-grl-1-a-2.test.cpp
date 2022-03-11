@@ -2,8 +2,6 @@
 
 #include "../../template/template.cpp"
 
-#include "../../structure/heap/fibonacchi-heap.cpp"
-
 #include "../../graph/shortest-path/dijkstra-fibonacchi-heap.hpp"
 
 int main() {
