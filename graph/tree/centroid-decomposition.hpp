@@ -15,7 +15,7 @@ public:
   int build(int t = 0) {
     sub.assign(g.size(), 0);
     v.assign(g.size(), 0);
-    tree = Graph< T >(g.size());
+    tree = Graph< int >(g.size());
     return build_dfs(0);
   }
 
