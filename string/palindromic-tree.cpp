@@ -10,11 +10,11 @@ public:
     map< T, int > link; // 子のidx
     int suffix_link; // 最長回文接尾辞のidx
     int len; // 対応する回文の長さ
-    int cnt; // 含まれる回文の個数
+    vector< int > idx; // 対応する回文を最長回文接尾辞とするidx
 
     Node() = default;
 
-    Node(int suf, int len, int cnt) : suffix_link(suf), len(len), cnt(cnt) {}
+    Node(int suf, int len) : suffix_link(suf), len(len) {}
   };
 
   vector< Node > ns;
@@ -45,8 +45,8 @@ private:
 
 public:
   PalindromicTree() : ptr(0) {
-    ns.emplace_back(0, -1, 0); // 長さ -1
-    ns.emplace_back(0, 0, 0); // 長さ 0
+    ns.emplace_back(0, -1); // 長さ -1
+    ns.emplace_back(0, 0); // 長さ 0
   }
 
   PalindromicTree(const string &S) : PalindromicTree() {
@@ -54,12 +54,14 @@ public:
   }
 
   int add(const T &x) {
+    int idx = (int) vs.size();
     vs.emplace_back(x);
     int cur = find_prev_palindrome(ptr);
     auto res = ns[cur].link.insert(make_pair(x, (int) ns.size()));
     ptr = res.first->second;
     if(res.second) {
-      ns.emplace_back(-1, ns[cur].len + 2, 1);
+      ns.emplace_back(-1, ns[cur].len + 2);
+      ns.back().idx.emplace_back(idx);
       if(ns.back().len == 1) {
         ns.back().suffix_link = 1;
       } else {
@@ -67,7 +69,7 @@ public:
       }
       return ptr;
     } else {
-      ++ns[ptr].cnt;
+      ns[ptr].idx.emplace_back(idx);
       return ptr;
     }
   }
@@ -79,7 +81,7 @@ public:
   vector< int > build_frequency() const {
     vector< int > ret(ns.size());
     for(int i = (int) ns.size() - 1; i > 0; i--) {
-      ret[i] += ns[i].cnt;
+      ret[i] += (int) ns[i].idx.size();
       ret[ns[i].suffix_link] += ret[i];
     }
     return ret;
