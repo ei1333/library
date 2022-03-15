@@ -11,10 +11,11 @@ public:
     int suffix_link; // 最長回文接尾辞のidx
     int len; // 対応する回文の長さ
     vector< int > idx; // 対応する回文を最長回文接尾辞とするidx
+    int delta_link; // 差分が異なる最長回文接尾辞のidx
 
     Node() = default;
 
-    Node(int suf, int len) : suffix_link(suf), len(len) {}
+    Node(int suf, int len) : suffix_link(suf), len(len), delta_link(-1) {}
   };
 
   vector< Node > ns;
@@ -53,6 +54,11 @@ public:
     add(S);
   }
 
+  int diff(int t) const {
+    if(ns[t].suffix_link <= 0) return -1;
+    return ns[t].len - ns[ns[t].suffix_link].len;
+  }
+
   int add(const T &x) {
     int idx = (int) vs.size();
     vs.emplace_back(x);
@@ -61,17 +67,39 @@ public:
     ptr = res.first->second;
     if(res.second) {
       ns.emplace_back(-1, ns[cur].len + 2);
-      ns.back().idx.emplace_back(idx);
       if(ns.back().len == 1) {
         ns.back().suffix_link = 1;
       } else {
         ns.back().suffix_link = ns[find_prev_palindrome(ns[cur].suffix_link)].link[x];
       }
-      return ptr;
-    } else {
-      ns[ptr].idx.emplace_back(idx);
-      return ptr;
+      if(diff(ptr) == diff(ns.back().suffix_link)) {
+        ns.back().delta_link = ns[ns.back().suffix_link].delta_link;
+      } else {
+        ns.back().delta_link = ns.back().suffix_link;
+      }
     }
+    ns[ptr].idx.emplace_back(idx);
+    return ptr;
+  }
+
+  // add(x) のあとに呼び出す
+  // * init(node_idx, pos):   頂点 node_idx を S[pos,i] が回文のときの初期値にする
+  // * apply(node_idx, pre_idx): 頂点 node_idx に 頂点 pre_idx の結果を加える
+  // * update: S[i]を末尾とする回文の頂点番号の集合
+  template< typename I, typename U >
+  vector< int > update_dp(const I &init, const U &apply) {
+    int i = (int) vs.size() - 1;
+    int id = ptr;
+    vector< int > update;
+    while(ns[id].len > 0) {
+      init(id, i + 1 - ns[ns[id].delta_link].len - diff(id));
+      if(ns[id].suffix_link != ns[id].delta_link) {
+        apply(id, ns[id].suffix_link);
+      }
+      update.emplace_back(id);
+      id = ns[id].delta_link;
+    }
+    return update;
   }
 
   void add(const string &s) {
