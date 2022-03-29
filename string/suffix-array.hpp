@@ -111,7 +111,7 @@ public:
   }
 
   void output() const {
-    for(int i = 0; i < (int) vs.size(); i++) {
+    for(int i = 0; i < size(); i++) {
       cout << i << ":[" << (*this)[i] << "]";
       for(int j = (*this)[i]; j < (int) vs.size(); j++) cout << " " << vs[j];
       cout << "\n";
@@ -157,7 +157,7 @@ public:
 
 template<>
 void SuffixArray< string >::output() const {
-  for(int i = 0; i < (int) vs.size(); i++) {
+  for(int i = 0; i < (int) size(); i++) {
     cout << i << ":[" << (*this)[i] << "] " << vs.substr((*this)[i]) << "\n";
   }
 }
