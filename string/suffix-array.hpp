@@ -98,7 +98,7 @@ public:
       sort(xs.begin(), xs.end());
       xs.erase(unique(xs.begin(), xs.end()), xs.end());
       for(int i = 0; i < (int) vs.size(); i++) {
-        new_vs[i] = lower_bound(xs.begin(), xs.end(), vs[i]) - xs.begin() + 1;
+        new_vs[i] = std::lower_bound(xs.begin(), xs.end(), vs[i]) - xs.begin() + 1;
       }
     } else {
       auto d = *min_element(vs.begin(), vs.end());
@@ -116,6 +116,42 @@ public:
       for(int j = (*this)[i]; j < (int) vs.size(); j++) cout << " " << vs[j];
       cout << "\n";
     }
+  }
+
+
+  bool lt_substr(const string &t, int si = 0, int ti = 0) {
+    int sn = (int) vs.size(), tn = (int) t.size();
+    while(si < sn && ti < tn) {
+      if(vs[si] < t[ti]) return true;
+      if(vs[si] > t[ti]) return false;
+      ++si, ++ti;
+    }
+    return si >= sn && ti < tn;
+  }
+
+  // t <= s[i,N) なる最小の i を返す O(|t| log |s|)
+  int lower_bound(const T &t) {
+    int ng = 0, ok = (int) size();
+    while(ok - ng > 1) {
+      int mid = (ok + ng) / 2;
+      if(lt_substr(t, at(mid))) ng = mid;
+      else ok = mid;
+    }
+    return ok;
+  }
+
+  // O(|t| log |s|)
+  pair< int, int > equal_range(T &t) {
+    int low = lower_bound(t);
+    int ng = low - 1, ok = (int) size();
+    t.back()++;
+    while(ok - ng > 1) {
+      int mid = (ok + ng) / 2;
+      if(lt_substr(t, at(mid))) ng = mid;
+      else ok = mid;
+    }
+    t.back()--;
+    return {low, ok};
   }
 };
 

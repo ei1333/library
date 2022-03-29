@@ -2,7 +2,7 @@
 
 #include "../../template/template.cpp"
 
-#include "../../string/suffix-array.cpp"
+#include "../../string/suffix-array.hpp"
 
 int main() {
   string S;
@@ -14,7 +14,7 @@ int main() {
   while(Q--) {
     string T;
     cin >> T;
-    auto range = sa.lower_upper_bound(T);
+    auto range = sa.equal_range(T);
     cout << (range.first != range.second) << endl;
   }
 }
