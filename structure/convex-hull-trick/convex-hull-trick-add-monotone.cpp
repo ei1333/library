@@ -1,5 +1,5 @@
 /**
- * @brief Convex-Hull-Trick-Add-Monotone
+ * @brief Convex Hull Trick Add Monotone
  * @docs docs/convex-hull-trick-add-monotone.md
 */
 template< typename T, bool isMin >
@@ -17,16 +17,17 @@ struct ConvexHullTrickAddMonotone {
 
   inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }
 
-  using D = long double;
-
   inline bool check(const P &a, const P &b, const P &c) {
     if(b.S == a.S || c.S == b.S)
       return sgn(b.F - a.F) * sgn(c.S - b.S) >= sgn(c.F - b.F) * sgn(b.S - a.S);
-
     //return (b.F-a.F)*(c.S-b.S) >= (b.S-a.S)*(c.F-b.F);
-    return
-        D(b.F - a.F) * sgn(c.S - b.S) / D(abs(b.S - a.S)) >=
-        D(c.F - b.F) * sgn(b.S - a.S) / D(abs(c.S - b.S));
+    if(is_integral< T >::value) {
+      return (b.S - a.S) / (a.F - b.F) >= (c.S - b.S) / (b.F - c.F);
+    } else {
+      return
+          (b.F - a.F) * sgn(c.S - b.S) / abs(b.S - a.S) >=
+          (c.F - b.F) * sgn(b.S - a.S) / abs(c.S - b.S);
+    }
   }
 
   void add(T a, T b) {
