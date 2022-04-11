@@ -1,5 +1,5 @@
 /**
- * @brief Link-Cut-Tree-Lazy-Path
+ * @brief Link Cut Tree Lazy Path
  * @docs docs/link-cut-tree-lazy-path.md
  */
 template< typename T, typename E, typename F, typename G, typename H, typename S >
@@ -145,7 +145,12 @@ public:
   }
 
   void link(NP child, NP parent) {
-    expose(parent);
+    if(is_connected(child, parent)) {
+      throw runtime_error("child and parent must be different connected components");
+    }
+    if(child->l) {
+      throw runtime_error("child must be root");
+    }
     child->p = parent;
     parent->r = child;
     update(parent);
@@ -154,6 +159,9 @@ public:
   void cut(NP child) {
     expose(child);
     NP parent = child->l;
+    if(not parent) {
+      throw runtime_error("child must not be root");
+    }
     child->l = nullptr;
     parent->p = nullptr;
     update(child);
