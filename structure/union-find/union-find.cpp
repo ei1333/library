@@ -39,7 +39,7 @@ struct UnionFind {
     }
     ret.erase(remove_if(begin(ret), end(ret), [&](const vector< int > &v) {
       return v.empty();
-    }));
+    }), end(ret));
     return ret;
   }
 };
