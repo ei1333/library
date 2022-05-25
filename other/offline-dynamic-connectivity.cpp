@@ -48,7 +48,7 @@ struct OfflineDynamicConnectivity {
     }
   }
 
-  int run(const function< void(int) > &f, int k = 0) {
+  void run(const function< void(int) > &f, int k = 0) {
     int add = 0;
     for(auto &e : seg[k]) {
       add += uf.unite(e.first, e.second);
