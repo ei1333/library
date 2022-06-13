@@ -52,9 +52,9 @@ struct StaticPointAddRectangleSum {
     }
     ys.shrink_to_fit();
 
-
     struct Q {
-      T x, d, u;
+      T x;
+      int d, u;
       bool type;
       int idx;
     };
