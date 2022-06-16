@@ -40,7 +40,10 @@ struct StaticPointAddRectangleSum {
   vector< C > calculate_queries() {
     int n = (int) points.size();
     int q = (int) queries.size();
-
+    vector< C > ans(q);
+    if(points.empty() or queries.empty()) {
+      return ans;
+    }
     sort(points.begin(), points.end(), [](const Point &a, const Point &b) {
       return a.y < b.y;
     });
@@ -73,7 +76,6 @@ struct StaticPointAddRectangleSum {
     sort(qs.begin(), qs.end(), [](const Q &a, const Q &b) {
       return a.x < b.x;
     });
-    vector< C > ans(q);
     int j = 0;
     BIT bit(ys.size());
     for(auto &query: qs) {
