@@ -170,7 +170,10 @@ public:
         x = x->r;
       } else {
         if(x->r) k -= x->r->sz;
-        if(k == 0) return x;
+        if(k == 0) {
+          splay(x);
+          return x;
+        }
         k -= 1;
         x = x->l;
       }
