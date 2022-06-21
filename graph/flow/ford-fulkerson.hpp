@@ -45,6 +45,7 @@ struct FordFulkerson {
     for(flow_t f; (f = find_augment_path(s, t, INF)) > 0; timestamp++) {
       flow += f;
     }
+    timestamp++;
     return flow;
   }
 
