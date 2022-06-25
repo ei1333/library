@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @brief Union-Find
  * @docs docs/union-find.md
