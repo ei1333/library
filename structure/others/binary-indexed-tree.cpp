@@ -12,7 +12,7 @@ public:
   BinaryIndexedTree() = default;
 
   explicit BinaryIndexedTree(int n) : n(n) {
-    data.assign(n + 1, 0);
+    data.assign(n + 1, T());
   }
 
   explicit BinaryIndexedTree(const vector< T > &v) :
