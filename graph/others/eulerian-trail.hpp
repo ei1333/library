@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../../structure/union-find/union-find.cpp"
+
 /**
  * @brief Eulerian Trail(オイラー路)
  * @docs docs/eulerian-trail.md
