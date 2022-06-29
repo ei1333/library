@@ -10,3 +10,7 @@
 競技プログラミング用のライブラリ(C++17)
 
 [Library](https://ei1333.github.io/library/index.html)
+
+* ローカル環境の clang でコンパイルが通らない問題 #53
+  * Luzhiled commented on 11 Mar  
+    多分 contributor に向けてどこか目立つところに oj-verify --config-file ./.verify-helper/local.toml run で動くことを書いておくべきだな
