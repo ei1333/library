@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/k_shortest_walk"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/graph-template.hpp"
 #include "../../graph/shortest-path/dijkstra.hpp"
 
-#include "../../structure/heap/leftist-heap.cpp"
-#include "../../structure/heap/persistent-leftist-heap.cpp"
+#include "../../structure/heap/leftist-heap.hpp"
+#include "../../structure/heap/persistent-leftist-heap.hpp"
 #include "../../graph/shortest-path/k-shortest-walk.hpp"
 
 int main() {

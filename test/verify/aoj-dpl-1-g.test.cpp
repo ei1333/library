@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_G"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../dp/knapsack-limitations.cpp"
+#include "../../dp/knapsack-limitations.hpp"
 
 int main() {
   int N, W;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/directedmst"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/mst/directed-mst.hpp"
 

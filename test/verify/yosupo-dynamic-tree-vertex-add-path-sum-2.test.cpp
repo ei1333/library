@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/develop/splay-tree-base.cpp"
-#include "../../structure/develop/reversible-splay-tree.cpp"
-#include "../../structure/develop/link-cut-tree.cpp"
+#include "../../structure/develop/splay-tree-base.hpp"
+#include "../../structure/develop/reversible-splay-tree.hpp"
+#include "../../structure/develop/link-cut-tree.hpp"
 
 int main() {
   int N, Q;

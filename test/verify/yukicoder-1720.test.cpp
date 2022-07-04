@@ -1,10 +1,10 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1720"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/others/permutation-tree.cpp"
+#include "../../structure/others/permutation-tree.hpp"
 
-#include "../../math/combinatorics/montgomery-mod-int.cpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 
 const int MOD = 998244353;
 using mint = MontgomeryModInt< MOD >;

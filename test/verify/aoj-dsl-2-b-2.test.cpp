@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/trie/binary-trie.cpp"
+#include "../../structure/trie/binary-trie.hpp"
 
 int main() {
   int N, Q;

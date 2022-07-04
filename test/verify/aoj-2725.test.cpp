@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2725"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/convex-hull-trick/dynamic-li-chao-tree.cpp"
+#include "../../structure/convex-hull-trick/dynamic-li-chao-tree.hpp"
 
 int main() {
   int N, T;

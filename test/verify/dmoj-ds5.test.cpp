@@ -1,11 +1,11 @@
 #define PROBLEM "https://dmoj.ca/problem/ds5"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/develop/dynamic-tree-test.cpp"
+#include "../../structure/develop/dynamic-tree-test.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 int main() {
   Scanner in(stdin);

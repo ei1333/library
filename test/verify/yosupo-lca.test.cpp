@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/graph-template.hpp"
 #include "../../graph/tree/pmormq-lowest-common-ancestor.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 
 int main() {

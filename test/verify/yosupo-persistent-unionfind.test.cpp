@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/others/persistent-array.cpp"
-#include "../../structure/union-find/persistent-union-find.cpp"
+#include "../../structure/others/persistent-array.hpp"
+#include "../../structure/union-find/persistent-union-find.hpp"
 
 int main() {
   int N, Q;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/assignment"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/flow/hungarian.hpp"
 

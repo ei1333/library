@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/is_parallel.cpp"
-#include "../../geometry/is_orthogonal.cpp"
+#include "../../geometry/is_parallel.hpp"
+#include "../../geometry/is_orthogonal.hpp"
 
 using namespace geometry;
 

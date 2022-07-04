@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0233"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/number-theory/convert-base.cpp"
+#include "../../math/number-theory/convert-base.hpp"
 
 int main() {
   for(;;) {

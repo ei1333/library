@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/others/maximum-clique.hpp"
 

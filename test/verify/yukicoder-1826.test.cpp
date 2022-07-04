@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1826"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/others/abstract-2d-binary-indexed-tree-compressed.cpp"
+#include "../../structure/others/abstract-2d-binary-indexed-tree-compressed.hpp"
 
 int main() {
   int N;

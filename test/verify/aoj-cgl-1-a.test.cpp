@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A"
 #define ERROR 0.00000001
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/projection.cpp"
+#include "../../geometry/projection.hpp"
 
 using namespace geometry;
 

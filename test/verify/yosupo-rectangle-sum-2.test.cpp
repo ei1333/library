@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../other/static-point-add-rectangle-sum.cpp"
+#include "../../other/static-point-add-rectangle-sum.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 int main() {
   int N, Q;

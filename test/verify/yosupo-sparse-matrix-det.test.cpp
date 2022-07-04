@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
-#include "../../math/fps/formal-power-series.cpp"
+#include "../../math/fps/formal-power-series.hpp"
 
-#include "../../math/fps/berlekamp-massey.cpp"
-#include "../../math/fps/sparse-matrix.cpp"
+#include "../../math/fps/berlekamp-massey.hpp"
+#include "../../math/fps/sparse-matrix.hpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;

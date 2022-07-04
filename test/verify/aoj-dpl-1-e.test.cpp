@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_E"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../dp/edit-distance.cpp"
+#include "../../dp/edit-distance.hpp"
 
 int main() {
   string S, T;

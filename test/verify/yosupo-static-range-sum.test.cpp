@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../dp/cumulative-sum.cpp"
+#include "../../dp/cumulative-sum.hpp"
 
 int main() {
   int n, q;

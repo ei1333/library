@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/number-theory/fast-prime-factorization.cpp"
+#include "../../math/number-theory/fast-prime-factorization.hpp"
 
 int main() {
   int Q;

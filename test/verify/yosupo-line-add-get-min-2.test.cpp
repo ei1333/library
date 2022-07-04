@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/convex-hull-trick/convex-hull-trick-add-monotone.cpp"
+#include "../../structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp"
 
 int main() {
   int N, Q;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../string/z-algorithm.hpp"
 

@@ -1,13 +1,13 @@
 #define PROBLEM "https://yukicoder.me/problems/no/650"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/tree/heavy-light-decomposition.hpp"
 
-#include "../../structure/segment-tree/segment-tree.cpp"
+#include "../../structure/segment-tree/segment-tree.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
-#include "../../math/matrix/square-matrix.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/matrix/square-matrix.hpp"
 
 int main() {
   int N;

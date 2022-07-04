@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/frequency_table_of_tree_distance"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/tree/centroid-decomposition.hpp"
 
-#include "../../math/fft/fast-fourier-transform.cpp"
+#include "../../math/fft/fast-fourier-transform.hpp"
 
 int main() {
   int N;

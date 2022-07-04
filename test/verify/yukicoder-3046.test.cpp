@@ -1,9 +1,9 @@
 #define PROBLEM "https://yukicoder.me/problems/no/3046"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
-#include "../../math/fps/formal-power-series.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/fps/formal-power-series.hpp"
 
 const int MOD = (int)(1e9 + 7);
 using mint = ModInt< MOD >;

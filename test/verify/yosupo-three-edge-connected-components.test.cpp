@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/three_edge_connected_components"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/connected-components/three-edge-connected-components.hpp"
 

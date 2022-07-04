@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D"
 #define ERROR 0.00000001
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/distance_ss.cpp"
+#include "../../geometry/distance_ss.hpp"
 
 using namespace geometry;
 

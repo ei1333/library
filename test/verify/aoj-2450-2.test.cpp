@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/lct/link-cut-tree-lazy-path.cpp"
+#include "../../structure/lct/link-cut-tree-lazy-path.hpp"
 
 int main() {
   int N, Q, S[200000];

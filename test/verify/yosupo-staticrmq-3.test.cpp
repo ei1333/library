@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../other/vector-pool.cpp"
+#include "../../other/vector-pool.hpp"
 
-#include "../../structure/bbst/red-black-tree.cpp"
+#include "../../structure/bbst/red-black-tree.hpp"
 
 int main() {
   int N, Q;

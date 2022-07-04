@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/union-find/union-find.cpp"
+#include "../../structure/union-find/union-find.hpp"
 
 int main() {
   int N, Q;

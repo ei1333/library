@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/705"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../dp/online-offline-dp.cpp"
+#include "../../dp/online-offline-dp.hpp"
 
 int main() {
   int n;

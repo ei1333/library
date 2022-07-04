@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1602"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/shortest-path/shortest-nonzero-path.hpp"
 

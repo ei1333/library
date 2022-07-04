@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/number-theory/kth-root-integer.cpp"
+#include "../../math/number-theory/kth-root-integer.hpp"
 
 int main() {
   int T;

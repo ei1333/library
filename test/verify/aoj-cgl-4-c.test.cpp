@@ -1,10 +1,10 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C"
 #define ERROR 0.00001
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/convex_polygon_cut.cpp"
-#include "../../geometry/area.cpp"
+#include "../../geometry/convex_polygon_cut.hpp"
+#include "../../geometry/area.hpp"
 
 using namespace geometry;
 

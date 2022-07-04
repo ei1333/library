@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
-#include "../../other/vector-pool.cpp"
+#include "../../other/vector-pool.hpp"
 
-#include "../../structure/bbst/lazy-red-black-tree.cpp"
+#include "../../structure/bbst/lazy-red-black-tree.hpp"
 
 using mint = ModInt< 998244353 >;
 

@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 #include "../../graph/others/two-satisfiability.hpp"
 

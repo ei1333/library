@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2821"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/union-find/union-find.cpp"
+#include "../../structure/union-find/union-find.hpp"
 
 #include "../../graph/tree/tree-isomorphism.hpp"
 

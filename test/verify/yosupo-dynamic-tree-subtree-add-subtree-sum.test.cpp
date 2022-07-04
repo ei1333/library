@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/develop/subtree-add-subtree-sum.cpp"
+#include "../../structure/develop/subtree-add-subtree-sum.hpp"
 
 int main() {
   int N, Q;

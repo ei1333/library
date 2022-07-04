@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dominatortree"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/others/dominator-tree.hpp"
 

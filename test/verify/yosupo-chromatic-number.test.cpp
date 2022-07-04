@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/chromatic_number"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/others/chromatic-number.hpp"
-#include "../../math/matrix/square-matrix.cpp"
+#include "../../math/matrix/square-matrix.hpp"
 
 int main() {
   int N, M;

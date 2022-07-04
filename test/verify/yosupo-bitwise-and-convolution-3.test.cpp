@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/fft/superset-zeta-moebius-transform-simd.cpp"
+#include "../../math/fft/superset-zeta-moebius-transform-simd.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 const int MOD = 998244353;
 

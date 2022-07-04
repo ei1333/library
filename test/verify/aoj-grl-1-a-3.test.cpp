@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/heap/radix-heap.cpp"
+#include "../../structure/heap/radix-heap.hpp"
 
 #include "../../graph/shortest-path/dijkstra-radix-heap.hpp"
 

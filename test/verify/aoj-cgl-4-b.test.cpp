@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B"
 #define ERROR 0.00000001
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/convex_polygon_diameter.cpp"
+#include "../../geometry/convex_polygon_diameter.hpp"
 
 using namespace geometry;
 

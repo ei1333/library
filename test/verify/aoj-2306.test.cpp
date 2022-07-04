@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2306"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/matrix/square-matrix.cpp"
+#include "../../math/matrix/square-matrix.hpp"
 #include "../../graph/others/enumerate-cliques.hpp"
 
 int main() {

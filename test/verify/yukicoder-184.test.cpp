@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/184"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/matrix/binary-basis.cpp"
+#include "../../math/matrix/binary-basis.hpp"
 
 int main() {
   int N;

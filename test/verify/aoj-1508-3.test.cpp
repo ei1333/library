@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../other/vector-pool.cpp"
-#include "../../structure/bbst/weight-balanced-tree.cpp"
+#include "../../other/vector-pool.hpp"
+#include "../../structure/bbst/weight-balanced-tree.hpp"
 
 int main() {
   int N, Q;
