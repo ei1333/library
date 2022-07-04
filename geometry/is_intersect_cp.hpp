@@ -1,6 +1,6 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "circle.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "circle.hpp"
 
 namespace geometry {
   bool is_intersect_cp(const Circle &c, const Point &p) {

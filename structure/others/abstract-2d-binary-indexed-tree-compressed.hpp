@@ -1,4 +1,4 @@
-#include "abstract-binary-indexed-tree.cpp"
+#include "abstract-binary-indexed-tree.hpp"
 
 /**
  * @brief Abstract 2D Binary Indexed Tree Compressed(抽象化2次元座圧BIT)

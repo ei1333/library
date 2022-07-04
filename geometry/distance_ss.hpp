@@ -1,6 +1,6 @@
-#include "segment.cpp"
-#include "is_intersect_ss.cpp"
-#include "distance_sp.cpp"
+#include "segment.hpp"
+#include "is_intersect_ss.hpp"
+#include "distance_sp.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D

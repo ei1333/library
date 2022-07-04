@@ -1,7 +1,7 @@
-#include "base.cpp"
-#include "line.cpp"
-#include "circle.cpp"
-#include "distance_lp.cpp"
+#include "base.hpp"
+#include "line.hpp"
+#include "circle.hpp"
+#include "distance_lp.hpp"
 
 namespace geometry {
   bool is_intersect_cl(const Circle &c, const Line &l) {

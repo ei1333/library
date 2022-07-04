@@ -1,4 +1,4 @@
-#include "../segment-tree/lazy-segment-tree.cpp"
+#include "../segment-tree/lazy-segment-tree.hpp"
 
 /**
  * @brief Permutation Tree(順列木)

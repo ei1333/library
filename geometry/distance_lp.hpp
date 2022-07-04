@@ -1,5 +1,5 @@
-#include "line.cpp"
-#include "projection.cpp"
+#include "line.hpp"
+#include "projection.hpp"
 
 namespace geometry {
   Real distance_lp(const Line &l, const Point &p) {

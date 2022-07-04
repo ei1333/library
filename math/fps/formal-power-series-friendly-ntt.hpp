@@ -1,4 +1,4 @@
-#include "../fft/number-theoretic-transform-friendly-mod-int.cpp"
+#include "../fft/number-theoretic-transform-friendly-mod-int.hpp"
 
 /**
  * @brief Formal Power Series Friendly NTT(NTTmod用形式的冪級数)

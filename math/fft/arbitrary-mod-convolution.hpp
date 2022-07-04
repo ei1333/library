@@ -1,4 +1,4 @@
-#include "fast-fourier-transform.cpp"
+#include "fast-fourier-transform.hpp"
 
 /*
  * @brief Arbitrary Mod Convolution(任意mod畳み込み)

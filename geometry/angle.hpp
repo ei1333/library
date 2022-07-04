@@ -1,4 +1,4 @@
-#include "point.cpp"
+#include "point.hpp"
 
 namespace geometry {
   Real radian_to_degree(const Real &theta) {

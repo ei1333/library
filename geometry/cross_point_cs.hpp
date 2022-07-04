@@ -1,8 +1,8 @@
-#include "point.cpp"
-#include "segment.cpp"
-#include "circle.cpp"
-#include "is_intersect_cs.cpp"
-#include "cross_point_cl.cpp"
+#include "point.hpp"
+#include "segment.hpp"
+#include "circle.hpp"
+#include "is_intersect_cs.hpp"
+#include "cross_point_cl.hpp"
 
 namespace geometry {
   Points cross_point_cs(const Circle &c, const Segment &s) {

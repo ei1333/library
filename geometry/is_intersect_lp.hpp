@@ -1,6 +1,6 @@
-#include "point.cpp"
-#include "line.cpp"
-#include "ccw.cpp"
+#include "point.hpp"
+#include "line.hpp"
+#include "ccw.hpp"
 
 namespace geometry {
   bool is_intersect_lp(const Line &l, const Point &p) {

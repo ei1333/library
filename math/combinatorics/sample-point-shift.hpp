@@ -1,4 +1,4 @@
-#include "enumeration.cpp"
+#include "enumeration.hpp"
 
 /**
  * @brief Sample Point Shift(標本点シフト)

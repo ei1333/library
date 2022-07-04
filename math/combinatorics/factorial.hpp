@@ -1,4 +1,4 @@
-#include "sample-point-shift.cpp"
+#include "sample-point-shift.hpp"
 
 /**
  * @brief Factorial(階乗)

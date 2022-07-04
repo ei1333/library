@@ -1,5 +1,5 @@
-#include "kth-root-integer.cpp"
-#include "prime-table.cpp"
+#include "kth-root-integer.hpp"
+#include "prime-table.hpp"
 
 /**
  * @brief Prime Count(素数の個数)

@@ -1,6 +1,6 @@
-#include "point.cpp"
-#include "ccw.cpp"
-#include "polygon.cpp"
+#include "point.hpp"
+#include "ccw.hpp"
+#include "polygon.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B

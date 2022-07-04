@@ -1,6 +1,6 @@
-#include "point.cpp"
-#include "ccw.cpp"
-#include "segment.cpp"
+#include "point.hpp"
+#include "ccw.hpp"
+#include "segment.hpp"
 
 
 namespace geometry {

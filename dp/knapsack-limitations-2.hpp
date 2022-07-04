@@ -1,4 +1,4 @@
-#include "knapsack-limitations.cpp"
+#include "knapsack-limitations.hpp"
 
 /**
  * @brief Knapsack Limitations(個数制限つきナップサック問題) $O(N^2 \max(v_i)^2)$

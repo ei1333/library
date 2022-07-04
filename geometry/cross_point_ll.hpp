@@ -1,5 +1,5 @@
-#include "base.cpp"
-#include "line.cpp"
+#include "base.hpp"
+#include "line.hpp"
 
 namespace geometry {
   Point cross_point_ll(const Line &l, const Line &m) {

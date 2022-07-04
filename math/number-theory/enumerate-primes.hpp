@@ -1,4 +1,4 @@
-#include "prime-table.cpp"
+#include "prime-table.hpp"
 
 /**
  * @brief Enumerate Primes(素数列挙)

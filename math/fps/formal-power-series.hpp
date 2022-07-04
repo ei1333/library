@@ -1,4 +1,4 @@
-#include "../fft/arbitrary-mod-convolution.cpp"
+#include "../fft/arbitrary-mod-convolution.hpp"
 
 /**
  * @brief Formal Power Series(形式的冪級数)

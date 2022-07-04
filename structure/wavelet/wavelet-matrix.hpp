@@ -1,4 +1,4 @@
-#include "succinct-indexable-dictionary.cpp"
+#include "succinct-indexable-dictionary.hpp"
 
 /*
  * @brief Wavelet Matrix(ウェーブレット行列)

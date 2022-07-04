@@ -1,4 +1,4 @@
-#include "super-link-cut-tree.cpp"
+#include "super-link-cut-tree.hpp"
 
 /**
  * @brief Dynamic Tree Test

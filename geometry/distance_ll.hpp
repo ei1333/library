@@ -1,6 +1,6 @@
-#include "line.cpp"
-#include "is_intersect_ll.cpp"
-#include "distance_lp.cpp"
+#include "line.hpp"
+#include "is_intersect_ll.hpp"
+#include "distance_lp.hpp"
 
 namespace geometry {
   Real distance_ll(const Line &l, const Line &m) {

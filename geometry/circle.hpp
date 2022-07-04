@@ -1,5 +1,5 @@
 #pragma once
-#include "point.cpp"
+#include "point.hpp"
 
 namespace geometry {
   struct Circle {

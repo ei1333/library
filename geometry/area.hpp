@@ -1,5 +1,5 @@
-#include "point.cpp"
-#include "polygon.cpp"
+#include "point.hpp"
+#include "polygon.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A

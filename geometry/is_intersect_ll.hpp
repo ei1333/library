@@ -1,5 +1,5 @@
-#include "line.cpp"
-#include "is_parallel.cpp"
+#include "line.hpp"
+#include "is_parallel.hpp"
 
 namespace geometry {
   bool is_intersect_ll(const Line &l, const Line &m) {

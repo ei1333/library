@@ -1,8 +1,8 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "line.cpp"
-#include "polygon.cpp"
-#include "cross_point_ll.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "line.hpp"
+#include "polygon.hpp"
+#include "cross_point_ll.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C

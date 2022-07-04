@@ -1,4 +1,4 @@
-#include "static-point-add-rectangle-sum.cpp"
+#include "static-point-add-rectangle-sum.hpp"
 
 /**
  * @brief Dynamic Point Add Rectangle Sum

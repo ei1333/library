@@ -1,4 +1,4 @@
-#include "coeff-of-rational-function.cpp"
+#include "coeff-of-rational-function.hpp"
 
 /**
  * @brief Kth Term of Linearly Recurrent Sequence

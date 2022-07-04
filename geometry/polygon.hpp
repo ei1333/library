@@ -1,6 +1,6 @@
 #pragma once
 
-#include "point.cpp"
+#include "point.hpp"
 
 namespace geometry {
   using Polygon = vector< Point >;

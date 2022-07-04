@@ -1,9 +1,9 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "polygon.cpp"
-#include "distance_sp.cpp"
-#include "cross_point_cl.cpp"
-#include "is_intersect_cs.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "polygon.hpp"
+#include "distance_sp.hpp"
+#include "cross_point_cl.hpp"
+#include "is_intersect_cs.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H

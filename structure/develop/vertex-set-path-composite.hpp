@@ -1,5 +1,5 @@
-#include "super-link-cut-tree.cpp"
-#include "../../math/combinatorics/montgomery-mod-int.cpp"
+#include "super-link-cut-tree.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 
 /**
  * @brief Vertex Set Path Composite

@@ -1,4 +1,4 @@
-#include "fast-walsh-hadamard-transform.cpp"
+#include "fast-walsh-hadamard-transform.hpp"
 
 /**
  * @brief Bitwise Xor Convolution (Bitwise-XOR畳み込み)

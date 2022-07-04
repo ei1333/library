@@ -1,5 +1,5 @@
 #pragma once
-#include "point.cpp"
+#include "point.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C

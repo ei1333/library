@@ -1,4 +1,4 @@
-#include "superset-zeta-moebius-transform.cpp"
+#include "superset-zeta-moebius-transform.hpp"
 
 /**
  * @brief Bitwise And Convolution (Bitwise-AND畳み込み)

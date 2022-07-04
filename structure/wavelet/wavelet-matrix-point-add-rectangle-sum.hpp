@@ -1,5 +1,5 @@
-#include "succinct-indexable-dictionary.cpp"
-#include "../others/binary-indexed-tree.cpp"
+#include "succinct-indexable-dictionary.hpp"
+#include "../others/binary-indexed-tree.hpp"
 
 /*
  * @brief Wavelet Matrix Point Add Rectangle Sum

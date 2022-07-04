@@ -1,7 +1,7 @@
-#include "point.cpp"
-#include "segment.cpp"
-#include "projection.cpp"
-#include "is_intersect_sp.cpp"
+#include "point.hpp"
+#include "segment.hpp"
+#include "projection.hpp"
+#include "is_intersect_sp.hpp"
 
 namespace geometry {
   Real distance_sp(const Segment &s, const Point &p) {

@@ -1,5 +1,5 @@
 #pragma once
-#include "base.cpp"
+#include "base.hpp"
 
 namespace geometry {
   using Point = complex< Real >;

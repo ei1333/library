@@ -1,6 +1,6 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "circle.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "circle.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_E

@@ -1,4 +1,4 @@
-#include "subproduct-tree.cpp"
+#include "subproduct-tree.hpp"
 
 /**
  * @brief Multipoint Evaluation

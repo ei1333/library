@@ -1,4 +1,4 @@
-#include "sparse-table.cpp"
+#include "sparse-table.hpp"
 
 /**
  * @brief Plus-Minus-One-RMQ

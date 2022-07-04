@@ -1,5 +1,5 @@
-#include "point.cpp"
-#include "line.cpp"
+#include "point.hpp"
+#include "line.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A

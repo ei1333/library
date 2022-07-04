@@ -1,4 +1,4 @@
-#include "../structure/others/binary-indexed-tree.cpp"
+#include "../structure/others/binary-indexed-tree.hpp"
 
 /**
  * @brief Static Point Add Rectangle Sum

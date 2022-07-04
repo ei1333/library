@@ -1,6 +1,6 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "polygon.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "polygon.hpp"
 
 namespace geometry {
   int convex_polygon_contains(const Polygon &Q, const Point &p) {

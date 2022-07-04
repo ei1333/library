@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../graph-template.hpp"
-#include "../../structure/union-find/union-find.cpp"
+#include "../../structure/union-find/union-find.hpp"
 
 /**
  * @brief Kruskal(最小全域木)

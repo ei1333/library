@@ -1,8 +1,8 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "segment.cpp"
-#include "circle.cpp"
-#include "projection.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "segment.hpp"
+#include "circle.hpp"
+#include "projection.hpp"
 
 namespace geometry {
   int is_intersect_cs(const Circle &c, const Segment &l) {

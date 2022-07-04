@@ -1,4 +1,4 @@
-#include "subproduct-tree.cpp"
+#include "subproduct-tree.hpp"
 
 /**
  * @brief Polynomial Interpolation(多項式補間)

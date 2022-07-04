@@ -1,7 +1,7 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "line.cpp"
-#include "segment.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "line.hpp"
+#include "segment.hpp"
 
 namespace geometry {
   bool is_intersect_ls(const Line &l, const Segment &s) {

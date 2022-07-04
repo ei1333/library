@@ -1,8 +1,8 @@
-#include "base.cpp"
-#include "point.cpp"
-#include "line.cpp"
-#include "circle.cpp"
-#include "projection.cpp"
+#include "base.hpp"
+#include "point.hpp"
+#include "line.hpp"
+#include "circle.hpp"
+#include "projection.hpp"
 
 namespace geometry {
   // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D

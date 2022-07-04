@@ -1,4 +1,4 @@
-#include "monotone-minima.cpp"
+#include "monotone-minima.hpp"
 
 /**
  * @brief Divide And Conquer Optimization

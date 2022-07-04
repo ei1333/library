@@ -1,5 +1,5 @@
 #pragma once
-#include "line.cpp"
+#include "line.hpp"
 
 namespace geometry {
   struct Segment : Line {

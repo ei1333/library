@@ -1,4 +1,4 @@
-#include "subset-zeta-moebius-transform.cpp"
+#include "subset-zeta-moebius-transform.hpp"
 
 /**
  * @brief Bitwise Or Convolution (Bitwise-OR畳み込み)
