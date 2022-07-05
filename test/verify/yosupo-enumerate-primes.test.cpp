@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/number-theory/enumerate-primes.cpp"
+#include "../../math/number-theory/enumerate-primes.hpp"
 
 int main() {
   int N, A, B;

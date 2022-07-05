@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/mst/prim-fibonacchi-heap.hpp"
 

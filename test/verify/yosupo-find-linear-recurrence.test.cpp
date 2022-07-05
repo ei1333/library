@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/find_linear_recurrence"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
-#include "../../math/fps/formal-power-series-friendly-ntt.cpp"
-#include "../../math/fps/berlekamp-massey.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/fps/formal-power-series-friendly-ntt.hpp"
+#include "../../math/fps/berlekamp-massey.hpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;

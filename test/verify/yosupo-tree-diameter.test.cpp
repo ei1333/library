@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/tree/tree-diameter.hpp"
 

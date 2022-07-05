@@ -1,10 +1,10 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_I"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
-#include "../../math/combinatorics/stirling-number-second.cpp"
+#include "../../math/combinatorics/stirling-number-second.hpp"
 
 int main() {
   int N, K;

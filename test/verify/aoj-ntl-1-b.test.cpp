@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-pow.cpp"
+#include "../../math/combinatorics/mod-pow.hpp"
 
 int main() {
   int64 M, N;

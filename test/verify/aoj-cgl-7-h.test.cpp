@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H"
 #define ERROR 0.00001
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/common_area_cp.cpp"
+#include "../../geometry/common_area_cp.hpp"
 
 using namespace geometry;
 

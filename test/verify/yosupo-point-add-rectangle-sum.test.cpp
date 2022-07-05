@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/wavelet/wavelet-matrix-point-add-rectangle-sum.cpp"
+#include "../../structure/wavelet/wavelet-matrix-point-add-rectangle-sum.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 int main() {
   Scanner in(stdin);

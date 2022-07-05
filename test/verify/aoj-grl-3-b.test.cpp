@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/others/low-link.hpp"
 

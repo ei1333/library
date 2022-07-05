@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/263"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../string/palindromic-tree.cpp"
+#include "../../string/palindromic-tree.hpp"
 
 int main() {
   string S, T;

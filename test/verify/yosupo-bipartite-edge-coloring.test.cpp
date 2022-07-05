@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartite_edge_coloring"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 
 #include "../../graph/others/bipartite-graph-edge-coloring.hpp"

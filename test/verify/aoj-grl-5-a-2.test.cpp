@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A"
 
-#include "../../template/template.cpp"
-#include "../../structure/develop/diameter.cpp"
+#include "../../template/template.hpp"
+#include "../../structure/develop/diameter.hpp"
 
 int main() {
   int N;

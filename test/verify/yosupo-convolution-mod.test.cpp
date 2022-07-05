@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/fft/number-theoretic-transform.cpp"
+#include "../../math/fft/number-theoretic-transform.hpp"
 
 int main() {
   int N, M;

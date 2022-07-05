@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tetration_mod"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-tetration.cpp"
+#include "../../math/combinatorics/mod-tetration.hpp"
 
 int main() {
   int T;

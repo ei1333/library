@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/matrix/matrix.cpp"
+#include "../../math/matrix/matrix.hpp"
 #include "../../graph/others/maximum-independent-set.hpp"
 
 int main() {

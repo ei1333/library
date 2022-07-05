@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_inversions_query"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../other/mo.cpp"
-#include "../../structure/others/binary-indexed-tree.cpp"
+#include "../../other/mo.hpp"
+#include "../../structure/others/binary-indexed-tree.hpp"
 
 int main() {
   int N, Q;

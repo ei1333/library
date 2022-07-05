@@ -1,10 +1,10 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2270"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../other/mo-tree.cpp"
+#include "../../other/mo-tree.hpp"
 
-#include "../../structure/others/binary-indexed-tree.cpp"
+#include "../../structure/others/binary-indexed-tree.hpp"
 
 int main() {
   int N, Q;

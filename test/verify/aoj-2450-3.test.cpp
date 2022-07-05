@@ -1,11 +1,11 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/develop/splay-tree-base.cpp"
-#include "../../structure/develop/reversible-splay-tree.cpp"
-#include "../../structure/develop/lazy-reversible-splay-tree.cpp"
-#include "../../structure/develop/link-cut-tree.cpp"
+#include "../../structure/develop/splay-tree-base.hpp"
+#include "../../structure/develop/reversible-splay-tree.hpp"
+#include "../../structure/develop/lazy-reversible-splay-tree.hpp"
+#include "../../structure/develop/link-cut-tree.hpp"
 
 int main() {
   int N, Q, S[200000];

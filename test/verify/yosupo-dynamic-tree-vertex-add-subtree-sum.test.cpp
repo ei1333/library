@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/lct/link-cut-tree-subtree.cpp"
+#include "../../structure/lct/link-cut-tree-subtree.hpp"
 
 int main() {
   int N, Q;

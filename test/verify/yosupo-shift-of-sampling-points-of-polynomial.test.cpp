@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/fft/number-theoretic-transform-friendly-mod-int.cpp"
+#include "../../math/fft/number-theoretic-transform-friendly-mod-int.hpp"
 
-#include "../../math/combinatorics/lagrange-polynomial-3.cpp"
+#include "../../math/combinatorics/lagrange-polynomial-3.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
 using mint = ModInt< 998244353 >;
 

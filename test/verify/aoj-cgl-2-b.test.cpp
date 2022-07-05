@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/is_intersect_ss.cpp"
+#include "../../geometry/is_intersect_ss.hpp"
 
 using namespace geometry;
 

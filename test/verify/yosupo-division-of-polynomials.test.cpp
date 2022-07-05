@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
-#include "../../math/fps/formal-power-series-friendly-ntt.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/fps/formal-power-series-friendly-ntt.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;

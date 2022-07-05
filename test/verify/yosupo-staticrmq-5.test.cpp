@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/others/linear-rmq.cpp"
+#include "../../structure/others/linear-rmq.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 int main() {
   Scanner in(stdin);

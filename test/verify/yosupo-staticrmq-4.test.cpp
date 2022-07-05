@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/graph-template.hpp"
 #include "../../graph/tree/pmormq-lowest-common-ancestor.hpp"

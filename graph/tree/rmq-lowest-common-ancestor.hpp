@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../graph-template.hpp"
-#include "../../structure/others/sparse-table.cpp"
+#include "../../structure/others/sparse-table.hpp"
 
 /**
  * @brief RMQ-Lowest-Common-Ancestor(最小共通祖先)

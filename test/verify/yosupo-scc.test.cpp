@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/connected-components/strongly-connected-components.hpp"
 

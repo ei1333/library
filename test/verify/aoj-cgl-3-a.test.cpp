@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/area.cpp"
+#include "../../geometry/area.hpp"
 
 using namespace geometry;
 

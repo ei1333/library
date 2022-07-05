@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/fft/subset-convolution.cpp"
+#include "../../math/fft/subset-convolution.hpp"
 
-#include "../../math/combinatorics/montgomery-mod-int.cpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 const int MOD = 998244353;
 using mint = MontgomeryModInt< MOD, true >;

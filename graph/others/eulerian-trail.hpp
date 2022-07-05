@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../structure/union-find/union-find.cpp"
+#include "../../structure/union-find/union-find.hpp"
 
 /**
  * @brief Eulerian Trail(オイラー路)

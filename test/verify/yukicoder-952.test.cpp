@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/952"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/convex-hull-trick/convex-hull-trick-add-monotone.cpp"
+#include "../../structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp"
 
 int main() {
   int N;

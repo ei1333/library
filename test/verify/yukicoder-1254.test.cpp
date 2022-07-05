@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1254"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/others/namori-graph.hpp"
 

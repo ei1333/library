@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 #include "../../graph/shortest-path/dijkstra.hpp"
 #include "../../graph/others/offline-dag-reachability.hpp"
 

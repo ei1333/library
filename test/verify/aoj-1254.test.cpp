@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1254"
 
-#include "../../template/template.cpp"
-#include "../../math/matrix/square-matrix.cpp"
+#include "../../template/template.hpp"
+#include "../../math/matrix/square-matrix.hpp"
 
 #include "../../graph/others/chromatic-number.hpp"
 

@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/wavelet/succinct-indexable-dictionary.cpp"
-#include "../../structure/wavelet/wavelet-matrix-rectangle-sum.cpp"
+#include "../../structure/wavelet/succinct-indexable-dictionary.hpp"
+#include "../../structure/wavelet/wavelet-matrix-rectangle-sum.hpp"
 
 int main() {
   int N, Q;

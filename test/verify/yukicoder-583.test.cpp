@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/583"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/others/eulerian-trail.hpp"
 

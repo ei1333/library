@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
-#include "../../math/matrix/matrix.cpp"
+#include "../../math/matrix/matrix.hpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;

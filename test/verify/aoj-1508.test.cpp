@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/bbst/randomized-binary-search-tree.cpp"
+#include "../../structure/bbst/randomized-binary-search-tree.hpp"
 
 int main() {
   int N, Q;

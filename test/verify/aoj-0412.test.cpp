@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0412"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/convex_polygon_contains.cpp"
+#include "../../geometry/convex_polygon_contains.hpp"
 
 using namespace geometry;
 

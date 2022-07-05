@@ -1,4 +1,4 @@
-#include "../../math/matrix/matrix.cpp"
+#include "../../math/matrix/matrix.hpp"
 
 /**
  * @brief Hungarian(二部グラフの最小重み最大マッチング)

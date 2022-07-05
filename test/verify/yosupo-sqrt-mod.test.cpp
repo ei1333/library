@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sqrt_mod"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-pow.cpp"
-#include "../../math/combinatorics/mod-sqrt.cpp"
+#include "../../math/combinatorics/mod-pow.hpp"
+#include "../../math/combinatorics/mod-sqrt.hpp"
 
 int main() {
   int T;

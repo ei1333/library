@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../graph-template.hpp"
-#include "../../structure/others/plus-minus-one-rmq.cpp"
+#include "../../structure/others/plus-minus-one-rmq.hpp"
 
 /**
  * @brief PMORMQ-Lowest-Common-Ancestor(最小共通祖先)

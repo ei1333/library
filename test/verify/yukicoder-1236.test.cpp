@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1236"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../math/rational/rational.hpp"
 

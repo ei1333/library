@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/others/disjoint-sparse-table.cpp"
+#include "../../structure/others/disjoint-sparse-table.hpp"
 
 int main() {
   int N, Q;

@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/segment-tree/lazy-segment-tree.cpp"
+#include "../../structure/segment-tree/lazy-segment-tree.hpp"
 
 #include "../../graph/tree/heavy-light-decomposition.hpp"
 

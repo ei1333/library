@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/manhattanmst"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/mst/manhattan-mst.hpp"
 #include "../../graph/mst/kruskal.hpp"

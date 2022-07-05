@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1549"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/wavelet/wavelet-matrix.cpp"
+#include "../../structure/wavelet/wavelet-matrix.hpp"
 
 int main() {
   int n;

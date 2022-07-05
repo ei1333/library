@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../dp/cumulative-sum-2d.cpp"
+#include "../../dp/cumulative-sum-2d.hpp"
 
 
 int main() {

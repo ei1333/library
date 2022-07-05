@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/discrete_logarithm_mod" 
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-log.cpp"
+#include "../../math/combinatorics/mod-log.hpp"
 
 int main() {
   int T;

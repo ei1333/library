@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C"
 #define ERROR 0.00000001
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../geometry/cross_point_ll.cpp"
+#include "../../geometry/cross_point_ll.hpp"
 
 using namespace geometry;
 

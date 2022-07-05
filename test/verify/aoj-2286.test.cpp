@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2286"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/number-theory/euler-phi-table.cpp"
+#include "../../math/number-theory/euler-phi-table.hpp"
 
 int main() {
   const int MAX_N = 1000000;

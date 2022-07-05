@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/matrix/square-matrix.cpp"
+#include "../../math/matrix/square-matrix.hpp"
 #include "../../graph/shortest-path/warshall-floyd.hpp"
 
 int main() {

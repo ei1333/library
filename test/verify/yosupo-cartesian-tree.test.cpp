@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cartesian_tree"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/others/cartesian-tree.hpp"
 

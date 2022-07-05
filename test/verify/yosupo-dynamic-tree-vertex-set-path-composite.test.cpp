@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/lct/link-cut-tree.cpp"
+#include "../../structure/lct/link-cut-tree.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
 using mint = ModInt< 998244353 >;
 

@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/queue_operate_all_composite"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
-#include "../../structure/others/sliding-window-aggregation.cpp"
+#include "../../structure/others/sliding-window-aggregation.hpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;

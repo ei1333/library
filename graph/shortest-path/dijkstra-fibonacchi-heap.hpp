@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../graph-template.hpp"
-#include "../../structure/heap/fibonacchi-heap.cpp"
+#include "../../structure/heap/fibonacchi-heap.hpp"
 
 /**
  * @brief Dijkstra-Fibonacchi-Heap(単一始点最短路)

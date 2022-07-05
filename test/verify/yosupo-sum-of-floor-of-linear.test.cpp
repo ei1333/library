@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_floor_of_linear"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/number-theory/sum-of-floor-of-linear.cpp"
+#include "../../math/number-theory/sum-of-floor-of-linear.hpp"
 
 int main() {
   int T;

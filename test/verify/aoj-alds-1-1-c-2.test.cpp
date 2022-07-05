@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/number-theory/prime-table.cpp"
+#include "../../math/number-theory/prime-table.hpp"
 
 int main() {
   auto t = prime_table(100000000);

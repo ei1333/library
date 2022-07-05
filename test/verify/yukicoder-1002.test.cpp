@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1002"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../graph/tree/centroid-decomposition.hpp"
 

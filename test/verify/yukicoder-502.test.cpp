@@ -1,11 +1,11 @@
 #define PROBLEM "https://yukicoder.me/problems/no/502"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.cpp"
-#include "../../math/combinatorics/factorial.cpp"
+#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/factorial.hpp"
 
-#include "../../math/fft/arbitrary-mod-convolution.cpp"
+#include "../../math/fft/arbitrary-mod-convolution.hpp"
 
 const int MOD = (int) (1e9 + 7);
 using mint = ModInt< MOD >;

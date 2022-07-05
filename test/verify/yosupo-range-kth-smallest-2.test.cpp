@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/wavelet/succinct-indexable-dictionary.cpp"
-#include "../../structure/wavelet/wavelet-tree.cpp"
+#include "../../structure/wavelet/succinct-indexable-dictionary.hpp"
+#include "../../structure/wavelet/wavelet-tree.hpp"
 
 int main() {
   int N, Q;

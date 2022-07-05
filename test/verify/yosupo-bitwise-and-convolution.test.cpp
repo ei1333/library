@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../math/fft/bitwise-and-convolution.cpp"
-#include "../../math/combinatorics/mod-int.cpp"
+#include "../../math/fft/bitwise-and-convolution.hpp"
+#include "../../math/combinatorics/mod-int.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
 const int MOD = 998244353;
 using mint = ModInt< MOD >;

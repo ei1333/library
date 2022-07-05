@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/develop/vertex-set-path-composite.cpp"
+#include "../../structure/develop/vertex-set-path-composite.hpp"
 
 int main() {
   int N, Q;

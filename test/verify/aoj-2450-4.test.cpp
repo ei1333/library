@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/develop/super-link-cut-tree.cpp"
+#include "../../structure/develop/super-link-cut-tree.hpp"
 
 using T = int64_t;
 

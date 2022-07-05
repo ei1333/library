@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../graph-template.hpp"
-#include "../../structure/heap/skew-heap.cpp"
+#include "../../structure/heap/skew-heap.hpp"
 
 /**
  * @brief Directed MST(最小有向全域木)

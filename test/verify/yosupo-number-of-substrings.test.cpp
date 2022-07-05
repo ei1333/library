@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
 #include "../../string/lcp-array.hpp"
 

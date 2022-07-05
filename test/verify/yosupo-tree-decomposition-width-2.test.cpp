@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_decomposition_width_2"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../other/scanner.cpp"
-#include "../../other/printer.cpp"
+#include "../../other/scanner.hpp"
+#include "../../other/printer.hpp"
 
-#include "../../structure/union-find/union-find.cpp"
+#include "../../structure/union-find/union-find.hpp"
 
 #include "../../graph/others/tree-decomposition-width-2.hpp"
 

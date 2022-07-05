@@ -1,10 +1,10 @@
 #define PROBLEM "https://yukicoder.me/problems/no/430"
 
-#include "../../template/template.cpp"
+#include "../../template/template.hpp"
 
-#include "../../structure/trie/trie.cpp"
+#include "../../structure/trie/trie.hpp"
 
-#include "../../string/aho-corasick.cpp"
+#include "../../string/aho-corasick.hpp"
 
 int main() {
   string S;
