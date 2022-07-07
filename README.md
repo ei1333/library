@@ -14,3 +14,5 @@
 * ローカル環境の clang でコンパイルが通らない問題 #53
   * Luzhiled commented on 11 Mar  
     多分 contributor に向けてどこか目立つところに oj-verify --config-file ./.verify-helper/local.toml run で動くことを書いておくべきだな
+  * Luzhiled commented 20 minutes ago  
+    これ今気づいたんですが oj-verify --config-file .verify-helper/local.toml run でいいですね
