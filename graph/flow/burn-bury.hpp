@@ -1,8 +1,3 @@
-#pragma once
-
-#include "../../structure/union-find/union-find.hpp"
-#include "dinic.hpp"
-
 /**
  * @brief Burn Bury(燃やす埋める)
  */
@@ -18,6 +13,7 @@ private:
   T alpha;
   vector< arr2 > theta;
   vector< map< int, arr4 > > phi;
+  map< vector< int >, T > zeta;
 
 public:
   explicit BurnBury(int n) : n{n}, alpha{}, theta(n), phi(n) {}
@@ -41,6 +37,13 @@ public:
     else phi[b][a][((y >= 0) << 1) | (x >= 0)] += cost;
   }
 
+  void add_cost(vector< int > xs, T cost) {
+    assert(not xs.empty());
+    sort(xs.begin(), xs.end());
+    if(not minimize) cost *= -1;
+    zeta[xs] += cost;
+  }
+
   optional< pair< T, vector< bool > > > solve() {
     vector< int > flip(2 * n, -1);
     {
@@ -51,9 +54,26 @@ public:
           if(c < 0) {
             uf.unite(i, j + n);
             uf.unite(i + n, j);
-          } else {
+          }
+          if(c > 0) {
             uf.unite(i, j);
             uf.unite(i + n, j + n);
+          }
+        }
+      }
+      for(auto&[vs, c]: zeta) {
+        if(c > 0) return nullopt;
+        if(c < 0) {
+          for(int i = 1; i < (int) vs.size(); i++) {
+            int x = vs[i - 1], y = vs[i];
+            int a = max(x, ~x), b = max(y, ~y);
+            if((x >= 0) ^ (y >= 0)) {
+              uf.unite(a, b + n);
+              uf.unite(a + n, b);
+            } else {
+              uf.unite(a, b);
+              uf.unite(a + n, b + n);
+            }
           }
         }
       }
@@ -110,7 +130,8 @@ public:
         }
       }
     }
-    MaxFlow flow(n + 2);
+
+    MaxFlow flow(n + 2 + zeta.size());
     int s = n, t = n + 1;
     {
       for(int i = 0; i < n; i++) {
@@ -132,6 +153,20 @@ public:
           }
         }
       }
+      int u = t + 1;
+      for(auto&[vs, c]: zeta) {
+        if(c < 0) {
+          if((vs[0] >= 0) ^ flip[max(~vs[0], vs[0])]) {
+            flow.add_edge(s, u, -c);
+            for(auto &p: vs) flow.add_edge(u, max(p, ~p), -c);
+          } else {
+            for(auto &p: vs) flow.add_edge(max(p, ~p), u, -c);
+            flow.add_edge(u, t, -c);
+          }
+          alpha += c;
+          u++;
+        }
+      }
     }
     T ans = flow.max_flow(s, t) + alpha;
     vector< bool > cut = flow.min_cut(s);
@@ -139,6 +174,6 @@ public:
       if(flip[i]) cut[i] = 1 - cut[i];
     }
     cut.resize(n);
-    return make_pair(ans, cut);
+    return make_pair(minimize ? ans : -ans, cut);
   }
 };
