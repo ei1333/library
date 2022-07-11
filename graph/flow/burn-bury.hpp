@@ -44,9 +44,18 @@ public:
 
   void add_cost(vector< int > xs, T cost) {
     assert(not xs.empty());
-    sort(xs.begin(), xs.end());
-    if(not minimize) cost *= -1;
-    zeta[xs] += cost;
+    if(xs.size() == 1) {
+      add_cost(xs[0], cost);
+    } else if(xs.size() == 2) {
+      add_cost(xs[0], xs[1], cost);
+    } else {
+      int m = (int) xs.size();
+      sort(xs.begin(), xs.end());
+      xs.erase(unique(xs.begin(), xs.end()), xs.end());
+      assert(m == (int) xs.size());
+      if(not minimize) cost *= -1;
+      zeta[xs] += cost;
+    }
   }
 
   optional< pair< T, vector< bool > > > solve() {
