@@ -1,3 +1,4 @@
+#define IGNORE
 #define PROBLEM "https://dmoj.ca/problem/ds5"
 
 #include "../../template/template.hpp"
