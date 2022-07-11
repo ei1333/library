@@ -1,3 +1,8 @@
+---
+title: Knapsack Limitations(個数制限つきナップサック問題) $O(NW)$
+documentation_of: //dp/knapsack-limitations.hpp
+---
+
 ## 概要
 
 個数制限つきナップサック問題を次に示す.

@@ -1,3 +1,8 @@
+---
+title: Cumulative Sum(一次元累積和)
+documentation_of: //dp/cumulative-sum.hpp
+---
+
 ## 概要
 
 $1$ 次元の累積和. 前計算として事前に累積和をとることで, 区間の和を $O(1)$ で求めることが出来る.

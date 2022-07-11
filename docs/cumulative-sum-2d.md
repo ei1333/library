@@ -1,3 +1,8 @@
+---
+title: Cumulative Sum 2D(二次元累積和)
+documentation_of: //dp/cumulative-sum-2d.hpp
+---
+
 ## 概要
 
 $2$ 次元の累積和. 前計算として事前に累積和をとることで, 矩形和を $O(1)$ で求めることが出来る.

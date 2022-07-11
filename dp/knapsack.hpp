@@ -1,7 +1,3 @@
-/**
- * @brief Knapsack(個数制限なしナップサック問題)
- * @docs docs/knapsack.md
- */
 template< typename T, typename Compare = greater< T > >
 vector< T > knapsack(const vector< int > &w, const vector< T > &v, const int &W, const T &NG, const Compare &comp = Compare()) {
   const int N = (int) w.size();

@@ -1,3 +1,8 @@
+---
+title: Edit Distance(編集距離)
+documentation_of: //dp/edit-distance.hpp
+---
+
 ## 概要
 
 レーベルシュタイン距離とも呼ばれる. $2$ つの文字列がどの程度異なっているかを示す距離の一種である.

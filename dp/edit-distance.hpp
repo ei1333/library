@@ -1,7 +1,3 @@
-/**
- * @brief Edit Distance(編集距離)
- * @docs docs/edit-distance.md
- */
 int edit_distance(const string &S, const string &T) {
   const int N = (int) S.size(), M = (int) T.size();
   vector< vector< int > > dp(N + 1, vector< int >(M + 1, N + M));

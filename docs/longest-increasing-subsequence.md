@@ -1,3 +1,8 @@
+---
+title: Longest Increasing Subsequence(最長増加部分列)
+documentation_of: //dp/longest-increasing-subsequence.hpp
+---
+
 ## 概要
 
 最長増加部分列(LIS)の長さを求める.

@@ -1,9 +1,5 @@
 #include "monotone-minima.hpp"
 
-/**
- * @brief Divide And Conquer Optimization
- * @docs docs/divide-and-conquer-optimization.md
- */
 template< typename T, typename Compare = less< T > >
 vector< vector< T > > divide_and_conquer_optimization(int H, int W, T INF, const function< T(int, int) > &f, const Compare &comp = Compare()) {
   vector< vector< T > > dp(H + 1, vector< T >(W + 1, INF));

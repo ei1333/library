@@ -1,3 +1,8 @@
+---
+title: Knapsack Limitations(個数制限つきナップサック問題) $O(N^2 \max(v_i)^2)$
+documentation_of: //dp/knapsack-limitations-2.hpp
+---
+
 ## 概要
 
 個数制限つきナップサック問題を次に示す.

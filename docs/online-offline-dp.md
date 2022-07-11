@@ -1,3 +1,8 @@
+---
+title: Online Offline DP(オンライン・オフライン変換)
+documentation_of: //dp/online-offline-dp.hpp
+---
+
 ## 概要
 
 $dp[j] = \min \\{ dp[i] + f(i,j) : i \in [0,j) \\}$ (例: $f(i,j)$ を区間 $[i,j)$ のコストとすると、区間[0, j) を任意個に分割するときの最小コスト) を考える.

@@ -1,3 +1,8 @@
+---
+title: Divide And Conquer Optimization
+documentation_of: //dp/divide-and-conquer-optimization.hpp
+---
+
 ## 概要
 
 $dp[i][j] = \min_{0 \leq k \lt j}\\{dp[i-1][k]+f(k,j)\\}$ の形のDPを高速化するテク.
