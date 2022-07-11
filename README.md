@@ -16,3 +16,7 @@
     多分 contributor に向けてどこか目立つところに oj-verify --config-file ./.verify-helper/local.toml run で動くことを書いておくべきだな
   * Luzhiled commented 20 minutes ago  
     これ今気づいたんですが oj-verify --config-file .verify-helper/local.toml run でいいですね
+  * ドキュメントの生成と確認を手元でやる手順も必要かもしれない  
+    ドキュメントの生成  
+    oj-verify --config-file .verify-helper/local.toml docs にしないとダメ  
+    ローカルでの実行
