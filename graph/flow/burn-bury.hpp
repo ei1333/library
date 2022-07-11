@@ -1,3 +1,8 @@
+#pragma once
+
+#include "../../structure/union-find/union-find.hpp"
+#include "dinic.hpp"
+
 /**
  * @brief Burn Bury(燃やす埋める)
  */
