@@ -4,7 +4,7 @@
 #include "dinic.hpp"
 
 /**
- * @brief BurnBury(燃やす埋める)
+ * @brief Burn Bury(燃やす埋める)
  */
 template< typename T, bool minimize = true >
 struct BurnBury {
@@ -41,7 +41,7 @@ public:
     else phi[b][a][((y >= 0) << 1) | (x >= 0)] += cost;
   }
 
-  optional< T > solve() {
+  optional< pair< T, vector< bool > > > solve() {
     vector< int > flip(2 * n, -1);
     {
       UF uf(n + n);
@@ -60,7 +60,7 @@ public:
       for(int i = 0; i < n; i++) {
         int x = uf.find(i);
         int y = uf.find(i + n);
-        if(x == y) return {};
+        if(x == y) return nullopt;
         if(flip[x] < 0) {
           flip[x] = 0;
           flip[y] = 1;
@@ -133,6 +133,12 @@ public:
         }
       }
     }
-    return flow.max_flow(s, t) + alpha;
+    T ans = flow.max_flow(s, t) + alpha;
+    vector< bool > cut = flow.min_cut(s);
+    for(int i = 0; i < n; i++) {
+      if(flip[i]) cut[i] = 1 - cut[i];
+    }
+    cut.resize(n);
+    return make_pair(ans, cut);
   }
 };
