@@ -1,7 +1,3 @@
-/**
- * @brief Cumulative Sum 2D(二次元累積和)
- * @docs docs/cumulative-sum-2d.md
-*/
 template< class T >
 struct CumulativeSum2D {
   vector< vector< T > > data;

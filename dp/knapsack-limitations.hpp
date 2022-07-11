@@ -1,7 +1,3 @@
-/**
- * @brief Knapsack Limitations(個数制限つきナップサック問題) $O(NW)$
- * @docs docs/knapsack-limitations.md
- */
 template< typename T, typename Compare = greater< T > >
 vector< T > knapsack_limitations(const vector< int > &w, const vector< int > &m, const vector< T > &v,
                                  const int &W, const T &NG, const Compare &comp = Compare()) {

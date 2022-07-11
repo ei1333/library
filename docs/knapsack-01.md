@@ -1,3 +1,8 @@
+---
+title: Knapsack 01(0-1ナップサック問題) $O(NW)$
+documentation_of: //dp/knapsack-01.hpp
+---
+
 ## 概要
 
 0-1 ナップサック問題を次に示す.

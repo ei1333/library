@@ -1,7 +1,3 @@
-/**
- * @brief Longest Increasing Subsequence(最長増加部分列)
- * @docs docs/longest-increasing-subsequence.md
- */
 template< typename T >
 size_t longest_increasing_subsequence(const vector< T > &a, bool strict) {
   vector< T > lis;

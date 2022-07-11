@@ -1,3 +1,8 @@
+---
+title: Largest Rectangle(最大長方形)
+documentation_of: //dp/largest-rectangle.hpp
+---
+
 ## 概要
 
 ヒストグラム中の最大長方形の面積を求める.

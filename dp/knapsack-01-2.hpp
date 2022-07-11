@@ -1,7 +1,3 @@
-/**
- * @brief Knapsack 01(0-1ナップサック問題) $O(N \sum {v_i})$
- * @docs docs/knapsack-01-2.md
- */
 template< typename T >
 T knapsack_01_2(const vector< T > &w, const vector< int > &v, const T &W) {
   const int N = (int) w.size();

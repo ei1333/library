@@ -1,3 +1,8 @@
+---
+title: Knapsack(個数制限なしナップサック問題)
+documentation_of: //dp/knapsack.hpp
+---
+
 ## 概要
 
 個数制限なしナップサック問題を次に示す.
