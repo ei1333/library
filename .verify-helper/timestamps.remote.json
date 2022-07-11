@@ -157,5 +157,12 @@
 "test/verify/yosupo-number-of-substrings.test.cpp": "2022-07-05 18:16:30 +0900",
 "test/verify/yosupo-partition-function.test.cpp": "2022-07-05 18:16:30 +0900",
 "test/verify/yosupo-persistent-unionfind.test.cpp": "2022-07-05 18:16:30 +0900",
-"test/verify/yosupo-point-add-rectangle-sum-2.test.cpp": "2022-07-05 18:16:30 +0900"
+"test/verify/yosupo-point-add-rectangle-sum-2.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-point-add-rectangle-sum-3.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-point-add-rectangle-sum.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-point-set-range-composite-2.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-point-set-range-composite-3.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-point-set-range-composite.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-polynomial-interpolation.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-polynomial-taylor-shift.test.cpp": "2022-07-05 18:16:30 +0900"
 }
