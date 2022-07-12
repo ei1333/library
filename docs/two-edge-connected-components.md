@@ -1,3 +1,8 @@
+---
+title: Two Edge Connected Components(二重辺連結成分分解)
+documentation_of: //graph/connected-components/two-edge-connected-components.hpp
+---
+
 ## 概要
 
 二辺連結成分分解とも. 二重辺連結成分とは, $1$ 本の辺を取り除いても連結である部分グラフである. つまり, 橋を含まない部分グラフなので, 橋を列挙することで二重辺連結成分を列挙できる.

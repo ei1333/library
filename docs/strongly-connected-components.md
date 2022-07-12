@@ -1,3 +1,8 @@
+---
+title: Strongly Connected Components(強連結成分分解)
+documentation_of: //graph/connected-components/strongly-connected-components.hpp
+---
+
 ## 概要
 
 与えられた有向グラフを強連結成分分解する.
