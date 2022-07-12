@@ -1,3 +1,8 @@
+---
+title: Bi Connected Components(二重頂点連結成分分解)
+documentation_of: //graph/connected-components/bi-connected-components.hpp
+---
+
 ## 概要
 
 二重連結成分分解とも. 二重頂点連結成分とは, $1$ 個の頂点を取り除いても連結である部分グラフである. 

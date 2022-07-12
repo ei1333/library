@@ -2,11 +2,6 @@
 
 #include "../../structure/union-find/union-find.hpp"
 
-/**
- * @brief Incremental Bridge Connectivity
- * @docs docs/incremental-bridge-connectivity.md
- * @see https://scrapbox.io/data-structures/Incremental_Bridge-Connectivity
- */
 struct IncrementalBridgeConnectivity {
 private:
   UnionFind cc, bcc;

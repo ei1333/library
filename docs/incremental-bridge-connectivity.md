@@ -1,3 +1,8 @@
+---
+title: Incremental Bridge Connectivity
+documentation_of: //graph/connected-components/incremental-bridge-connectivity.hpp
+---
+
 ## 概要
 
 辺の追加クエリのみ存在するとき, 二重辺連結成分を効率的に管理するデータ構造.
@@ -12,3 +17,6 @@
 ## 計算量
 
 ならし $O(n \log n)$
+
+## 参考
+[Incremental Bridge-Connectivity - data-structures](https://scrapbox.io/data-structures/Incremental_Bridge-Connectivity)
