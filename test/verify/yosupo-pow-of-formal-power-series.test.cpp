@@ -10,7 +10,8 @@ const int MOD = 998244353;
 using mint = ModInt< MOD >;
 
 int main() {
-  int N, M;
+  int N;
+  int64_t M;
   cin >> N >> M;
   FPS< mint > f(N);
   cin >> f;
