@@ -173,10 +173,13 @@
 "test/verify/yosupo-range-kth-smallest.test.cpp": "2022-07-05 18:16:30 +0900",
 "test/verify/yosupo-rectangle-sum-2.test.cpp": "2022-07-05 18:16:30 +0900",
 "test/verify/yosupo-rectangle-sum.test.cpp": "2022-07-05 18:16:30 +0900",
-"test/verify/yosupo-scc.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-scc.test.cpp": "2022-07-12 23:19:45 +0900",
 "test/verify/yosupo-segment-add-get-min.test.cpp": "2022-07-05 18:16:30 +0900",
 "test/verify/yosupo-set-xor-min.test.cpp": "2022-07-05 18:16:30 +0900",
 "test/verify/yosupo-sharp-p-subset-sum.test.cpp": "2022-07-05 18:16:30 +0900",
 "test/verify/yosupo-shift-of-sampling-points-of-polynomial.test.cpp": "2022-07-05 18:16:30 +0900",
-"test/verify/yosupo-shortest-path.test.cpp": "2022-07-05 18:16:30 +0900"
+"test/verify/yosupo-shortest-path.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-sparse-matrix-det.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-sqrt-mod.test.cpp": "2022-07-05 18:16:30 +0900",
+"test/verify/yosupo-sqrt-of-formal-power-series.test.cpp": "2022-07-05 18:16:30 +0900"
 }
