@@ -1,12 +1,13 @@
 /**
  * @brief Lazy-Reversible-Splay-Tree(遅延伝搬反転可能Splay木)
  */
-template< typename Monoid = int, typename OperatorMonoid = Monoid >
+template < typename Monoid = int, typename OperatorMonoid = Monoid >
 struct LazyReversibleSplayTree {
-public:
+ public:
   using F = function< Monoid(Monoid, Monoid) >;
   using G = function< Monoid(Monoid, OperatorMonoid) >;
-  using H = function< OperatorMonoid(OperatorMonoid, OperatorMonoid) >;
+  using H =
+      function< OperatorMonoid(OperatorMonoid, OperatorMonoid) >;
   using S = function< Monoid(Monoid) >;
 
   struct Node {
@@ -20,25 +21,42 @@ public:
       return !p || (p->l != this && p->r != this);
     }
 
-    Node(const Monoid &key, const OperatorMonoid &om) :
-        key(key), sum(key), lazy(om), sz(1), rev(false),
-        l(nullptr), r(nullptr), p(nullptr) {}
+    Node(const Monoid &key, const OperatorMonoid &om)
+        : key(key),
+          sum(key),
+          lazy(om),
+          sz(1),
+          rev(false),
+          l(nullptr),
+          r(nullptr),
+          p(nullptr) {}
   };
 
-  LazyReversibleSplayTree(const F &f, const Monoid &M1) :
-      LazyReversibleSplayTree(f, [](const Monoid &a) { return a; }, M1) {}
+  LazyReversibleSplayTree(const F &f, const Monoid &M1)
+      : LazyReversibleSplayTree(
+            f, [](const Monoid &a) { return a; }, M1) {}
 
-  LazyReversibleSplayTree(const F &f, const S &s, const Monoid &M1) :
-      LazyReversibleSplayTree(f, G(), H(), s, M1, OperatorMonoid()) {}
+  LazyReversibleSplayTree(const F &f, const S &s, const Monoid &M1)
+      : LazyReversibleSplayTree(f, G(), H(), s, M1,
+                                OperatorMonoid()) {}
 
-  LazyReversibleSplayTree(const F &f, const G &g, const H &h, const S &s,
-                          const Monoid &M1, const OperatorMonoid &OM0) :
-      f(f), g(g), h(h), s(s), M1(M1), OM0(OM0) {}
+  LazyReversibleSplayTree(const F &f, const G &g, const H &h,
+                          const S &s, const Monoid &M1,
+                          const OperatorMonoid &OM0)
+      : f(f),
+        g(g),
+        h(h),
+        s(s),
+        M1(M1),
+        OM0(OM0) {}
 
+  inline size_t count(const Node *t) {
+    return t ? t->sz : 0;
+  }
 
-  inline size_t count(const Node *t) { return t ? t->sz : 0; }
-
-  inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
+  inline const Monoid &sum(const Node *t) {
+    return t ? t->sum : M1;
+  }
 
   Node *alloc(const Monoid &v = Monoid()) {
     return new Node(v, OM0);
@@ -46,35 +64,41 @@ public:
 
   void splay(Node *t) {
     push(t);
-    while(!t->is_root()) {
+    while (!t->is_root()) {
       auto *q = t->p;
-      if(q->is_root()) {
+      if (q->is_root()) {
         push(q), push(t);
-        if(q->l == t) rotr(t);
-        else rotl(t);
+        if (q->l == t)
+          rotr(t);
+        else
+          rotl(t);
       } else {
         auto *r = q->p;
         push(r), push(q), push(t);
-        if(r->l == q) {
-          if(q->l == t) rotr(q), rotr(t);
-          else rotl(t), rotr(t);
+        if (r->l == q) {
+          if (q->l == t)
+            rotr(q), rotr(t);
+          else
+            rotl(t), rotr(t);
         } else {
-          if(q->r == t) rotl(q), rotl(t);
-          else rotr(t), rotl(t);
+          if (q->r == t)
+            rotl(q), rotl(t);
+          else
+            rotr(t), rotl(t);
         }
       }
     }
   }
 
   Node *push_front(Node *t, const Monoid &v = Monoid()) {
-    if(!t) {
+    if (!t) {
       t = alloc(v);
       return t;
     } else {
       splay(t);
       Node *cur = get_left(t), *z = alloc(v);
       splay(cur);
-      z->p = cur;
+      z->p   = cur;
       cur->l = z;
       splay(z);
       return z;
@@ -82,14 +106,14 @@ public:
   }
 
   Node *push_back(Node *t, const Monoid &v = Monoid()) {
-    if(!t) {
+    if (!t) {
       t = alloc(v);
       return t;
     } else {
       splay(t);
       Node *cur = get_right(t), *z = alloc(v);
       splay(cur);
-      z->p = cur;
+      z->p   = cur;
       cur->r = z;
       splay(z);
       return z;
@@ -100,15 +124,15 @@ public:
     splay(t);
     Node *x = t->l, *y = t->r;
     delete t;
-    if(!x) {
+    if (!x) {
       t = y;
-      if(t) t->p = nullptr;
-    } else if(!y) {
-      t = x;
+      if (t) t->p = nullptr;
+    } else if (!y) {
+      t    = x;
       t->p = nullptr;
     } else {
       x->p = nullptr;
-      t = get_right(x);
+      t    = get_right(x);
       splay(t);
       t->r = y;
       y->p = t;
@@ -117,16 +141,17 @@ public:
   }
 
   Node *get_left(Node *t) const {
-    while(t->l) t = t->l;
+    while (t->l) t = t->l;
     return t;
   }
 
   Node *get_right(Node *t) const {
-    while(t->r) t = t->r;
+    while (t->r) t = t->r;
     return t;
   }
 
-  void set_propagate(Node *&t, int a, int b, const OperatorMonoid &pp) {
+  void set_propagate(Node *&t, int a, int b,
+                     const OperatorMonoid &pp) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
@@ -141,19 +166,19 @@ public:
   }
 
   pair< Node *, Node * > split(Node *t, int k) {
-    if(!t) return {nullptr, nullptr};
+    if (!t) return {nullptr, nullptr};
     push(t);
-    if(k <= count(t->l)) {
+    if (k <= count(t->l)) {
       auto x = split(t->l, k);
-      t->l = x.second;
-      t->p = nullptr;
-      if(x.second) x.second->p = t;
+      t->l   = x.second;
+      t->p   = nullptr;
+      if (x.second) x.second->p = t;
       return {x.first, update(t)};
     } else {
       auto x = split(t->r, k - count(t->l) - 1);
-      t->r = x.first;
-      t->p = nullptr;
-      if(x.first) x.first->p = t;
+      t->r   = x.first;
+      t->p   = nullptr;
+      if (x.first) x.first->p = t;
       return {update(t), x.second};
     }
   }
@@ -165,12 +190,12 @@ public:
     return make_tuple(x.first, y.first, y.second);
   }
 
-  template< typename ... Args >
-  Node *merge(Node *l, Args ...rest) {
+  template < typename... Args >
+  Node *merge(Node *l, Args... rest) {
     Node *r = merge(rest...);
-    if(!l && !r) return nullptr;
-    if(!l) return splay(r), r;
-    if(!r) return splay(l), l;
+    if (!l && !r) return nullptr;
+    if (!l) return splay(r), r;
+    if (!r) return splay(l), l;
     splay(l), splay(r);
     l = get_right(l);
     splay(l);
@@ -183,7 +208,7 @@ public:
   void insert(Node *&t, int k, const Monoid &v) {
     splay(t);
     auto x = split(t, k);
-    t = merge(x.first, alloc(v), x.second);
+    t      = merge(x.first, alloc(v), x.second);
   }
 
   Monoid erase(Node *&t, int k) {
@@ -198,15 +223,15 @@ public:
 
   Monoid query(Node *&t, int a, int b) {
     splay(t);
-    auto x = split(t, a);
-    auto y = split(x.second, b - a);
+    auto x   = split(t, a);
+    auto y   = split(x.second, b - a);
     auto ret = sum(y.first);
-    t = merge(x.first, y.first, y.second);
+    t        = merge(x.first, y.first, y.second);
     return ret;
   }
 
   Node *build(const vector< Monoid > &v) {
-    return build(0, (int) v.size(), v);
+    return build(0, (int)v.size(), v);
   }
 
   void toggle(Node *t) {
@@ -216,22 +241,22 @@ public:
   }
 
   Node *update(Node *t) {
-    t->sz = 1;
+    t->sz  = 1;
     t->sum = t->key;
-    if(t->l) t->sz += t->l->sz, t->sum = f(t->l->sum, t->sum);
-    if(t->r) t->sz += t->r->sz, t->sum = f(t->sum, t->r->sum);
+    if (t->l) t->sz += t->l->sz, t->sum = f(t->l->sum, t->sum);
+    if (t->r) t->sz += t->r->sz, t->sum = f(t->sum, t->r->sum);
     return t;
   }
 
   void push(Node *t) {
-    if(t->lazy != OM0) {
-      if(t->l) propagate(t->l, t->lazy);
-      if(t->r) propagate(t->r, t->lazy);
+    if (t->lazy != OM0) {
+      if (t->l) propagate(t->l, t->lazy);
+      if (t->r) propagate(t->r, t->lazy);
       t->lazy = OM0;
     }
-    if(t->rev) {
-      if(t->l) toggle(t->l);
-      if(t->r) toggle(t->r);
+    if (t->rev) {
+      if (t->l) toggle(t->l);
+      if (t->r) toggle(t->r);
       t->rev = false;
     }
   }
@@ -241,7 +266,7 @@ public:
     sub_set_element(t, k, x);
   }
 
-private:
+ private:
   const Monoid M1;
   const OperatorMonoid OM0;
   const F f;
@@ -250,36 +275,37 @@ private:
   const S s;
 
   Node *build(int l, int r, const vector< Monoid > &v) {
-    if(l + 1 >= r) return alloc(v[l]);
-    return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
+    if (l + 1 >= r) return alloc(v[l]);
+    return merge(build(l, (l + r) >> 1, v),
+                 build((l + r) >> 1, r, v));
   }
 
   void propagate(Node *t, const OperatorMonoid &x) {
     t->lazy = h(t->lazy, x);
-    t->key = g(t->key, x);
-    t->sum = g(t->sum, x);
+    t->key  = g(t->key, x);
+    t->sum  = g(t->sum, x);
   }
 
   void rotr(Node *t) {
     auto *x = t->p, *y = x->p;
-    if((x->l = t->r)) t->r->p = x;
+    if ((x->l = t->r)) t->r->p = x;
     t->r = x, x->p = t;
     update(x), update(t);
-    if((t->p = y)) {
-      if(y->l == x) y->l = t;
-      if(y->r == x) y->r = t;
+    if ((t->p = y)) {
+      if (y->l == x) y->l = t;
+      if (y->r == x) y->r = t;
       update(y);
     }
   }
 
   void rotl(Node *t) {
     auto *x = t->p, *y = x->p;
-    if((x->r = t->l)) t->l->p = x;
+    if ((x->r = t->l)) t->l->p = x;
     t->l = x, x->p = t;
     update(x), update(t);
-    if((t->p = y)) {
-      if(y->l == x) y->l = t;
-      if(y->r == x) y->r = t;
+    if ((t->p = y)) {
+      if (y->l == x) y->l = t;
+      if (y->r == x) y->r = t;
       update(y);
     }
   }
@@ -290,9 +316,9 @@ private:
 
   Node *sub_set_element(Node *&t, int k, const Monoid &x) {
     push(t);
-    if(k < count(t->l)) {
+    if (k < count(t->l)) {
       return sub_set_element(t->l, k, x);
-    } else if(k == count(t->l)) {
+    } else if (k == count(t->l)) {
       t->key = x;
       splay(t);
       return t;

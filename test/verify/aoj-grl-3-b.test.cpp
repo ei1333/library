@@ -1,8 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B"
-
-#include "../../template/template.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B"
 
 #include "../../graph/others/low-link.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int V, E;
@@ -11,7 +11,9 @@ int main() {
   g.read(E, 0);
   g.build();
   auto &bridge = g.bridge;
-  for(auto &v : bridge) tie(v.from, v.to) = minmax({v.from, v.to});
-  sort(bridge.begin(), bridge.end(), [](auto &p, auto &q) { return tie(p.from, p.to) < tie(q.from, q.to); });
-  for(auto &v : bridge) cout << v.from << " " << v.to << "\n";
+  for (auto &v: bridge) tie(v.from, v.to) = minmax({v.from, v.to});
+  sort(bridge.begin(), bridge.end(), [](auto &p, auto &q) {
+    return tie(p.from, p.to) < tie(q.from, q.to);
+  });
+  for (auto &v: bridge) cout << v.from << " " << v.to << "\n";
 }

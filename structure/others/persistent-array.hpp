@@ -1,4 +1,4 @@
-template< typename T, int LOG >
+template < typename T, int LOG >
 struct PersistentArray {
   struct Node {
     T data;
@@ -6,15 +6,15 @@ struct PersistentArray {
 
     Node() {}
 
-    Node(const T &data) : data(data) {}
+    Node(const T &data): data(data) {}
   };
 
   Node *root;
 
-  PersistentArray() : root(nullptr) {}
+  PersistentArray(): root(nullptr) {}
 
   T get(Node *t, int k) {
-    if(k == 0) return t->data;
+    if (k == 0) return t->data;
     return get(t->child[k & ((1 << LOG) - 1)], k >> LOG);
   }
 
@@ -24,7 +24,7 @@ struct PersistentArray {
 
   pair< Node *, T * > mutable_get(Node *t, int k) {
     t = t ? new Node(*t) : new Node();
-    if(k == 0) return {t, &t->data};
+    if (k == 0) return {t, &t->data};
     auto p = mutable_get(t->child[k & ((1 << LOG) - 1)], k >> LOG);
     t->child[k & ((1 << LOG) - 1)] = p.first;
     return {t, p.second};
@@ -32,13 +32,13 @@ struct PersistentArray {
 
   T *mutable_get(const int &k) {
     auto ret = mutable_get(root, k);
-    root = ret.first;
+    root     = ret.first;
     return ret.second;
   }
 
   Node *build(Node *t, const T &data, int k) {
-    if(!t) t = new Node();
-    if(k == 0) {
+    if (!t) t = new Node();
+    if (k == 0) {
       t->data = data;
       return t;
     }
@@ -49,9 +49,8 @@ struct PersistentArray {
 
   void build(const vector< T > &v) {
     root = nullptr;
-    for(int i = 0; i < v.size(); i++) {
+    for (int i = 0; i < v.size(); i++) {
       root = build(root, v[i], i);
     }
   }
 };
-

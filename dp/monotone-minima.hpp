@@ -1,14 +1,17 @@
-template< typename T, typename Compare = less< T > >
-vector< pair< int, T > > monotone_minima(int H, int W, const function< T(int, int) > &f, const Compare &comp = Compare()) {
+template < typename T, typename Compare = less< T > >
+vector< pair< int, T > > monotone_minima(
+    int H, int W, const function< T(int, int) > &f,
+    const Compare &comp = Compare()) {
   vector< pair< int, T > > dp(H);
-  function< void(int, int, int, int) > dfs = [&](int top, int bottom, int left, int right) {
-    if(top > bottom) return;
+  function< void(int, int, int, int) > dfs =
+      [&](int top, int bottom, int left, int right) {
+    if (top > bottom) return;
     int line = (top + bottom) / 2;
     T ma;
     int mi = -1;
-    for(int i = left; i <= right; i++) {
+    for (int i = left; i <= right; i++) {
       T cst = f(line, i);
-      if(mi == -1 || comp(cst, ma)) {
+      if (mi == -1 || comp(cst, ma)) {
         ma = cst;
         mi = i;
       }

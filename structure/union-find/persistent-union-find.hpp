@@ -22,20 +22,20 @@ struct PersistentUnionFind {
   bool unite(int x, int y) {
     x = find(x);
     y = find(y);
-    if(x == y) return false;
+    if (x == y) return false;
     auto u = data.get(x);
     auto v = data.get(y);
 
-    if(u < v) {
+    if (u < v) {
       auto a = data.mutable_get(x);
       *a += v;
       auto b = data.mutable_get(y);
-      *b = x;
+      *b     = x;
     } else {
       auto a = data.mutable_get(y);
       *a += u;
       auto b = data.mutable_get(x);
-      *b = y;
+      *b     = y;
     }
     return true;
   }
