@@ -1,8 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A"
-
-#include "../../template/template.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A"
 
 #include "../../graph/tree/tree-diameter.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int N;

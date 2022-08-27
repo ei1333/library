@@ -1,10 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/430"
 
-#include "../../template/template.hpp"
-
-#include "../../structure/trie/trie.hpp"
-
 #include "../../string/aho-corasick.hpp"
+#include "../../structure/trie/trie.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   string S;
@@ -12,7 +10,7 @@ int main() {
   cin >> S;
   cin >> M;
   AhoCorasick< 26, 'A' > aho;
-  for(int i = 0; i < M; i++) {
+  for (int i = 0; i < M; i++) {
     string T;
     cin >> T;
     aho.add(T);

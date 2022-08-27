@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/montmort_number_mod"
 
-#include "../../template/template.hpp"
-
 #include "../../math/combinatorics/arbitrary-mod-int.hpp"
 #include "../../math/combinatorics/montmort.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int N, M;

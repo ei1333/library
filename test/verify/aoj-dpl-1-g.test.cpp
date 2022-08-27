@@ -1,14 +1,14 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_G"
-
-#include "../../template/template.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_G"
 
 #include "../../dp/knapsack-limitations.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int N, W;
   cin >> N >> W;
   vector< int > v(N), w(N), m(N);
-  for(int i = 0; i < N; i++) {
+  for (int i = 0; i < N; i++) {
     cin >> v[i] >> w[i] >> m[i];
   }
   auto ret = knapsack_limitations(w, m, v, W, -1);

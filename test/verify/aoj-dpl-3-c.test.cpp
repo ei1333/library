@@ -1,8 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C"
-
-#include "../../template/template.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C"
 
 #include "../../dp/largest-rectangle.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int N;

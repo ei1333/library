@@ -7,14 +7,14 @@ namespace geometry {
 
     Line() = default;
 
-    Line(const Point &a, const Point &b) : a(a), b(b) {}
+    Line(const Point &a, const Point &b): a(a), b(b) {}
 
     Line(const Real &A, const Real &B, const Real &C) { // Ax+By=C
-      if(equals(A, 0)) {
+      if (equals(A, 0)) {
         assert(!equals(B, 0));
         a = Point(0, C / B);
         b = Point(1, C / B);
-      } else if(equals(B, 0)) {
+      } else if (equals(B, 0)) {
         a = Point(C / A, 0);
         b = Point(C / A, 1);
       } else {
@@ -33,4 +33,4 @@ namespace geometry {
   };
 
   using Lines = vector< Line >;
-}
+} // namespace geometry

@@ -10,7 +10,7 @@
  * @see https://ei1333.hateblo.jp/entry/2020/08/25/015955
  */
 struct BipariteGraphEdgeColoring {
-private:
+ private:
   vector< vector< int > > ans;
   vector< int > A, B;
   int L, R;
@@ -24,16 +24,16 @@ private:
   static UnionFind contract(valarray< int > &deg, int k) {
     using pi = pair< int, int >;
     priority_queue< pi, vector< pi >, greater<> > que;
-    for(int i = 0; i < (int) deg.size(); i++) {
+    for (int i = 0; i < (int)deg.size(); i++) {
       que.emplace(deg[i], i);
     }
     UnionFind uf(deg.size());
-    while(que.size() > 1) {
+    while (que.size() > 1) {
       auto p = que.top();
       que.pop();
       auto q = que.top();
       que.pop();
-      if(p.first + q.first > k) continue;
+      if (p.first + q.first > k) continue;
       p.first += q.first;
       uf.unite(p.second, q.second);
       que.emplace(p);
@@ -41,13 +41,12 @@ private:
     return uf;
   }
 
-
   RegularGraph build_k_regular_graph() {
     valarray< int > deg[2];
     deg[0] = valarray< int >(L);
     deg[1] = valarray< int >(R);
-    for(auto &p : A) deg[0][p]++;
-    for(auto &p : B) deg[1][p]++;
+    for (auto &p: A) deg[0][p]++;
+    for (auto &p: B) deg[1][p]++;
 
     int k = max(deg[0].max(), deg[1].max());
 
@@ -58,13 +57,15 @@ private:
 
     vector< int > id[2];
     int ptr[] = {0, 0};
-    id[0] = vector< int >(L);
-    id[1] = vector< int >(R);
-    for(int i = 0; i < L; i++) if(uf[0].find(i) == i) id[0][i] = ptr[0]++;
-    for(int i = 0; i < R; i++) if(uf[1].find(i) == i) id[1][i] = ptr[1]++;
+    id[0]     = vector< int >(L);
+    id[1]     = vector< int >(R);
+    for (int i = 0; i < L; i++)
+      if (uf[0].find(i) == i) id[0][i] = ptr[0]++;
+    for (int i = 0; i < R; i++)
+      if (uf[1].find(i) == i) id[1][i] = ptr[1]++;
 
     /* step 2 */
-    int N = max(ptr[0], ptr[1]);
+    int N  = max(ptr[0], ptr[1]);
     deg[0] = valarray< int >(N);
     deg[1] = valarray< int >(N);
 
@@ -72,7 +73,7 @@ private:
     vector< int > C, D;
     C.reserve(N * k);
     D.reserve(N * k);
-    for(int i = 0; i < (int) A.size(); i++) {
+    for (int i = 0; i < (int)A.size(); i++) {
       int u = id[0][uf[0].find(A[i])];
       int v = id[1][uf[1].find(B[i])];
       C.emplace_back(u);
@@ -81,9 +82,9 @@ private:
       deg[1][v]++;
     }
     int j = 0;
-    for(int i = 0; i < N; i++) {
-      while(deg[0][i] < k) {
-        while(deg[1][j] == k) ++j;
+    for (int i = 0; i < N; i++) {
+      while (deg[0][i] < k) {
+        while (deg[1][j] == k) ++j;
         C.emplace_back(i);
         D.emplace_back(j);
         ++deg[0][i];
@@ -95,33 +96,33 @@ private:
   }
 
   void rec(const vector< int > &ord, int k) {
-    if(k == 0) {
+    if (k == 0) {
       return;
-    } else if(k == 1) {
+    } else if (k == 1) {
       ans.emplace_back(ord);
       return;
-    } else if((k & 1) == 0) {
+    } else if ((k & 1) == 0) {
       EulerianTrail< false > et(g.n + g.n);
-      for(auto &p : ord) et.add_edge(g.A[p], g.B[p] + g.n);
+      for (auto &p: ord) et.add_edge(g.A[p], g.B[p] + g.n);
       auto paths = et.enumerate_eulerian_trail();
       vector< int > path;
-      for(auto &ps : paths) {
-        for(auto &e : ps) path.emplace_back(ord[e]);
+      for (auto &ps: paths) {
+        for (auto &e: ps) path.emplace_back(ord[e]);
       }
       vector< int > beet[2];
-      for(int i = 0; i < (int) path.size(); i++) {
+      for (int i = 0; i < (int)path.size(); i++) {
         beet[i & 1].emplace_back(path[i]);
       }
       rec(beet[0], k / 2);
       rec(beet[1], k / 2);
     } else {
       BipartiteFlow flow(g.n, g.n);
-      for(auto &i : ord) flow.add_edge(g.A[i], g.B[i]);
+      for (auto &i: ord) flow.add_edge(g.A[i], g.B[i]);
       flow.max_matching();
       vector< int > beet;
       ans.emplace_back();
-      for(auto &i : ord) {
-        if(flow.match_l[g.A[i]] == g.B[i]) {
+      for (auto &i: ord) {
+        if (flow.match_l[g.A[i]] == g.B[i]) {
           flow.match_l[g.A[i]] = -1;
           ans.back().emplace_back(i);
         } else {
@@ -132,8 +133,8 @@ private:
     }
   }
 
-public:
-  explicit BipariteGraphEdgeColoring() : L(0), R(0) {}
+ public:
+  explicit BipariteGraphEdgeColoring(): L(0), R(0) {}
 
   void add_edge(int a, int b) {
     A.emplace_back(a);
@@ -148,9 +149,10 @@ public:
     iota(ord.begin(), ord.end(), 0);
     rec(ord, g.k);
     vector< vector< int > > res;
-    for(int i = 0; i < (int) ans.size(); i++) {
+    for (int i = 0; i < (int)ans.size(); i++) {
       res.emplace_back();
-      for(auto &j : ans[i]) if(j < (int)A.size()) res.back().emplace_back(j);
+      for (auto &j: ans[i])
+        if (j < (int)A.size()) res.back().emplace_back(j);
     }
     return res;
   }

@@ -1,14 +1,14 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_B"
-
-#include "../../template/template.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_B"
 
 #include "../../graph/mst/directed-mst.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int V, E, R;
   cin >> V >> E >> R;
   Edges< int > edges;
-  for(int i = 0; i < E; i++) {
+  for (int i = 0; i < E; i++) {
     int a, b, c;
     cin >> a >> b >> c;
     edges.emplace_back(a, b, c);

@@ -1,10 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_G"
-
-#include "../../template/template.hpp"
-
-#include "../../math/combinatorics/mod-int.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_G"
 
 #include "../../math/combinatorics/bell-number.hpp"
+#include "../../math/combinatorics/mod-int.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int N, K;

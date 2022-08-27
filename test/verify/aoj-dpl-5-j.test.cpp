@@ -1,10 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_J"
-
-#include "../../template/template.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_J"
 
 #include "../../math/combinatorics/mod-int.hpp"
-
 #include "../../math/combinatorics/partition-table.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int N, K;

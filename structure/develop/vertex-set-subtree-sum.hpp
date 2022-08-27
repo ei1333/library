@@ -19,17 +19,17 @@ struct Lazy {
 };
 
 // Light-edge の情報
-template< typename Lazy >
+template < typename Lazy >
 struct LInfo {
   T sum;
 
   T sum_sum;
 
   // 単位元(キーの値はアクセスしないので未初期化でもよい
-  LInfo() : sum_sum{0} {}
+  LInfo(): sum_sum{0} {}
 
   // 初期化
-  LInfo(T sum) : sum{sum} {}
+  LInfo(T sum): sum{sum} {}
 
   // l, r は Splay-tree の子 (原理上、各ノード区別はない)
   void update(const LInfo &l, const LInfo &r) {
@@ -41,17 +41,17 @@ struct LInfo {
 };
 
 // Heavy-edge の情報
-template< typename LInfo, typename Lazy >
+template < typename LInfo, typename Lazy >
 struct Info {
   T sum;
 
   T sum_sum;
 
   // 単位元(キーの値はアクセスしないので未初期化でもよい
-  Info() : sum_sum{0} {}
+  Info(): sum_sum{0} {}
 
   // 初期化
-  Info(T sum) : sum{sum} {}
+  Info(T sum): sum{sum} {}
 
   // 反転
   void toggle() {}
@@ -62,7 +62,9 @@ struct Info {
   }
 
   // 親と light-edge で繋げる
-  LInfo link() const { return LInfo(sum_sum); }
+  LInfo link() const {
+    return LInfo(sum_sum);
+  }
 
   // 遅延伝搬
   void propagate(const Lazy &p) {}

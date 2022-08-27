@@ -1,4 +1,4 @@
-template< typename T >
+template < typename T >
 struct Point {
   T x, y;
 };

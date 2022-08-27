@@ -1,4 +1,5 @@
-template< typename T, typename Compare = less< T >, typename RCompare = greater< T > >
+template < typename T, typename Compare = less< T >,
+           typename RCompare = greater< T > >
 struct PrioritySumStructure {
 
   size_t k;
@@ -7,30 +8,30 @@ struct PrioritySumStructure {
   priority_queue< T, vector< T >, Compare > in, d_in;
   priority_queue< T, vector< T >, RCompare > out, d_out;
 
-  PrioritySumStructure(int k) : k(k), sum(0) {}
+  PrioritySumStructure(int k): k(k), sum(0) {}
 
   void modify() {
-    while(in.size() - d_in.size() < k && !out.empty()) {
+    while (in.size() - d_in.size() < k && !out.empty()) {
       auto p = out.top();
       out.pop();
-      if(!d_out.empty() && p == d_out.top()) {
+      if (!d_out.empty() && p == d_out.top()) {
         d_out.pop();
       } else {
         sum += p;
         in.emplace(p);
       }
     }
-    while(in.size() - d_in.size() > k) {
+    while (in.size() - d_in.size() > k) {
       auto p = in.top();
       in.pop();
-      if(!d_in.empty() && p == d_in.top()) {
+      if (!d_in.empty() && p == d_in.top()) {
         d_in.pop();
       } else {
         sum -= p;
         out.emplace(p);
       }
     }
-    while(!d_in.empty() && in.top() == d_in.top()) {
+    while (!d_in.empty() && in.top() == d_in.top()) {
       in.pop();
       d_in.pop();
     }
@@ -48,10 +49,10 @@ struct PrioritySumStructure {
 
   void erase(T x) {
     assert(size());
-    if(!in.empty() && in.top() == x) {
+    if (!in.empty() && in.top() == x) {
       sum -= x;
       in.pop();
-    } else if(!in.empty() && RCompare()(in.top(), x)) {
+    } else if (!in.empty() && RCompare()(in.top(), x)) {
       sum -= x;
       d_in.emplace(x);
     } else {
@@ -74,9 +75,8 @@ struct PrioritySumStructure {
   }
 };
 
-template< typename T >
+template < typename T >
 using MaximumSum = PrioritySumStructure< T, greater< T >, less< T > >;
 
-template< typename T >
+template < typename T >
 using MinimumSum = PrioritySumStructure< T, less< T >, greater< T > >;
-

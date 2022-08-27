@@ -1,8 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
-
-#include "../../template/template.hpp"
+#define PROBLEM \
+  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
 
 #include "../../graph/connected-components/strongly-connected-components.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int V, E, Q;
@@ -11,9 +11,9 @@ int main() {
   scc.read(E, false, 0, true);
   scc.build();
   cin >> Q;
-  while(Q--) {
+  while (Q--) {
     int a, b;
     cin >> a >> b;
-    cout << (int) (scc[a] == scc[b]) << "\n";
+    cout << (int)(scc[a] == scc[b]) << "\n";
   }
 }

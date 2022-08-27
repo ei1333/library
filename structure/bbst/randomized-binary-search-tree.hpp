@@ -1,10 +1,9 @@
-template< typename T >
+template < typename T >
 class RandomizedBinarySearchTree {
 
   using F = function< T(T, T) >;
 
-private:
-
+ private:
   struct Node {
     Node *l, *r;
     size_t cnt;
@@ -12,7 +11,12 @@ private:
 
     Node() = default;
 
-    Node(const T &k) : cnt(1), key(k), sum(k), l(nullptr), r(nullptr) {}
+    Node(const T &k)
+        : cnt(1),
+          key(k),
+          sum(k),
+          l(nullptr),
+          r(nullptr) {}
   };
 
   inline int xor128() {
@@ -22,20 +26,21 @@ private:
     static int w = 88675123;
     int t;
 
-    t = x ^ (x << 11);
-    x = y;
-    y = z;
-    z = w;
+    t        = x ^ (x << 11);
+    x        = y;
+    y        = z;
+    z        = w;
     return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
   }
 
   Node *build(int l, int r, const vector< T > &v) {
-    if(l + 1 >= r) return alloc(v[l]);
-    return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
+    if (l + 1 >= r) return alloc(v[l]);
+    return merge(build(l, (l + r) >> 1, v),
+                 build((l + r) >> 1, r, v));
   }
 
   void dump(Node *t, typename vector< T >::iterator &it) const {
-    if(!t) return;
+    if (!t) return;
     dump(t->l, it);
     *it = t->key;
     dump(t->r, ++it);
@@ -60,17 +65,20 @@ private:
   const F f;
   const T e;
 
-public:
-
-  RandomizedBinarySearchTree(size_t sz, const F &f, const T &e) : pool(sz), f(f), ptr(0), e(e) {}
+ public:
+  RandomizedBinarySearchTree(size_t sz, const F &f, const T &e)
+      : pool(sz),
+        f(f),
+        ptr(0),
+        e(e) {}
 
   inline Node *alloc(const T &v) {
     return &(pool[ptr++] = Node(v));
   }
 
   Node *merge(Node *l, Node *r) {
-    if(!l || !r) return l ? l : r;
-    if(xor128() % (l->cnt + r->cnt) < l->cnt) {
+    if (!l || !r) return l ? l : r;
+    if (xor128() % (l->cnt + r->cnt) < l->cnt) {
       l->r = merge(l->r, r);
       return update(l);
     } else {
@@ -79,27 +87,27 @@ public:
     }
   }
 
-  template< typename... Args >
+  template < typename... Args >
   Node *merge(Node *p, Args... args) {
     return merge(p, merge(args...));
   }
 
   pair< Node *, Node * > split(Node *t, int k) {
-    if(!t) return {t, t};
-    if(k <= count(t->l)) {
+    if (!t) return {t, t};
+    if (k <= count(t->l)) {
       auto s = split(t->l, k);
-      t->l = s.second;
+      t->l   = s.second;
       return {s.first, update(t)};
     } else {
       auto s = split(t->r, k - count(t->l) - 1);
-      t->r = s.first;
+      t->r   = s.first;
       return {update(t), s.second};
     }
   }
 
   Node *build(const vector< T > &v) {
     ptr = 0;
-    return build(0, (int) v.size(), v);
+    return build(0, (int)v.size(), v);
   }
 
   vector< T > dump(Node *t) const {
@@ -112,13 +120,14 @@ public:
   string to_string(Node *r) {
     auto s = dump(r);
     string ret;
-    for(int i = 0; i < s.size(); i++) ret += std::to_string(s[i]) + ", ";
+    for (int i = 0; i < s.size(); i++)
+      ret += std::to_string(s[i]) + ", ";
     return ret;
   }
 
   void insert(Node *&t, int k, const T &v) {
     auto x = split(t, k);
-    t = merge(merge(x.first, alloc(v)), x.second);
+    t      = merge(merge(x.first, alloc(v)), x.second);
   }
 
   void push_front(Node *&t, const T &v) {
@@ -131,26 +140,26 @@ public:
 
   T pop_front(Node *&t) {
     auto ret = split(t, 1);
-    t = ret.second;
+    t        = ret.second;
     return ret.first->key;
   }
 
   T pop_back(Node *&t) {
     auto ret = split(t, count(t) - 1);
-    t = ret.first;
+    t        = ret.first;
     return ret.second->key;
   }
 
   void erase(Node *&t, int k) {
     auto x = split(t, k);
-    t = merge(x.first, split(x.second, 1).second);
+    t      = merge(x.first, split(x.second, 1).second);
   }
 
   T query(Node *&t, int a, int b) {
-    auto x = split(t, a);
-    auto y = split(x.second, b - a);
+    auto x   = split(t, a);
+    auto y   = split(x.second, b - a);
     auto ret = sum(y.first);
-    t = merge(x.first, merge(y.first, y.second));
+    t        = merge(x.first, merge(y.first, y.second));
     return ret;
   }
 
@@ -161,9 +170,12 @@ public:
   }
 
   void set_element(Node *&t, int k, const T &x) {
-    if(k < count(t->l)) set_element(t->l, k, x);
-    else if(k == count(t->l)) t->key = t->sum = x;
-    else set_element(t->r, k - count(t->l) - 1, x);
+    if (k < count(t->l))
+      set_element(t->l, k, x);
+    else if (k == count(t->l))
+      t->key = t->sum = x;
+    else
+      set_element(t->r, k - count(t->l) - 1, x);
     t = update(t);
   }
 
@@ -175,4 +187,3 @@ public:
     return !t;
   }
 };
-

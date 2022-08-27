@@ -1,8 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1254"
 
-#include "../../template/template.hpp"
-
 #include "../../graph/others/namori-graph.hpp"
+#include "../../template/template.hpp"
 
 int main() {
   int N;
@@ -11,7 +10,7 @@ int main() {
   g.read(N);
   g.build();
   vector< int > ans;
-  for(auto &e : g.loop_edges) {
+  for (auto &e: g.loop_edges) {
     ans.emplace_back(e.idx + 1);
   }
   sort(begin(ans), end(ans));

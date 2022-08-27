@@ -1,16 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
+#include "../../math/fft/subset-convolution.hpp"
+#include "../../other/printer.hpp"
+#include "../../other/scanner.hpp"
 #include "../../template/template.hpp"
 
-#include "../../math/fft/subset-convolution.hpp"
-
-#include "../../math/combinatorics/montgomery-mod-int.hpp"
-
-#include "../../other/scanner.hpp"
-#include "../../other/printer.hpp"
-
 const int MOD = 998244353;
-using mint = MontgomeryModInt< MOD, true >;
+using mint    = MontgomeryModInt< MOD, true >;
 
 int main() {
   Scanner in(stdin);
@@ -18,18 +15,18 @@ int main() {
   int N;
   in.read(N);
   vector< mint > f(1 << N), g(1 << N);
-  for(auto &a : f) {
+  for (auto &a: f) {
     int x;
     in.read(x);
     a = x;
   }
-  for(auto &a : g) {
+  for (auto &a: g) {
     int x;
     in.read(x);
     a = x;
   }
   auto h = SubsetConvolution< mint, 20 >::multiply(f, g);
-  for(auto &a : h) {
+  for (auto &a: h) {
     out.write(a.get());
     out.write(' ');
   }
