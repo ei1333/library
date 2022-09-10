@@ -3,13 +3,13 @@
 /**
  * @brief Static Rectangle Add Rectangle Sum
  */
-template < typename T, typename C >
+template< typename T, typename C >
 struct StaticRectangleAddRectangleSum {
-  struct Hikari: array< C, 4 > {
+  struct Hikari : array< C, 4 > {
     using A = array< C, 4 >;
 
     Hikari &operator+=(const Hikari &p) {
-      for (int i = 0; i < 4; i++) {
+      for(int i = 0; i < 4; i++) {
         this->at(i) += p.at(i);
       }
       return *this;
@@ -18,8 +18,7 @@ struct StaticRectangleAddRectangleSum {
 
   using BIT = BinaryIndexedTree< Hikari >;
 
-  static_assert(is_integral< T >::value,
-                "template parameter T must be integral type");
+  static_assert(is_integral< T >::value, "template parameter T must be integral type");
 
   struct Rectangle {
     T l, d, r, u;
@@ -50,15 +49,15 @@ struct StaticRectangleAddRectangleSum {
   }
 
   vector< C > calculate_queries() {
-    int n = (int)rectangles.size();
-    int q = (int)queries.size();
+    int n = (int) rectangles.size();
+    int q = (int) queries.size();
     vector< C > ans(q);
-    if (rectangles.empty() or queries.empty()) {
+    if(rectangles.empty() or queries.empty()) {
       return ans;
     }
     vector< T > ys;
     ys.reserve(n + n);
-    for (Rectangle &p: rectangles) {
+    for(Rectangle &p: rectangles) {
       ys.emplace_back(p.d);
       ys.emplace_back(p.u);
     }
@@ -74,43 +73,41 @@ struct StaticRectangleAddRectangleSum {
     vector< Q > rs, qs;
     rs.reserve(n + n);
     qs.reserve(q + q);
-    for (int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++) {
       auto &p = rectangles[i];
-      int d   = lower_bound(ys.begin(), ys.end(), p.d) - ys.begin();
-      int u   = lower_bound(ys.begin(), ys.end(), p.u) - ys.begin();
+      int d = lower_bound(ys.begin(), ys.end(), p.d) - ys.begin();
+      int u = lower_bound(ys.begin(), ys.end(), p.u) - ys.begin();
       rs.emplace_back(Q{p.l, d, u, false, i});
       rs.emplace_back(Q{p.r, d, u, true, i});
     }
-    for (int i = 0; i < q; i++) {
+    for(int i = 0; i < q; i++) {
       auto &p = queries[i];
-      int d   = lower_bound(ys.begin(), ys.end(), p.d) - ys.begin();
-      int u   = lower_bound(ys.begin(), ys.end(), p.u) - ys.begin();
+      int d = lower_bound(ys.begin(), ys.end(), p.d) - ys.begin();
+      int u = lower_bound(ys.begin(), ys.end(), p.u) - ys.begin();
       qs.emplace_back(Q{p.l, d, u, false, i});
       qs.emplace_back(Q{p.r, d, u, true, i});
     }
-    sort(rs.begin(), rs.end(),
-         [](const Q &a, const Q &b) { return a.x < b.x; });
-    sort(qs.begin(), qs.end(),
-         [](const Q &a, const Q &b) { return a.x < b.x; });
+    sort(rs.begin(), rs.end(), [](const Q &a, const Q &b) {
+      return a.x < b.x;
+    });
+    sort(qs.begin(), qs.end(), [](const Q &a, const Q &b) {
+      return a.x < b.x;
+    });
     int j = 0;
     BIT bit(ys.size());
-    for (auto &query: qs) {
-      while (j < n and rs[j].x < query.x) {
+    for(auto &query: qs) {
+      while(j < n and rs[j].x < query.x) {
         auto &p = rectangles[j];
-        if (rs[j].type) {
-          bit.apply(rs[j].d,
-                    {-p.w * p.r * p.d, -p.w, p.d * p.w, p.r * p.w});
-          bit.apply(rs[j].u,
-                    {p.w * p.r * p.u, p.w, -p.u * p.w, -p.r * p.w});
+        if(rs[j].type) {
+          bit.apply(rs[j].d, {-p.w * p.r * p.d, -p.w, p.d * p.w, p.r * p.w});
+          bit.apply(rs[j].u, {p.w * p.r * p.u, p.w, -p.u * p.w, -p.r * p.w});
         } else {
-          bit.apply(rs[j].d,
-                    {p.w * p.l * p.d, p.w, -p.d * p.w, -p.l * p.w});
-          bit.apply(rs[j].u,
-                    {-p.w * p.l * p.u, -p.w, p.u * p.w, p.l * p.w});
+          bit.apply(rs[j].d, {p.w * p.l * p.d, p.w, -p.d * p.w, -p.l * p.w});
+          bit.apply(rs[j].u, {-p.w * p.l * p.u, -p.w, p.u * p.w, p.l * p.w});
         }
         ++j;
       }
-      auto &p   = queries[query.idx];
+      auto &p = queries[query.idx];
       auto uret = bit.prod(query.u);
       ans[query.idx] += uret[0];
       ans[query.idx] += uret[1] * query.x * p.u;
@@ -121,7 +118,7 @@ struct StaticRectangleAddRectangleSum {
       ans[query.idx] -= dret[1] * query.x * p.d;
       ans[query.idx] -= dret[2] * query.x;
       ans[query.idx] -= dret[3] * p.d;
-      if (not query.type) ans[query.idx] *= -1;
+      if(not query.type) ans[query.idx] *= -1;
     }
     return ans;
   }

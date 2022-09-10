@@ -1,8 +1,8 @@
-#define PROBLEM \
-  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A"
+
+#include "../../template/template.hpp"
 
 #include "../../graph/others/low-link.hpp"
-#include "../../template/template.hpp"
 
 int main() {
   int V, E;
@@ -12,5 +12,6 @@ int main() {
   g.build();
   auto &art = g.articulation;
   sort(art.begin(), art.end());
-  for (auto &v: art) cout << v << "\n";
+  for(auto &v : art) cout << v << "\n";
 }
+

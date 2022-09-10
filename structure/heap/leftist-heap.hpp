@@ -1,7 +1,7 @@
 /**
  * @brief Leftist-Heap
  */
-template < typename T, bool isMin = true >
+template< typename T, bool isMin = true >
 struct LeftistHeap {
   struct Node {
     Node *l, *r;
@@ -9,12 +9,7 @@ struct LeftistHeap {
     T key;
     int idx;
 
-    explicit Node(const T &key, int idx)
-        : key(key),
-          s(1),
-          l(nullptr),
-          r(nullptr),
-          idx(idx) {}
+    explicit Node(const T &key, int idx) : key(key), s(1), l(nullptr), r(nullptr), idx(idx) {}
   };
 
   LeftistHeap() = default;
@@ -28,11 +23,11 @@ struct LeftistHeap {
   }
 
   Node *meld(Node *a, Node *b) {
-    if (!a || !b) return a ? a : b;
-    if ((a->key < b->key) ^ isMin) swap(a, b);
-    a    = clone(a);
+    if(!a || !b) return a ? a : b;
+    if((a->key < b->key) ^ isMin) swap(a, b);
+    a = clone(a);
     a->r = meld(a->r, b);
-    if (!a->l || a->l->s < a->r->s) swap(a->l, a->r);
+    if(!a->l || a->l->s < a->r->s) swap(a->l, a->r);
     a->s = (a->r ? a->r->s : 0) + 1;
     return a;
   }

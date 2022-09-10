@@ -1,4 +1,4 @@
-template < typename T >
+template< typename T >
 struct Compress {
   vector< T > xs;
 
@@ -9,7 +9,7 @@ struct Compress {
   }
 
   Compress(const initializer_list< vector< T > > &vs) {
-    for (auto &p: vs) add(p);
+    for(auto &p : vs) add(p);
   }
 
   void add(const vector< T > &vs) {
@@ -27,8 +27,7 @@ struct Compress {
 
   vector< int > get(const vector< T > &vs) const {
     vector< int > ret;
-    transform(begin(vs), end(vs), back_inserter(ret),
-              [&](const T &x) {
+    transform(begin(vs), end(vs), back_inserter(ret), [&](const T &x) {
       return lower_bound(begin(xs), end(xs), x) - begin(xs);
     });
     return ret;

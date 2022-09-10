@@ -2,22 +2,22 @@
  * @brief Binary-Trie
  * @docs docs/binary-trie.md
  */
-template < typename T, int MAX_LOG, typename D = int >
+template< typename T, int MAX_LOG, typename D = int >
 struct BinaryTrie {
- public:
+public:
   struct Node {
     Node *nxt[2];
     D exist;
     vector< int > accept;
 
-    Node(): nxt{nullptr, nullptr}, exist(0) {}
+    Node() : nxt{nullptr, nullptr}, exist(0) {}
   };
 
   Node *root;
 
-  explicit BinaryTrie(): root(new Node()) {}
+  explicit BinaryTrie() : root(new Node()) {}
 
-  explicit BinaryTrie(Node *root): root(root) {}
+  explicit BinaryTrie(Node *root) : root(root) {}
 
   void add(const T &bit, int idx = -1, D delta = 1, T xor_val = 0) {
     root = add(root, bit, idx, MAX_LOG, delta, xor_val);
@@ -55,21 +55,19 @@ struct BinaryTrie {
     return count_less(root, bit, MAX_LOG, xor_val);
   }
 
- private:
-  virtual Node *clone(Node *t) {
-    return t;
-  }
+private:
 
-  Node *add(Node *t, T bit, int idx, int depth, D x, T xor_val,
-            bool need = true) {
-    if (need) t = clone(t);
-    if (depth == -1) {
+  virtual Node *clone(Node *t) { return t; }
+
+  Node *add(Node *t, T bit, int idx, int depth, D x, T xor_val, bool need = true) {
+    if(need) t = clone(t);
+    if(depth == -1) {
       t->exist += x;
-      if (idx >= 0) t->accept.emplace_back(idx);
+      if(idx >= 0) t->accept.emplace_back(idx);
     } else {
-      bool f   = (xor_val >> depth) & 1;
+      bool f = (xor_val >> depth) & 1;
       auto &to = t->nxt[f ^ ((bit >> depth) & 1)];
-      if (!to) to = new Node(), need = false;
+      if(!to) to = new Node(), need = false;
       to = add(to, bit, idx, depth - 1, x, xor_val, need);
       t->exist += x;
     }
@@ -77,25 +75,22 @@ struct BinaryTrie {
   }
 
   Node *find(Node *t, T bit, int depth, T xor_val) {
-    if (depth == -1) {
+    if(depth == -1) {
       return t;
     } else {
-      bool f   = (xor_val >> depth) & 1;
+      bool f = (xor_val >> depth) & 1;
       auto &to = t->nxt[f ^ ((bit >> depth) & 1)];
       return to ? find(to, bit, depth - 1, xor_val) : nullptr;
     }
   }
 
-  pair< T, Node * > kth_element(Node *t, D k, int bit_index,
-                                T xor_val) { // 0-indexed
-    if (bit_index == -1) {
+  pair< T, Node * > kth_element(Node *t, D k, int bit_index, T xor_val) { // 0-indexed
+    if(bit_index == -1) {
       return {0, t};
     } else {
       bool f = (xor_val >> bit_index) & 1;
-      if ((t->nxt[f] ? t->nxt[f]->exist : 0) <= k) {
-        auto ret = kth_element(t->nxt[f ^ 1],
-                               k - (t->nxt[f] ? t->nxt[f]->exist : 0),
-                               bit_index - 1, xor_val);
+      if((t->nxt[f] ? t->nxt[f]->exist : 0) <= k) {
+        auto ret = kth_element(t->nxt[f ^ 1], k - (t->nxt[f] ? t->nxt[f]->exist : 0), bit_index - 1, xor_val);
         ret.first |= T(1) << bit_index;
         return ret;
       } else {
@@ -105,13 +100,11 @@ struct BinaryTrie {
   }
 
   D count_less(Node *t, const T &bit, int bit_index, T xor_val) {
-    if (bit_index == -1) return 0;
-    D ret  = 0;
+    if(bit_index == -1) return 0;
+    D ret = 0;
     bool f = (xor_val >> bit_index) & 1;
-    if ((bit >> bit_index & 1) and t->nxt[f]) ret += t->nxt[f]->exist;
-    if (t->nxt[f ^ (bit >> bit_index & 1)])
-      ret += count_less(t->nxt[f ^ (bit >> bit_index & 1)], bit,
-                        bit_index - 1, xor_val);
+    if((bit >> bit_index & 1) and t->nxt[f]) ret += t->nxt[f]->exist;
+    if(t->nxt[f ^ (bit >> bit_index & 1)]) ret += count_less(t->nxt[f ^ (bit >> bit_index & 1)], bit, bit_index - 1, xor_val);
     return ret;
   }
 };

@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
-#include "../../string/suffix-array.hpp"
 #include "../../template/template.hpp"
+
+#include "../../string/suffix-array.hpp"
 
 int main() {
   string s;

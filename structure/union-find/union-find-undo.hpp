@@ -10,15 +10,15 @@ struct UnionFindUndo {
     x = find(x), y = find(y);
     history.emplace(x, data[x]);
     history.emplace(y, data[y]);
-    if (x == y) return (false);
-    if (data[x] > data[y]) swap(x, y);
+    if(x == y) return (false);
+    if(data[x] > data[y]) swap(x, y);
     data[x] += data[y];
     data[y] = x;
     return (true);
   }
 
   int find(int k) {
-    if (data[k] < 0) return (k);
+    if(data[k] < 0) return (k);
     return (find(data[k]));
   }
 
@@ -34,10 +34,10 @@ struct UnionFindUndo {
   }
 
   void snapshot() {
-    while (history.size()) history.pop();
+    while(history.size()) history.pop();
   }
 
   void rollback() {
-    while (history.size()) undo();
+    while(history.size()) undo();
   }
 };

@@ -10,13 +10,12 @@ namespace geometry {
   }
 
   // smaller angle of the a-b-c
-  Real get_smaller_angle(const Point &a, const Point &b,
-                         const Point &c) {
+  Real get_smaller_angle(const Point &a, const Point &b, const Point &c) {
     const Point v(a - b), w(c - b);
     auto alpha = atan2(imag(v), real(v));
-    auto beta  = atan2(imag(w), real(w));
-    if (alpha > beta) swap(alpha, beta);
+    auto beta = atan2(imag(w), real(w));
+    if(alpha > beta) swap(alpha, beta);
     Real theta = (beta - alpha);
     return min(theta, 2 * PI - theta);
   }
-} // namespace geometry
+}

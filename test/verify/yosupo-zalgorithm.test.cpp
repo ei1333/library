@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../../string/z-algorithm.hpp"
 #include "../../template/template.hpp"
+
+#include "../../string/z-algorithm.hpp"
 
 int main() {
   string s;

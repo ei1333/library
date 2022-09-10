@@ -2,7 +2,7 @@
  * @brief Wavelet Tree(ウェーブレット木)
  * @docs docs/wavelet-tree.md
  */
-template < typename T, int MAXLOG >
+template< typename T, int MAXLOG >
 struct WaveletTree {
 
   struct Node {
@@ -11,25 +11,25 @@ struct WaveletTree {
 
     Node() = default;
 
-    Node(size_t length): sid(length + 1), ch{nullptr} {}
+    Node(size_t length) : sid(length + 1), ch{nullptr} {}
+
   };
 
   Node *root;
 
-  Node *build(vector< T > &v, vector< T > &rbuff, int bit, int l,
-              int r) {
-    if (l >= r || bit == -1) return nullptr;
+  Node *build(vector< T > &v, vector< T > &rbuff, int bit, int l, int r) {
+    if(l >= r || bit == -1) return nullptr;
     Node *node = new Node(r - l);
     int left = 0, right = 0;
-    for (int k = l; k < r; k++) {
-      if (((v[k] >> bit) & 1)) {
+    for(int k = l; k < r; k++) {
+      if(((v[k] >> bit) & 1)) {
         rbuff[right++] = v[k];
         node->sid.set(k - l);
       } else {
         v[l + left++] = v[k];
       }
     }
-    for (int k = 0; k < right; k++) {
+    for(int k = 0; k < right; k++) {
       v[l + left + k] = rbuff[k];
     }
     node->sid.build();
@@ -46,8 +46,8 @@ struct WaveletTree {
   }
 
   int rank(Node *t, int l, int r, const T &x, int level) {
-    if (l >= r || t == nullptr) return 0;
-    if (level == -1) return r - l;
+    if(l >= r || t == nullptr) return 0;
+    if(level == -1) return r - l;
     bool f = (x >> level) & 1;
     l = t->sid.rank(f, l), r = t->sid.rank(f, r);
     return rank(t->ch[f], l, r, x, level - 1);
@@ -58,13 +58,11 @@ struct WaveletTree {
   }
 
   T kth_smallest(Node *t, int l, int r, int k, int level) {
-    if (l >= r || t == nullptr) return 0;
+    if(l >= r || t == nullptr) return 0;
     int cnt = t->sid.rank(false, r) - t->sid.rank(false, l);
-    bool f  = cnt <= k;
+    bool f = cnt <= k;
     l = t->sid.rank(f, l), r = t->sid.rank(f, r);
-    if (f)
-      return kth_smallest(t->ch[f], l, r, k - cnt, level - 1) |
-          ((T(1) << level));
+    if(f) return kth_smallest(t->ch[f], l, r, k - cnt, level - 1) | ((T(1) << level));
     return kth_smallest(t->ch[f], l, r, k, level - 1);
   }
 
@@ -80,10 +78,10 @@ struct WaveletTree {
   }
 
   int range_freq(Node *t, int l, int r, T upper, int level) {
-    if (t == nullptr || l >= r) return 0;
-    bool f  = ((upper >> level) & 1);
+    if(t == nullptr || l >= r) return 0;
+    bool f = ((upper >> level) & 1);
     int ret = 0;
-    if (f) ret += t->sid.rank(false, r) - t->sid.rank(false, l);
+    if(f) ret += t->sid.rank(false, r) - t->sid.rank(false, l);
     l = t->sid.rank(f, l), r = t->sid.rank(f, r);
     return range_freq(t->ch[f], l, r, upper, level - 1) + ret;
   }
@@ -111,16 +109,16 @@ struct WaveletTree {
   }
 };
 
-template < typename T, int MAXLOG >
+template< typename T, int MAXLOG >
 struct CompressedWaveletTree {
   WaveletTree< int, MAXLOG > mat;
   vector< T > ys;
 
-  CompressedWaveletTree(const vector< T > &v): ys(v) {
+  CompressedWaveletTree(const vector< T > &v) : ys(v) {
     sort(begin(ys), end(ys));
     ys.erase(unique(begin(ys), end(ys)), end(ys));
     vector< int > t(v.size());
-    for (int i = 0; i < v.size(); i++) t[i] = get(v[i]);
+    for(int i = 0; i < v.size(); i++) t[i] = get(v[i]);
     mat = WaveletTree< int, MAXLOG >(t);
   }
 
@@ -130,7 +128,7 @@ struct CompressedWaveletTree {
 
   int rank(const T &x, int r) {
     auto pos = get(x);
-    if (pos == ys.size() || ys[pos] != x) return 0;
+    if(pos == ys.size() || ys[pos] != x) return 0;
     return mat.rank(pos, r);
   }
 
@@ -160,3 +158,4 @@ struct CompressedWaveletTree {
     return ret == -1 ? T(-1) : ys[ret];
   }
 };
+

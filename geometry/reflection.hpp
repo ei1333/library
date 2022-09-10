@@ -1,5 +1,5 @@
-#include "line.hpp"
 #include "point.hpp"
+#include "line.hpp"
 #include "projection.hpp"
 
 namespace geometry {
@@ -7,4 +7,4 @@ namespace geometry {
   Point reflection(const Line &l, const Point &p) {
     return p + (projection(l, p) - p) * 2;
   }
-} // namespace geometry
+}
