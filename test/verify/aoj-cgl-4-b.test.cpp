@@ -1,9 +1,9 @@
-#define PROBLEM \
-  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B"
 #define ERROR 0.00000001
 
-#include "../../geometry/convex_polygon_diameter.hpp"
 #include "../../template/template.hpp"
+
+#include "../../geometry/convex_polygon_diameter.hpp"
 
 using namespace geometry;
 
@@ -11,7 +11,7 @@ int main() {
   int N;
   cin >> N;
   Polygon p(N);
-  for (int i = 0; i < N; i++) {
+  for(int i = 0; i < N; i++) {
     cin >> p[i];
   }
   auto ret = convex_polygon_diameter(p);

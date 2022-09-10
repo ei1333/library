@@ -3,7 +3,7 @@
 #include "../../structure/union-find/union-find.hpp"
 
 struct IncrementalBridgeConnectivity {
- private:
+private:
   UnionFind cc, bcc;
   vector< int > bbf;
   size_t bridge;
@@ -18,9 +18,9 @@ struct IncrementalBridgeConnectivity {
 
   int lca(int x, int y) {
     unordered_set< int > used;
-    for (;;) {
-      if (x != size()) {
-        if (!used.insert(x).second) return x;
+    for(;;) {
+      if(x != size()) {
+        if(!used.insert(x).second) return x;
         x = par(x);
       }
       swap(x, y);
@@ -28,9 +28,9 @@ struct IncrementalBridgeConnectivity {
   }
 
   void compress(int x, int y) {
-    while (bcc.find(x) != bcc.find(y)) {
+    while(bcc.find(x) != bcc.find(y)) {
       int nxt = par(x);
-      bbf[x]  = bbf[y];
+      bbf[x] = bbf[y];
       bcc.unite(x, y);
       x = nxt;
       --bridge;
@@ -39,22 +39,18 @@ struct IncrementalBridgeConnectivity {
 
   void link(int x, int y) {
     int v = x, pre = y;
-    while (v != size()) {
+    while(v != size()) {
       int nxt = par(v);
-      bbf[v]  = pre;
-      pre     = v;
-      v       = nxt;
+      bbf[v] = pre;
+      pre = v;
+      v = nxt;
     }
   }
 
- public:
+public:
   IncrementalBridgeConnectivity() = default;
 
-  explicit IncrementalBridgeConnectivity(int sz)
-      : cc(sz),
-        bcc(sz),
-        bbf(sz, sz),
-        bridge(0) {}
+  explicit IncrementalBridgeConnectivity(int sz) : cc(sz), bcc(sz), bbf(sz, sz), bridge(0) {}
 
   int find(int k) {
     return bcc.find(k);
@@ -67,12 +63,12 @@ struct IncrementalBridgeConnectivity {
   void add_edge(int x, int y) {
     x = bcc.find(x);
     y = bcc.find(y);
-    if (cc.find(x) == cc.find(y)) {
+    if(cc.find(x) == cc.find(y)) {
       int w = lca(x, y);
       compress(x, w);
       compress(y, w);
     } else {
-      if (cc.size(x) > cc.size(y)) swap(x, y);
+      if(cc.size(x) > cc.size(y)) swap(x, y);
       link(x, y);
       cc.unite(x, y);
       ++bridge;

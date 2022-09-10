@@ -1,12 +1,10 @@
-template < class T, size_t V >
+template< class T, size_t V >
 struct ArrayPool {
   array< T, V > pool;
   array< T *, V > stock;
   int ptr;
 
-  ArrayPool() {
-    clear();
-  }
+  ArrayPool() { clear(); }
 
   inline T *alloc() {
     return stock[--ptr];
@@ -17,7 +15,7 @@ struct ArrayPool {
   }
 
   void clear() {
-    ptr = (int)pool.size();
-    for (int i = 0; i < pool.size(); i++) stock[i] = &pool[i];
+    ptr = (int) pool.size();
+    for(int i = 0; i < pool.size(); i++) stock[i] = &pool[i];
   }
 };

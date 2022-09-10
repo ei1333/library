@@ -3,12 +3,11 @@
 /**
  * @brief Dynamic Point Add Rectangle Sum
  */
-template < typename T, typename C >
+template< typename T, typename C >
 struct DynamicPointAddRectangleSum {
   using StaticRectangleSumSolver = StaticPointAddRectangleSum< T, C >;
 
-  static_assert(is_integral< T >::value,
-                "template parameter T must be integral type");
+  static_assert(is_integral< T >::value, "template parameter T must be integral type");
 
   struct Point {
     T x, y;
@@ -37,42 +36,42 @@ struct DynamicPointAddRectangleSum {
   }
 
   vector< C > calculate_queries() {
-    int q = (int)queries.size();
+    int q = (int) queries.size();
     vector< int > rev(q);
     int sz = 0;
-    for (int i = 0; i < q; i++) {
-      if (holds_alternative< Query >(queries[i])) {
+    for(int i = 0; i < q; i++) {
+      if(holds_alternative< Query >(queries[i])) {
         rev[i] = sz++;
       }
     }
     vector< C > ans(sz);
     queue< pair< int, int > > range;
     range.emplace(0, q);
-    while (not range.empty()) {
-      auto [l, r] = range.front();
+    while(not range.empty()) {
+      auto[l, r] = range.front();
       range.pop();
       int m = (l + r) >> 1;
       StaticRectangleSumSolver solver;
-      for (int k = l; k < m; k++) {
-        if (holds_alternative< Point >(queries[k])) {
+      for(int k = l; k < m; k++) {
+        if(holds_alternative< Point >(queries[k])) {
           auto &point = get< Point >(queries[k]);
           solver.add_point(point.x, point.y, point.w);
         }
       }
-      for (int k = m; k < r; k++) {
-        if (holds_alternative< Query >(queries[k])) {
+      for(int k = m; k < r; k++) {
+        if(holds_alternative< Query >(queries[k])) {
           auto &query = get< Query >(queries[k]);
           solver.add_query(query.l, query.d, query.r, query.u);
         }
       }
       auto sub = solver.calculate_queries();
-      for (int k = m, t = 0; k < r; k++) {
-        if (holds_alternative< Query >(queries[k])) {
+      for(int k = m, t = 0; k < r; k++) {
+        if(holds_alternative< Query >(queries[k])) {
           ans[rev[k]] += sub[t++];
         }
       }
-      if (l + 1 < m) range.emplace(l, m);
-      if (m + 1 < r) range.emplace(m, r);
+      if(l + 1 < m) range.emplace(l, m);
+      if(m + 1 < r) range.emplace(m, r);
     }
     return ans;
   }

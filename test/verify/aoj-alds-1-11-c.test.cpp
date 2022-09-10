@@ -1,19 +1,19 @@
-#define PROBLEM                            \
-  "http://judge.u-aizu.ac.jp/onlinejudge/" \
-  "description.jsp?id=ALDS1_11_C"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_11_C"
+
+#include "../../template/template.hpp"
 
 #include "../../graph/shortest-path/bfs.hpp"
-#include "../../template/template.hpp"
+
 
 int main() {
   int N;
   cin >> N;
   Graph<> g(N);
-  for (int i = 0; i < N; i++) {
+  for(int i = 0; i < N; i++) {
     int U, K;
     cin >> U >> K;
     --U;
-    for (int j = 0; j < K; j++) {
+    for(int j = 0; j < K; j++) {
       int x;
       cin >> x;
       --x;
@@ -21,11 +21,10 @@ int main() {
     }
   }
   auto d = bfs(g, 0);
-  for (int i = 0; i < N; i++) {
+  for(int i = 0; i < N; i++) {
     cout << i + 1 << " ";
-    if (d[i] == numeric_limits< int >::max())
-      cout << -1 << "\n";
-    else
-      cout << d[i] << "\n";
+    if(d[i] == numeric_limits< int >::max()) cout << -1 << "\n";
+    else cout << d[i] << "\n";
   }
 }
+

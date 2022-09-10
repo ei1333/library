@@ -1,8 +1,8 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/enumerate_palindromes"
+#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
+
+#include "../../template/template.hpp"
 
 #include "../../string/manacher.hpp"
-#include "../../template/template.hpp"
 
 int main() {
   string s;

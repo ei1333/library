@@ -1,8 +1,8 @@
-#define PROBLEM \
-  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D"
+
+#include "../../template/template.hpp"
 
 #include "../../dp/longest-increasing-subsequence.hpp"
-#include "../../template/template.hpp"
 
 int main() {
   int N;

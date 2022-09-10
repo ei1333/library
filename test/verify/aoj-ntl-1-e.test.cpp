@@ -1,8 +1,8 @@
-#define PROBLEM \
-  "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E"
+
+#include "../../template/template.hpp"
 
 #include "../../math/number-theory/extgcd.hpp"
-#include "../../template/template.hpp"
 
 int main() {
   int a, b, x, y;

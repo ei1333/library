@@ -19,7 +19,7 @@ struct Lazy {
 };
 
 // Light-edge の情報
-template < typename Lazy >
+template< typename Lazy >
 struct LInfo {
 
   // 単位元(キーの値はアクセスしないので未初期化でもよい
@@ -36,17 +36,17 @@ struct LInfo {
 };
 
 // Heavy-edge の情報
-template < typename LInfo, typename Lazy >
+template< typename LInfo, typename Lazy >
 struct Info {
   T v;
 
   T sum;
 
   // 単位元(キーの値はアクセスしないので未初期化でもよい
-  Info(): sum{0} {}
+  Info() : sum{0} {}
 
   // 初期化
-  Info(T v): v{v} {}
+  Info(T v) : v{v} {}
 
   // 反転
   void toggle() {}
@@ -57,9 +57,7 @@ struct Info {
   }
 
   // 親と light-edge で繋げる
-  LInfo link() const {
-    return LInfo();
-  }
+  LInfo link() const { return LInfo(); }
 
   // 遅延伝搬
   void propagate(const Lazy &p) {}
