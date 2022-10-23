@@ -12,7 +12,11 @@ documentation_of: //math/number-theory/enumerate-primes.hpp"
 vector< int > enumerate_primes(int n)
 ```
 
-$1$ 以上 $n$ 以下の素数を昇順に返します。
+$n$ 以下の素数を昇順に返します。
+
+## 制約
+
+- $0 \ge n$
 
 ## 計算量
 

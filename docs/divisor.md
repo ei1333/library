@@ -1,6 +1,6 @@
 ---
 title: Divisor(約数列挙)
-documentation_of: //math/number-theory/divisor.hpp"
+documentation_of: //math/number-theory/divisor.hpp
 ---
 
 与えられた整数の約数を列挙します。
@@ -15,7 +15,7 @@ vector< int64_t > divisor(int64_t n)
 
 ## 制約
 
-- $n \gt 0$
+- $1 \ge n$
 
 ## 計算量
 

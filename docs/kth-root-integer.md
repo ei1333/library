@@ -1,11 +1,21 @@
-## 概要
+---
+title: Kth Root Integer
+documentation_of: //math/number-theory/kth-root-integer.hpp
+---
 
-$a$ と $k$ が与えられたとき, $\textrm{floor}{(a^{\frac {1} {k}})}$ を求める.
+# kth_root_integer
 
-## 使い方
+```
+uint64_t kth_root_integer(uint64_t a, int k)
+```
 
-* `kth_root(a, k)`: $\textrm{floor}{(a^{\frac {1} {k}})}$ を返す.
+$\textrm{floor}{(a^{\frac {1} {k}})}$ を返します。
+
+## 制約
+
+- $0 \leq a \lt 2^{64}$
+- $1 \leq k \leq 64$
 
 ## 計算量
 
-* $O(k \log a)$
+- $O(k \log a)$

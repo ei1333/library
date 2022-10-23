@@ -1,6 +1,6 @@
 ---
 title: Convert Base(進数変換)
-documentation_of: //math/number-theory/convert-base.hpp"
+documentation_of: //math/number-theory/convert-base.hpp
 ---
 
 与えられた 10 進数を進数変換します。

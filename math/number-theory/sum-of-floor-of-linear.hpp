@@ -1,7 +1,3 @@
-/**
- * @brief Sum of Floor of Linear(一次関数の床関数の和)
- * @docs docs/sum-of-floor-of-linear.md
- */
 template< typename T >
 T sum_of_floor_of_linear(const T &n, const T &m, T a, T b) {
   T ret = 0;
