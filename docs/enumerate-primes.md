@@ -1,11 +1,19 @@
-## 概要
+---
+title: Enumerate Primes(素数列挙)
+documentation_of: //math/number-theory/enumerate-primes.hpp"
+---
 
-エラトステネスの篩により $n$ 以下の全ての素数を列挙する.
+エラトステネスの篩を用いて素数を列挙します。
 
-## 使い方
 
-* `enumerate_prime(n)`: $n$ 以下の全ての素数を昇順で返す.
+# enumerate_primes
+
+```
+vector< int > enumerate_primes(int n)
+```
+
+$1$ 以上 $n$ 以下の素数を昇順に返します。
 
 ## 計算量
 
-* $O(n \log \log n)$
+- $O(n \log \log n)$

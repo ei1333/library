@@ -1,9 +1,22 @@
-## 概要
+---
+title: Divisor(約数列挙)
+documentation_of: //math/number-theory/divisor.hpp"
+---
 
-ある数の約数を列挙する.
+与えられた整数の約数を列挙します。
 
-* `divisor(n)`: `n` の約数を返す.
+# divisor
+
+```
+vector< int64_t > divisor(int64_t n)
+```
+
+`n` の約数を昇順に返します。
+
+## 制約
+
+- $n \gt 0$
 
 ## 計算量
 
-* $O(\sqrt n)$
+- $O(\sqrt n)$
