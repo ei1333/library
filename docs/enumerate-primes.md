@@ -1,6 +1,6 @@
 ---
 title: Enumerate Primes(素数列挙)
-documentation_of: //math/number-theory/enumerate-primes.hpp"
+documentation_of: //math/number-theory/enumerate-primes.hpp
 ---
 
 エラトステネスの篩を用いて素数を列挙します。
@@ -16,7 +16,7 @@ $n$ 以下の素数を昇順に返します。
 
 ## 制約
 
-- $0 \ge n$
+- $0 \le n$
 
 ## 計算量
 

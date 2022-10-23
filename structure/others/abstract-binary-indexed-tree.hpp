@@ -1,6 +1,5 @@
 /**
  * @brief Abstract Binary Indexed Tree(抽象化BIT)
- * @docs docs/abstract-binary-indexed-tree.md
  */
 template< typename T, typename F >
 struct AbstractBinaryIndexedTree {

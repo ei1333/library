@@ -13,7 +13,7 @@ $\displaystyle \sum_{i=0}^{n-1} \textrm{floor}{(\frac {a \times i + b} {m})}$ �
 
 ## 制約
 
-- $1 \ge n, m$
+- $1 \le n, m$
 - $0 \leq a, b \leq m$ 
 
 ## 計算量

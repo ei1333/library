@@ -15,7 +15,7 @@ vector< int64_t > divisor(int64_t n)
 
 ## 制約
 
-- $1 \ge n$
+- $1 \le n$
 
 ## 計算量
 
