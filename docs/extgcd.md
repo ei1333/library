@@ -9,7 +9,7 @@ documentation_of: //math/number-theory/extgcd.hpp
 T extgcd(T a, T b, T &x, T &y)
 ```
 
-$\gcd(a, b)$ を返します。$(x, y)$ には $ax + by = \gcd(a, b)$ を満たす整数解が格納されます。整数解は複数考えられるが, $\|x\| + \|y\|$ が最小のものが格納されます。
+$\gcd(a, b)$ を返します。$(x, y)$ には $ax + by = \gcd(a, b)$ を満たす整数解が格納されます。整数解は複数考えられますが、$\|x\| + \|y\|$ が最小のものが格納されます。
 
 ## 制約
 

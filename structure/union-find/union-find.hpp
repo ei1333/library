@@ -1,9 +1,5 @@
 #pragma once
 
-/**
- * @brief Union-Find
- * @docs docs/union-find.md
- */
 struct UnionFind {
   vector< int > data;
 
