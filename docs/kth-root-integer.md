@@ -18,4 +18,4 @@ $\textrm{floor}{(a^{\frac {1} {k}})}$ を返します。
 
 ## 計算量
 
-- $O(k \log a)$
+- $O(k \log \log a)$
