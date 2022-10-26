@@ -11,7 +11,7 @@ documentation_of: //structure/union-find/union-find.hpp
 UnionFind(size_t n)
 ```
 
-`n` 個の集合を作成します。集合 $i(1 \leq i \lt n)$ には要素 $i$ のみが属します。
+`n` 個の集合を作成します。集合 $i(0 \leq i \lt n)$ には要素 $i$ のみが属します。
 
 ## 制約
 
