@@ -93,21 +93,21 @@ data:
   isVerificationFile: false
   path: geometry/ccw.hpp
   requiredBy:
-  - geometry/is_intersect_lp.hpp
-  - geometry/is_intersect_ss.hpp
-  - geometry/distance_sp.hpp
-  - geometry/distance_ss.hpp
   - geometry/common_area_cp.hpp
-  - geometry/is_intersect_sp.hpp
   - geometry/is_convex_polygon.hpp
+  - geometry/distance_ss.hpp
+  - geometry/is_intersect_ss.hpp
+  - geometry/is_intersect_sp.hpp
+  - geometry/is_intersect_lp.hpp
+  - geometry/distance_sp.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/aoj-cgl-3-b.test.cpp
+  - test/verify/aoj-cgl-1-c.test.cpp
   - test/verify/aoj-cgl-2-d.test.cpp
   - test/verify/aoj-cgl-7-h.test.cpp
-  - test/verify/aoj-cgl-3-b.test.cpp
   - test/verify/aoj-cgl-2-b.test.cpp
-  - test/verify/aoj-cgl-1-c.test.cpp
 documentation_of: geometry/ccw.hpp
 layout: document
 redirect_from:

@@ -80,9 +80,9 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yosupo-frequency-table-of-tree-distance.test.cpp
-  - test/verify/aoj-3139.test.cpp
   - test/verify/yukicoder-1002.test.cpp
+  - test/verify/aoj-3139.test.cpp
+  - test/verify/yosupo-frequency-table-of-tree-distance.test.cpp
 documentation_of: graph/tree/centroid-decomposition.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fps/subproduct-tree.hpp
     title: Subproduct Tree
   _extendedRequiredBy: []

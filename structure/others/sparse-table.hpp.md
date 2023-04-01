@@ -72,16 +72,16 @@ data:
   path: structure/others/sparse-table.hpp
   requiredBy:
   - structure/others/plus-minus-one-rmq.hpp
-  - graph/tree/rmq-lowest-common-ancestor.hpp
   - graph/tree/pmormq-lowest-common-ancestor.hpp
+  - graph/tree/rmq-lowest-common-ancestor.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yosupo-staticrmq-4.test.cpp
-  - test/verify/aoj-grl-5-c-4.test.cpp
-  - test/verify/yosupo-staticrmq.test.cpp
   - test/verify/yosupo-lca-2.test.cpp
+  - test/verify/yosupo-staticrmq-4.test.cpp
+  - test/verify/yosupo-staticrmq.test.cpp
   - test/verify/yosupo-lca.test.cpp
+  - test/verify/aoj-grl-5-c-4.test.cpp
   - test/verify/aoj-grl-5-c-3.test.cpp
 documentation_of: structure/others/sparse-table.hpp
 layout: document

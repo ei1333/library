@@ -82,18 +82,18 @@ data:
   path: structure/others/binary-indexed-tree.hpp
   requiredBy:
   - structure/wavelet/wavelet-matrix-point-add-rectangle-sum.hpp
-  - other/dynamic-point-add-rectangle-sum.hpp
   - other/static-rectangle-add-rectangle-sum.hpp
   - other/static-point-add-rectangle-sum.hpp
+  - other/dynamic-point-add-rectangle-sum.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yosupo-static-range-inversions-query.test.cpp
-  - test/verify/yosupo-point-add-rectangle-sum-3.test.cpp
-  - test/verify/yosupo-point-add-rectangle-sum.test.cpp
-  - test/verify/aoj-2270.test.cpp
   - test/verify/yosupo-rectangle-sum-2.test.cpp
   - test/verify/aoj-dsl-2-b.test.cpp
+  - test/verify/yosupo-point-add-rectangle-sum.test.cpp
+  - test/verify/aoj-2270.test.cpp
+  - test/verify/yosupo-static-range-inversions-query.test.cpp
+  - test/verify/yosupo-point-add-rectangle-sum-3.test.cpp
 documentation_of: structure/others/binary-indexed-tree.hpp
 layout: document
 redirect_from:

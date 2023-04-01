@@ -128,8 +128,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-dynamic-tree-vertex-add-path-sum.test.cpp
   - test/verify/yosupo-dynamic-tree-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-dynamic-tree-vertex-add-path-sum.test.cpp
 documentation_of: structure/lct/link-cut-tree.hpp
 layout: document
 redirect_from:

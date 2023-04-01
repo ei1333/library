@@ -78,9 +78,9 @@ data:
   path: math/combinatorics/enumeration.hpp
   requiredBy:
   - math/combinatorics/bell-number.hpp
-  - math/combinatorics/sample-point-shift.hpp
-  - math/combinatorics/factorial.hpp
   - math/combinatorics/stirling-number-second.hpp
+  - math/combinatorics/factorial.hpp
+  - math/combinatorics/sample-point-shift.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

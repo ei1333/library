@@ -102,8 +102,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/aoj-3139.test.cpp
   - test/verify/aoj-3022.test.cpp
+  - test/verify/aoj-3139.test.cpp
 documentation_of: graph/connected-components/bi-connected-components.hpp
 layout: document
 title: "Bi Connected Components(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\u5206\

@@ -102,8 +102,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-staticrmq-4.test.cpp
-  - test/verify/aoj-grl-5-c-4.test.cpp
   - test/verify/yosupo-lca.test.cpp
+  - test/verify/aoj-grl-5-c-4.test.cpp
 documentation_of: structure/others/plus-minus-one-rmq.hpp
 layout: document
 redirect_from:

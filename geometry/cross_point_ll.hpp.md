@@ -76,8 +76,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/aoj-cgl-4-c.test.cpp
   - test/verify/aoj-cgl-2-c.test.cpp
+  - test/verify/aoj-cgl-4-c.test.cpp
 documentation_of: geometry/cross_point_ll.hpp
 layout: document
 redirect_from:

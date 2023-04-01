@@ -57,8 +57,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-directedmst.test.cpp
   - test/verify/aoj-grl-2-b.test.cpp
+  - test/verify/yosupo-directedmst.test.cpp
 documentation_of: structure/heap/skew-heap.hpp
 layout: document
 redirect_from:

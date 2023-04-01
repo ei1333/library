@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: other/vector-pool.hpp
     title: other/vector-pool.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: structure/bbst/lazy-red-black-tree.hpp
     title: "Lazy-Red-Black-Tree(\u9045\u5EF6\u4F1D\u642C\u8D64\u9ED2\u6728)"
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -207,7 +207,7 @@ data:
   path: test/verify/yosupo-range-affine-range-sum-2.test.cpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-range-affine-range-sum-2.test.cpp
 layout: document

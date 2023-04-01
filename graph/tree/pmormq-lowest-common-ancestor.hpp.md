@@ -129,8 +129,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-staticrmq-4.test.cpp
-  - test/verify/aoj-grl-5-c-4.test.cpp
   - test/verify/yosupo-lca.test.cpp
+  - test/verify/aoj-grl-5-c-4.test.cpp
 documentation_of: graph/tree/pmormq-lowest-common-ancestor.hpp
 layout: document
 redirect_from:

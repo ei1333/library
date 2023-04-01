@@ -80,8 +80,8 @@ data:
   timestamp: '2022-10-23 21:54:47+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/verify/yosupo-three-edge-connected-components.test.cpp
   - test/verify/yosupo-two-edge-connected-components-2.test.cpp
+  - test/verify/yosupo-three-edge-connected-components.test.cpp
 documentation_of: graph/connected-components/incremental-bridge-connectivity.hpp
 layout: document
 title: Incremental Bridge Connectivity

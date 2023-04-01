@@ -44,8 +44,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yosupo-find-linear-recurrence.test.cpp
   - test/verify/yosupo-sparse-matrix-det.test.cpp
+  - test/verify/yosupo-find-linear-recurrence.test.cpp
 documentation_of: math/fps/berlekamp-massey.hpp
 layout: document
 redirect_from:

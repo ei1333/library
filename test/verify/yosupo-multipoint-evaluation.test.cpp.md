@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/fps/multipoint-evaluation.hpp
     title: Multipoint Evaluation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fps/subproduct-tree.hpp
     title: Subproduct Tree
   - icon: ':question:'

@@ -154,8 +154,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yukicoder-1720.test.cpp
   - test/verify/aoj-2450.test.cpp
+  - test/verify/yukicoder-1720.test.cpp
   - test/verify/yosupo-range-affine-range-sum.test.cpp
 documentation_of: structure/segment-tree/lazy-segment-tree.hpp
 layout: document

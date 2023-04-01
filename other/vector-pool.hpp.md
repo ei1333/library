@@ -9,10 +9,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-1508-3.test.cpp
     title: test/verify/aoj-1508-3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-range-affine-range-sum-2.test.cpp
     title: test/verify/yosupo-range-affine-range-sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-range-affine-range-sum-3.test.cpp
     title: test/verify/yosupo-range-affine-range-sum-3.test.cpp
   - icon: ':x:'
@@ -42,11 +42,11 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/aoj-1508-2.test.cpp
-  - test/verify/aoj-1508-3.test.cpp
   - test/verify/yosupo-range-affine-range-sum-2.test.cpp
-  - test/verify/yosupo-staticrmq-3.test.cpp
+  - test/verify/aoj-1508-3.test.cpp
   - test/verify/yosupo-range-affine-range-sum-3.test.cpp
+  - test/verify/aoj-1508-2.test.cpp
+  - test/verify/yosupo-staticrmq-3.test.cpp
 documentation_of: other/vector-pool.hpp
 layout: document
 redirect_from:

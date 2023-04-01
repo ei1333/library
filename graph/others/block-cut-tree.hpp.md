@@ -124,8 +124,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/aoj-3139.test.cpp
   - test/verify/aoj-3022.test.cpp
+  - test/verify/aoj-3139.test.cpp
 documentation_of: graph/others/block-cut-tree.hpp
 layout: document
 redirect_from:

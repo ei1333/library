@@ -44,7 +44,7 @@ data:
     \ = vector< Point >;\n  using Polygons = vector< Polygon >;\n}\n#line 4 \"geometry/convex_polygon_contains.hpp\"\
     \n\nnamespace geometry {\n  int convex_polygon_contains(const Polygon &Q, const\
     \ Point &p) {\n    int N = (int) Q.size();\n    Point g = (Q[0] + Q[N / 3] + Q[N\
-    \ * 2 / 3]) / 3.0;\n    if(equals(imag(g), imag(p)) && equals(real(g), imag(g)))\
+    \ * 2 / 3]) / 3.0;\n    if(equals(imag(g), imag(p)) && equals(real(g), real(p)))\
     \ return IN;\n    Point gp = p - g;\n    int l = 0, r = N;\n    while(r - l >\
     \ 1) {\n      int mid = (l + r) / 2;\n      Point gl = Q[l] - g;\n      Point\
     \ gm = Q[mid] - g;\n      if(cross(gl, gm) > 0) {\n        if(cross(gl, gp) >=\
@@ -55,7 +55,7 @@ data:
   code: "#include \"base.hpp\"\n#include \"point.hpp\"\n#include \"polygon.hpp\"\n\
     \nnamespace geometry {\n  int convex_polygon_contains(const Polygon &Q, const\
     \ Point &p) {\n    int N = (int) Q.size();\n    Point g = (Q[0] + Q[N / 3] + Q[N\
-    \ * 2 / 3]) / 3.0;\n    if(equals(imag(g), imag(p)) && equals(real(g), imag(g)))\
+    \ * 2 / 3]) / 3.0;\n    if(equals(imag(g), imag(p)) && equals(real(g), real(p)))\
     \ return IN;\n    Point gp = p - g;\n    int l = 0, r = N;\n    while(r - l >\
     \ 1) {\n      int mid = (l + r) / 2;\n      Point gl = Q[l] - g;\n      Point\
     \ gm = Q[mid] - g;\n      if(cross(gl, gm) > 0) {\n        if(cross(gl, gp) >=\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: false
   path: geometry/convex_polygon_contains.hpp
   requiredBy: []
-  timestamp: '2022-09-11 00:53:50+09:00'
+  timestamp: '2023-04-01 23:11:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-0412.test.cpp

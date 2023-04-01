@@ -159,8 +159,8 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yosupo-range-kth-smallest.test.cpp
   - test/verify/aoj-1549.test.cpp
+  - test/verify/yosupo-range-kth-smallest.test.cpp
   - test/verify/aoj-2674.test.cpp
 documentation_of: structure/wavelet/wavelet-matrix.hpp
 layout: document

@@ -41,9 +41,9 @@ data:
   timestamp: '2022-09-11 00:53:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yosupo-sqrt-mod.test.cpp
-  - test/verify/yosupo-tetration-mod.test.cpp
   - test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
+  - test/verify/yosupo-tetration-mod.test.cpp
+  - test/verify/yosupo-sqrt-mod.test.cpp
   - test/verify/aoj-ntl-1-b.test.cpp
 documentation_of: math/combinatorics/mod-pow.hpp
 layout: document
