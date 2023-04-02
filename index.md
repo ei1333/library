@@ -327,7 +327,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/dijkstra-radix-heap.hpp
       title: "Dijkstra-Radix-Heap(\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/dijkstra.hpp
       title: "Dijkstra(\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF)"
     - icon: ':warning:'
@@ -413,7 +413,7 @@ data:
     - icon: ':warning:'
       path: math/combinatorics/lagrange-polynomial-2.hpp
       title: "Lagrange Polynomial(\u591A\u9805\u5F0F\u88DC\u9593, \u4FC2\u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/lagrange-polynomial-3.hpp
       title: "Lagrange Polynomial(\u591A\u9805\u5F0F\u88DC\u9593, \u5024)"
     - icon: ':warning:'
@@ -464,7 +464,7 @@ data:
     - icon: ':warning:'
       path: math/fft/arbitrary-mod-convolution-long.hpp
       title: math/fft/arbitrary-mod-convolution-long.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/fft/arbitrary-mod-convolution.hpp
       title: "Arbitrary Mod Convolution(\u4EFB\u610Fmod\u7573\u307F\u8FBC\u307F)"
     - icon: ':heavy_check_mark:'
@@ -509,7 +509,7 @@ data:
     - icon: ':warning:'
       path: math/fps/bell.hpp
       title: "Bell(\u30D9\u30EB\u6570)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/berlekamp-massey.hpp
       title: Berlekamp Massey
     - icon: ':heavy_check_mark:'
@@ -518,7 +518,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/fps/coeff-of-rational-function.hpp
       title: Coeff of Rational Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/count-subset-sum.hpp
       title: Count Subset Sum
     - icon: ':warning:'
@@ -528,7 +528,7 @@ data:
       path: math/fps/formal-power-series-friendly-ntt.hpp
       title: "Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\u51AA\
         \u7D1A\u6570)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/fps/formal-power-series.hpp
       title: "Formal Power Series(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
     - icon: ':heavy_check_mark:'
@@ -543,7 +543,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/fps/polynomial-interpolation.hpp
       title: "Polynomial Interpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/sparse-matrix.hpp
       title: math/fps/sparse-matrix.hpp
     - icon: ':x:'
@@ -633,6 +633,10 @@ data:
       path: other/compress.hpp
       title: other/compress.hpp
     - icon: ':warning:'
+      path: other/connected-grid-states.hpp
+      title: "Connected Grid States(\u30B0\u30EA\u30C3\u30C9\u306E\u9023\u7D50\u6027\
+        \u3092\u6301\u3064DP\u306E\u72B6\u614B\u9077\u79FB)"
+    - icon: ':warning:'
       path: other/dice.hpp
       title: other/dice.hpp
     - icon: ':heavy_check_mark:'
@@ -662,7 +666,7 @@ data:
     - icon: ':question:'
       path: other/scanner.hpp
       title: "Scanner(\u9AD8\u901F\u5165\u529B)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/static-point-add-rectangle-sum.hpp
       title: Static Point Add Rectangle Sum
     - icon: ':warning:'
@@ -751,7 +755,7 @@ data:
     - icon: ':question:'
       path: structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp
       title: Convex Hull Trick Add Monotone
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/convex-hull-trick/dynamic-li-chao-tree.hpp
       title: Dynamic-Li-Chao-Tree
     - icon: ':warning:'
@@ -915,7 +919,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: structure/trie
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/trie/binary-trie.hpp
       title: Binary-Trie
     - icon: ':warning:'
@@ -946,20 +950,20 @@ data:
       title: structure/union-find/weighted-union-find.hpp
   - name: structure/wavelet
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/wavelet/succinct-indexable-dictionary.hpp
       title: "Succinct Indexable Dictionary(\u5B8C\u5099\u8F9E\u66F8)"
     - icon: ':heavy_check_mark:'
       path: structure/wavelet/wavelet-matrix-point-add-rectangle-sum.hpp
       title: Wavelet Matrix Point Add Rectangle Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: structure/wavelet/wavelet-matrix-rectangle-sum.hpp
       title: Wavelet Matrix Rectangle Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/wavelet/wavelet-matrix.hpp
       title: "Wavelet Matrix(\u30A6\u30A7\u30FC\u30D6\u30EC\u30C3\u30C8\u884C\u5217\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/wavelet/wavelet-tree.hpp
       title: "Wavelet Tree(\u30A6\u30A7\u30FC\u30D6\u30EC\u30C3\u30C8\u6728)"
   - name: template
@@ -1483,40 +1487,40 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-range-affine-range-sum-3.test.cpp
       title: test/verify/yosupo-range-affine-range-sum-3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-range-affine-range-sum.test.cpp
       title: test/verify/yosupo-range-affine-range-sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-range-kth-smallest-2.test.cpp
       title: test/verify/yosupo-range-kth-smallest-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-range-kth-smallest.test.cpp
       title: test/verify/yosupo-range-kth-smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-rectangle-sum-2.test.cpp
       title: test/verify/yosupo-rectangle-sum-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-rectangle-sum.test.cpp
       title: test/verify/yosupo-rectangle-sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-scc.test.cpp
       title: test/verify/yosupo-scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-segment-add-get-min.test.cpp
       title: test/verify/yosupo-segment-add-get-min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-set-xor-min.test.cpp
       title: test/verify/yosupo-set-xor-min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-sharp-p-subset-sum.test.cpp
       title: test/verify/yosupo-sharp-p-subset-sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-shift-of-sampling-points-of-polynomial.test.cpp
       title: test/verify/yosupo-shift-of-sampling-points-of-polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-shortest-path.test.cpp
       title: test/verify/yosupo-shortest-path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-sparse-matrix-det.test.cpp
       title: test/verify/yosupo-sparse-matrix-det.test.cpp
     - icon: ':x:'

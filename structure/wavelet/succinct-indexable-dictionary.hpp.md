@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/wavelet/wavelet-matrix-point-add-rectangle-sum.hpp
     title: Wavelet Matrix Point Add Rectangle Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/wavelet/wavelet-matrix.hpp
     title: "Wavelet Matrix(\u30A6\u30A7\u30FC\u30D6\u30EC\u30C3\u30C8\u884C\u5217)"
   _extendedVerifiedWith:
@@ -24,18 +24,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-rectangle-sum.test.cpp
     title: test/verify/yosupo-point-add-rectangle-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-range-kth-smallest-2.test.cpp
     title: test/verify/yosupo-range-kth-smallest-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-range-kth-smallest.test.cpp
     title: test/verify/yosupo-range-kth-smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-rectangle-sum.test.cpp
     title: test/verify/yosupo-rectangle-sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Succinct Indexable Dictionary(\u5B8C\u5099\u8F9E\u66F8)"
     links: []
@@ -70,7 +70,7 @@ data:
   - structure/wavelet/wavelet-matrix.hpp
   - structure/wavelet/wavelet-matrix-point-add-rectangle-sum.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-1549.test.cpp
   - test/verify/yosupo-rectangle-sum.test.cpp

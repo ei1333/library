@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/static-point-add-rectangle-sum.hpp
     title: Static Point Add Rectangle Sum
   - icon: ':question:'

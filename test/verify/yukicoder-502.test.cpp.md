@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: math/combinatorics/sample-point-shift.hpp
     title: "Sample Point Shift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/fft/arbitrary-mod-convolution.hpp
     title: "Arbitrary Mod Convolution(\u4EFB\u610Fmod\u7573\u307F\u8FBC\u307F)"
   - icon: ':question:'

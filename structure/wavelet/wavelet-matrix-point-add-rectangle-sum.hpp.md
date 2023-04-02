@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: structure/others/binary-indexed-tree.hpp
     title: Binary-Indexed-Tree(BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/wavelet/succinct-indexable-dictionary.hpp
     title: "Succinct Indexable Dictionary(\u5B8C\u5099\u8F9E\u66F8)"
   _extendedRequiredBy: []

@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-rectangle-sum-3.test.cpp
     title: test/verify/yosupo-point-add-rectangle-sum-3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-rectangle-sum-2.test.cpp
     title: test/verify/yosupo-rectangle-sum-2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Static Point Add Rectangle Sum
     links: []
@@ -105,7 +105,7 @@ data:
   requiredBy:
   - other/dynamic-point-add-rectangle-sum.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-rectangle-sum-2.test.cpp
   - test/verify/yosupo-point-add-rectangle-sum-3.test.cpp

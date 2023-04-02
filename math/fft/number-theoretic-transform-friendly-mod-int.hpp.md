@@ -46,10 +46,10 @@ data:
   - icon: ':x:'
     path: test/verify/yosupo-pow-of-formal-power-series.test.cpp
     title: test/verify/yosupo-pow-of-formal-power-series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sharp-p-subset-sum.test.cpp
     title: test/verify/yosupo-sharp-p-subset-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-shift-of-sampling-points-of-polynomial.test.cpp
     title: test/verify/yosupo-shift-of-sampling-points-of-polynomial.test.cpp
   - icon: ':x:'

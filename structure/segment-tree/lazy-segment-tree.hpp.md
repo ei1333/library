@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-2450.test.cpp
     title: test/verify/aoj-2450.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-range-affine-range-sum.test.cpp
     title: test/verify/yosupo-range-affine-range-sum.test.cpp
   - icon: ':x:'

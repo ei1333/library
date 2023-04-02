@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/dynamic-point-add-rectangle-sum.hpp
     title: Dynamic Point Add Rectangle Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/static-point-add-rectangle-sum.hpp
     title: Static Point Add Rectangle Sum
   - icon: ':warning:'
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-rectangle-sum.test.cpp
     title: test/verify/yosupo-point-add-rectangle-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-rectangle-sum-2.test.cpp
     title: test/verify/yosupo-rectangle-sum-2.test.cpp
   - icon: ':x:'
