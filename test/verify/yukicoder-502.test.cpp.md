@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/enumeration.hpp
     title: "Enumeration(\u7D44\u307F\u5408\u308F\u305B)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-int.hpp
     title: math/combinatorics/mod-int.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/sample-point-shift.hpp
     title: "Sample Point Shift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/arbitrary-mod-convolution.hpp
     title: "Arbitrary Mod Convolution(\u4EFB\u610Fmod\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/fast-fourier-transform.hpp
     title: math/fft/fast-fourier-transform.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/502
@@ -212,7 +212,7 @@ data:
   path: test/verify/yukicoder-502.test.cpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yukicoder-502.test.cpp
 layout: document

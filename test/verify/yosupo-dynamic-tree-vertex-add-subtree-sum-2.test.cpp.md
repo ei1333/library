@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/develop/super-link-cut-tree.hpp
     title: "\u4F55\u3067\u3082\u3067\u304D\u308BLCT"
   - icon: ':heavy_check_mark:'
     path: structure/develop/vertex-set-subtree-sum.hpp
     title: Vertex Set Subtree Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

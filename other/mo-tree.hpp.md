@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph-template.hpp
     title: "Graph Template(\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/offline-lca.hpp
     title: "Offline LCA(\u30AA\u30D5\u30E9\u30A4\u30F3\u6700\u5C0F\u5171\u901A\u7956\
       \u5148)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/union-find/union-find.hpp
     title: Union Find
   _extendedRequiredBy: []

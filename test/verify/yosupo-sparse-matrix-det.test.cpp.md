@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-int.hpp
     title: math/combinatorics/mod-int.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/arbitrary-mod-convolution.hpp
     title: "Arbitrary Mod Convolution(\u4EFB\u610Fmod\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/fast-fourier-transform.hpp
     title: math/fft/fast-fourier-transform.hpp
   - icon: ':heavy_check_mark:'
     path: math/fps/berlekamp-massey.hpp
     title: Berlekamp Massey
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fps/formal-power-series.hpp
     title: "Formal Power Series(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
     path: math/fps/sparse-matrix.hpp
     title: math/fps/sparse-matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/abstract-2d-binary-indexed-tree-compressed.hpp
     title: "Abstract 2D Binary Indexed Tree Compressed(\u62BD\u8C61\u53162\u6B21\u5143\
       \u5EA7\u5727BIT)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/abstract-binary-indexed-tree.hpp
     title: "Abstract Binary Indexed Tree(\u62BD\u8C61\u5316BIT)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1826
@@ -149,7 +149,7 @@ data:
   path: test/verify/yukicoder-1826.test.cpp
   requiredBy: []
   timestamp: '2022-10-23 21:27:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yukicoder-1826.test.cpp
 layout: document

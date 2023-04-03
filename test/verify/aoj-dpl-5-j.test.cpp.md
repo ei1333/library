@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-int.hpp
     title: math/combinatorics/mod-int.hpp
   - icon: ':heavy_check_mark:'
     path: math/combinatorics/partition-table.hpp
     title: "Partition Table(\u5206\u5272\u6570\u30C6\u30FC\u30D6\u30EB)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

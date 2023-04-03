@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/enumeration.hpp
     title: "Enumeration(\u7D44\u307F\u5408\u308F\u305B)"
   _extendedRequiredBy: []

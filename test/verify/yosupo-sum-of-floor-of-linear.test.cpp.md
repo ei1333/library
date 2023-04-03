@@ -5,7 +5,7 @@ data:
     path: math/number-theory/sum-of-floor-of-linear.hpp
     title: "Sum of Floor of Linear(\u4E00\u6B21\u95A2\u6570\u306E\u5E8A\u95A2\u6570\
       \u306E\u548C)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

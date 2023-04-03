@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/printer.hpp
     title: "Printer(\u9AD8\u901F\u51FA\u529B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/scanner.hpp
     title: "Scanner(\u9AD8\u901F\u5165\u529B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/abstract-2d-binary-indexed-tree-compressed.hpp
     title: "Abstract 2D Binary Indexed Tree Compressed(\u62BD\u8C61\u53162\u6B21\u5143\
       \u5EA7\u5727BIT)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/abstract-binary-indexed-tree.hpp
     title: "Abstract Binary Indexed Tree(\u62BD\u8C61\u5316BIT)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

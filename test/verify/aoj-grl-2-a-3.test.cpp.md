@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/boruvka.hpp
     title: "Boruvka(\u6700\u5C0F\u5168\u57DF\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/union-find/union-find.hpp
     title: Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

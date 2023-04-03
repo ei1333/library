@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix-array.hpp
     title: "Suffix Array(\u63A5\u5C3E\u8F9E\u914D\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

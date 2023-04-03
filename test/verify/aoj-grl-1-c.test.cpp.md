@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/warshall-floyd.hpp
     title: "Warshall Floyd(\u5168\u70B9\u5BFE\u9593\u6700\u77ED\u8DEF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/square-matrix.hpp
     title: "Square-Matrix(\u6B63\u65B9\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

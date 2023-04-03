@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/others/sparse-table.hpp
     title: "Sparse-Table(\u30B9\u30D1\u30FC\u30B9\u30C6\u30FC\u30D6\u30EB)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

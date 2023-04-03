@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-263.test.cpp
     title: test/verify/yukicoder-263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-273.test.cpp
     title: test/verify/yukicoder-273.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-465.test.cpp
     title: test/verify/yukicoder-465.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/palindromic-tree.md
     document_title: "Palindromic Tree(\u56DE\u6587\u6728)"
@@ -130,7 +130,7 @@ data:
   path: string/palindromic-tree.hpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yukicoder-273.test.cpp
   - test/verify/yukicoder-263.test.cpp

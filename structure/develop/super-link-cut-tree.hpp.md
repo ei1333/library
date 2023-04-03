@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/develop/diameter.hpp
     title: Diameter
-  - icon: ':x:'
+  - icon: ':warning:'
     path: structure/develop/dynamic-tree-test.hpp
     title: Dynamic Tree Test
   - icon: ':heavy_check_mark:'
@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/develop/vertex-set-subtree-sum.hpp
     title: Vertex Set Subtree Sum
+  - icon: ':warning:'
+    path: test/verify/dmoj-ds5.hpp
+    title: test/verify/dmoj-ds5.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-2450-4.test.cpp
@@ -27,9 +30,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-grl-5-a-2.test.cpp
     title: test/verify/aoj-grl-5-a-2.test.cpp
-  - icon: ':x:'
-    path: test/verify/dmoj-ds5.test.cpp
-    title: test/verify/dmoj-ds5.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-dynamic-tree-subtree-add-subtree-sum.test.cpp
     title: test/verify/yosupo-dynamic-tree-subtree-add-subtree-sum.test.cpp
@@ -42,9 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-dynamic-tree-vertex-set-path-composite-3.test.cpp
     title: test/verify/yosupo-dynamic-tree-vertex-set-path-composite-3.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u4F55\u3067\u3082\u3067\u304D\u308BLCT"
     links: []
@@ -317,14 +317,14 @@ data:
   - structure/develop/vertex-set-path-composite.hpp
   - structure/develop/diameter.hpp
   - structure/develop/dynamic-tree-test.hpp
+  - test/verify/dmoj-ds5.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-dynamic-tree-subtree-add-subtree-sum.test.cpp
   - test/verify/yosupo-dynamic-tree-vertex-add-subtree-sum-2.test.cpp
   - test/verify/aoj-grl-5-a-2.test.cpp
   - test/verify/yosupo-dynamic-tree-vertex-add-path-sum-3.test.cpp
-  - test/verify/dmoj-ds5.test.cpp
   - test/verify/yosupo-dynamic-tree-vertex-set-path-composite-3.test.cpp
   - test/verify/aoj-2450-4.test.cpp
 documentation_of: structure/develop/super-link-cut-tree.hpp

@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/combinatorics/lagrange-polynomial-3.hpp
     title: "Lagrange Polynomial(\u591A\u9805\u5F0F\u88DC\u9593, \u5024)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-int.hpp
     title: math/combinatorics/mod-int.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/number-theoretic-transform-friendly-mod-int.hpp
     title: Number Theoretic Transform Friendly ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/develop/super-link-cut-tree.hpp
     title: "\u4F55\u3067\u3082\u3067\u304D\u308BLCT"
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/verify/dmoj-ds5.test.cpp
-    title: test/verify/dmoj-ds5.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/verify/dmoj-ds5.hpp
+    title: test/verify/dmoj-ds5.hpp
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: Dynamic Tree Test
     links:
@@ -262,11 +262,11 @@ data:
   - structure/develop/super-link-cut-tree.hpp
   isVerificationFile: false
   path: structure/develop/dynamic-tree-test.hpp
-  requiredBy: []
+  requiredBy:
+  - test/verify/dmoj-ds5.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/verify/dmoj-ds5.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: structure/develop/dynamic-tree-test.hpp
 layout: document
 redirect_from:

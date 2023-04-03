@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/monotone-minima.hpp
     title: Monotone Minima
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-703.test.cpp
     title: test/verify/yukicoder-703.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-704.test.cpp
     title: test/verify/yukicoder-704.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-705.test.cpp
     title: test/verify/yukicoder-705.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/monotone-minima.hpp\"\ntemplate< typename T, typename\
@@ -67,7 +67,7 @@ data:
   path: dp/online-offline-dp.hpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yukicoder-704.test.cpp
   - test/verify/yukicoder-703.test.cpp

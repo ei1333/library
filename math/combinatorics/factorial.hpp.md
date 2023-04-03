@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/enumeration.hpp
     title: "Enumeration(\u7D44\u307F\u5408\u308F\u305B)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/sample-point-shift.hpp
     title: "Sample Point Shift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-502.test.cpp
     title: test/verify/yukicoder-502.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Factorial(\u968E\u4E57)"
     links: []
@@ -80,7 +80,7 @@ data:
   path: math/combinatorics/factorial.hpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yukicoder-502.test.cpp
 documentation_of: math/combinatorics/factorial.hpp

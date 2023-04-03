@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/verify/dmoj-ds5.hpp
+    title: test/verify/dmoj-ds5.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-0233.test.cpp
@@ -312,9 +315,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-ntl-1-e.test.cpp
     title: test/verify/aoj-ntl-1-e.test.cpp
-  - icon: ':x:'
-    path: test/verify/dmoj-ds5.test.cpp
-    title: test/verify/dmoj-ds5.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-assignment.test.cpp
     title: test/verify/yosupo-assignment.test.cpp
@@ -582,10 +582,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq.test.cpp
     title: test/verify/yosupo-staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -606,87 +606,87 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-decomposition-width-2.test.cpp
     title: test/verify/yosupo-tree-decomposition-width-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-diameter.test.cpp
     title: test/verify/yosupo-tree-diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-two-edge-connected-components-2.test.cpp
     title: test/verify/yosupo-two-edge-connected-components-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-two-edge-connected-components.test.cpp
     title: test/verify/yosupo-two-edge-connected-components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-two-sat.test.cpp
     title: test/verify/yosupo-two-sat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-zalgorithm.test.cpp
     title: test/verify/yosupo-zalgorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1002.test.cpp
     title: test/verify/yukicoder-1002.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1069.test.cpp
     title: test/verify/yukicoder-1069.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1236.test.cpp
     title: test/verify/yukicoder-1236.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1254.test.cpp
     title: test/verify/yukicoder-1254.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1602.test.cpp
     title: test/verify/yukicoder-1602.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1720.test.cpp
     title: test/verify/yukicoder-1720.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1826.test.cpp
     title: test/verify/yukicoder-1826.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-184.test.cpp
     title: test/verify/yukicoder-184.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-215.test.cpp
     title: test/verify/yukicoder-215.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-263.test.cpp
     title: test/verify/yukicoder-263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-273.test.cpp
     title: test/verify/yukicoder-273.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-3046.test.cpp
     title: test/verify/yukicoder-3046.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-430.test.cpp
     title: test/verify/yukicoder-430.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-465.test.cpp
     title: test/verify/yukicoder-465.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-502.test.cpp
     title: test/verify/yukicoder-502.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-583.test.cpp
     title: test/verify/yukicoder-583.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-650.test.cpp
     title: test/verify/yukicoder-650.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-703.test.cpp
     title: test/verify/yukicoder-703.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-704.test.cpp
     title: test/verify/yukicoder-704.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-705.test.cpp
     title: test/verify/yukicoder-705.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-952.test.cpp
     title: test/verify/yukicoder-952.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template/template.hpp\"\n#include<bits/stdc++.h>\n\nusing\
@@ -747,9 +747,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: template/template.hpp
-  requiredBy: []
+  requiredBy:
+  - test/verify/dmoj-ds5.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-rectangle-sum-2.test.cpp
   - test/verify/yosupo-subset-convolution.test.cpp
@@ -845,7 +846,6 @@ data:
   - test/verify/yukicoder-650.test.cpp
   - test/verify/aoj-ntl-1-b.test.cpp
   - test/verify/yosupo-sharp-p-subset-sum.test.cpp
-  - test/verify/dmoj-ds5.test.cpp
   - test/verify/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - test/verify/yosupo-range-affine-range-sum-2.test.cpp
   - test/verify/aoj-cgl-1-a.test.cpp

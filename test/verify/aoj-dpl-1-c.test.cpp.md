@@ -5,7 +5,7 @@ data:
     path: dp/knapsack.hpp
     title: "Knapsack(\u500B\u6570\u5236\u9650\u306A\u3057\u30CA\u30C3\u30D7\u30B5\u30C3\
       \u30AF\u554F\u984C)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/flow/bipartite-flow.hpp
     title: "Bipartite Flow(\u4E8C\u90E8\u30B0\u30E9\u30D5\u306E\u30D5\u30ED\u30FC)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/others/eulerian-trail.hpp
     title: "Eulerian Trail(\u30AA\u30A4\u30E9\u30FC\u8DEF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/union-find/union-find.hpp
     title: Union Find
   _extendedRequiredBy: []

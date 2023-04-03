@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/flow/primal-dual.hpp
     title: "Primal Dual(\u6700\u5C0F\u8CBB\u7528\u6D41)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

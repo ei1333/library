@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-int.hpp
     title: math/combinatorics/mod-int.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/number-theoretic-transform-friendly-mod-int.hpp
     title: Number Theoretic Transform Friendly ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fps/formal-power-series-friendly-ntt.hpp
     title: "Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\u51AA\u7D1A\
       \u6570)"
   - icon: ':heavy_check_mark:'
     path: math/fps/partition.hpp
     title: "Partition(\u5206\u5272\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

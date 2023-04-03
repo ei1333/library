@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/permutation-tree.hpp
     title: "Permutation Tree(\u9806\u5217\u6728)"
   _extendedVerifiedWith:
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-range-affine-range-sum.test.cpp
     title: test/verify/yosupo-range-affine-range-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1720.test.cpp
     title: test/verify/yukicoder-1720.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/lazy-segment-tree.md
     document_title: "Lazy-Segment-Tree(\u9045\u5EF6\u4F1D\u642C\u30BB\u30B0\u30E1\u30F3\
@@ -152,7 +152,7 @@ data:
   requiredBy:
   - structure/others/permutation-tree.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-2450.test.cpp
   - test/verify/yukicoder-1720.test.cpp

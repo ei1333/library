@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/develop/splay-tree-base.hpp
     title: "Splay-Tree-Base(Splay\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

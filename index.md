@@ -41,10 +41,10 @@ data:
       path: dp/longest-increasing-subsequence.hpp
       title: "Longest Increasing Subsequence(\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: dp/monotone-minima.hpp
       title: Monotone Minima
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/online-offline-dp.hpp
       title: "Online Offline DP(\u30AA\u30F3\u30E9\u30A4\u30F3\u30FB\u30AA\u30D5\u30E9\
         \u30A4\u30F3\u5909\u63DB)"
@@ -175,17 +175,17 @@ data:
       path: graph/connected-components/bi-connected-components.hpp
       title: "Bi Connected Components(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
         \u5206\u89E3)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected-components/incremental-bridge-connectivity.hpp
       title: Incremental Bridge Connectivity
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected-components/strongly-connected-components.hpp
       title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
     - icon: ':heavy_check_mark:'
       path: graph/connected-components/three-edge-connected-components.hpp
       title: graph/connected-components/three-edge-connected-components.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected-components/two-edge-connected-components.hpp
       title: "Two Edge Connected Components(\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\
         \u5206\u89E3)"
@@ -230,7 +230,7 @@ data:
       title: graph/flow/push-relabel.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph-template.hpp
       title: "Graph Template(\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
         )"
@@ -281,10 +281,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/others/enumerate-triangles.hpp
       title: "Enumerate Triangles(\u4E09\u89D2\u5F62\u5168\u5217\u6319)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/others/eulerian-trail.hpp
       title: "Eulerian Trail(\u30AA\u30A4\u30E9\u30FC\u8DEF)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/others/low-link.hpp
       title: "Low Link(\u6A4B/\u95A2\u7BC0\u70B9)"
     - icon: ':heavy_check_mark:'
@@ -293,7 +293,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/others/maximum-independent-set.hpp
       title: "Maximum Independent Set(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/others/namori-graph.hpp
       title: Namori Graph
     - icon: ':heavy_check_mark:'
@@ -307,7 +307,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/others/tree-decomposition-width-2.hpp
       title: "Tree Decomposition Width 2(\u6728\u5E452\u306E\u6728\u5206\u89E3)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/others/two-satisfiability.hpp
       title: Two Satisfiability(2-SAT)
   - name: graph/shortest-path
@@ -333,13 +333,13 @@ data:
     - icon: ':warning:'
       path: graph/shortest-path/grid-bfs.hpp
       title: graph/shortest-path/grid-bfs.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/k-shortest-path.hpp
       title: K-Shortest-Path
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/k-shortest-walk.hpp
       title: K-Shortest-Walk
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/shortest-nonzero-path.hpp
       title: "Shortest Nonzero Path(\u7FA4\u30E9\u30D9\u30EB\u5236\u7D04\u4ED8\u304D\
         \u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF)"
@@ -352,7 +352,7 @@ data:
       title: "Warshall Floyd(\u5168\u70B9\u5BFE\u9593\u6700\u77ED\u8DEF)"
   - name: graph/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/centroid-decomposition.hpp
       title: "Centroid-Decomosition(\u91CD\u5FC3\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -368,7 +368,7 @@ data:
       path: graph/tree/doubling-lowest-common-ancestor.hpp
       title: "Doubling-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/heavy-light-decomposition.hpp
       title: "Heavy-Light-Decomposition(HL\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -384,7 +384,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/rmq-lowest-common-ancestor.hpp
       title: "RMQ-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/tree-diameter.hpp
       title: "Tree-Diameter(\u6728\u306E\u76F4\u5F84)"
     - icon: ':heavy_check_mark:'
@@ -404,10 +404,10 @@ data:
     - icon: ':warning:'
       path: math/combinatorics/binomial.hpp
       title: "Binomial(\u4E8C\u9805\u4FC2\u6570)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/enumeration.hpp
       title: "Enumeration(\u7D44\u307F\u5408\u308F\u305B)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/factorial.hpp
       title: "Factorial(\u968E\u4E57)"
     - icon: ':warning:'
@@ -419,7 +419,7 @@ data:
     - icon: ':warning:'
       path: math/combinatorics/lagrange-polynomial.hpp
       title: "Lagrange Polynomial(\u591A\u9805\u5F0F\u88DC\u9593, \u5024)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/mod-int.hpp
       title: math/combinatorics/mod-int.hpp
     - icon: ':heavy_check_mark:'
@@ -434,7 +434,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/combinatorics/mod-tetration.hpp
       title: "Mod Tetration(\u30C6\u30C8\u30EC\u30FC\u30B7\u30E7\u30F3)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/montgomery-mod-int.hpp
       title: Montgomery ModInt
     - icon: ':heavy_check_mark:'
@@ -443,7 +443,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/combinatorics/partition-table.hpp
       title: "Partition Table(\u5206\u5272\u6570\u30C6\u30FC\u30D6\u30EB)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/sample-point-shift.hpp
       title: "Sample Point Shift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
     - icon: ':heavy_check_mark:'
@@ -464,7 +464,7 @@ data:
     - icon: ':warning:'
       path: math/fft/arbitrary-mod-convolution-long.hpp
       title: math/fft/arbitrary-mod-convolution-long.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/fft/arbitrary-mod-convolution.hpp
       title: "Arbitrary Mod Convolution(\u4EFB\u610Fmod\u7573\u307F\u8FBC\u307F)"
     - icon: ':heavy_check_mark:'
@@ -476,14 +476,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/fft/bitwise-xor-convolution.hpp
       title: "Bitwise Xor Convolution (Bitwise-XOR\u7573\u307F\u8FBC\u307F)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/fft/fast-fourier-transform.hpp
       title: math/fft/fast-fourier-transform.hpp
     - icon: ':heavy_check_mark:'
       path: math/fft/fast-walsh-hadamard-transform.hpp
       title: "Fast Walsh Hadamard Transform (\u9AD8\u901F\u30A6\u30A9\u30EB\u30B7\u30E5\
         \u30A2\u30C0\u30DE\u30FC\u30EB\u5909\u63DB)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/fft/number-theoretic-transform-friendly-mod-int.hpp
       title: Number Theoretic Transform Friendly ModInt
     - icon: ':heavy_check_mark:'
@@ -524,11 +524,11 @@ data:
     - icon: ':warning:'
       path: math/fps/eulerian.hpp
       title: "Eulerian(\u30AA\u30A4\u30E9\u30FC\u6570)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/formal-power-series-friendly-ntt.hpp
       title: "Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\u51AA\
         \u7D1A\u6570)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/formal-power-series.hpp
       title: "Formal Power Series(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
     - icon: ':heavy_check_mark:'
@@ -546,11 +546,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/fps/sparse-matrix.hpp
       title: math/fps/sparse-matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/stirling-first.hpp
       title: "Stirling First(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\
         \u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/stirling-second.hpp
       title: "Stirling Second(\u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\
         \u6570)"
@@ -559,13 +559,13 @@ data:
       title: Subproduct Tree
   - name: math/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/binary-basis.hpp
       title: math/matrix/binary-basis.hpp
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.hpp
       title: math/matrix/matrix.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/square-matrix.hpp
       title: "Square-Matrix(\u6B63\u65B9\u884C\u5217)"
   - name: math/number-theory
@@ -621,7 +621,7 @@ data:
         \u306E\u548C)"
   - name: math/rational
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/rational/rational.hpp
       title: "Rational (\u6709\u7406\u6570\u578B)"
   - name: other
@@ -657,13 +657,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/offline-rmq.hpp
       title: Offline RMQ
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/printer.hpp
       title: "Printer(\u9AD8\u901F\u51FA\u529B)"
     - icon: ':warning:'
       path: other/random-number-generator.hpp
       title: other/random-number-generator.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/scanner.hpp
       title: "Scanner(\u9AD8\u901F\u5165\u529B)"
     - icon: ':heavy_check_mark:'
@@ -683,7 +683,7 @@ data:
       title: Xor-Shift
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/aho-corasick.hpp
       title: "Aho-Corasick(\u30A8\u30A4\u30DB\u2013\u30B3\u30E9\u30B7\u30C3\u30AF\u6CD5\
         )"
@@ -693,7 +693,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/manacher.hpp
       title: "Manacher(\u6700\u9577\u56DE\u6587)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromic-tree.hpp
       title: "Palindromic Tree(\u56DE\u6587\u6728)"
     - icon: ':heavy_check_mark:'
@@ -702,7 +702,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix-array.hpp
       title: "Suffix Array(\u63A5\u5C3E\u8F9E\u914D\u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/z-algorithm.hpp
       title: Z Algorithm
   - name: structure/bbst
@@ -752,7 +752,7 @@ data:
       title: "Weight-Balanced-Tree(\u91CD\u307F\u5E73\u8861\u6728)"
   - name: structure/convex-hull-trick
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp
       title: Convex Hull Trick Add Monotone
     - icon: ':heavy_check_mark:'
@@ -772,7 +772,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/develop/diameter.hpp
       title: Diameter
-    - icon: ':x:'
+    - icon: ':warning:'
       path: structure/develop/dynamic-tree-test.hpp
       title: Dynamic Tree Test
     - icon: ':heavy_check_mark:'
@@ -794,7 +794,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/develop/subtree-add-subtree-sum.hpp
       title: Subtree Add Subtree Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/develop/super-link-cut-tree.hpp
       title: "\u4F55\u3067\u3082\u3067\u304D\u308BLCT"
     - icon: ':heavy_check_mark:'
@@ -843,11 +843,11 @@ data:
       title: Link Cut Tree
   - name: structure/others
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/abstract-2d-binary-indexed-tree-compressed.hpp
       title: "Abstract 2D Binary Indexed Tree Compressed(\u62BD\u8C61\u53162\u6B21\
         \u5143\u5EA7\u5727BIT)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/abstract-binary-indexed-tree.hpp
       title: "Abstract Binary Indexed Tree(\u62BD\u8C61\u5316BIT)"
     - icon: ':heavy_check_mark:'
@@ -862,7 +862,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/others/linear-rmq.hpp
       title: Linear-RMQ
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/permutation-tree.hpp
       title: "Permutation Tree(\u9806\u5217\u6728)"
     - icon: ':heavy_check_mark:'
@@ -894,7 +894,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/segment-tree/dual-segment-tree.hpp
       title: "Dual-Segment-Tree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/segment-tree/lazy-segment-tree.hpp
       title: "Lazy-Segment-Tree(\u9045\u5EF6\u4F1D\u642C\u30BB\u30B0\u30E1\u30F3\u30C8\
         \u6728)"
@@ -914,7 +914,7 @@ data:
     - icon: ':warning:'
       path: structure/segment-tree/segment-tree-fractional-cascading.hpp
       title: structure/segment-tree/segment-tree-fractional-cascading.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/segment-tree/segment-tree.hpp
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: structure/trie
@@ -925,7 +925,7 @@ data:
     - icon: ':warning:'
       path: structure/trie/persistent-binary-trie.hpp
       title: Persistent-Binary-Trie
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: structure/trie/trie.hpp
       title: structure/trie/trie.hpp
   - name: structure/union-find
@@ -942,7 +942,7 @@ data:
     - icon: ':warning:'
       path: structure/union-find/union-find-undo.hpp
       title: structure/union-find/union-find-undo.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/union-find/union-find.hpp
       title: Union Find
     - icon: ':heavy_check_mark:'
@@ -968,9 +968,14 @@ data:
       title: "Wavelet Tree(\u30A6\u30A7\u30FC\u30D6\u30EC\u30C3\u30C8\u6728)"
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
+  - name: test/verify
+    pages:
+    - icon: ':warning:'
+      path: test/verify/dmoj-ds5.hpp
+      title: test/verify/dmoj-ds5.hpp
   verificationCategories:
   - name: test/verify
     pages:
@@ -1283,9 +1288,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-ntl-1-e.test.cpp
       title: test/verify/aoj-ntl-1-e.test.cpp
-    - icon: ':x:'
-      path: test/verify/dmoj-ds5.test.cpp
-      title: test/verify/dmoj-ds5.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-assignment.test.cpp
       title: test/verify/yosupo-assignment.test.cpp
@@ -1553,10 +1555,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq.test.cpp
       title: test/verify/yosupo-staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
       title: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
       title: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1577,82 +1579,82 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-tree-decomposition-width-2.test.cpp
       title: test/verify/yosupo-tree-decomposition-width-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-tree-diameter.test.cpp
       title: test/verify/yosupo-tree-diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-two-edge-connected-components-2.test.cpp
       title: test/verify/yosupo-two-edge-connected-components-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-two-edge-connected-components.test.cpp
       title: test/verify/yosupo-two-edge-connected-components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-two-sat.test.cpp
       title: test/verify/yosupo-two-sat.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-zalgorithm.test.cpp
       title: test/verify/yosupo-zalgorithm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-1002.test.cpp
       title: test/verify/yukicoder-1002.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-1069.test.cpp
       title: test/verify/yukicoder-1069.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-1236.test.cpp
       title: test/verify/yukicoder-1236.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-1254.test.cpp
       title: test/verify/yukicoder-1254.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-1602.test.cpp
       title: test/verify/yukicoder-1602.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-1720.test.cpp
       title: test/verify/yukicoder-1720.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-1826.test.cpp
       title: test/verify/yukicoder-1826.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-184.test.cpp
       title: test/verify/yukicoder-184.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-215.test.cpp
       title: test/verify/yukicoder-215.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-263.test.cpp
       title: test/verify/yukicoder-263.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-273.test.cpp
       title: test/verify/yukicoder-273.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-3046.test.cpp
       title: test/verify/yukicoder-3046.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-430.test.cpp
       title: test/verify/yukicoder-430.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-465.test.cpp
       title: test/verify/yukicoder-465.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-502.test.cpp
       title: test/verify/yukicoder-502.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-583.test.cpp
       title: test/verify/yukicoder-583.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-650.test.cpp
       title: test/verify/yukicoder-650.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-703.test.cpp
       title: test/verify/yukicoder-703.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-704.test.cpp
       title: test/verify/yukicoder-704.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-705.test.cpp
       title: test/verify/yukicoder-705.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yukicoder-952.test.cpp
       title: test/verify/yukicoder-952.test.cpp
 layout: toppage

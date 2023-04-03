@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/montgomery-mod-int.hpp
     title: Montgomery ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/number-theoretic-transform-friendly-mod-int.hpp
     title: Number Theoretic Transform Friendly ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/combinatorics/montmort.hpp
     title: "Montmort-Number(\u30E2\u30F3\u30E2\u30FC\u30EB\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

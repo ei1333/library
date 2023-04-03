@@ -6,14 +6,14 @@ data:
     path: graph/connected-components/bi-connected-components.hpp
     title: "Bi Connected Components(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected-components/strongly-connected-components.hpp
     title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   - icon: ':heavy_check_mark:'
     path: graph/connected-components/three-edge-connected-components.hpp
     title: graph/connected-components/three-edge-connected-components.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected-components/two-edge-connected-components.hpp
     title: "Two Edge Connected Components(\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
@@ -44,10 +44,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/others/enumerate-triangles.hpp
     title: "Enumerate Triangles(\u4E09\u89D2\u5F62\u5168\u5217\u6319)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/others/low-link.hpp
     title: "Low Link(\u6A4B/\u95A2\u7BC0\u70B9)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/others/namori-graph.hpp
     title: Namori Graph
   - icon: ':heavy_check_mark:'
@@ -58,7 +58,7 @@ data:
     path: graph/others/topological-sort.hpp
     title: "Topological Sort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/others/two-satisfiability.hpp
     title: Two Satisfiability(2-SAT)
   - icon: ':heavy_check_mark:'
@@ -79,7 +79,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/dijkstra.hpp
     title: "Dijkstra(\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/k-shortest-path.hpp
     title: K-Shortest-Path
   - icon: ':heavy_check_mark:'
@@ -89,7 +89,7 @@ data:
     path: graph/shortest-path/shortest-path-faster-algorithm.hpp
     title: "Shortest-Path-Faster-Algorithm(\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/centroid-decomposition.hpp
     title: "Centroid-Decomosition(\u91CD\u5FC3\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/doubling-lowest-common-ancestor.hpp
     title: "Doubling-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/heavy-light-decomposition.hpp
     title: "Heavy-Light-Decomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -117,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/rmq-lowest-common-ancestor.hpp
     title: "RMQ-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/tree-diameter.hpp
     title: "Tree-Diameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':heavy_check_mark:'
@@ -253,30 +253,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-three-edge-connected-components.test.cpp
     title: test/verify/yosupo-three-edge-connected-components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-diameter.test.cpp
     title: test/verify/yosupo-tree-diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-two-edge-connected-components.test.cpp
     title: test/verify/yosupo-two-edge-connected-components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-two-sat.test.cpp
     title: test/verify/yosupo-two-sat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1002.test.cpp
     title: test/verify/yukicoder-1002.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1069.test.cpp
     title: test/verify/yukicoder-1069.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1254.test.cpp
     title: test/verify/yukicoder-1254.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-650.test.cpp
     title: test/verify/yukicoder-650.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Graph Template(\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\
       \u30C8)"
@@ -363,7 +363,7 @@ data:
   - graph/shortest-path/k-shortest-walk.hpp
   - graph/shortest-path/dijkstra-fibonacchi-heap.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-grl-3-c.test.cpp
   - test/verify/aoj-grl-2-b.test.cpp

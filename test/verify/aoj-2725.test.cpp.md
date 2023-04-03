@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/convex-hull-trick/dynamic-li-chao-tree.hpp
     title: Dynamic-Li-Chao-Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

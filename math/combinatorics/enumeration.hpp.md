@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/combinatorics/bell-number.hpp
     title: "Bell Number(\u30D9\u30EB\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/sample-point-shift.hpp
     title: "Sample Point Shift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':heavy_check_mark:'
@@ -22,12 +22,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-dpl-5-i.test.cpp
     title: test/verify/aoj-dpl-5-i.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-502.test.cpp
     title: test/verify/yukicoder-502.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Enumeration(\u7D44\u307F\u5408\u308F\u305B)"
     links: []
@@ -82,7 +82,7 @@ data:
   - math/combinatorics/factorial.hpp
   - math/combinatorics/sample-point-shift.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-dpl-5-i.test.cpp
   - test/verify/yukicoder-502.test.cpp

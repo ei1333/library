@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/printer.hpp
     title: "Printer(\u9AD8\u901F\u51FA\u529B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/scanner.hpp
     title: "Scanner(\u9AD8\u901F\u5165\u529B)"
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/others/binary-indexed-tree.hpp
     title: Binary-Indexed-Tree(BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

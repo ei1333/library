@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/abstract-binary-indexed-tree.hpp
     title: "Abstract Binary Indexed Tree(\u62BD\u8C61\u5316BIT)"
   _extendedRequiredBy: []
@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-rectangle-sum-2.test.cpp
     title: test/verify/yosupo-point-add-rectangle-sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-1826.test.cpp
     title: test/verify/yukicoder-1826.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Abstract 2D Binary Indexed Tree Compressed(\u62BD\u8C61\u5316\
       2\u6B21\u5143\u5EA7\u5727BIT)"
@@ -89,7 +89,7 @@ data:
   path: structure/others/abstract-2d-binary-indexed-tree-compressed.hpp
   requiredBy: []
   timestamp: '2022-10-23 21:27:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yukicoder-1826.test.cpp
   - test/verify/yosupo-point-add-rectangle-sum-2.test.cpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected-components/incremental-bridge-connectivity.hpp
     title: Incremental Bridge Connectivity
   - icon: ':heavy_check_mark:'
     path: graph/connected-components/three-edge-connected-components.hpp
     title: graph/connected-components/three-edge-connected-components.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph-template.hpp
     title: "Graph Template(\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/union-find/union-find.hpp
     title: Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

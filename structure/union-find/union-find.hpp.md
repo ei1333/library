@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected-components/incremental-bridge-connectivity.hpp
     title: Incremental Bridge Connectivity
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
     path: graph/others/bipartite-graph-edge-coloring.hpp
     title: "Bipartite Graph Edge Coloring(\u4E8C\u90E8\u30B0\u30E9\u30D5\u306E\u8FBA\
       \u5F69\u8272)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/others/eulerian-trail.hpp
     title: "Eulerian Trail(\u30AA\u30A4\u30E9\u30FC\u8DEF)"
   - icon: ':heavy_check_mark:'
@@ -71,15 +71,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-decomposition-width-2.test.cpp
     title: test/verify/yosupo-tree-decomposition-width-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-two-edge-connected-components-2.test.cpp
     title: test/verify/yosupo-two-edge-connected-components-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yukicoder-583.test.cpp
     title: test/verify/yukicoder-583.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"structure/union-find/union-find.hpp\"\n\nstruct UnionFind\
@@ -121,7 +121,7 @@ data:
   - graph/mst/boruvka.hpp
   - graph/mst/kruskal.hpp
   timestamp: '2022-10-23 21:54:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-tree-decomposition-width-2.test.cpp
   - test/verify/yosupo-bipartite-edge-coloring.test.cpp

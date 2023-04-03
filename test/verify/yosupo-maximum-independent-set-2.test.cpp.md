@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/others/maximum-clique.hpp
     title: "Maximum Clique(\u6700\u5927\u30AF\u30EA\u30FC\u30AF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

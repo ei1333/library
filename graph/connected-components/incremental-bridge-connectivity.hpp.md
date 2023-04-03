@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/union-find/union-find.hpp
     title: Union Find
   _extendedRequiredBy:
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-three-edge-connected-components.test.cpp
     title: test/verify/yosupo-three-edge-connected-components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-two-edge-connected-components-2.test.cpp
     title: test/verify/yosupo-two-edge-connected-components-2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/connected-components/incremental-bridge-connectivity.hpp\"\
@@ -78,7 +78,7 @@ data:
   requiredBy:
   - graph/connected-components/three-edge-connected-components.hpp
   timestamp: '2022-10-23 21:54:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-two-edge-connected-components-2.test.cpp
   - test/verify/yosupo-three-edge-connected-components.test.cpp

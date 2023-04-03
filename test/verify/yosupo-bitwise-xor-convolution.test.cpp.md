@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-int.hpp
     title: math/combinatorics/mod-int.hpp
   - icon: ':heavy_check_mark:'
@@ -11,13 +11,13 @@ data:
     path: math/fft/fast-walsh-hadamard-transform.hpp
     title: "Fast Walsh Hadamard Transform (\u9AD8\u901F\u30A6\u30A9\u30EB\u30B7\u30E5\
       \u30A2\u30C0\u30DE\u30FC\u30EB\u5909\u63DB)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/printer.hpp
     title: "Printer(\u9AD8\u901F\u51FA\u529B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/scanner.hpp
     title: "Scanner(\u9AD8\u901F\u5165\u529B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

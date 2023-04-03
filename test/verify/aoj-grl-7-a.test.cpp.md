@@ -5,7 +5,7 @@ data:
     path: graph/flow/bipartite-matching.hpp
     title: "Bipartite-Matching(\u4E8C\u90E8\u30B0\u30E9\u30D5\u306E\u6700\u5927\u30DE\
       \u30C3\u30C1\u30F3\u30B0)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

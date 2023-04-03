@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/others/chromatic-number.hpp
     title: "Chromatic Number(\u5F69\u8272\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/square-matrix.hpp
     title: "Square-Matrix(\u6B63\u65B9\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
