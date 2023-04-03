@@ -546,11 +546,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/fps/sparse-matrix.hpp
       title: math/fps/sparse-matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/fps/stirling-first.hpp
       title: "Stirling First(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\
         \u6570)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/fps/stirling-second.hpp
       title: "Stirling Second(\u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\
         \u6570)"
@@ -1475,7 +1475,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-polynomial-taylor-shift.test.cpp
       title: test/verify/yosupo-polynomial-taylor-shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-pow-of-formal-power-series.test.cpp
       title: test/verify/yosupo-pow-of-formal-power-series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1553,10 +1553,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq.test.cpp
       title: test/verify/yosupo-staticrmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
       title: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
       title: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
     - icon: ':heavy_check_mark:'

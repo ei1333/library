@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-polynomial-taylor-shift.test.cpp
     title: test/verify/yosupo-polynomial-taylor-shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-pow-of-formal-power-series.test.cpp
     title: test/verify/yosupo-pow-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,19 +48,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
     title: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/formal-power-series-friendly-ntt.md
-    document_title: "Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\
-      \u51AA\u7D1A\u6570)"
     links:
     - https://judge.yosupo.jp/problem/convolution_mod
     - https://judge.yosupo.jp/problem/division_of_polynomials
@@ -70,10 +67,11 @@ data:
     - https://judge.yosupo.jp/problem/polynomial_taylor_shift
     - https://judge.yosupo.jp/problem/pow_of_formal_power_series
     - https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
-  bundledCode: "#line 1 \"math/fft/number-theoretic-transform-friendly-mod-int.hpp\"\
-    \n/**\n * @brief Number Theoretic Transform Friendly ModInt\n */\ntemplate< typename\
-    \ Mint >\nstruct NumberTheoreticTransformFriendlyModInt {\n\n  static vector<\
-    \ Mint > roots, iroots, rate3, irate3;\n  static int max_base;\n\n  NumberTheoreticTransformFriendlyModInt()\
+  bundledCode: "#line 2 \"math/fps/formal-power-series-friendly-ntt.hpp\"\n\n#line\
+    \ 1 \"math/fft/number-theoretic-transform-friendly-mod-int.hpp\"\n/**\n * @brief\
+    \ Number Theoretic Transform Friendly ModInt\n */\ntemplate< typename Mint >\n\
+    struct NumberTheoreticTransformFriendlyModInt {\n\n  static vector< Mint > roots,\
+    \ iroots, rate3, irate3;\n  static int max_base;\n\n  NumberTheoreticTransformFriendlyModInt()\
     \ = default;\n\n  static void init() {\n    if(roots.empty()) {\n      const unsigned\
     \ mod = Mint::get_mod();\n      assert(mod >= 3 && mod % 2 == 1);\n      auto\
     \ tmp = mod - 1;\n      max_base = 0;\n      while(tmp % 2 == 0) tmp >>= 1, max_base++;\n\
@@ -148,13 +146,11 @@ data:
     \ > NumberTheoreticTransformFriendlyModInt< Mint >::rate3 = vector< Mint >();\n\
     template< typename Mint >\nvector< Mint > NumberTheoreticTransformFriendlyModInt<\
     \ Mint >::irate3 = vector< Mint >();\ntemplate< typename Mint >\nint NumberTheoreticTransformFriendlyModInt<\
-    \ Mint >::max_base = 0;\n#line 2 \"math/fps/formal-power-series-friendly-ntt.hpp\"\
-    \n\n/**\n * @brief Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\
-    \u51AA\u7D1A\u6570)\n * @docs docs/formal-power-series-friendly-ntt.md\n */\n\
-    template< typename T >\nstruct FormalPowerSeriesFriendlyNTT : vector< T > {\n\
-    \  using vector< T >::vector;\n  using P = FormalPowerSeriesFriendlyNTT;\n  using\
-    \ NTT = NumberTheoreticTransformFriendlyModInt< T >;\n\n  P pre(int deg) const\
-    \ {\n    return P(begin(*this), begin(*this) + min((int) this->size(), deg));\n\
+    \ Mint >::max_base = 0;\n#line 4 \"math/fps/formal-power-series-friendly-ntt.hpp\"\
+    \n\ntemplate< typename T >\nstruct FormalPowerSeriesFriendlyNTT : vector< T >\
+    \ {\n  using vector< T >::vector;\n  using P = FormalPowerSeriesFriendlyNTT;\n\
+    \  using NTT = NumberTheoreticTransformFriendlyModInt< T >;\n\n  P pre(int deg)\
+    \ const {\n    return P(begin(*this), begin(*this) + min((int) this->size(), deg));\n\
     \  }\n\n  P rev(int deg = -1) const {\n    P ret(*this);\n    if(deg != -1) ret.resize(deg,\
     \ T(0));\n    reverse(begin(ret), end(ret));\n    return ret;\n  }\n\n  void shrink()\
     \ {\n    while(this->size() && this->back() == T(0)) this->pop_back();\n  }\n\n\
@@ -251,19 +247,20 @@ data:
     \  NTT::intt(x);\n      b.insert(end(b), begin(x) + m, end(x));\n    }\n    return\
     \ P{begin(b), begin(b) + deg};\n  }\n\n  // https://judge.yosupo.jp/problem/pow_of_formal_power_series\n\
     \  P pow(int64_t k, int deg = -1) const {\n    const int n = (int) this->size();\n\
-    \    if(deg == -1) deg = n;\n    for(int i = 0; i < n; i++) {\n      if((*this)[i]\
-    \ != T(0)) {\n        T rev = T(1) / (*this)[i];\n        P ret = (((*this * rev)\
-    \ >> i).log() * k).exp() * ((*this)[i].pow(k));\n        if(i * k > deg) return\
-    \ P(deg, T(0));\n        ret = (ret << (i * k)).pre(deg);\n        if((int) ret.size()\
-    \ < deg) ret.resize(deg, T(0));\n        return ret;\n      }\n    }\n    return\
-    \ *this;\n  }\n\n  P mod_pow(int64_t k, P g) const {\n    P modinv = g.rev().inv();\n\
-    \    auto get_div = [&](P base) {\n      if(base.size() < g.size()) {\n      \
-    \  base.clear();\n        return base;\n      }\n      int n = base.size() - g.size()\
-    \ + 1;\n      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);\n    };\n\
-    \    P x(*this), ret{1};\n    while(k > 0) {\n      if(k & 1) {\n        ret *=\
-    \ x;\n        ret -= get_div(ret) * g;\n        ret.shrink();\n      }\n     \
-    \ x *= x;\n      x -= get_div(x) * g;\n      x.shrink();\n      k >>= 1;\n   \
-    \ }\n    return ret;\n  }\n\n  // https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
+    \    if(deg == -1) deg = n;\n    if(k == 0) {\n      P ret(deg, T(0));\n     \
+    \ ret[0] = T(1);\n      return ret;\n    }\n    for(int i = 0; i < n; i++) {\n\
+    \      if(i * k > deg) return P(deg, T(0));\n      if((*this)[i] != T(0)) {\n\
+    \        T rev = T(1) / (*this)[i];\n        P ret = (((*this * rev) >> i).log()\
+    \ * k).exp() * ((*this)[i].pow(k));\n        ret = (ret << (i * k)).pre(deg);\n\
+    \        if((int) ret.size() < deg) ret.resize(deg, T(0));\n        return ret;\n\
+    \      }\n    }\n    return *this;\n  }\n\n  P mod_pow(int64_t k, P g) const {\n\
+    \    P modinv = g.rev().inv();\n    auto get_div = [&](P base) {\n      if(base.size()\
+    \ < g.size()) {\n        base.clear();\n        return base;\n      }\n      int\
+    \ n = base.size() - g.size() + 1;\n      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);\n\
+    \    };\n    P x(*this), ret{1};\n    while(k > 0) {\n      if(k & 1) {\n    \
+    \    ret *= x;\n        ret -= get_div(ret) * g;\n        ret.shrink();\n    \
+    \  }\n      x *= x;\n      x -= get_div(x) * g;\n      x.shrink();\n      k >>=\
+    \ 1;\n    }\n    return ret;\n  }\n\n  // https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
     \  P taylor_shift(T c) const {\n    int n = (int) this->size();\n    vector< T\
     \ > fact(n), rfact(n);\n    fact[0] = rfact[0] = T(1);\n    for(int i = 1; i <\
     \ n; i++) fact[i] = fact[i - 1] * T(i);\n    rfact[n - 1] = T(1) / fact[n - 1];\n\
@@ -273,25 +270,23 @@ data:
     \ - 1];\n    p = (p * bs).pre(n);\n    p = p.rev();\n    for(int i = 0; i < n;\
     \ i++) p[i] *= rfact[i];\n    return p;\n  }\n};\n\ntemplate< typename Mint >\n\
     using FPS = FormalPowerSeriesFriendlyNTT< Mint >;\n"
-  code: "#include \"../fft/number-theoretic-transform-friendly-mod-int.hpp\"\n\n/**\n\
-    \ * @brief Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\u51AA\
-    \u7D1A\u6570)\n * @docs docs/formal-power-series-friendly-ntt.md\n */\ntemplate<\
-    \ typename T >\nstruct FormalPowerSeriesFriendlyNTT : vector< T > {\n  using vector<\
-    \ T >::vector;\n  using P = FormalPowerSeriesFriendlyNTT;\n  using NTT = NumberTheoreticTransformFriendlyModInt<\
-    \ T >;\n\n  P pre(int deg) const {\n    return P(begin(*this), begin(*this) +\
-    \ min((int) this->size(), deg));\n  }\n\n  P rev(int deg = -1) const {\n    P\
-    \ ret(*this);\n    if(deg != -1) ret.resize(deg, T(0));\n    reverse(begin(ret),\
-    \ end(ret));\n    return ret;\n  }\n\n  void shrink() {\n    while(this->size()\
-    \ && this->back() == T(0)) this->pop_back();\n  }\n\n  P operator+(const P &r)\
-    \ const { return P(*this) += r; }\n\n  P operator+(const T &v) const { return\
-    \ P(*this) += v; }\n\n  P operator-(const P &r) const { return P(*this) -= r;\
-    \ }\n\n  P operator-(const T &v) const { return P(*this) -= v; }\n\n  P operator*(const\
-    \ P &r) const { return P(*this) *= r; }\n\n  P operator*(const T &v) const { return\
-    \ P(*this) *= v; }\n\n  P operator/(const P &r) const { return P(*this) /= r;\
-    \ }\n\n  P operator%(const P &r) const { return P(*this) %= r; }\n\n  P &operator+=(const\
-    \ P &r) {\n    if(r.size() > this->size()) this->resize(r.size());\n    for(int\
-    \ i = 0; i < (int) r.size(); i++) (*this)[i] += r[i];\n    return *this;\n  }\n\
-    \n  P &operator-=(const P &r) {\n    if(r.size() > this->size()) this->resize(r.size());\n\
+  code: "#pragma once\n\n#include \"../fft/number-theoretic-transform-friendly-mod-int.hpp\"\
+    \n\ntemplate< typename T >\nstruct FormalPowerSeriesFriendlyNTT : vector< T >\
+    \ {\n  using vector< T >::vector;\n  using P = FormalPowerSeriesFriendlyNTT;\n\
+    \  using NTT = NumberTheoreticTransformFriendlyModInt< T >;\n\n  P pre(int deg)\
+    \ const {\n    return P(begin(*this), begin(*this) + min((int) this->size(), deg));\n\
+    \  }\n\n  P rev(int deg = -1) const {\n    P ret(*this);\n    if(deg != -1) ret.resize(deg,\
+    \ T(0));\n    reverse(begin(ret), end(ret));\n    return ret;\n  }\n\n  void shrink()\
+    \ {\n    while(this->size() && this->back() == T(0)) this->pop_back();\n  }\n\n\
+    \  P operator+(const P &r) const { return P(*this) += r; }\n\n  P operator+(const\
+    \ T &v) const { return P(*this) += v; }\n\n  P operator-(const P &r) const { return\
+    \ P(*this) -= r; }\n\n  P operator-(const T &v) const { return P(*this) -= v;\
+    \ }\n\n  P operator*(const P &r) const { return P(*this) *= r; }\n\n  P operator*(const\
+    \ T &v) const { return P(*this) *= v; }\n\n  P operator/(const P &r) const { return\
+    \ P(*this) /= r; }\n\n  P operator%(const P &r) const { return P(*this) %= r;\
+    \ }\n\n  P &operator+=(const P &r) {\n    if(r.size() > this->size()) this->resize(r.size());\n\
+    \    for(int i = 0; i < (int) r.size(); i++) (*this)[i] += r[i];\n    return *this;\n\
+    \  }\n\n  P &operator-=(const P &r) {\n    if(r.size() > this->size()) this->resize(r.size());\n\
     \    for(int i = 0; i < (int) r.size(); i++) (*this)[i] -= r[i];\n    return *this;\n\
     \  }\n\n  // https://judge.yosupo.jp/problem/convolution_mod\n  P &operator*=(const\
     \ P &r) {\n    if(this->empty() || r.empty()) {\n      this->clear();\n      return\
@@ -376,19 +371,20 @@ data:
     \  NTT::intt(x);\n      b.insert(end(b), begin(x) + m, end(x));\n    }\n    return\
     \ P{begin(b), begin(b) + deg};\n  }\n\n  // https://judge.yosupo.jp/problem/pow_of_formal_power_series\n\
     \  P pow(int64_t k, int deg = -1) const {\n    const int n = (int) this->size();\n\
-    \    if(deg == -1) deg = n;\n    for(int i = 0; i < n; i++) {\n      if((*this)[i]\
-    \ != T(0)) {\n        T rev = T(1) / (*this)[i];\n        P ret = (((*this * rev)\
-    \ >> i).log() * k).exp() * ((*this)[i].pow(k));\n        if(i * k > deg) return\
-    \ P(deg, T(0));\n        ret = (ret << (i * k)).pre(deg);\n        if((int) ret.size()\
-    \ < deg) ret.resize(deg, T(0));\n        return ret;\n      }\n    }\n    return\
-    \ *this;\n  }\n\n  P mod_pow(int64_t k, P g) const {\n    P modinv = g.rev().inv();\n\
-    \    auto get_div = [&](P base) {\n      if(base.size() < g.size()) {\n      \
-    \  base.clear();\n        return base;\n      }\n      int n = base.size() - g.size()\
-    \ + 1;\n      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);\n    };\n\
-    \    P x(*this), ret{1};\n    while(k > 0) {\n      if(k & 1) {\n        ret *=\
-    \ x;\n        ret -= get_div(ret) * g;\n        ret.shrink();\n      }\n     \
-    \ x *= x;\n      x -= get_div(x) * g;\n      x.shrink();\n      k >>= 1;\n   \
-    \ }\n    return ret;\n  }\n\n  // https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
+    \    if(deg == -1) deg = n;\n    if(k == 0) {\n      P ret(deg, T(0));\n     \
+    \ ret[0] = T(1);\n      return ret;\n    }\n    for(int i = 0; i < n; i++) {\n\
+    \      if(i * k > deg) return P(deg, T(0));\n      if((*this)[i] != T(0)) {\n\
+    \        T rev = T(1) / (*this)[i];\n        P ret = (((*this * rev) >> i).log()\
+    \ * k).exp() * ((*this)[i].pow(k));\n        ret = (ret << (i * k)).pre(deg);\n\
+    \        if((int) ret.size() < deg) ret.resize(deg, T(0));\n        return ret;\n\
+    \      }\n    }\n    return *this;\n  }\n\n  P mod_pow(int64_t k, P g) const {\n\
+    \    P modinv = g.rev().inv();\n    auto get_div = [&](P base) {\n      if(base.size()\
+    \ < g.size()) {\n        base.clear();\n        return base;\n      }\n      int\
+    \ n = base.size() - g.size() + 1;\n      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);\n\
+    \    };\n    P x(*this), ret{1};\n    while(k > 0) {\n      if(k & 1) {\n    \
+    \    ret *= x;\n        ret -= get_div(ret) * g;\n        ret.shrink();\n    \
+    \  }\n      x *= x;\n      x -= get_div(x) * g;\n      x.shrink();\n      k >>=\
+    \ 1;\n    }\n    return ret;\n  }\n\n  // https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
     \  P taylor_shift(T c) const {\n    int n = (int) this->size();\n    vector< T\
     \ > fact(n), rfact(n);\n    fact[0] = rfact[0] = T(1);\n    for(int i = 1; i <\
     \ n; i++) fact[i] = fact[i - 1] * T(i);\n    rfact[n - 1] = T(1) / fact[n - 1];\n\
@@ -403,7 +399,7 @@ data:
   isVerificationFile: false
   path: math/fps/formal-power-series-friendly-ntt.hpp
   requiredBy: []
-  timestamp: '2022-09-11 00:53:50+09:00'
+  timestamp: '2023-04-03 20:38:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
@@ -424,12 +420,10 @@ data:
   - test/verify/yosupo-find-linear-recurrence.test.cpp
 documentation_of: math/fps/formal-power-series-friendly-ntt.hpp
 layout: document
-redirect_from:
-- /library/math/fps/formal-power-series-friendly-ntt.hpp
-- /library/math/fps/formal-power-series-friendly-ntt.hpp.html
 title: "Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\u51AA\u7D1A\
   \u6570)"
 ---
+
 ## 概要
 
 NTT を利用可能な mod のもとで、形式的べき級数の各演算を効率的に行う。
@@ -446,7 +440,7 @@ TODO 解説
 * `+`: $f(x) + g(x)$ を返す。$O(n)$
 * `-`: $f(x) - g(x)$ を返す。$O(n)$
 * `*`: $f(x) \times g(x)$ を返す。
-* `/`: $f(x) = q (x)\times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $q(x)$ を返す。
+* `/`: $f(x) = q(x) \times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $q(x)$ を返す。
 * `%`: $f(x) = q(x) \times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $r(x)$ を返す。
 * `div_mod()`: 剰余を返す。`/` と `%` をそれぞれ呼び出すよりも効率的。
 * `operator(x)`: $f(x)$ の値を評価して返す。$O(n)$

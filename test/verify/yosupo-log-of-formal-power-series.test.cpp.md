@@ -76,8 +76,8 @@ data:
     \  friend istream &operator>>(istream &is, ModInt &a) {\n    int64_t t;\n    is\
     \ >> t;\n    a = ModInt< mod >(t);\n    return (is);\n  }\n\n  static int get_mod()\
     \ { return mod; }\n};\n\nusing modint = ModInt< mod >;\n#line 6 \"test/verify/yosupo-log-of-formal-power-series.test.cpp\"\
-    \n\n#line 1 \"math/fft/number-theoretic-transform-friendly-mod-int.hpp\"\n/**\n\
-    \ * @brief Number Theoretic Transform Friendly ModInt\n */\ntemplate< typename\
+    \n\n#line 2 \"math/fps/formal-power-series-friendly-ntt.hpp\"\n\n#line 1 \"math/fft/number-theoretic-transform-friendly-mod-int.hpp\"\
+    \n/**\n * @brief Number Theoretic Transform Friendly ModInt\n */\ntemplate< typename\
     \ Mint >\nstruct NumberTheoreticTransformFriendlyModInt {\n\n  static vector<\
     \ Mint > roots, iroots, rate3, irate3;\n  static int max_base;\n\n  NumberTheoreticTransformFriendlyModInt()\
     \ = default;\n\n  static void init() {\n    if(roots.empty()) {\n      const unsigned\
@@ -154,13 +154,11 @@ data:
     \ > NumberTheoreticTransformFriendlyModInt< Mint >::rate3 = vector< Mint >();\n\
     template< typename Mint >\nvector< Mint > NumberTheoreticTransformFriendlyModInt<\
     \ Mint >::irate3 = vector< Mint >();\ntemplate< typename Mint >\nint NumberTheoreticTransformFriendlyModInt<\
-    \ Mint >::max_base = 0;\n#line 2 \"math/fps/formal-power-series-friendly-ntt.hpp\"\
-    \n\n/**\n * @brief Formal Power Series Friendly NTT(NTTmod\u7528\u5F62\u5F0F\u7684\
-    \u51AA\u7D1A\u6570)\n * @docs docs/formal-power-series-friendly-ntt.md\n */\n\
-    template< typename T >\nstruct FormalPowerSeriesFriendlyNTT : vector< T > {\n\
-    \  using vector< T >::vector;\n  using P = FormalPowerSeriesFriendlyNTT;\n  using\
-    \ NTT = NumberTheoreticTransformFriendlyModInt< T >;\n\n  P pre(int deg) const\
-    \ {\n    return P(begin(*this), begin(*this) + min((int) this->size(), deg));\n\
+    \ Mint >::max_base = 0;\n#line 4 \"math/fps/formal-power-series-friendly-ntt.hpp\"\
+    \n\ntemplate< typename T >\nstruct FormalPowerSeriesFriendlyNTT : vector< T >\
+    \ {\n  using vector< T >::vector;\n  using P = FormalPowerSeriesFriendlyNTT;\n\
+    \  using NTT = NumberTheoreticTransformFriendlyModInt< T >;\n\n  P pre(int deg)\
+    \ const {\n    return P(begin(*this), begin(*this) + min((int) this->size(), deg));\n\
     \  }\n\n  P rev(int deg = -1) const {\n    P ret(*this);\n    if(deg != -1) ret.resize(deg,\
     \ T(0));\n    reverse(begin(ret), end(ret));\n    return ret;\n  }\n\n  void shrink()\
     \ {\n    while(this->size() && this->back() == T(0)) this->pop_back();\n  }\n\n\
@@ -257,19 +255,20 @@ data:
     \  NTT::intt(x);\n      b.insert(end(b), begin(x) + m, end(x));\n    }\n    return\
     \ P{begin(b), begin(b) + deg};\n  }\n\n  // https://judge.yosupo.jp/problem/pow_of_formal_power_series\n\
     \  P pow(int64_t k, int deg = -1) const {\n    const int n = (int) this->size();\n\
-    \    if(deg == -1) deg = n;\n    for(int i = 0; i < n; i++) {\n      if((*this)[i]\
-    \ != T(0)) {\n        T rev = T(1) / (*this)[i];\n        P ret = (((*this * rev)\
-    \ >> i).log() * k).exp() * ((*this)[i].pow(k));\n        if(i * k > deg) return\
-    \ P(deg, T(0));\n        ret = (ret << (i * k)).pre(deg);\n        if((int) ret.size()\
-    \ < deg) ret.resize(deg, T(0));\n        return ret;\n      }\n    }\n    return\
-    \ *this;\n  }\n\n  P mod_pow(int64_t k, P g) const {\n    P modinv = g.rev().inv();\n\
-    \    auto get_div = [&](P base) {\n      if(base.size() < g.size()) {\n      \
-    \  base.clear();\n        return base;\n      }\n      int n = base.size() - g.size()\
-    \ + 1;\n      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);\n    };\n\
-    \    P x(*this), ret{1};\n    while(k > 0) {\n      if(k & 1) {\n        ret *=\
-    \ x;\n        ret -= get_div(ret) * g;\n        ret.shrink();\n      }\n     \
-    \ x *= x;\n      x -= get_div(x) * g;\n      x.shrink();\n      k >>= 1;\n   \
-    \ }\n    return ret;\n  }\n\n  // https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
+    \    if(deg == -1) deg = n;\n    if(k == 0) {\n      P ret(deg, T(0));\n     \
+    \ ret[0] = T(1);\n      return ret;\n    }\n    for(int i = 0; i < n; i++) {\n\
+    \      if(i * k > deg) return P(deg, T(0));\n      if((*this)[i] != T(0)) {\n\
+    \        T rev = T(1) / (*this)[i];\n        P ret = (((*this * rev) >> i).log()\
+    \ * k).exp() * ((*this)[i].pow(k));\n        ret = (ret << (i * k)).pre(deg);\n\
+    \        if((int) ret.size() < deg) ret.resize(deg, T(0));\n        return ret;\n\
+    \      }\n    }\n    return *this;\n  }\n\n  P mod_pow(int64_t k, P g) const {\n\
+    \    P modinv = g.rev().inv();\n    auto get_div = [&](P base) {\n      if(base.size()\
+    \ < g.size()) {\n        base.clear();\n        return base;\n      }\n      int\
+    \ n = base.size() - g.size() + 1;\n      return (base.rev().pre(n) * modinv.pre(n)).pre(n).rev(n);\n\
+    \    };\n    P x(*this), ret{1};\n    while(k > 0) {\n      if(k & 1) {\n    \
+    \    ret *= x;\n        ret -= get_div(ret) * g;\n        ret.shrink();\n    \
+    \  }\n      x *= x;\n      x -= get_div(x) * g;\n      x.shrink();\n      k >>=\
+    \ 1;\n    }\n    return ret;\n  }\n\n  // https://judge.yosupo.jp/problem/polynomial_taylor_shift\n\
     \  P taylor_shift(T c) const {\n    int n = (int) this->size();\n    vector< T\
     \ > fact(n), rfact(n);\n    fact[0] = rfact[0] = T(1);\n    for(int i = 1; i <\
     \ n; i++) fact[i] = fact[i - 1] * T(i);\n    rfact[n - 1] = T(1) / fact[n - 1];\n\
@@ -295,7 +294,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-log-of-formal-power-series.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 00:53:50+09:00'
+  timestamp: '2023-04-03 20:38:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-log-of-formal-power-series.test.cpp
