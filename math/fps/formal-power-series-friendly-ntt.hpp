@@ -1,9 +1,7 @@
+#pragma once
+
 #include "../fft/number-theoretic-transform-friendly-mod-int.hpp"
 
-/**
- * @brief Formal Power Series Friendly NTT(NTTmod用形式的冪級数)
- * @docs docs/formal-power-series-friendly-ntt.md
- */
 template< typename T >
 struct FormalPowerSeriesFriendlyNTT : vector< T > {
   using vector< T >::vector;
@@ -295,11 +293,16 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
   P pow(int64_t k, int deg = -1) const {
     const int n = (int) this->size();
     if(deg == -1) deg = n;
+    if(k == 0) {
+      P ret(deg, T(0));
+      ret[0] = T(1);
+      return ret;
+    }
     for(int i = 0; i < n; i++) {
+      if(i * k > deg) return P(deg, T(0));
       if((*this)[i] != T(0)) {
         T rev = T(1) / (*this)[i];
         P ret = (((*this * rev) >> i).log() * k).exp() * ((*this)[i].pow(k));
-        if(i * k > deg) return P(deg, T(0));
         ret = (ret << (i * k)).pre(deg);
         if((int) ret.size() < deg) ret.resize(deg, T(0));
         return ret;

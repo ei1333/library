@@ -1,3 +1,8 @@
+---
+title: Formal Power Series Friendly NTT(NTTmod用形式的冪級数)
+documentation_of: //math/fps/formal-power-series-friendly-ntt.hpp
+---
+
 ## 概要
 
 NTT を利用可能な mod のもとで、形式的べき級数の各演算を効率的に行う。
@@ -14,7 +19,7 @@ TODO 解説
 * `+`: $f(x) + g(x)$ を返す。$O(n)$
 * `-`: $f(x) - g(x)$ を返す。$O(n)$
 * `*`: $f(x) \times g(x)$ を返す。
-* `/`: $f(x) = q (x)\times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $q(x)$ を返す。
+* `/`: $f(x) = q(x) \times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $q(x)$ を返す。
 * `%`: $f(x) = q(x) \times g(x) + r(x)$ かつ $\mathrm{deg}(r) \lt \mathrm{deg}(g)$ を満たす $r(x)$ を返す。
 * `div_mod()`: 剰余を返す。`/` と `%` をそれぞれ呼び出すよりも効率的。
 * `operator(x)`: $f(x)$ の値を評価して返す。$O(n)$
