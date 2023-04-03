@@ -99,13 +99,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sparse-matrix-det.test.cpp
     title: test/verify/yosupo-sparse-matrix-det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
     title: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
   - icon: ':x:'

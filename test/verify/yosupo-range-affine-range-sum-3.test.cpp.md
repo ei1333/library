@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/combinatorics/mod-int.hpp
     title: math/combinatorics/mod-int.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/vector-pool.hpp
     title: other/vector-pool.hpp
   - icon: ':heavy_check_mark:'

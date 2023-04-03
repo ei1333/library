@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/connected-components/incremental-bridge-connectivity.hpp
     title: Incremental Bridge Connectivity
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected-components/three-edge-connected-components.hpp
     title: graph/connected-components/three-edge-connected-components.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/three_edge_connected_components
@@ -157,7 +157,7 @@ data:
   path: test/verify/yosupo-three-edge-connected-components.test.cpp
   requiredBy: []
   timestamp: '2022-10-23 21:54:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-three-edge-connected-components.test.cpp
 layout: document

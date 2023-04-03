@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/static-point-add-rectangle-sum.hpp
     title: Static Point Add Rectangle Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/binary-indexed-tree.hpp
     title: Binary-Indexed-Tree(BIT)
   - icon: ':question:'

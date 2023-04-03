@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
     title: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/number-theory/sum-of-floor-of-linear.hpp\"\ntemplate<\
@@ -28,7 +28,7 @@ data:
   path: math/number-theory/sum-of-floor-of-linear.hpp
   requiredBy: []
   timestamp: '2022-10-23 21:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-sum-of-floor-of-linear.test.cpp
 documentation_of: math/number-theory/sum-of-floor-of-linear.hpp

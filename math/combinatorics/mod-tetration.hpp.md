@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-pow.hpp
     title: "Mod Pow(\u3079\u304D\u4E57)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/euler-phi.hpp
     title: "Euler's Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tetration-mod.test.cpp
     title: test/verify/yosupo-tetration-mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/mod-tetration.md
     document_title: "Mod Tetration(\u30C6\u30C8\u30EC\u30FC\u30B7\u30E7\u30F3)"
@@ -48,7 +48,7 @@ data:
   path: math/combinatorics/mod-tetration.hpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-tetration-mod.test.cpp
 documentation_of: math/combinatorics/mod-tetration.hpp

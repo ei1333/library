@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/connected-components/incremental-bridge-connectivity.hpp
     title: Incremental Bridge Connectivity
   - icon: ':question:'

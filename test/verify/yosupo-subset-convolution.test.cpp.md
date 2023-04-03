@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/combinatorics/montgomery-mod-int.hpp
     title: Montgomery ModInt
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/fft/subset-convolution.hpp
     title: Subset Convolution
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -191,7 +191,7 @@ data:
   path: test/verify/yosupo-subset-convolution.test.cpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-subset-convolution.test.cpp
 layout: document

@@ -10,7 +10,7 @@ data:
     path: graph/connected-components/strongly-connected-components.hpp
     title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected-components/three-edge-connected-components.hpp
     title: graph/connected-components/three-edge-connected-components.hpp
   - icon: ':x:'
@@ -111,7 +111,7 @@ data:
     path: graph/tree/offline-lca.hpp
     title: "Offline LCA(\u30AA\u30D5\u30E9\u30A4\u30F3\u6700\u5C0F\u5171\u901A\u7956\
       \u5148)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/pmormq-lowest-common-ancestor.hpp
     title: "PMORMQ-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
   - icon: ':heavy_check_mark:'
@@ -247,10 +247,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-shortest-path.test.cpp
     title: test/verify/yosupo-shortest-path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-4.test.cpp
     title: test/verify/yosupo-staticrmq-4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-three-edge-connected-components.test.cpp
     title: test/verify/yosupo-three-edge-connected-components.test.cpp
   - icon: ':x:'

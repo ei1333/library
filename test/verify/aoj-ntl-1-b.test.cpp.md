@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-pow.hpp
     title: "Mod Pow(\u3079\u304D\u4E57)"
   - icon: ':question:'

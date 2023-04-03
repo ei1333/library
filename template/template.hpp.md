@@ -552,58 +552,58 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sparse-matrix-det.test.cpp
     title: test/verify/yosupo-sparse-matrix-det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sqrt-mod.test.cpp
     title: test/verify/yosupo-sqrt-mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
     title: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-static-range-inversions-query.test.cpp
     title: test/verify/yosupo-static-range-inversions-query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-static-range-sum.test.cpp
     title: test/verify/yosupo-static-range-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-2.test.cpp
     title: test/verify/yosupo-staticrmq-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-3.test.cpp
     title: test/verify/yosupo-staticrmq-3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-4.test.cpp
     title: test/verify/yosupo-staticrmq-4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-5.test.cpp
     title: test/verify/yosupo-staticrmq-5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-6.test.cpp
     title: test/verify/yosupo-staticrmq-6.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq.test.cpp
     title: test/verify/yosupo-staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
     title: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-subset-convolution.test.cpp
     title: test/verify/yosupo-subset-convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-suffixarray.test.cpp
     title: test/verify/yosupo-suffixarray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
     title: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tetration-mod.test.cpp
     title: test/verify/yosupo-tetration-mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-three-edge-connected-components.test.cpp
     title: test/verify/yosupo-three-edge-connected-components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-decomposition-width-2.test.cpp
     title: test/verify/yosupo-tree-decomposition-width-2.test.cpp
   - icon: ':x:'

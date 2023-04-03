@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-static-range-sum.test.cpp
     title: test/verify/yosupo-static-range-sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/cumulative-sum.hpp\"\ntemplate< class T >\nstruct CumulativeSum\
@@ -30,7 +30,7 @@ data:
   path: dp/cumulative-sum.hpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-static-range-sum.test.cpp
 documentation_of: dp/cumulative-sum.hpp

@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-tetration.hpp
     title: "Mod Tetration(\u30C6\u30C8\u30EC\u30FC\u30B7\u30E7\u30F3)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-ntl-1-b.test.cpp
     title: test/verify/aoj-ntl-1-b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sqrt-mod.test.cpp
     title: test/verify/yosupo-sqrt-mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
     title: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tetration-mod.test.cpp
     title: test/verify/yosupo-tetration-mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/mod-pow.md
     document_title: "Mod Pow(\u3079\u304D\u4E57)"
@@ -39,7 +39,7 @@ data:
   requiredBy:
   - math/combinatorics/mod-tetration.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
   - test/verify/yosupo-tetration-mod.test.cpp

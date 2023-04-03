@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-range-affine-range-sum-3.test.cpp
     title: test/verify/yosupo-range-affine-range-sum-3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-3.test.cpp
     title: test/verify/yosupo-staticrmq-3.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/vector-pool.hpp\"\ntemplate< class T >\nstruct VectorPool\
@@ -40,7 +40,7 @@ data:
   path: other/vector-pool.hpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-range-affine-range-sum-2.test.cpp
   - test/verify/aoj-1508-3.test.cpp

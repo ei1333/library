@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: other/scanner.hpp
     title: "Scanner(\u9AD8\u901F\u5165\u529B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/binary-indexed-tree.hpp
     title: Binary-Indexed-Tree(BIT)
   - icon: ':heavy_check_mark:'

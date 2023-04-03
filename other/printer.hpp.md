@@ -45,16 +45,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-rectangle-sum-2.test.cpp
     title: test/verify/yosupo-rectangle-sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-5.test.cpp
     title: test/verify/yosupo-staticrmq-5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-6.test.cpp
     title: test/verify/yosupo-staticrmq-6.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-subset-convolution.test.cpp
     title: test/verify/yosupo-subset-convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-decomposition-width-2.test.cpp
     title: test/verify/yosupo-tree-decomposition-width-2.test.cpp
   - icon: ':x:'

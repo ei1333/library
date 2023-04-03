@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/sum-of-floor-of-linear.hpp
     title: "Sum of Floor of Linear(\u4E00\u6B21\u95A2\u6570\u306E\u5E8A\u95A2\u6570\
       \u306E\u548C)"
@@ -10,9 +10,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
@@ -68,7 +68,7 @@ data:
   path: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
   requiredBy: []
   timestamp: '2022-10-23 21:05:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/others/cartesian-tree.hpp
     title: Cartesian Tree
   - icon: ':question:'

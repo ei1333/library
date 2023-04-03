@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/graph-template.hpp
     title: "Graph Template(\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/plus-minus-one-rmq.hpp
     title: Plus-Minus-One-RMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/sparse-table.hpp
     title: "Sparse-Table(\u30B9\u30D1\u30FC\u30B9\u30C6\u30FC\u30D6\u30EB)"
   _extendedRequiredBy: []
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-lca.test.cpp
     title: test/verify/yosupo-lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-4.test.cpp
     title: test/verify/yosupo-staticrmq-4.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/pmormq-lowest-common-ancestor.md
     document_title: "PMORMQ-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148\
@@ -126,7 +126,7 @@ data:
   path: graph/tree/pmormq-lowest-common-ancestor.hpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-staticrmq-4.test.cpp
   - test/verify/yosupo-lca.test.cpp

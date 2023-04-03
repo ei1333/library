@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-dynamic-tree-vertex-set-path-composite-3.test.cpp
     title: test/verify/yosupo-dynamic-tree-vertex-set-path-composite-3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-subset-convolution.test.cpp
     title: test/verify/yosupo-subset-convolution.test.cpp
   - icon: ':x:'

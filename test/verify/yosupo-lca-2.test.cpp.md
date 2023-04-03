@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: other/scanner.hpp
     title: "Scanner(\u9AD8\u901F\u5165\u529B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/sparse-table.hpp
     title: "Sparse-Table(\u30B9\u30D1\u30FC\u30B9\u30C6\u30FC\u30D6\u30EB)"
   - icon: ':question:'

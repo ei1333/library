@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-pow.hpp
     title: "Mod Pow(\u3079\u304D\u4E57)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combinatorics/mod-tetration.hpp
     title: "Mod Tetration(\u30C6\u30C8\u30EC\u30FC\u30B7\u30E7\u30F3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/number-theory/euler-phi.hpp
     title: "Euler's Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tetration_mod
@@ -84,7 +84,7 @@ data:
   path: test/verify/yosupo-tetration-mod.test.cpp
   requiredBy: []
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-tetration-mod.test.cpp
 layout: document

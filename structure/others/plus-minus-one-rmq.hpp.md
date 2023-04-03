@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: structure/others/sparse-table.hpp
     title: "Sparse-Table(\u30B9\u30D1\u30FC\u30B9\u30C6\u30FC\u30D6\u30EB)"
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/pmormq-lowest-common-ancestor.hpp
     title: "PMORMQ-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-lca.test.cpp
     title: test/verify/yosupo-lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-staticrmq-4.test.cpp
     title: test/verify/yosupo-staticrmq-4.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Plus-Minus-One-RMQ
     links: []
@@ -99,7 +99,7 @@ data:
   requiredBy:
   - graph/tree/pmormq-lowest-common-ancestor.hpp
   timestamp: '2022-09-11 00:53:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-staticrmq-4.test.cpp
   - test/verify/yosupo-lca.test.cpp

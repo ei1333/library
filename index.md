@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: dp/cumulative-sum-2d.hpp
       title: "Cumulative Sum 2D(\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/cumulative-sum.hpp
       title: "Cumulative Sum(\u4E00\u6B21\u5143\u7D2F\u7A4D\u548C)"
     - icon: ':heavy_check_mark:'
@@ -175,14 +175,14 @@ data:
       path: graph/connected-components/bi-connected-components.hpp
       title: "Bi Connected Components(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
         \u5206\u89E3)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/connected-components/incremental-bridge-connectivity.hpp
       title: Incremental Bridge Connectivity
     - icon: ':question:'
       path: graph/connected-components/strongly-connected-components.hpp
       title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected-components/three-edge-connected-components.hpp
       title: graph/connected-components/three-edge-connected-components.hpp
     - icon: ':x:'
@@ -263,7 +263,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/others/block-cut-tree.hpp
       title: Block Cut Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/others/cartesian-tree.hpp
       title: Cartesian Tree
     - icon: ':heavy_check_mark:'
@@ -304,7 +304,7 @@ data:
       path: graph/others/topological-sort.hpp
       title: "Topological Sort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/others/tree-decomposition-width-2.hpp
       title: "Tree Decomposition Width 2(\u6728\u5E452\u306E\u6728\u5206\u89E3)"
     - icon: ':x:'
@@ -375,7 +375,7 @@ data:
       path: graph/tree/offline-lca.hpp
       title: "Offline LCA(\u30AA\u30D5\u30E9\u30A4\u30F3\u6700\u5C0F\u5171\u901A\u7956\
         \u5148)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/pmormq-lowest-common-ancestor.hpp
       title: "PMORMQ-Lowest-Common-Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
     - icon: ':heavy_check_mark:'
@@ -425,13 +425,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/combinatorics/mod-log.hpp
       title: "Mod Log(\u96E2\u6563\u5BFE\u6570\u554F\u984C)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/mod-pow.hpp
       title: "Mod Pow(\u3079\u304D\u4E57)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/mod-sqrt.hpp
       title: Mod Sqrt
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/combinatorics/mod-tetration.hpp
       title: "Mod Tetration(\u30C6\u30C8\u30EC\u30FC\u30B7\u30E7\u30F3)"
     - icon: ':question:'
@@ -489,7 +489,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/fft/number-theoretic-transform.hpp
       title: math/fft/number-theoretic-transform.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fft/subset-convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -546,11 +546,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/fps/sparse-matrix.hpp
       title: math/fps/sparse-matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/stirling-first.hpp
       title: "Stirling First(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\
         \u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fps/stirling-second.hpp
       title: "Stirling Second(\u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\
         \u6570)"
@@ -583,7 +583,7 @@ data:
       path: math/number-theory/euler-phi-table.hpp
       title: "Euler\u2019s Phi Table(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570\
         \u30C6\u30FC\u30D6\u30EB)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/euler-phi.hpp
       title: "Euler's Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     - icon: ':heavy_check_mark:'
@@ -615,7 +615,7 @@ data:
     - icon: ':warning:'
       path: math/number-theory/quotient-ranges.hpp
       title: "Quotient Ranges(\u5546\u5217\u6319)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/number-theory/sum-of-floor-of-linear.hpp
       title: "Sum of Floor of Linear(\u4E00\u6B21\u95A2\u6570\u306E\u5E8A\u95A2\u6570\
         \u306E\u548C)"
@@ -648,13 +648,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/mo-tree.hpp
       title: "Mo Tree(\u6728\u4E0A\u306EMo)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/mo.hpp
       title: Mo's Algorithm
     - icon: ':warning:'
       path: other/offline-dynamic-connectivity.hpp
       title: other/offline-dynamic-connectivity.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/offline-rmq.hpp
       title: Offline RMQ
     - icon: ':question:'
@@ -675,7 +675,7 @@ data:
     - icon: ':warning:'
       path: other/timer.hpp
       title: "Timer(\u30BF\u30A4\u30DE\u30FC)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/vector-pool.hpp
       title: other/vector-pool.hpp
     - icon: ':warning:'
@@ -699,7 +699,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rolling-hash.hpp
       title: "Rolling-Hash(\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix-array.hpp
       title: "Suffix Array(\u63A5\u5C3E\u8F9E\u914D\u5217)"
     - icon: ':x:'
@@ -741,7 +741,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/bbst/randomized-binary-search-tree.hpp
       title: structure/bbst/randomized-binary-search-tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/bbst/red-black-tree.hpp
       title: "Red-Black-Tree(\u8D64\u9ED2\u6728)"
     - icon: ':heavy_check_mark:'
@@ -850,16 +850,16 @@ data:
     - icon: ':question:'
       path: structure/others/abstract-binary-indexed-tree.hpp
       title: "Abstract Binary Indexed Tree(\u62BD\u8C61\u5316BIT)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/binary-indexed-tree.hpp
       title: Binary-Indexed-Tree(BIT)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/disjoint-sparse-table.hpp
       title: Disjoint-Sparse-Table
     - icon: ':warning:'
       path: structure/others/generalized-slope-trick.hpp
       title: Generalized-Slope-Trick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/linear-rmq.hpp
       title: Linear-RMQ
     - icon: ':x:'
@@ -868,7 +868,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/others/persistent-array.hpp
       title: structure/others/persistent-array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/plus-minus-one-rmq.hpp
       title: Plus-Minus-One-RMQ
     - icon: ':warning:'
@@ -880,7 +880,7 @@ data:
     - icon: ':warning:'
       path: structure/others/slope-trick.hpp
       title: Slope-Trick
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/others/sparse-table.hpp
       title: "Sparse-Table(\u30B9\u30D1\u30FC\u30B9\u30C6\u30FC\u30D6\u30EB)"
     - icon: ':warning:'
@@ -1523,58 +1523,58 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-sparse-matrix-det.test.cpp
       title: test/verify/yosupo-sparse-matrix-det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-sqrt-mod.test.cpp
       title: test/verify/yosupo-sqrt-mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
       title: test/verify/yosupo-sqrt-of-formal-power-series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-static-range-inversions-query.test.cpp
       title: test/verify/yosupo-static-range-inversions-query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-static-range-sum.test.cpp
       title: test/verify/yosupo-static-range-sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq-2.test.cpp
       title: test/verify/yosupo-staticrmq-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq-3.test.cpp
       title: test/verify/yosupo-staticrmq-3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq-4.test.cpp
       title: test/verify/yosupo-staticrmq-4.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq-5.test.cpp
       title: test/verify/yosupo-staticrmq-5.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq-6.test.cpp
       title: test/verify/yosupo-staticrmq-6.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-staticrmq.test.cpp
       title: test/verify/yosupo-staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
       title: test/verify/yosupo-stirling-number-of-the-first-kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
       title: test/verify/yosupo-stirling-number-of-the-second-kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-subset-convolution.test.cpp
       title: test/verify/yosupo-subset-convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-suffixarray.test.cpp
       title: test/verify/yosupo-suffixarray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
       title: test/verify/yosupo-sum-of-floor-of-linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-tetration-mod.test.cpp
       title: test/verify/yosupo-tetration-mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-three-edge-connected-components.test.cpp
       title: test/verify/yosupo-three-edge-connected-components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-tree-decomposition-width-2.test.cpp
       title: test/verify/yosupo-tree-decomposition-width-2.test.cpp
     - icon: ':x:'
