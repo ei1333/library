@@ -1,3 +1,5 @@
+#pragma once
+
 template< uint32_t mod_, bool fast = false >
 struct MontgomeryModInt {
   using mint = MontgomeryModInt;
