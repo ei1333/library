@@ -3,7 +3,6 @@
 using namespace std;
 
 using int64 = long long;
-const int mod = 1e9 + 7;
 
 const int64 infll = (1LL << 62) - 1;
 const int inf = (1 << 30) - 1;
