@@ -9,8 +9,7 @@
 #include "../../other/scanner.hpp"
 #include "../../other/printer.hpp"
 
-const int MOD = 998244353;
-using mint = MontgomeryModInt< MOD, true >;
+using mint = modint998244353;
 
 int main() {
   Scanner in(stdin);
