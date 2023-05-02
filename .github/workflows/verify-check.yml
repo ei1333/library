@@ -1,9 +1,7 @@
-name: verify
+name: verify-check
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 jobs:
   verify:
@@ -19,11 +17,11 @@ jobs:
       uses: actions/setup-python@v1
 
     - name: Install dependencies
-      run: pip3 install -U online-judge-verify-helper
+      run: pip3 install -U git+https://github.com/luzhiled1333/verification-helper.git
 
     - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      run: oj-verify test

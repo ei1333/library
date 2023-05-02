@@ -4,7 +4,7 @@
 /**
  * @brief Vertex Set Path Composite
  */
-using T = MontgomeryModInt< 998244353, true >;
+using T = modint998244353;
 
 // 遅延伝搬をするための作用素
 struct Lazy {
