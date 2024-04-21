@@ -29,7 +29,7 @@ int main() {
   }
   auto h = SubsetConvolution< mint, 20 >::multiply(f, g);
   for(auto &a : h) {
-    out.write(a.get());
+    out.write(a.val());
     out.write(' ');
   }
   out.writeln();
