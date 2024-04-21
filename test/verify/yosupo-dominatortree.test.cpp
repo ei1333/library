@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dominatortree"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dominatortree
 
 #include "../../template/template.hpp"
 

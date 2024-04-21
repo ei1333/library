@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/stirling-number-second.hpp
+---
+
 ## 概要
 
 第 2 種スターリング数 $\\{ {n \atop k} \\}$ を求める.

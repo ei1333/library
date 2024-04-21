@@ -1,7 +1,7 @@
 /**
  * @brief Enumerate Cliques(クリーク全列挙)
  * @see https://www.slideshare.net/wata_orz/ss-12131479
- * @docs docs/enumerate-cliques.md
+ * 
  */
 template< typename Matrix >
 vector< vector< int > > enumerate_cliques(Matrix &g) {

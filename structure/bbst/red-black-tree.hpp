@@ -1,6 +1,6 @@
 /**
  * @brief Red-Black-Tree(赤黒木)
- * @docs docs/red-black-tree.md
+ * 
  */
 template< typename Monoid, typename F >
 struct RedBlackTree {

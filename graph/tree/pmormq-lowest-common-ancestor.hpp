@@ -5,7 +5,7 @@
 
 /**
  * @brief PMORMQ-Lowest-Common-Ancestor(最小共通祖先)
- * @docs docs/pmormq-lowest-common-ancestor.md
+ * 
  **/
 template< typename T = int >
 struct PMORMQLowestCommonAncestor : Graph< T > {

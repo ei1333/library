@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/mod-pow.hpp
+---
+
 ## 概要
 ある値のべき乗を求める.
 

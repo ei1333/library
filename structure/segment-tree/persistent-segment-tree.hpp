@@ -1,6 +1,6 @@
 /**
  * @brief Persistent-Segment-Tree(永続セグメント木)
- * @docs docs/persistent-segment-tree.md
+ * 
  */
 template< typename Monoid >
 struct PersistentSegmentTree {

@@ -1,6 +1,6 @@
 /**
  * @brief Prime Table(素数テーブル)
- * @docs docs/prime-table.md
+ * 
  */
 vector< bool > prime_table(int n) {
   vector< bool > prime(n + 1, true);

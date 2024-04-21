@@ -6,7 +6,7 @@
 
 /**
  * @brief Bipartite Graph Edge Coloring(二部グラフの辺彩色)
- * @docs docs/bipartite-graph-edge-coloring.md
+ * 
  * @see https://ei1333.hateblo.jp/entry/2020/08/25/015955
  */
 struct BipariteGraphEdgeColoring {

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/subset_convolution
 
 #include "../../template/template.hpp"
 

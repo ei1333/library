@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/binomial.hpp
+---
+
 ## 概要
 
 二項係数 ${}_n \mathrm{C} _k$ を $\displaystyle \frac {k(k-1)\dots (n-k+1)} {k(k-1)\dots 1}$ を利用して求める.

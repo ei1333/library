@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/two_edge_connected_components"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/two_edge_connected_components
 
 #include "../../template/template.hpp"
 

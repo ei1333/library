@@ -1,3 +1,7 @@
+---
+documentation_of: //string/rolling-hash.hpp
+---
+
 ## 概要
 
 文字列の一致判定を mod $2^{61}-1$ のハッシュを用いて効率的に行う.

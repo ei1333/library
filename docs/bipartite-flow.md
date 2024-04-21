@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/flow/bipartite-flow.hpp
+---
+
 ## 概要
 
 二部グラフに対するフロー. 

@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/shortest-path/k-shortest-walk.hpp
+---
+
 ## 概要
 
 頂点 $s$ から $t$ へのウォーク(Walk) のうち, 昇順 $k$ 個のウォークの長さを Eppstein's Algorithm により求める. 

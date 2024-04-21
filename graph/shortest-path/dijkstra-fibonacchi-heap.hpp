@@ -5,7 +5,7 @@
 
 /**
  * @brief Dijkstra-Fibonacchi-Heap(単一始点最短路)
- * @docs docs/dijkstra-fibonacchi-heap.md
+ * 
  */
 template< typename T >
 vector< T > dijkstra_fibonacchi_heap(Graph< T > &g, int s) {

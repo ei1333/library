@@ -1,6 +1,6 @@
 /**
  * @brief Lazy-Red-Black-Tree(遅延伝搬赤黒木)
- * @docs docs/lazy-red-black-tree.md
+ * 
  */
 template< typename Monoid, typename OperatorMonoid, typename F, typename G, typename H >
 struct LazyRedBlackTree {

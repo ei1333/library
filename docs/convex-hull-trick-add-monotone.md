@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp
+---
+
 ## 概要
 
 直線 $ax+b$ の追加クエリ(ただし $a$ は単調増加または単調減少) と, ある点 $x$ での最小値クエリを効率的に処理する.

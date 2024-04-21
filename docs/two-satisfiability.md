@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/two-satisfiability.hpp
+---
+
 ## 概要
 
 SAT(充足可能性問題) とは, いくつかの論理変数及びその否定からなる論理式が与えられたときに, 各変数に `true` または `false` を割り当てることによって論理式を `true` にできるかを判定する問題である.

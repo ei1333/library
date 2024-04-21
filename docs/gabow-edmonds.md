@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/flow/gabow-edmonds.hpp
+---
+
 ## 概要
 
 一般グラフの最大マッチングを, GabowのEdmonds' Algorithmによって求める。

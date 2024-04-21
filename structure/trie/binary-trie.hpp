@@ -1,6 +1,6 @@
 /**
  * @brief Binary-Trie
- * @docs docs/binary-trie.md
+ * 
  */
 template< typename T, int MAX_LOG, typename D = int >
 struct BinaryTrie {

@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/enumerate-triangles.hpp
+---
+
 ## 概要
 
 グラフの triangle, つまり互いに辺で隣接している $3$ 頂点を列挙する.

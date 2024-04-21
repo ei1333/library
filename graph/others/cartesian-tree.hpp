@@ -1,7 +1,7 @@
 #pragma once
 /**
  * @brief Cartesian Tree
- * @docs docs/cartesian-tree.md
+ * 
  * @see https://kimiyuki.net/blog/2020/07/27/recursion-on-cartesian-tree/
  */
 template< typename T >

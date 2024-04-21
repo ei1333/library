@@ -2,7 +2,7 @@
 
 /**
  * @brief Kth Term of Linearly Recurrent Sequence
- * @docs docs/kth-term-of-linearly-recurrent-sequence.md
+ * 
  */
 template< template< typename > class FPS, typename Mint >
 Mint kth_term_of_linearly_recurrent_sequence(const FPS< Mint > &a, FPS< Mint > c, int64_t k) {

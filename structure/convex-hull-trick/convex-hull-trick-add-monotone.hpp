@@ -1,6 +1,6 @@
 /**
  * @brief Convex Hull Trick Add Monotone
- * @docs docs/convex-hull-trick-add-monotone.md
+ * 
 */
 template< typename T, bool isMin >
 struct ConvexHullTrickAddMonotone {

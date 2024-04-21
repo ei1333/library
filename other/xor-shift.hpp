@@ -1,6 +1,6 @@
 /**
  * @brief Xor-Shift
- * @docs docs/xor-shift.md
+ * 
  */
 struct XorShift {
 private:

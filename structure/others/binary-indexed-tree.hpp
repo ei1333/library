@@ -1,6 +1,6 @@
 /**
  * @brief Binary-Indexed-Tree(BIT)
- * @docs docs/binary-indexed-tree.md
+ * 
  */
 template< typename T >
 struct BinaryIndexedTree {

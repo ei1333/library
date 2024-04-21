@@ -5,7 +5,7 @@
 
 /**
  * @brief Offline Dag Reachability(DAGの到達可能性クエリ)
- * @docs docs/offline-dag-reachability.md
+ * 
  */
 
 template< typename T >

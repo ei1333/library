@@ -1,23 +1,170 @@
 name: verify
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
 
-on: push
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v1
+      - name: Set up competitive-verifier
+        uses: competitive-verifier/actions/setup@v2
+        with:
+          cache-pip: true
 
-    - name: Install dependencies
-      run: pip3 install -U online-judge-verify-helper
+      # Initialize your own environment for resolving.
+      - name: oj-resolve
+        uses: competitive-verifier/actions/oj-resolve@v2
+        with:
+          output-path: verify_files.json
+          # Specify patterns
+          # include: your-own-include/
+          # exclude: your-own-exclude/
+          # If you have config.toml
+          # config: .verify-helper/config.toml
+      - name: parse-doxygen
+        uses: competitive-verifier/actions/parse-doxygen@v2
+        with:
+          verify-files: verify_files.json
 
-    - name: Run tests
-      env:
-        GH_PAT: ${{ secrets.GH_PAT }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-      run: oj-verify all
+      - name: Upload verify_files.json
+        uses: competitive-verifier/actions/upload-verify-artifact@v2
+        with:
+          file: verify_files.json
+
+      - name: Check bundled
+        id: test-bundled
+        run: |
+          echo "count=$(find .competitive-verifier/bundled/ -type f | wc -l)" >> $GITHUB_OUTPUT
+      - name: Upload bundled
+        uses: actions/upload-artifact@v4
+        if: steps.test-bundled.outputs.count > 0
+        with:
+          name: Bundled-${{ runner.os }}
+          path: .competitive-verifier/bundled
+          retention-days: 1
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    env:
+      SPLIT_SIZE: "20"
+    strategy:
+      matrix:
+        # prettier-ignore
+        index:
+          ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09",
+           "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download verify_files.json
+        uses: competitive-verifier/actions/download-verify-artifact@v2
+
+      - name: Set up competitive-verifier
+        uses: competitive-verifier/actions/setup@v2
+        with:
+          cache-pip: true
+
+      - name: Verify
+        uses: competitive-verifier/actions/verify@v2
+        with:
+          destination: ${{runner.temp}}/result.json
+          split-size: ${{ env.SPLIT_SIZE }}
+          split-index: ${{ matrix.index }}
+          timeout: 1800
+        env:
+          YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}
+
+      - name: Upload result artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Result-${{ runner.os }}-${{ matrix.index }}
+          path: ${{runner.temp}}/result.json
+          retention-days: 1
+
+  docs-and-check:
+    runs-on: ubuntu-latest
+    needs: [verify]
+    outputs:
+      upload-pages: ${{steps.upload-pages.outcome == 'success'}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2147483647
+  
+      - name: Download verify_files.json and all artifacts
+        id: all-artifacts
+        uses: competitive-verifier/actions/download-verify-artifact@v2
+        with:
+          download-all: true
+          artifact-root: .artifacts/
+  
+      - name: Extract bundled
+        shell: bash
+        run: |
+          rm -rf .competitive-verifier/bundled
+          if test -d "$SRCDIR"; then
+            mkdir -p .competitive-verifier/
+            mv "$SRCDIR" .competitive-verifier/bundled
+          else
+            echo "$SRCDIR does not exist."
+          fi
+        env:
+          SRCDIR: .artifacts/Bundled-${{ runner.os }}
+  
+      - name: Set up competitive-verifier
+        uses: competitive-verifier/actions/setup@v2
+        with:
+          cache-pip: true
+
+      - name: Docs
+        uses: competitive-verifier/actions/docs@v2
+        with:
+          verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+          destination: _jekyll
+          write-summary: true
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: _jekyll
+          destination: _site
+      - name: Upload artifact
+        id: upload-pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Check
+        uses: competitive-verifier/actions/check@v2
+        with:
+          verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+  deploy:
+    if: (success() || failure()) && github.ref == 'refs/heads/main' && needs.docs-and-check.outputs.upload-pages == 'true'
+    needs: docs-and-check
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3

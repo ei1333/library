@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/wavelet/wavelet-tree.hpp
+---
+
 ## 概要
 
 $2$ 次元平面上にある点が事前に与えられているとき, オンラインでいろいろなクエリを処理するデータ構造.

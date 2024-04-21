@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/others/sparse-table.hpp
+---
+
 ## 概要
 
 冪等半群に対する区間クエリを, 前計算 $\Theta (n \log n)$, クエリ $\Theta (1)$ で処理する.

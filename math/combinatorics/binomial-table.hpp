@@ -1,6 +1,6 @@
 /**
  * @brief Binomial Table(二項係数テーブル)
- * @docs docs/binomial-table.md
+ * 
  */
 template< typename T >
 vector< vector< T > > binomial_table(int N) {

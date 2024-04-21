@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/trie/binary-trie.hpp
+---
+
 ## 概要
 
 整数をビット列とみなして, トライ木のように持つデータ構造.

@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/namori-graph.hpp
+---
+
 ## 概要
 
 $n$ 頂点 $n$ 辺からなる連結無向グラフは, サイクルが $1$ 個だけあるグラフとなる。

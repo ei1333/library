@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/others/disjoint-sparse-table.hpp
+---
+
 ## 概要
 
 更新がない場合の半群に対する区間クエリを, 前計算 $O(n \log n)$, クエリ $O(1)$ で処理する.

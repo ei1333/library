@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/tree/tree-diameter.hpp
+---
+
 ## 概要
 
 木の直径を求める.

@@ -1,6 +1,6 @@
 /**
  * @brief Bipartite Flow(二部グラフのフロー)
- * @docs docs/bipartite-flow.md
+ * 
  */
 struct BipartiteFlow {
   size_t n, m, time_stamp;

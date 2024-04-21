@@ -1,6 +1,6 @@
 /**
  * @brief Disjoint-Sparse-Table
- * @docs docs/disjoint-sparse-table.md
+ * 
  */
 template< typename Semigroup, typename F >
 struct DisjointSparseTable {

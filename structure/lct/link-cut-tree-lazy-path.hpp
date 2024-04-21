@@ -1,6 +1,6 @@
 /**
  * @brief Link Cut Tree Lazy Path
- * @docs docs/link-cut-tree-lazy-path.md
+ * 
  */
 template< typename T, typename E, typename F, typename G, typename H, typename S >
 struct LinkCutTreeLazyPath {

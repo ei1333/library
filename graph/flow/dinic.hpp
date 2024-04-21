@@ -1,6 +1,6 @@
 /**
  * @brief Dinic(最大流)
- * @docs docs/dinic.md
+ * 
  */
 template< typename flow_t >
 struct Dinic {

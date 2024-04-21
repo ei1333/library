@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/cycle-detection.hpp
+---
+
 ## 概要
 
 有向グラフが与えられたとき, 辺素なサイクルを $1$ つみつける.

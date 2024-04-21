@@ -1,6 +1,6 @@
 /**
  * @brief Lazy-Segment-Tree(遅延伝搬セグメント木)
- * @docs docs/lazy-segment-tree.md
+ * 
  */
 template< typename T, typename E, typename F, typename G, typename H >
 struct LazySegmentTree {

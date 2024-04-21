@@ -3,7 +3,7 @@
 /**
  * @brief Tree Decomposition Width 2(木幅2の木分解)
  * @see https://ei1333.hateblo.jp/entry/2020/02/12/150319
- * @docs docs/tree-decomposition-width-2.md
+ * 
  */
 struct DecompNode {
   vector< int > bag, child;

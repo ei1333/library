@@ -1,6 +1,6 @@
 /**
  * @brief Bipartite-Matching(二部グラフの最大マッチング)
- * @docs docs/bipartite-matching.md
+ * 
  */
 struct BipartiteMatching {
   vector< vector< int > > graph;

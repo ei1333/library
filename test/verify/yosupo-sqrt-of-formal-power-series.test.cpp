@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sqrt_of_formal_power_series"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
 
 #include "../../template/template.hpp"
 

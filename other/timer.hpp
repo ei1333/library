@@ -1,6 +1,6 @@
 /**
  * @brief Timer(タイマー)
- * @docs docs/timer.md
+ * 
  */
 constexpr uint64_t CYCLES_PER_SEC = 3000000000; // AtCoder
 // constexpr uint64_t CYCLES_PER_SEC = 3600000000; // Codeforces

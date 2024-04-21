@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sparse_matrix_det
 
 #include "../../template/template.hpp"
 

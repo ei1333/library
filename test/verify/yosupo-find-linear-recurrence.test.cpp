@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/find_linear_recurrence"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/find_linear_recurrence
 
 #include "../../template/template.hpp"
 

@@ -2,7 +2,7 @@
 
 /*
  * @brief Wavelet Matrix(ウェーブレット行列)
- * @docs docs/wavelet-matrix.md
+ * 
  */
 template< typename T, int MAXLOG >
 struct WaveletMatrix {

@@ -1,6 +1,6 @@
 /**
  * @brief Quotient Ranges(商列挙)
- * @docs docs/quotient-ranges.md
+ * 
  */
 template< typename T >
 vector< pair< pair< T, T >, T > > quotient_ranges(T N) {

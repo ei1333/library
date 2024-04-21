@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bitwise_xor_convolution
 
 #include "../../template/template.hpp"
 

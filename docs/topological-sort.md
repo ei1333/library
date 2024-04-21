@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/topological-sort.hpp
+---
+
 ## 概要
 
 DAG(閉路のない有向グラフ) が与えられたとき, トポロジカルソートする.

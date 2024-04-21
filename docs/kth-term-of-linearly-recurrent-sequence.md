@@ -1,3 +1,7 @@
+---
+documentation_of: //math/fps/kth-term-of-linearly-recurrent-sequence.hpp
+---
+
 ## 概要
 
 線形線形漸化的数列の第 $N$ 項を求める。

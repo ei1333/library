@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/others/permutation-tree.hpp
+---
+
 ## 概要
 
 順列 $A$ に対応する順列木(Permutation Tree, 析合树) を構築する.

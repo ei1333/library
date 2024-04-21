@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/cartesian-tree.hpp
+---
+
 ## 概要
 
 数列に対応する Cartesian tree を求める.

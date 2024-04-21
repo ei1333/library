@@ -4,7 +4,7 @@
 
 /**
  * @brief Bellman-Ford(単一始点最短路)
- * @docs docs/bellman-ford.md
+ * 
  */
 template< typename T >
 vector< T > bellman_ford(const Edges< T > &edges, int V, int s) {

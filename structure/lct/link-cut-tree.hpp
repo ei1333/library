@@ -1,6 +1,6 @@
 /**
  * @brief Link Cut Tree
- * @docs docs/link-cut-tree.md
+ * 
  */
 template< typename T, typename F, typename S >
 struct LinkCutTree {

@@ -1,3 +1,7 @@
+---
+documentation_of: //string/palindromic-tree.hpp
+---
+
 ## 概要
 
 文字列 $S$ が与えられる. Parindromic Tree は $S$ に含まれるすべての回文を頂点とした木である.

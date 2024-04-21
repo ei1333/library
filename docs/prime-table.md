@@ -1,3 +1,7 @@
+---
+documentation_of: //math/number-theory/prime-table.hpp
+---
+
 ## 概要
 
 エラトステネスの篩により $n$ 以下の全ての値について素数かどうかを判定する.

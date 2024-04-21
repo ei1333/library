@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/bell-number.hpp
+---
+
 ## 概要
 
 ベル数 $B(n,k)$ を求める.

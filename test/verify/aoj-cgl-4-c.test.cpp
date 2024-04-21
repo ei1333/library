@@ -1,5 +1,5 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C"
-#define ERROR 0.00001
+// competitive-verifier: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
+// competitive-verifier: ERROR 0.00001
 
 #include "../../template/template.hpp"
 

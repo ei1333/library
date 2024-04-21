@@ -1,6 +1,6 @@
 /**
  * @brief Segment Tree(セグメント木)
- * @docs docs/segment-tree.md
+ * 
  */
 template< typename T, typename F >
 struct SegmentTree {

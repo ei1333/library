@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/mst/prim-fibonacchi-heap.hpp
+---
+
 ## 概要
 
 最小全域木(全域木のうち, その辺群の重みの総和が最小になる木)を求める.

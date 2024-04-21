@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/bbst/red-black-tree.hpp
+---
+
 ## 概要
 
 Red-Black-Tree は平衡二分探索木の一種. RBSTとは異なり葉にデータをもたせる実装(葉木)なので, pool の大きさを $2$ 倍とる必要がある.

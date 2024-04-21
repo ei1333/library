@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/others/binary-indexed-tree.hpp
+---
+
 ## 概要
 
 Fenwick Tree とも呼ばれる. 数列に対し, ある要素に値を加える操作と, 区間和を求める操作をそれぞれ対数時間で行うことが出来るデータ構造. セグメント木や平衡二分探索

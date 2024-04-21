@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/segment-tree/dual-segment-tree.hpp
+---
+
 ## 概要
 双対セグメント木は遅延伝搬セグメント木の作用素モノイドのみを取り出したセグメント木を指す.
 

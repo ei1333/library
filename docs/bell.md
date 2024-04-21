@@ -1,3 +1,7 @@
+---
+documentation_of: //math/fps/bell.hpp
+---
+
 ## 概要
 
 ベル数を求める。$n$ 番目(0-indexed) のベル数 $B_n$ は区別できる $n$ 個のボールを任意個のグループに分割する方法の数を与える。

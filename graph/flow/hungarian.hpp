@@ -2,7 +2,7 @@
 
 /**
  * @brief Hungarian(二部グラフの最小重み最大マッチング)
- * @docs docs/hungarian.md
+ * 
  */
 template< typename T >
 pair< T, vector< int > > hungarian(Matrix< T > &A) {
