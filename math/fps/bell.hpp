@@ -1,6 +1,6 @@
 /**
  * @brief Bell(ベル数)
- * @docs docs/bell.md
+ * 
  */
 template< template< typename > class FPS, typename Mint >
 FPS< Mint > bell(int N) {

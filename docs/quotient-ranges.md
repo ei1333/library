@@ -1,3 +1,7 @@
+---
+documentation_of: //math/number-theory/quotient-ranges.hpp
+---
+
 ## 概要
 
 整数 $N$ が与えられたとき, $N$ の商 ($\lfloor \frac N i \rfloor$) ($1 \leq i \leq N$) の値と対応する区間を列挙する.

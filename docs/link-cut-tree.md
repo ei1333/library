@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/lct/link-cut-tree.hpp
+---
+
 ## 概要
 
 Link Cut Tree とは動的木の一つで, 辺の追加や削除などの木構造の動的な変化がある場合でも効率的にクエリを処理できる.

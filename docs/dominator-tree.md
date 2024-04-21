@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/dominator-tree.hpp
+---
+
 ## 概要
 
 有向グラフが与えられたとき, 頂点 `root` を根とする Dominator tree を求める.

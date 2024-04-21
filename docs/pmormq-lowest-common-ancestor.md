@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/tree/pmormq-lowest-common-ancestor.hpp
+---
+
 ## 概要
 オイラーツアーと±1RMQ によって最小共通祖先を求める.
 

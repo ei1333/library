@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/montmort.hpp
+---
+
 ## 概要
 
 完全順列の総数をモンモール数とよぶ.

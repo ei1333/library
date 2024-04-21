@@ -4,7 +4,7 @@
 
 /**
  * @brief Namori Graph
- * @docs docs/namori-graph.md
+ * 
  */
 template< typename T = int >
 struct NamoriGraph : Graph< T > {

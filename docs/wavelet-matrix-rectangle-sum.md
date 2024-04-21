@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/wavelet/wavelet-matrix-rectangle-sum.hpp
+---
+
 ## 概要
 
 $2$ 次元平面上にある重み付きの点が事前に与えられているとき, オンラインで矩形内にある点の重みの総和を効率的に求めるデータ構造.

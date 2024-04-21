@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/flow/dinic-capacity-scaling.hpp
+---
+
 ## 概要
 
 最大流を求めるアルゴリズム.

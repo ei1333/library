@@ -1,3 +1,7 @@
+---
+documentation_of: //other/xor-shift.hpp
+---
+
 ## 概要
 Xorshift は擬似乱数生成法の一つである.
 

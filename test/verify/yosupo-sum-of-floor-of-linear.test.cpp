@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sum_of_floor_of_linear"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_floor_of_linear
 
 #include "../../template/template.hpp"
 

@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/tree/doubling-lowest-common-ancestor.hpp
+---
+
 ## 概要
 ダブリングによって最小共通祖先を求める.
 

@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/shortest-path/bellman-ford.hpp
+---
+
 ## 概要
 
 単一始点全点間最短路を求めるアルゴリズム. 負辺があっても動作する. また負閉路も検出する.

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/counting_primes"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/counting_primes
 
 #include "../../template/template.hpp"
 

@@ -4,7 +4,7 @@
 
 /**
  * @brief K-Shortest-Walk
- * @docs docs/k-shortest-walk.md
+ * 
  * @see https://qiita.com/hotman78/items/42534a01c4bd05ed5e1e
  */
 template< typename T >

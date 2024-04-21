@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/mod-log.hpp
+---
+
 ## 概要
 $a^x \equiv b \pmod p$ を満たす非負整数 $k$ の最小値を求める.
 

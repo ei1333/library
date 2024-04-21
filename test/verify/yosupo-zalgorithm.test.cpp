@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/zalgorithm
 
 #include "../../template/template.hpp"
 

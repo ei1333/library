@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/tree_decomposition_width_2"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/tree_decomposition_width_2
 
 #include "../../template/template.hpp"
 

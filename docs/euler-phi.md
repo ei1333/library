@@ -1,3 +1,7 @@
+---
+documentation_of: //math/number-theory/euler-phi.hpp
+---
+
 ## 概要
 
 正の整数 $n$ が与えられたとき, $1$ から $n$ までの自然数のうち $n$ と互いに素なものの個数 $\phi(n)$ を求める.

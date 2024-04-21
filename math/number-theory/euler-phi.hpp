@@ -1,6 +1,6 @@
 /**
  * @brief Euler's Phi(オイラーのφ関数)
- * @docs docs/euler-phi.md
+ * 
  */
 template< typename T >
 T euler_phi(T n) {

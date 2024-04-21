@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/others/generalized-slope-trick.hpp
+---
+
 ## 概要
 区分線形凸関数 $f(x)$ を効率的に扱うためのデータ構造。
 

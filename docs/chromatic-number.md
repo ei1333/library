@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/chromatic-number.hpp
+---
+
 ## 概要
 
 グラフの彩色数を求める. 彩色数とは, 隣接する頂点が異なる色となるように彩色するために必要な最小色数である.

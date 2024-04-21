@@ -3,7 +3,7 @@
 
 /*
  * @brief Wavelet Matrix Point Add Rectangle Sum
- * @docs docs/wavelet-matrix-point-add-rectangle-sum.md
+ * 
  */
 template< typename T, int MAXLOG, typename D >
 struct WaveletMatrixPointAddRectangleSum {

@@ -1,6 +1,6 @@
 /**
  * @brief Montmort-Number(モンモール数)
- * @docs docs/montmort.md
+ * 
  */
 template< typename T >
 vector< T > montmort(int N) {

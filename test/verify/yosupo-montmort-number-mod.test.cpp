@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/montmort_number_mod"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/montmort_number_mod
 
 #include "../../template/template.hpp"
 

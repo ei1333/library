@@ -5,7 +5,7 @@
 /**
  * @brief Low Link(橋/関節点)
  * @see http://kagamiz.hatenablog.com/entry/2013/10/05/005213
- * @docs docs/low-link.md
+ * 
  */
 template< typename T = int >
 struct LowLink : Graph< T > {

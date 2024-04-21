@@ -1,4 +1,4 @@
-#define PROBLEM "https://dmoj.ca/problem/ds5"
+// competitive-verifier: PROBLEM https://dmoj.ca/problem/ds5
 
 #include "../../template/template.hpp"
 

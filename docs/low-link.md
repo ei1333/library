@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/low-link.hpp
+---
+
 ## 概要
 橋や関節点などを効率的に求める際に有効なアルゴリズム.
 

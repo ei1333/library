@@ -5,7 +5,7 @@
 
 /**
  * @brief Directed MST(最小有向全域木)
- * @docs docs/directed-mst.md
+ * 
  */
 template< typename T >
 struct MinimumSpanningTree {

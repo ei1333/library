@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/frequency_table_of_tree_distance"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
 
 #include "../../template/template.hpp"
 

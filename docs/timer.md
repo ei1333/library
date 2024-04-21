@@ -1,3 +1,7 @@
+---
+documentation_of: //other/timer.hpp
+---
+
 ## 概要
 rdtsc (Read Time Stamp Counter) 命令を用いると CPU クロックごとに加算される 64 bit のタイムスタンプカウンタの値を得ることができる. マラソンするときにタイマーとしてよく用いられるらしい.
 

@@ -4,7 +4,7 @@
 
 /**
  * @brief Cycle Detection(閉路検出)
- * @docs docs/cycle-detection.md
+ * 
  */
 template< typename T = int >
 struct CycleDetection : Graph< T > {

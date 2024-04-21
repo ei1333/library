@@ -1,6 +1,6 @@
 /**
  * @brief Mod Log(離散対数問題)
- * @docs docs/mod-log.md
+ * 
  */
 int64_t mod_log(int64_t a, int64_t b, int64_t p) {
   int64_t g = 1;

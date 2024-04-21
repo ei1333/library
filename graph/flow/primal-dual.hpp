@@ -1,6 +1,6 @@
 /**
  * @brief Primal Dual(最小費用流)
- * @docs docs/primal-dual.md
+ * 
  */
 template< typename flow_t, typename cost_t >
 struct PrimalDual {

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sqrt_mod"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sqrt_mod
 
 #include "../../template/template.hpp"
 

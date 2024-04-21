@@ -2,7 +2,7 @@
 
 /**
  * @brief Permutation Tree(順列木)
- * @docs docs/permutation-tree.md
+ * 
  * @see https://codeforces.com/blog/entry/78898
  */
 struct PermutationTree {

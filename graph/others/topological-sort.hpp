@@ -4,7 +4,7 @@
 
 /**
  * @brief Topological Sort(トポロジカルソート)
- * @docs docs/topological-sort.md
+ * 
  */
 template< typename T >
 vector< int > topological_sort(const Graph< T > &g) {

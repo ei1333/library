@@ -2,7 +2,7 @@
 
 /**
  * @brief Boruvka(最小全域木)
- * @docs docs/boruvka.md
+ * 
  */
 template< typename T >
 struct Boruvka {

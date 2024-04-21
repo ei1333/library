@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/tree-decomposition-width-2.hpp
+---
+
 ## 概要
 
 無向グラフが与えられたとき, 木幅が $2$ 以下か判定し, $2$ 以下の場合は木幅 $2$ 以下の木分解を構成する.

@@ -4,7 +4,7 @@
 
 /**
  * @brief Tree-Diameter(木の直径)
- * @docs docs/tree-diameter.md
+ * 
  */
 template< typename T = int >
 struct TreeDiameter : Graph< T > {

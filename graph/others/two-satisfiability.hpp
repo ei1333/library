@@ -4,7 +4,7 @@
 
 /**
  * @brief Two Satisfiability(2-SAT)
- * @docs docs/two-satisfiability.md
+ * 
  */
 struct TwoSatisfiability : StronglyConnectedComponents< bool > {
 public:

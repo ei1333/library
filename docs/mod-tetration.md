@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/mod-tetration.hpp
+---
+
 ## 概要
 ${a \uparrow \uparrow b} \bmod m$ を求める. $\uparrow \uparrow$ はテトレーション演算で $a^{a^{a^{a^{\ldots}}}}$ ($a$ が $b$ 個続く) を指す.
 

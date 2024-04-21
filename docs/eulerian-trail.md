@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/eulerian-trail.hpp
+---
+
 ## 概要
 
 有向/無向グラフが与えられたときに, グラフの全ての辺をちょうど $1$ 回ずつ通る閉路やパスを各連結成分について求める.

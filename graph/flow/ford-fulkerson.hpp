@@ -1,6 +1,6 @@
 /**
  * @brief Ford Fulkerson(最大流)
- * @docs docs/ford-fulkerson.md
+ * 
  */
 template< typename flow_t >
 struct FordFulkerson {

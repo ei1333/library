@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/enumerate-cliques.hpp
+---
+
 ## 概要
 
 無向グラフが与えられたとき, クリークを全列挙する.

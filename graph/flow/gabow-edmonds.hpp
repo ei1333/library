@@ -2,7 +2,7 @@
 
 /**
  * @brief Gabow Edmonds(一般グラフの最大マッチング)
- * @docs docs/gabow-edmonds.md
+ * 
  */
 struct GabowEdmonds {
 

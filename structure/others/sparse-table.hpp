@@ -1,6 +1,6 @@
 /**
  * @brief Sparse-Table(スパーステーブル)
- * @docs docs/sparse-table.md
+ * 
  */
 template< typename T, typename F >
 struct SparseTable {

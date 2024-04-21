@@ -1,6 +1,6 @@
 /**
  * @brief Mod Pow(べき乗)
- * @docs docs/mod-pow.md
+ * 
  */
 template< typename T >
 T mod_pow(T x, int64_t n, const T &p) {

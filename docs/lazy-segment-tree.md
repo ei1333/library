@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/segment-tree/lazy-segment-tree.hpp
+---
+
 ## 概要
 
 遅延伝搬を用いることで, 区間に対する更新が可能になる. コンストラクタに対し追加で作用素モノイドの情報も与える.

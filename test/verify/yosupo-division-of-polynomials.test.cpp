@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/division_of_polynomials
 
 #include "../../template/template.hpp"
 

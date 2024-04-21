@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/shortest-path/k-shortest-path.hpp
+---
+
 ## 概要
 
 頂点 $s$ から $t$ へのパス(Path) のうち, 昇順 $k$ 個のパスの長さを Yen's Algorithm により求める. 

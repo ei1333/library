@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/tree/rmq-lowest-common-ancestor.hpp
+---
+
 ## 概要
 オイラーツアーとスパーステーブルによって最小共通祖先を求める.
 

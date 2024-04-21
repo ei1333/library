@@ -1,6 +1,6 @@
 /**
  * @brief Dual-Segment-Tree(双対セグメント木)
- * @docs docs/dual-segment-tree.md
+ * 
  */
 template< typename E, typename H >
 struct DualSegmentTree {

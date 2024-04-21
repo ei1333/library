@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/flow/bipartite-matching.hpp
+---
+
 ## 概要
 
 グラフ $G=(V, E)$ において, $V$ が $2$ つの部分集合 $X$ と $Y$ に分割され, $E$ のどの辺も一方の端点は $X$ に, もう一方の端点は $Y$ に属しているとき, $G$ を二部グラフという.

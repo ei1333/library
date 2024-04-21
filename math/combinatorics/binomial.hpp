@@ -1,6 +1,6 @@
 /**
  * @brief Binomial(二項係数)
- * @docs docs/binomial.md
+ * 
  */
 template< typename T >
 T binomial(int64_t N, int64_t K) {

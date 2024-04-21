@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/maximum_independent_set
 
 #include "../../template/template.hpp"
 

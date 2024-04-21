@@ -1,7 +1,7 @@
 /**
  * @brief Rolling-Hash(ローリングハッシュ)
  * @see https://qiita.com/keymoon/items/11fac5627672a6d6a9f6
- * @docs docs/rolling-hash.md
+ * 
  */
 struct RollingHash {
   static const uint64_t mod = (1ull << 61ull) - 1;

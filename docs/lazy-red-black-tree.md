@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/bbst/lazy-red-black-tree.hpp
+---
+
 ## 概要
 
 Lazy-Red-Black-Tree は Red-Black-Tree に遅延伝搬を実装したものである.

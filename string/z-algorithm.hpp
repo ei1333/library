@@ -1,7 +1,7 @@
 /**
  * @brief Z Algorithm
  * @see https://heno239.hatenablog.com/entry/2020/07/07/140651
- * @docs docs/z-algorithm.md
+ * 
  */
 template< typename T = char >
 struct ZAlgorithm {

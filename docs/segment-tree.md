@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/segment-tree/segment-tree.hpp
+---
+
 ## 概要
 
 完全二分木である. モノイドについて区間に対する演算が $O(\log N)$ で処理できる.

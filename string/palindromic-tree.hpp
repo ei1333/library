@@ -1,7 +1,7 @@
 /**
  * @brief Palindromic Tree(回文木)
  * @see https://math314.hateblo.jp/entry/2016/12/19/005919
- * @docs docs/palindromic-tree.md
+ * 
  */
 template< typename T = char >
 struct PalindromicTree {

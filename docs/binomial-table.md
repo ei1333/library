@@ -1,3 +1,7 @@
+---
+documentation_of: //math/combinatorics/binomial-table.hpp
+---
+
 ## 概要
 
 二項係数テーブルをパスカルの三角形より求める.

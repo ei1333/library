@@ -5,7 +5,7 @@
 
 /**
  * @brief RMQ-Lowest-Common-Ancestor(最小共通祖先)
- * @docs docs/rmq-lowest-common-ancestor.md
+ * 
  **/
 template< typename T = int >
 struct RMQLowestCommonAncestor : Graph< T > {

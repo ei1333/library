@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/shortest-path/dijkstra-fibonacchi-heap.hpp
+---
+
 ## 概要
 
 負辺のないグラフで単一始点全点間最短路を求めるアルゴリズム.

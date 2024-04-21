@@ -1,6 +1,6 @@
 /**
  * @brief Euler’s Phi Table(オイラーのφ関数テーブル)
- * @docs docs/euler-phi-table.md
+ * 
  */
 vector< int > euler_phi_table(int n) {
   vector< int > euler(n + 1);

@@ -1,6 +1,6 @@
 /**
  * @brief Dynamic-Li-Chao-Tree
- * @docs docs/dynamic-li-chao-tree.md
+ * 
 */
 template< typename T, T x_low, T x_high, T id >
 struct DynamicLiChaoTree {

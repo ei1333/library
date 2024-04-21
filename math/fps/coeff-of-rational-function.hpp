@@ -1,6 +1,6 @@
 /**
  * @brief Coeff of Rational Function
- * @docs docs/coeff-of-rational-function.md
+ * 
  */
 template< template< typename > class FPS, typename Mint >
 Mint coeff_of_rational_function(FPS< Mint > P, FPS< Mint > Q, int64_t k) {

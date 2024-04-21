@@ -4,7 +4,7 @@
 
 /**
  * @brief K-Shortest-Path
- * @docs docs/k-shortest-path.md
+ * 
  * @see https://qiita.com/nariaki3551/items/821dc6ffdc552d3d5f22
  */
 template< typename T >

@@ -1,3 +1,7 @@
+---
+documentation_of: //string/aho-corasick.hpp
+---
+
 ## 概要
 
 複数文字列に対するパターンマッチングオートマトンを構築する.

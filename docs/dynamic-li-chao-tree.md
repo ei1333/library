@@ -1,3 +1,7 @@
+---
+documentation_of: //structure/convex-hull-trick/dynamic-li-chao-tree.hpp
+---
+
 ## 概要
 
 直線 $ax+b$ の追加クエリと, ある点 $x$ での最小値クエリを効率的に処理するデータ構造.

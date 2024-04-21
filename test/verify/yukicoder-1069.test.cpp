@@ -1,5 +1,5 @@
-#define ERROR "1e-4"
-#define PROBLEM "https://yukicoder.me/problems/no/1069"
+// competitive-verifier: ERROR 1e-4
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1069
 
 #include "../../template/template.hpp"
 

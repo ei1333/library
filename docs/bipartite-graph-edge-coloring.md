@@ -1,3 +1,7 @@
+---
+documentation_of: //graph/others/bipartite-graph-edge-coloring.hpp
+---
+
 ## 概要
 
 二部グラフの辺彩色を求めるアルゴリズム. 辺彩色とは, 与えられたグラフの辺に色を付けることを指す. このとき隣接する(頂点を共有する)辺は全て異なる色になるようにする.
