@@ -7,7 +7,7 @@ FPS< Mint > count_subset_sum(vector< Mint > &c) {
   vector< Mint > inv(n);
   inv[0] = Mint(0);
   inv[1] = Mint(1);
-  auto mod = Mint::get_mod();
+  auto mod = Mint::mod();
   for(int i = 2; i < n; i++) {
     inv[i] = -inv[mod % i] * (mod / i);
   }

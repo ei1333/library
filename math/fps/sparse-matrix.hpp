@@ -5,7 +5,7 @@ template< typename T >
 FormalPowerSeries< T > random_poly(int n) {
   mt19937 mt(1333333);
   FormalPowerSeries< T > res(n);
-  uniform_int_distribution< int > rand(0, T::get_mod() - 1);
+  uniform_int_distribution< int > rand(0, T::mod() - 1);
   for(int i = 0; i < n; i++) res[i] = rand(mt);
   return res;
 }

@@ -6,7 +6,7 @@
 template< typename Mint, typename F >
 Mint factorial(int64_t n, const F& multiply) {
   if(n <= 1) return 1;
-  if(n >= Mint::get_mod()) return 0;
+  if(n >= Mint::mod()) return 0;
   int64_t v = 1;
   while(v * v < n) v *= 2;
   Mint iv = Mint(1) / v;

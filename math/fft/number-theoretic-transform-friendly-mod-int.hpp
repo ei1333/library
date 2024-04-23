@@ -11,7 +11,7 @@ struct NumberTheoreticTransformFriendlyModInt {
 
   static void init() {
     if(roots.empty()) {
-      const unsigned mod = Mint::get_mod();
+      const unsigned mod = Mint::mod();
       assert(mod >= 3 && mod % 2 == 1);
       auto tmp = mod - 1;
       max_base = 0;

@@ -229,7 +229,7 @@ struct FormalPowerSeriesFriendlyNTT : vector< T > {
 
     auto inplace_integral = [&](P &F) -> void {
       const int n = (int) F.size();
-      auto mod = T::get_mod();
+      auto mod = T::mod();
       while((int) inv.size() <= n) {
         int i = inv.size();
         inv.push_back((-inv[mod % i]) * (mod / i));

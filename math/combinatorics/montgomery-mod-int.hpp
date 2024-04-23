@@ -9,8 +9,8 @@ struct MontgomeryModInt {
   using u64 = uint64_t;
 
   static constexpr u32 get_r() {
-    u32 ret = mod();
-    for (i32 i = 0; i < 4; i++) ret *= 2 - mod() * ret;
+    u32 ret = mod_;
+    for (i32 i = 0; i < 4; i++) ret *= 2 - mod_ * ret;
     return ret;
   }
 
@@ -26,7 +26,7 @@ struct MontgomeryModInt {
 
   MontgomeryModInt(): x{} {}
 
-  explicit MontgomeryModInt(const i64 &a)
+  MontgomeryModInt(const i64 &a)
       : x(reduce(u64(fast ? a : (a % mod() + mod())) * n2)) {}
 
   static constexpr u32 reduce(const u64 &b) {
@@ -49,7 +49,7 @@ struct MontgomeryModInt {
   }
 
   mint &operator/=(const mint &p) {
-    *this *= p.inverse();
+    *this *= p.inv();
     return *this;
   }
 
@@ -91,7 +91,7 @@ struct MontgomeryModInt {
   }
 
   friend ostream &operator<<(ostream &os, const mint &p) {
-    return os << p.get();
+    return os << p.val();
   }
 
   friend istream &operator>>(istream &is, mint &a) {
