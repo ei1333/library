@@ -2,13 +2,13 @@
 
 #include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 
 #include "../../other/vector-pool.hpp"
 
 #include "../../structure/bbst/lazy-weight-balanced-tree.hpp"
 
-using mint = ModInt< 998244353 >;
+using mint = modint998244353;
 
 int main() {
   int N, Q;

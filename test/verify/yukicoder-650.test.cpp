@@ -6,8 +6,10 @@
 
 #include "../../structure/segment-tree/segment-tree.hpp"
 
-#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "../../math/matrix/square-matrix.hpp"
+
+using mint = modint998244353;
 
 int main() {
   int N;
@@ -22,7 +24,7 @@ int main() {
   for(int i = 1; i < N; i++) {
     if(g.in[X[i]] > g.in[Y[i]]) swap(X[i], Y[i]);
   }
-  using Mat = SquareMatrix< modint, 2 >;
+  using Mat = SquareMatrix< mint, 2 >;
   auto f = [](const Mat &a, const Mat &b) { return a * b; };
   auto seg = get_segment_tree(N, f, Mat::mul_identity());
   int Q;

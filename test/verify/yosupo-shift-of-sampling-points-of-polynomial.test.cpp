@@ -6,9 +6,9 @@
 
 #include "../../math/combinatorics/lagrange-polynomial-3.hpp"
 
-#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 
-using mint = ModInt< 998244353 >;
+using mint = modint998244353;
 
 int main() {
   int N, T, M;
