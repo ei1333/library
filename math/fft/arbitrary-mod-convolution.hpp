@@ -18,7 +18,7 @@ struct ArbitraryModConvolution {
     int sz = 1 << nbase;
     vector< C > fa(sz);
     for(int i = 0; i < a.size(); i++) {
-      fa[i] = C(a[i].x & ((1 << 15) - 1), a[i].x >> 15);
+      fa[i] = C(a[i].val() & ((1 << 15) - 1), a[i].val() >> 15);
     }
     fft(fa, sz);
     vector< C > fb(sz);
@@ -26,7 +26,7 @@ struct ArbitraryModConvolution {
       fb = fa;
     } else {
       for(int i = 0; i < b.size(); i++) {
-        fb[i] = C(b[i].x & ((1 << 15) - 1), b[i].x >> 15);
+        fb[i] = C(b[i].val() & ((1 << 15) - 1), b[i].val() >> 15);
       }
       fft(fb, sz);
     }
@@ -56,7 +56,7 @@ struct ArbitraryModConvolution {
       int64_t aa = llround(fa[i].x);
       int64_t bb = llround(fb[i].x);
       int64_t cc = llround(fa[i].y);
-      aa = T(aa).x, bb = T(bb).x, cc = T(cc).x;
+      aa = T(aa).val(), bb = T(bb).val(), cc = T(cc).val();
       ret[i] = aa + (bb << 15) + (cc << 30);
     }
     return ret;

@@ -33,12 +33,12 @@ int main() {
   out.writeln(q.size(), r.size());
   for(int i = 0; i < q.size(); i++) {
     if(i > 0) out.write(' ');
-    out.write(q[i].x);
+    out.write(q[i].val());
   }
   out.writeln();
   for(int i = 0; i < r.size(); i++) {
     if(i > 0) out.write(' ');
-    out.write(r[i].x);
+    out.write(r[i].val());
   }
   out.writeln();
 }

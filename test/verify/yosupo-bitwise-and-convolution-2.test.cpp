@@ -32,7 +32,7 @@ int main() {
   reverse(begin(c), end(c));
   for(int i = 0; i < (1 << N); i++) {
     if(i) out.write(' ');
-    out.write(c[i].x);
+    out.write(c[i].val());
   }
   out.writeln();
 }

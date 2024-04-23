@@ -2,6 +2,7 @@
 
 template< uint32_t mod_, bool fast = false >
 struct MontgomeryModInt {
+private:
   using mint = MontgomeryModInt;
   using i32 = int32_t;
   using i64 = int64_t;
@@ -24,6 +25,7 @@ struct MontgomeryModInt {
 
   u32 x;
 
+public:
   MontgomeryModInt(): x{} {}
 
   MontgomeryModInt(const i64 &a)

@@ -9,7 +9,7 @@
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "../../math/matrix/square-matrix.hpp"
 
-using mint = modint998244353;
+using mint = modint1000000007;
 
 int main() {
   int N;

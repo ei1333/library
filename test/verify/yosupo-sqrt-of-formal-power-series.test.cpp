@@ -15,7 +15,7 @@ int main() {
   cin >> N;
   FPS< mint > f(N);
   cin >> f;
-  auto get_sqrt = [&](mint x) { return mod_sqrt< int64 >(x.x, mint::mod()); };
+  auto get_sqrt = [&](mint x) { return mod_sqrt< int64 >(x.val(), mint::mod()); };
   f = f.sqrt(get_sqrt);
   if(f.empty()) cout << "-1\n";
   else cout << f << "\n";

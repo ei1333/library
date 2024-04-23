@@ -29,7 +29,7 @@ int main() {
   auto c = bitwise_and_convolution(a, b);
   for(int i = 0; i < (1 << N); i++) {
     if(i) out.write(' ');
-    out.write(c[i].x);
+    out.write(c[i].val());
   }
   out.writeln();
 }
