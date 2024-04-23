@@ -2,14 +2,13 @@
 
 #include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "../../math/fps/formal-power-series-friendly-ntt.hpp"
 
 #include "../../other/scanner.hpp"
 #include "../../other/printer.hpp"
 
-const int MOD = 998244353;
-using mint = ModInt< MOD >;
+using mint = modint998244353;
 
 int main() {
   Scanner in(stdin);
@@ -34,12 +33,12 @@ int main() {
   out.writeln(q.size(), r.size());
   for(int i = 0; i < q.size(); i++) {
     if(i > 0) out.write(' ');
-    out.write(q[i].x);
+    out.write(q[i].val());
   }
   out.writeln();
   for(int i = 0; i < r.size(); i++) {
     if(i > 0) out.write(' ');
-    out.write(r[i].x);
+    out.write(r[i].val());
   }
   out.writeln();
 }

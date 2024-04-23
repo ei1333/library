@@ -2,11 +2,10 @@
 
 #include "../../template/template.hpp"
 
-#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "../../math/fps/formal-power-series.hpp"
 
-const int MOD = (int) (1e9 + 7);
-using mint = ModInt< MOD >;
+using mint = modint1000000007;
 
 int main() {
   int64 N;

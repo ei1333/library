@@ -4,7 +4,7 @@
 template< typename Mint, typename F >
 vector< Mint > lagrange_polynomial(const vector< Mint > &y, int64_t T, const int &m, const F &multiply) {
   int k = (int) y.size() - 1;
-  T %= Mint::get_mod();
+  T %= Mint::mod();
   if(T <= k) {
     vector< Mint > ret(m);
     int ptr = 0;
@@ -19,8 +19,8 @@ vector< Mint > lagrange_polynomial(const vector< Mint > &y, int64_t T, const int
     }
     return ret;
   }
-  if(T + m > Mint::get_mod()) {
-    auto pref = lagrange_polynomial(y, T, Mint::get_mod() - T, multiply);
+  if(T + m > Mint::mod()) {
+    auto pref = lagrange_polynomial(y, T, Mint::mod() - T, multiply);
     auto suf = lagrange_polynomial(y, 0, m - pref.size(), multiply);
     copy(begin(suf), end(suf), back_inserter(pref));
     return pref;

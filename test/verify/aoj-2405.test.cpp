@@ -1,12 +1,12 @@
 // competitive-verifier: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2405
 
 #include "../../template/template.hpp"
-#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 
 #include "../../graph/others/tree-decomposition-width-2.hpp"
 
-const int MOD = 1000003;
-using Mint = ModInt< MOD >;
+constexpr int MOD = 1000003;
+using Mint = modint< MOD >;
 
 int main() {
   int N, M;

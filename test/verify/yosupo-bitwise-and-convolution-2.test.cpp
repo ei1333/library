@@ -3,13 +3,12 @@
 #include "../../template/template.hpp"
 
 #include "../../math/fft/bitwise-or-convolution.hpp"
-#include "../../math/combinatorics/mod-int.hpp"
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 
 #include "../../other/scanner.hpp"
 #include "../../other/printer.hpp"
 
-const int MOD = 998244353;
-using mint = ModInt< MOD >;
+using mint = modint998244353;
 
 int main() {
   Scanner in(stdin);
@@ -33,7 +32,7 @@ int main() {
   reverse(begin(c), end(c));
   for(int i = 0; i < (1 << N); i++) {
     if(i) out.write(' ');
-    out.write(c[i].x);
+    out.write(c[i].val());
   }
   out.writeln();
 }
