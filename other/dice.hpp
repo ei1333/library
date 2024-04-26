@@ -1,10 +1,8 @@
-struct Dice
-{
+struct Dice {
   // int x, y;
   int l, r, f, b, d, u;
 
-  void RollN()
-  {
+  void RollN() {
     //  --y;
     int buff = d;
     d = f;
@@ -13,8 +11,7 @@ struct Dice
     b = buff;
   }
 
-  void RollS()
-  {
+  void RollS() {
     // ++y;
     int buff = d;
     d = b;
@@ -23,7 +20,7 @@ struct Dice
     f = buff;
   }
 
-  void RollL() // ----->
+  void RollL()  // ----->
   {
     int buff = f;
     f = l;
@@ -32,7 +29,7 @@ struct Dice
     r = buff;
   }
 
-  void RollR() // <------
+  void RollR()  // <------
   {
     int buff = f;
     f = r;
@@ -41,7 +38,7 @@ struct Dice
     l = buff;
   }
 
-  void RollE() // .o -> o.
+  void RollE()  // .o -> o.
   {
     // --x;
     int buff = d;
@@ -51,8 +48,7 @@ struct Dice
     r = buff;
   }
 
-
-  void RollW() // o. -> .o
+  void RollW()  // o. -> .o
   {
     //  ++x;
     int buff = d;
@@ -62,18 +58,16 @@ struct Dice
     l = buff;
   }
 
-
-  vector< Dice > makeDice()
-  {
-    vector< Dice > ret;
-    for(int i = 0; i < 6; i++) {
+  vector<Dice> makeDice() {
+    vector<Dice> ret;
+    for (int i = 0; i < 6; i++) {
       Dice d(*this);
-      if(i == 1) d.RollN();
-      if(i == 2) d.RollS();
-      if(i == 3) d.RollS(), d.RollS();
-      if(i == 4) d.RollL();
-      if(i == 5) d.RollR();
-      for(int j = 0; j < 4; j++) {
+      if (i == 1) d.RollN();
+      if (i == 2) d.RollS();
+      if (i == 3) d.RollS(), d.RollS();
+      if (i == 4) d.RollL();
+      if (i == 5) d.RollR();
+      for (int j = 0; j < 4; j++) {
         ret.emplace_back(d);
         d.RollE();
       }

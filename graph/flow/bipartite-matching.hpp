@@ -1,13 +1,14 @@
 /**
  * @brief Bipartite-Matching(二部グラフの最大マッチング)
- * 
+ *
  */
 struct BipartiteMatching {
-  vector< vector< int > > graph;
-  vector< int > alive, used, match;
+  vector<vector<int> > graph;
+  vector<int> alive, used, match;
   int timestamp;
 
-  explicit BipartiteMatching(int n) : graph(n), alive(n, 1), used(n, 0), match(n, -1), timestamp(0) {}
+  explicit BipartiteMatching(int n)
+      : graph(n), alive(n, 1), used(n, 0), match(n, -1), timestamp(0) {}
 
   void add_edge(int u, int v) {
     graph[u].push_back(v);
@@ -16,10 +17,11 @@ struct BipartiteMatching {
 
   bool augment(int idx) {
     used[idx] = timestamp;
-    for(auto &to : graph[idx]) {
+    for (auto &to : graph[idx]) {
       int to_match = match[to];
-      if(alive[to] == 0) continue;
-      if(to_match == -1 || (used[to_match] != timestamp && augment(to_match))) {
+      if (alive[to] == 0) continue;
+      if (to_match == -1 ||
+          (used[to_match] != timestamp && augment(to_match))) {
         match[idx] = to;
         match[to] = idx;
         return true;
@@ -30,9 +32,9 @@ struct BipartiteMatching {
 
   int bipartite_matching() {
     int ret = 0;
-    for(int i = 0; i < (int) graph.size(); i++) {
-      if(alive[i] == 0) continue;
-      if(match[i] == -1) {
+    for (int i = 0; i < (int)graph.size(); i++) {
+      if (alive[i] == 0) continue;
+      if (match[i] == -1) {
         ++timestamp;
         ret += augment(i);
       }
@@ -48,7 +50,7 @@ struct BipartiteMatching {
 
   int erase_vertex(int idx) {
     alive[idx] = 0;
-    if(match[idx] == -1) {
+    if (match[idx] == -1) {
       return 0;
     }
     match[match[idx]] = -1;
@@ -59,8 +61,8 @@ struct BipartiteMatching {
   }
 
   void output() const {
-    for(int i = 0; i < (int) graph.size(); i++) {
-      if(i < match[i]) {
+    for (int i = 0; i < (int)graph.size(); i++) {
+      if (i < match[i]) {
         cout << i << "-" << match[i] << endl;
       }
     }

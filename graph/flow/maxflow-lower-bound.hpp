@@ -1,8 +1,8 @@
-template< typename flow_t, template< typename > class F >
+template <typename flow_t, template <typename> class F>
 struct MaxFlowLowerBound {
-  F< flow_t > flow;
-  vector< flow_t > in, up;
-  typename F< flow_t >::edge *latte, *malta;
+  F<flow_t> flow;
+  vector<flow_t> in, up;
+  typename F<flow_t>::edge *latte, *malta;
   int X, Y, V;
   flow_t sum;
 
@@ -17,11 +17,11 @@ struct MaxFlowLowerBound {
   }
 
   void build() {
-    for(int i = 0; i < V; i++) {
-      if(in[i] > 0) {
+    for (int i = 0; i < V; i++) {
+      if (in[i] > 0) {
         flow.add_edge(X, i, in[i]);
         sum += in[i];
-      } else if(in[i] < 0) {
+      } else if (in[i] < 0) {
         flow.add_edge(i, Y, -in[i]);
       }
     }
@@ -42,7 +42,7 @@ struct MaxFlowLowerBound {
   }
 
   flow_t max_flow(int s, int t) {
-    if(can_flow(s, t)) {
+    if (can_flow(s, t)) {
       return flow.max_flow(s, t);
     } else {
       return -1;
@@ -50,7 +50,7 @@ struct MaxFlowLowerBound {
   }
 
   flow_t min_flow(int s, int t) {
-    if(can_flow(s, t)) {
+    if (can_flow(s, t)) {
       auto ret = flow.INF - latte->cap;
       latte->cap = malta->cap = 0;
       return ret - flow.max_flow(t, s);
@@ -60,12 +60,12 @@ struct MaxFlowLowerBound {
   }
 
   void output(int M) {
-    vector< flow_t > ans(M);
-    for(int i = 0; i < flow.graph.size(); i++) {
-      for(auto &e : flow.graph[i]) {
-        if(!e.isrev && ~e.idx) ans[e.idx] = up[e.idx] - e.cap;
+    vector<flow_t> ans(M);
+    for (int i = 0; i < flow.graph.size(); i++) {
+      for (auto &e : flow.graph[i]) {
+        if (!e.isrev && ~e.idx) ans[e.idx] = up[e.idx] - e.cap;
       }
     }
-    for(auto &p : ans) cout << p << endl;
+    for (auto &p : ans) cout << p << endl;
   }
 };

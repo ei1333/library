@@ -1,0 +1,22 @@
+name: clang-format
+
+on:
+  pull_request:
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        ref: ${{ github.ref }}
+    - name: install tools
+      run: |
+        sudo wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add - 2>/dev/null
+        sudo add-apt-repository "deb http://apt.llvm.org/`lsb_release -sc`/ llvm-toolchain-`lsb_release -sc` main" 2>/dev/null
+        sudo apt-get update
+        sudo apt-get install `apt-cache search -n clang-format-[0-9]+ | sort -V -r | sed -n '1{s/^\([^ ]*\).*/\1/p}'`
+    - name: apply formatter
+      run: |
+        `apt-cache search -n clang-format-[0-9]+ | sort -V -r | sed -n '1{s/^\([^ ]*\).*/\1/p}'` -style=google --dry-run --Werror $(find . -name "*.hpp")

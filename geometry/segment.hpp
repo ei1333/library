@@ -2,11 +2,11 @@
 #include "line.hpp"
 
 namespace geometry {
-  struct Segment : Line {
-    Segment() = default;
+struct Segment : Line {
+  Segment() = default;
 
-    using Line::Line;
-  };
+  using Line::Line;
+};
 
-  using Segments = vector< Segment >;
-}
+using Segments = vector<Segment>;
+}  // namespace geometry

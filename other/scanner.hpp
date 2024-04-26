@@ -2,17 +2,16 @@
  * @brief Scanner(高速入力)
  */
 struct Scanner {
-public:
-
+ public:
   explicit Scanner(FILE *fp) : fp(fp) {}
 
-  template< typename T, typename... E >
-  void read(T &t, E &... e) {
+  template <typename T, typename... E>
+  void read(T &t, E &...e) {
     read_single(t);
     read(e...);
   }
 
-private:
+ private:
   static constexpr size_t line_size = 1 << 16;
   static constexpr size_t int_digits = 20;
   char line[line_size + 1] = {};
@@ -22,9 +21,7 @@ private:
 
   void read() {}
 
-  static inline bool is_space(char c) {
-    return c <= ' ';
-  }
+  static inline bool is_space(char c) { return c <= ' '; }
 
   void reread() {
     ptrdiff_t len = ed - st;
@@ -36,44 +33,44 @@ private:
   }
 
   void skip_space() {
-    while(true) {
-      if(st == ed) reread();
-      while(*st && is_space(*st)) ++st;
-      if(st != ed) return;
+    while (true) {
+      if (st == ed) reread();
+      while (*st && is_space(*st)) ++st;
+      if (st != ed) return;
     }
   }
 
-  template< typename T, enable_if_t< is_integral< T >::value, int > = 0 >
+  template <typename T, enable_if_t<is_integral<T>::value, int> = 0>
   void read_single(T &s) {
     skip_space();
-    if(st + int_digits >= ed) reread();
+    if (st + int_digits >= ed) reread();
     bool neg = false;
-    if(is_signed< T >::value && *st == '-') {
+    if (is_signed<T>::value && *st == '-') {
       neg = true;
       ++st;
     }
-    typename make_unsigned< T >::type y = *st++ - '0';
-    while(*st >= '0') {
+    typename make_unsigned<T>::type y = *st++ - '0';
+    while (*st >= '0') {
       y = 10 * y + *st++ - '0';
     }
     s = (neg ? -y : y);
   }
 
-  template< typename T, enable_if_t< is_same< T, string >::value, int > = 0 >
+  template <typename T, enable_if_t<is_same<T, string>::value, int> = 0>
   void read_single(T &s) {
     s = "";
     skip_space();
-    while(true) {
+    while (true) {
       char *base = st;
-      while(*st && !is_space(*st)) ++st;
+      while (*st && !is_space(*st)) ++st;
       s += string(base, st);
-      if(st != ed) return;
+      if (st != ed) return;
       reread();
     }
   }
 
-  template< typename T >
-  void read_single(vector< T > &s) {
-    for(auto &d : s) read(d);
+  template <typename T>
+  void read_single(vector<T> &s) {
+    for (auto &d : s) read(d);
   }
 };

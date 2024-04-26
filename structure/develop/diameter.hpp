@@ -7,7 +7,6 @@ using T = int64_t;
 
 // 遅延伝搬をするための作用素
 struct Lazy {
-
   // 単位元
   Lazy() {}
 
@@ -19,7 +18,7 @@ struct Lazy {
 };
 
 // Light-edge の情報
-template< typename Lazy >
+template <typename Lazy>
 struct LInfo {
   T dia, dep;
 
@@ -34,14 +33,14 @@ struct LInfo {
   // l, r は Splay-tree の子 (原理上、各ノード区別はない)
   void update(const LInfo &l, const LInfo &r) {
     dia_max = max({l.dia_max, r.dia_max, dia});
-    if(dep < l.dep_max) {
+    if (dep < l.dep_max) {
       dep_max2 = max(l.dep_max2, dep);
       dep_max = l.dep_max;
     } else {
       dep_max2 = l.dep_max;
       dep_max = dep;
     }
-    if(dep_max < r.dep_max) {
+    if (dep_max < r.dep_max) {
       dep_max2 = max(dep_max, r.dep_max2);
       dep_max = r.dep_max;
     } else {
@@ -54,7 +53,7 @@ struct LInfo {
 };
 
 // Heavy-edge の情報
-template< typename LInfo, typename Lazy >
+template <typename LInfo, typename Lazy>
 struct Info {
   T cost;
 
@@ -67,19 +66,16 @@ struct Info {
   Info(T v) : cost(v) {}
 
   // 反転
-  void toggle() {
-    swap(p_len, c_len);
-  }
+  void toggle() { swap(p_len, c_len); }
 
   // pが親, cがheavy-edgeで結ばれた子, lがそれ以外の子
   void update(const Info &p, const Info &c, const LInfo &l) {
     all = p.all + cost + c.all;
     p_len = max({p.p_len, p.all + cost + max(l.dep_max, c.p_len)});
     c_len = max({c.c_len, c.all + cost + max(l.dep_max, p.c_len)});
-    dia_max = max({p.dia_max, c.dia_max, l.dia_max,
-                   l.dep_max + cost + l.dep_max2,
-                   p.c_len + cost + max(l.dep_max, c.p_len),
-                   l.dep_max + cost + c.p_len});
+    dia_max = max(
+        {p.dia_max, c.dia_max, l.dia_max, l.dep_max + cost + l.dep_max2,
+         p.c_len + cost + max(l.dep_max, c.p_len), l.dep_max + cost + c.p_len});
   }
 
   // 親と light-edge で繋げる
@@ -93,4 +89,4 @@ struct Info {
   void propagate_light(const Lazy &p) {}
 };
 
-using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;
+using LCT = SuperLinkCutTree<Info, LInfo, Lazy>;

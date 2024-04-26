@@ -3,9 +3,10 @@
 #include <cassert>
 #include <queue>
 
-template < typename T, class Container = std::vector< T >, class Compare = std::less< typename Container::value_type > > 
+template <typename T, class Container = std::vector<T>,
+          class Compare = std::less<typename Container::value_type> >
 class erasable_heap {
-  std::priority_queue< T, Container, Compare > base, erased;
+  std::priority_queue<T, Container, Compare> base, erased;
 
   void normalize() {
     while (true) {
@@ -17,11 +18,11 @@ class erasable_heap {
     }
   }
 
-  public:
+ public:
   bool empty() const { return base.empty(); }
 
   const T &top() const {
-    assert( !empty() );
+    assert(!empty());
     return base.top();
   }
 
@@ -30,14 +31,14 @@ class erasable_heap {
     normalize();
   }
 
-  template < class... Args >
-    void emplace(Args... args) {
-      base.emplace(args...);
-      normalize();
-    }
+  template <class... Args>
+  void emplace(Args... args) {
+    base.emplace(args...);
+    normalize();
+  }
 
   void pop() {
-    assert( !empty() );
+    assert(!empty());
     base.pop();
     normalize();
   }

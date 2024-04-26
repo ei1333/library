@@ -1,34 +1,33 @@
 struct ArbitraryModInt {
-
   int x;
 
   ArbitraryModInt() : x(0) {}
 
-  ArbitraryModInt(int64_t y) : x(y >= 0 ? y % get_mod() : (get_mod() - (-y) % get_mod()) % get_mod()) {}
+  ArbitraryModInt(int64_t y)
+      : x(y >= 0 ? y % get_mod() : (get_mod() - (-y) % get_mod()) % get_mod()) {
+  }
 
   static int &get_mod() {
     static int mod = 0;
     return mod;
   }
 
-  static void set_mod(int md) {
-    get_mod() = md;
-  }
+  static void set_mod(int md) { get_mod() = md; }
 
   ArbitraryModInt &operator+=(const ArbitraryModInt &p) {
-    if((x += p.x) >= get_mod()) x -= get_mod();
+    if ((x += p.x) >= get_mod()) x -= get_mod();
     return *this;
   }
 
   ArbitraryModInt &operator-=(const ArbitraryModInt &p) {
-    if((x += get_mod() - p.x) >= get_mod()) x -= get_mod();
+    if ((x += get_mod() - p.x) >= get_mod()) x -= get_mod();
     return *this;
   }
 
   ArbitraryModInt &operator*=(const ArbitraryModInt &p) {
-    unsigned long long a = (unsigned long long) x * p.x;
-    unsigned xh = (unsigned) (a >> 32), xl = (unsigned) a, d, m;
-    asm("divl %4; \n\t" : "=a" (d), "=d" (m) : "d" (xh), "a" (xl), "r" (get_mod()));
+    unsigned long long a = (unsigned long long)x * p.x;
+    unsigned xh = (unsigned)(a >> 32), xl = (unsigned)a, d, m;
+    asm("divl %4; \n\t" : "=a"(d), "=d"(m) : "d"(xh), "a"(xl), "r"(get_mod()));
     x = m;
     return *this;
   }
@@ -40,13 +39,21 @@ struct ArbitraryModInt {
 
   ArbitraryModInt operator-() const { return ArbitraryModInt(-x); }
 
-  ArbitraryModInt operator+(const ArbitraryModInt &p) const { return ArbitraryModInt(*this) += p; }
+  ArbitraryModInt operator+(const ArbitraryModInt &p) const {
+    return ArbitraryModInt(*this) += p;
+  }
 
-  ArbitraryModInt operator-(const ArbitraryModInt &p) const { return ArbitraryModInt(*this) -= p; }
+  ArbitraryModInt operator-(const ArbitraryModInt &p) const {
+    return ArbitraryModInt(*this) -= p;
+  }
 
-  ArbitraryModInt operator*(const ArbitraryModInt &p) const { return ArbitraryModInt(*this) *= p; }
+  ArbitraryModInt operator*(const ArbitraryModInt &p) const {
+    return ArbitraryModInt(*this) *= p;
+  }
 
-  ArbitraryModInt operator/(const ArbitraryModInt &p) const { return ArbitraryModInt(*this) /= p; }
+  ArbitraryModInt operator/(const ArbitraryModInt &p) const {
+    return ArbitraryModInt(*this) /= p;
+  }
 
   bool operator==(const ArbitraryModInt &p) const { return x == p.x; }
 
@@ -54,7 +61,7 @@ struct ArbitraryModInt {
 
   ArbitraryModInt inverse() const {
     int a = x, b = get_mod(), u = 1, v = 0, t;
-    while(b > 0) {
+    while (b > 0) {
       t = a / b;
       swap(a -= t * b, b);
       swap(u -= t * v, v);
@@ -64,8 +71,8 @@ struct ArbitraryModInt {
 
   ArbitraryModInt pow(int64_t n) const {
     ArbitraryModInt ret(1), mul(x);
-    while(n > 0) {
-      if(n & 1) ret *= mul;
+    while (n > 0) {
+      if (n & 1) ret *= mul;
       mul *= mul;
       n >>= 1;
     }

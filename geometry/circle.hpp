@@ -2,14 +2,14 @@
 #include "point.hpp"
 
 namespace geometry {
-  struct Circle {
-    Point p;
-    Real r{};
+struct Circle {
+  Point p;
+  Real r{};
 
-    Circle() = default;
+  Circle() = default;
 
-    Circle(const Point &p, const Real &r) : p(p), r(r) {}
-  };
+  Circle(const Point &p, const Real &r) : p(p), r(r) {}
+};
 
-  using Circles = vector< Circle >;
-}
+using Circles = vector<Circle>;
+}  // namespace geometry

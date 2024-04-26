@@ -7,7 +7,6 @@ using T = int64_t;
 
 // 遅延伝搬をするための作用素
 struct Lazy {
-
   // 単位元
   Lazy() {}
 
@@ -19,7 +18,7 @@ struct Lazy {
 };
 
 // Light-edge の情報
-template< typename Lazy >
+template <typename Lazy>
 struct LInfo {
   T sum;
 
@@ -41,7 +40,7 @@ struct LInfo {
 };
 
 // Heavy-edge の情報
-template< typename LInfo, typename Lazy >
+template <typename LInfo, typename Lazy>
 struct Info {
   T sum;
 
@@ -72,4 +71,4 @@ struct Info {
   void propagate_light(const Lazy &p) {}
 };
 
-using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;
+using LCT = SuperLinkCutTree<Info, LInfo, Lazy>;

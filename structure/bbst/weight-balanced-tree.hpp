@@ -1,9 +1,9 @@
 /**
  * @brief Weight-Balanced-Tree(重み平衡木)
  */
-template< typename Monoid, typename F >
+template <typename Monoid, typename F>
 struct WeightBalancedTree {
-public:
+ public:
   struct Node {
     Node *l, *r;
     int cnt;
@@ -18,7 +18,7 @@ public:
     bool is_leaf() { return !l || !r; }
   };
 
-private:
+ private:
   Node *update(Node *t) {
     t->cnt = count(t->l) + count(t->r) + t->is_leaf();
     t->sum = f(f(sum(t->l), t->key), sum(t->r));
@@ -31,15 +31,15 @@ private:
   }
 
   Node *submerge(Node *l, Node *r) {
-    if(count(l) > count(r) * 4) {
+    if (count(l) > count(r) * 4) {
       l = clone(l);
       auto nl = clone(l->l);
       auto nr = submerge(l->r, r);
-      if(count(nl) * 4 >= count(nr)) {
+      if (count(nl) * 4 >= count(nr)) {
         l->r = nr;
         return update(l);
       }
-      if(count(nr->l) * 3 <= count(nr->r) * 5) {
+      if (count(nr->l) * 3 <= count(nr->r) * 5) {
         l->r = nr->l;
         nr->l = l;
         update(l);
@@ -54,15 +54,15 @@ private:
       t->r = nr;
       return update(t);
     }
-    if(count(l) * 4 < count(r)) {
+    if (count(l) * 4 < count(r)) {
       r = clone(r);
       auto nl = submerge(l, r->l);
       auto nr = clone(r->r);
-      if(count(nl) <= count(nr) * 4) {
+      if (count(nl) <= count(nr) * 4) {
         r->l = nl;
         return update(r);
       }
-      if(count(nl->l) * 5 >= count(nl->r) * 3) {
+      if (count(nl->l) * 5 >= count(nl->r) * 3) {
         r->l = nl->r;
         nl->r = r;
         update(r);
@@ -80,13 +80,13 @@ private:
     return alloc(l, r);
   }
 
-  Node *build(int l, int r, const vector< Monoid > &v) {
-    if(l + 1 >= r) return alloc(v[l]);
+  Node *build(int l, int r, const vector<Monoid> &v) {
+    if (l + 1 >= r) return alloc(v[l]);
     return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
   }
 
-  void dump(Node *r, typename vector< Monoid >::iterator &it) {
-    if(r->is_leaf()) {
+  void dump(Node *r, typename vector<Monoid>::iterator &it) {
+    if (r->is_leaf()) {
       *it++ = r->key;
       return;
     }
@@ -94,74 +94,68 @@ private:
     dump(r->r, it);
   }
 
-  virtual Node *clone(Node *t) {
-    return t;
-  }
+  virtual Node *clone(Node *t) { return t; }
 
-  Node *merge(Node *l) {
-    return l;
-  }
+  Node *merge(Node *l) { return l; }
 
   Monoid query(Node *t, int a, int b, int l, int r) {
-    if(r <= a || b <= l) return M1;
-    if(a <= l && r <= b) return t->sum;
-    return f(query(t->l, a, b, l, l + count(t->l)), query(t->r, a, b, r - count(t->r), r));
+    if (r <= a || b <= l) return M1;
+    if (a <= l && r <= b) return t->sum;
+    return f(query(t->l, a, b, l, l + count(t->l)),
+             query(t->r, a, b, r - count(t->r), r));
   }
 
-public:
-  VectorPool< Node > pool;
+ public:
+  VectorPool<Node> pool;
   const F f;
   const Monoid M1;
 
-  WeightBalancedTree(int sz, const F &f, const Monoid &M1) : pool(sz), M1(M1), f(f) {
+  WeightBalancedTree(int sz, const F &f, const Monoid &M1)
+      : pool(sz), M1(M1), f(f) {
     pool.clear();
   }
 
-  inline Node *alloc(const Monoid &key) {
-    return &(*pool.alloc() = Node(key));
-  }
+  inline Node *alloc(const Monoid &key) { return &(*pool.alloc() = Node(key)); }
 
   static inline int count(const Node *t) { return t ? t->cnt : 0; }
 
   inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
 
-  pair< Node *, Node * > split(Node *t, int k) {
-    if(!t) return {nullptr, nullptr};
-    if(k == 0) return {nullptr, t};
-    if(k >= count(t)) return {t, nullptr};
+  pair<Node *, Node *> split(Node *t, int k) {
+    if (!t) return {nullptr, nullptr};
+    if (k == 0) return {nullptr, t};
+    if (k >= count(t)) return {t, nullptr};
     t = clone(t);
     Node *l = t->l, *r = t->r;
     pool.free(t);
-    if(k < count(l)) {
+    if (k < count(l)) {
       auto pp = split(l, k);
       return {pp.first, merge(pp.second, r)};
     }
-    if(k > count(l)) {
+    if (k > count(l)) {
       auto pp = split(r, k - count(l));
       return {merge(l, pp.first), pp.second};
     }
     return {l, r};
   }
 
-  tuple< Node *, Node *, Node * > split3(Node *t, int a, int b) {
+  tuple<Node *, Node *, Node *> split3(Node *t, int a, int b) {
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     return make_tuple(x.first, y.first, y.second);
   }
 
-  template< typename ... Args >
-  Node *merge(Node *l, Args ...rest) {
+  template <typename... Args>
+  Node *merge(Node *l, Args... rest) {
     Node *r = merge(rest...);
-    if(!l || !r) return l ? l : r;
+    if (!l || !r) return l ? l : r;
     return submerge(l, r);
   }
 
-  Node *build(const vector< Monoid > &v) {
-    return build(0, (int) v.size(), v);
-  }
+  Node *build(const vector<Monoid> &v) { return build(0, (int)v.size(), v); }
 
-  vector< Monoid > dump(Node *r) {
-    vector< Monoid > v((size_t) count(r));
+  vector<Monoid> dump(Node *r) {
+    vector<Monoid> v((size_t)count(r));
     auto it = begin(v);
     dump(r, it);
     return v;
@@ -170,7 +164,7 @@ public:
   string to_string(Node *r) {
     auto s = dump(r);
     string ret;
-    for(int i = 0; i < s.size(); i++) {
+    for (int i = 0; i < s.size(); i++) {
       ret += std::to_string(s[i]);
       ret += ", ";
     }
@@ -191,28 +185,24 @@ public:
     return v;
   }
 
-  Monoid query(Node *t, int a, int b) {
-    return query(t, a, b, 0, count(t));
-  }
+  Monoid query(Node *t, int a, int b) { return query(t, a, b, 0, count(t)); }
 
   void set_element(Node *&t, int k, const Monoid &x) {
     t = clone(t);
-    if(t->is_leaf()) {
+    if (t->is_leaf()) {
       t->key = t->sum = x;
       return;
     }
-    if(k < count(t->l)) set_element(t->l, k, x);
-    else set_element(t->r, k - count(t->l), x);
+    if (k < count(t->l))
+      set_element(t->l, k, x);
+    else
+      set_element(t->r, k - count(t->l), x);
     t = update(t);
   }
 
-  void push_front(Node *&t, const Monoid &v) {
-    t = merge(alloc(v), t);
-  }
+  void push_front(Node *&t, const Monoid &v) { t = merge(alloc(v), t); }
 
-  void push_back(Node *&t, const Monoid &v) {
-    t = merge(t, alloc(v));
-  }
+  void push_back(Node *&t, const Monoid &v) { t = merge(t, alloc(v)); }
 
   Monoid pop_front(Node *&t) {
     auto ret = split(t, 1);

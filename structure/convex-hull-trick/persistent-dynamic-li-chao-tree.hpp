@@ -1,6 +1,5 @@
-template< typename T, T x_low, T x_high, T id >
+template <typename T, T x_low, T x_high, T id>
 struct PersistentDynamicLiChaoTree {
-
   struct Line {
     T a, b;
 
@@ -20,12 +19,13 @@ struct PersistentDynamicLiChaoTree {
 
   PersistentDynamicLiChaoTree() : root{nullptr} {}
 
-  Node *update(Node *t, Line &x, const T &l, const T &r, const T &x_l, const T &x_r) {
-    if(!t) return new Node(x);
+  Node *update(Node *t, Line &x, const T &l, const T &r, const T &x_l,
+               const T &x_r) {
+    if (!t) return new Node(x);
     auto t_l = t->x.get(l), t_r = t->x.get(r);
-    if(t_l <= x_l && t_r <= x_r) {
+    if (t_l <= x_l && t_r <= x_r) {
       return t;
-    } else if(t_l >= x_l && t_r >= x_r) {
+    } else if (t_l >= x_l && t_r >= x_r) {
       t = new Node(*t);
       t->x = x;
       return t;
@@ -33,13 +33,17 @@ struct PersistentDynamicLiChaoTree {
       T m = (l + r) / 2;
       auto t_m = t->x.get(m), x_m = x.get(m);
       t = new Node(*t);
-      if(t_m > x_m) {
+      if (t_m > x_m) {
         swap(t->x, x);
-        if(x_l >= t_l) t->l = update(t->l, x, l, m, t_l, t_m);
-        else t->r = update(t->r, x, m + 1, r, t_m + x.a, t_r);
+        if (x_l >= t_l)
+          t->l = update(t->l, x, l, m, t_l, t_m);
+        else
+          t->r = update(t->r, x, m + 1, r, t_m + x.a, t_r);
       } else {
-        if(t_l >= x_l) t->l = update(t->l, x, l, m, x_l, x_m);
-        else t->r = update(t->r, x, m + 1, r, x_m + x.a, x_r);
+        if (t_l >= x_l)
+          t->l = update(t->l, x, l, m, x_l, x_m);
+        else
+          t->r = update(t->r, x, m + 1, r, x_m + x.a, x_r);
       }
       return t;
     }
@@ -51,14 +55,14 @@ struct PersistentDynamicLiChaoTree {
   }
 
   T query(const Node *t, const T &l, const T &r, const T &x) const {
-    if(!t) return id;
-    if(l == r) return t->x.get(x);
+    if (!t) return id;
+    if (l == r) return t->x.get(x);
     T m = (l + r) / 2;
-    if(x <= m) return min(t->x.get(x), query(t->l, l, m, x));
-    else return min(t->x.get(x), query(t->r, m + 1, r, x));
+    if (x <= m)
+      return min(t->x.get(x), query(t->l, l, m, x));
+    else
+      return min(t->x.get(x), query(t->r, m + 1, r, x));
   }
 
-  T query(const T &x) const {
-    return query(root, x_low, x_high, x);
-  }
+  T query(const T &x) const { return query(root, x_low, x_high, x); }
 };
