@@ -1,5 +1,5 @@
-#include "super-link-cut-tree.hpp"
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
+#include "super-link-cut-tree.hpp"
 
 /**
  * @brief Vertex Set Path Composite
@@ -8,7 +8,6 @@ using T = modint998244353;
 
 // 遅延伝搬をするための作用素
 struct Lazy {
-
   // 単位元
   Lazy() {}
 
@@ -20,9 +19,8 @@ struct Lazy {
 };
 
 // Light-edge の情報
-template< typename Lazy >
+template <typename Lazy>
 struct LInfo {
-
   // 単位元(キーの値はアクセスしないので未初期化でもよい
   LInfo() {}
 
@@ -37,13 +35,12 @@ struct LInfo {
 };
 
 // Heavy-edge の情報
-template< typename LInfo, typename Lazy >
+template <typename LInfo, typename Lazy>
 struct Info {
-  T a, b; // ax+b
+  T a, b;  // ax+b
 
   T a_sum_p, b_sum_p;
   T a_sum_c, b_sum_c;
-
 
   // 単位元(キーの値はアクセスしないので未初期化でもよい
   Info() : a_sum_p{1}, b_sum_p{0}, a_sum_c{1}, b_sum_c{0} {}
@@ -77,4 +74,4 @@ struct Info {
   void propagate_light(const Lazy &p) {}
 };
 
-using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;
+using LCT = SuperLinkCutTree<Info, LInfo, Lazy>;

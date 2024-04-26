@@ -1,7 +1,7 @@
 /**
  * @brief Link-Cut-Tree
  */
-template< typename STp >
+template <typename STp>
 struct LinkCutTree : STp {
   using ST = STp;
   using ST::ST;
@@ -9,7 +9,7 @@ struct LinkCutTree : STp {
 
   Node *expose(Node *t) {
     Node *rp = nullptr;
-    for(Node *cur = t; cur; cur = cur->p) {
+    for (Node *cur = t; cur; cur = cur->p) {
       this->splay(cur);
       cur->r = rp;
       this->update(cur);
@@ -42,20 +42,20 @@ struct LinkCutTree : STp {
   }
 
   Node *lca(Node *u, Node *v) {
-    if(get_root(u) != get_root(v)) return nullptr;
+    if (get_root(u) != get_root(v)) return nullptr;
     expose(u);
     return expose(v);
   }
 
   Node *get_kth(Node *x, int k) {
     expose(x);
-    while(x) {
+    while (x) {
       this->push(x);
-      if(x->r && x->r->sz > k) {
+      if (x->r && x->r->sz > k) {
         x = x->r;
       } else {
-        if(x->r) k -= x->r->sz;
-        if(k == 0) return x;
+        if (x->r) k -= x->r->sz;
+        if (k == 0) return x;
         k -= 1;
         x = x->l;
       }
@@ -65,7 +65,7 @@ struct LinkCutTree : STp {
 
   Node *get_root(Node *x) {
     expose(x);
-    while(x->l) {
+    while (x->l) {
       this->push(x);
       x = x->l;
     }

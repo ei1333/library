@@ -4,16 +4,17 @@
 
 /**
  * @brief Two Satisfiability(2-SAT)
- * 
+ *
  */
-struct TwoSatisfiability : StronglyConnectedComponents< bool > {
-public:
-  using StronglyConnectedComponents< bool >::g;
-  using StronglyConnectedComponents< bool >::comp;
-  using StronglyConnectedComponents< bool >::add_edge;
+struct TwoSatisfiability : StronglyConnectedComponents<bool> {
+ public:
+  using StronglyConnectedComponents<bool>::g;
+  using StronglyConnectedComponents<bool>::comp;
+  using StronglyConnectedComponents<bool>::add_edge;
   size_t sz;
 
-  explicit TwoSatisfiability(size_t v) : StronglyConnectedComponents< bool >(v + v), sz(v) {}
+  explicit TwoSatisfiability(size_t v)
+      : StronglyConnectedComponents<bool>(v + v), sz(v) {}
 
   void add_if(int u, int v) {
     // u -> v <=> !v -> !u
@@ -42,15 +43,15 @@ public:
   }
 
   inline int rev(int x) {
-    if(x >= (int)sz) return x - sz;
+    if (x >= (int)sz) return x - sz;
     return x + sz;
   }
 
-  vector< int > solve() {
-    StronglyConnectedComponents< bool >::build();
-    vector< int > ret(sz);
-    for(size_t i = 0; i < sz; i++) {
-      if(comp[i] == comp[rev(i)]) return {};
+  vector<int> solve() {
+    StronglyConnectedComponents<bool>::build();
+    vector<int> ret(sz);
+    for (size_t i = 0; i < sz; i++) {
+      if (comp[i] == comp[rev(i)]) return {};
       ret[i] = comp[i] > comp[rev(i)];
     }
     return ret;

@@ -1,7 +1,7 @@
-template< class T >
+template <class T>
 struct VectorPool {
-  vector< T > pool;
-  vector< T * > stock;
+  vector<T> pool;
+  vector<T *> stock;
   int ptr;
 
   VectorPool() = default;
@@ -13,7 +13,7 @@ struct VectorPool {
   inline void free(T *t) { stock[ptr++] = t; }
 
   void clear() {
-    ptr = (int) pool.size();
-    for(int i = 0; i < pool.size(); i++) stock[i] = &pool[i];
+    ptr = (int)pool.size();
+    for (int i = 0; i < pool.size(); i++) stock[i] = &pool[i];
   }
 };

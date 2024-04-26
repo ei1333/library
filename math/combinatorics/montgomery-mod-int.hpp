@@ -1,8 +1,8 @@
 #pragma once
 
-template< uint32_t mod_, bool fast = false >
+template <uint32_t mod_, bool fast = false>
 struct MontgomeryModInt {
-private:
+ private:
   using mint = MontgomeryModInt;
   using i32 = int32_t;
   using i64 = int64_t;
@@ -25,8 +25,8 @@ private:
 
   u32 x;
 
-public:
-  MontgomeryModInt(): x{} {}
+ public:
+  MontgomeryModInt() : x{} {}
 
   MontgomeryModInt(const i64 &a)
       : x(reduce(u64(fast ? a : (a % mod() + mod())) * n2)) {}
@@ -88,9 +88,7 @@ public:
     return ret;
   }
 
-  mint inv() const {
-    return pow(mod() - 2);
-  }
+  mint inv() const { return pow(mod() - 2); }
 
   friend ostream &operator<<(ostream &os, const mint &p) {
     return os << p.val();
@@ -106,7 +104,7 @@ public:
   static constexpr u32 mod() { return mod_; }
 };
 
-template< uint32_t mod >
-using modint = MontgomeryModInt< mod >;
-using modint998244353 = modint< 998244353 >;
-using modint1000000007 = modint< 1000000007 >;
+template <uint32_t mod>
+using modint = MontgomeryModInt<mod>;
+using modint998244353 = modint<998244353>;
+using modint1000000007 = modint<1000000007>;

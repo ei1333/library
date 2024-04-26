@@ -5,12 +5,12 @@
  * @see https://dmoj.ca/problem/ds5
  */
 using T = int;
-const T inf_max = numeric_limits< T >::max();
-const T inf_min = numeric_limits< T >::min();
+const T inf_max = numeric_limits<T>::max();
+const T inf_min = numeric_limits<T>::min();
 
 // 遅延伝搬をする作用素
 struct Lazy {
-  int type; // 0: none, 1: change, 2:inc
+  int type;  // 0: none, 1: change, 2:inc
   T v;
 
   // 単位元
@@ -20,10 +20,10 @@ struct Lazy {
   constexpr Lazy(int type, T v) : type(type), v(v) {}
 
   inline constexpr void propagate(const Lazy &p) {
-    if(p.type == 0) {
+    if (p.type == 0) {
       return;
     }
-    if(type == 0 or p.type == 1) {
+    if (type == 0 or p.type == 1) {
       type = p.type;
       v = p.v;
     } else {
@@ -33,7 +33,7 @@ struct Lazy {
 };
 
 // Light-edge の情報
-template< typename Lazy >
+template <typename Lazy>
 struct LInfo {
   T min, max, sum, sz;
 
@@ -55,16 +55,16 @@ struct LInfo {
 
   // light-edgeに対する遅延伝搬
   void propagate(const Lazy &p) {
-    if(p.type == 0) {
+    if (p.type == 0) {
       return;
-    } else if(p.type == 1) { // change
+    } else if (p.type == 1) {  // change
       min = p.v;
       max = p.v;
       sum = p.v * sz;
       all_min = p.v;
       all_max = p.v;
       all_sum = p.v * all_sz;
-    } else { // inc
+    } else {  // inc
       min += p.v;
       max += p.v;
       sum += p.v * sz;
@@ -76,7 +76,7 @@ struct LInfo {
 };
 
 // Heavy-edge の情報
-template< typename LInfo, typename Lazy >
+template <typename LInfo, typename Lazy>
 struct Info {
   T v;
 
@@ -84,8 +84,15 @@ struct Info {
   T light_min, light_max, light_sum, light_sz;
 
   // 単位元(キーの値はアクセスしないので未初期化でもよい
-  Info() : light_min(inf_max), light_max(inf_min), light_sum(0), light_sz(0),
-           path_min(inf_max), path_max(inf_min), path_sum(0), path_sz(0) {}
+  Info()
+      : light_min(inf_max),
+        light_max(inf_min),
+        light_sum(0),
+        light_sz(0),
+        path_min(inf_max),
+        path_max(inf_min),
+        path_sum(0),
+        path_sz(0) {}
 
   // 初期化
   Info(T v) : v(v) {}
@@ -108,19 +115,20 @@ struct Info {
 
   // 親と light-edge で繋げる
   LInfo link() const {
-    return LInfo(min(light_min, path_min), max(light_max, path_max), path_sum + light_sum, light_sz + path_sz);
+    return LInfo(min(light_min, path_min), max(light_max, path_max),
+                 path_sum + light_sum, light_sz + path_sz);
   }
 
   // 遅延伝搬
   void propagate(const Lazy &p) {
-    if(p.type == 0) {
+    if (p.type == 0) {
       return;
-    } else if(p.type == 1) { // change
+    } else if (p.type == 1) {  // change
       v = p.v;
       path_min = p.v;
       path_max = p.v;
       path_sum = p.v * path_sz;
-    } else { // inc
+    } else {  // inc
       v += p.v;
       path_min += p.v;
       path_max += p.v;
@@ -131,13 +139,13 @@ struct Info {
   // light-edgeに対する遅延伝搬
   // pathとsubtreeの遅延伝搬が両方ある場合に実装する
   void propagate_light(const Lazy &p) {
-    if(p.type == 0 or light_min == inf_max) {
+    if (p.type == 0 or light_min == inf_max) {
       return;
-    } else if(p.type == 1) { // change
+    } else if (p.type == 1) {  // change
       light_min = p.v;
       light_max = p.v;
       light_sum = p.v * light_sz;
-    } else { // inc
+    } else {  // inc
       light_min += p.v;
       light_max += p.v;
       light_sum += p.v * light_sz;
@@ -145,4 +153,4 @@ struct Info {
   }
 };
 
-using LCT = SuperLinkCutTree< Info, LInfo, Lazy >;
+using LCT = SuperLinkCutTree<Info, LInfo, Lazy>;

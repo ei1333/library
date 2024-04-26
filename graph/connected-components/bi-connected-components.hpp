@@ -1,47 +1,47 @@
 #include "../graph-template.hpp"
 #include "../others/low-link.hpp"
 
-template< typename T = int >
-struct BiConnectedComponents : LowLink< T > {
-public:
-  using LowLink< T >::LowLink;
-  using LowLink< T >::g;
-  using LowLink< T >::ord;
-  using LowLink< T >::low;
+template <typename T = int>
+struct BiConnectedComponents : LowLink<T> {
+ public:
+  using LowLink<T>::LowLink;
+  using LowLink<T>::g;
+  using LowLink<T>::ord;
+  using LowLink<T>::low;
 
-  vector< vector< Edge< T > > > bc;
+  vector<vector<Edge<T> > > bc;
 
   void build() override {
-    LowLink< T >::build();
+    LowLink<T>::build();
     used.assign(g.size(), 0);
-    for(int i = 0; i < (int)used.size(); i++) {
-      if(!used[i]) dfs(i, -1);
+    for (int i = 0; i < (int)used.size(); i++) {
+      if (!used[i]) dfs(i, -1);
     }
   }
 
-  explicit BiConnectedComponents(const Graph< T > &g) : Graph< T >(g) {}
+  explicit BiConnectedComponents(const Graph<T> &g) : Graph<T>(g) {}
 
-private:
-  vector< int > used;
-  vector< Edge< T > > tmp;
+ private:
+  vector<int> used;
+  vector<Edge<T> > tmp;
 
   void dfs(int idx, int par) {
     used[idx] = true;
     bool beet = false;
-    for(auto &to : g[idx]) {
-      if(to == par && !exchange(beet, true)) continue;
-      if(!used[to] || ord[to] < ord[idx]) {
+    for (auto &to : g[idx]) {
+      if (to == par && !exchange(beet, true)) continue;
+      if (!used[to] || ord[to] < ord[idx]) {
         tmp.emplace_back(to);
       }
-      if(!used[to]) {
+      if (!used[to]) {
         dfs(to, idx);
-        if(low[to] >= ord[idx]) {
+        if (low[to] >= ord[idx]) {
           bc.emplace_back();
-          for(;;) {
+          for (;;) {
             auto e = tmp.back();
             bc.back().emplace_back(e);
             tmp.pop_back();
-            if(e.idx == to.idx) break;
+            if (e.idx == to.idx) break;
           }
         }
       }

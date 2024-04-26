@@ -1,40 +1,37 @@
 /**
  * @brief Rational (有理数型)
  */
-template< typename T >
+template <typename T>
 struct Rational {
-private:
+ private:
   T num, den;
 
   static T gcd(T a, T b) {
-    if(a < 0) a = -a;
-    if(b < 0) b = -b;
+    if (a < 0) a = -a;
+    if (b < 0) b = -b;
     return std::__gcd(a, b);
   }
 
   void normalize() {
-    if(num == 0) {
+    if (num == 0) {
       den = 1;
     } else {
       T g = gcd(num, den);
       num /= g;
       den /= g;
-      if(den < 0) {
+      if (den < 0) {
         num = -num;
         den = -den;
       }
     }
   }
 
-public:
-
+ public:
   Rational() : num(0), den(1) {}
 
   explicit Rational(const T &n) : num(n), den(1) {}
 
-  explicit Rational(const T &n, const T &d) : num(n), den(d) {
-    normalize();
-  }
+  explicit Rational(const T &n, const T &d) : num(n), den(d) { normalize(); }
 
   Rational &operator=(const T &n) { return assign(n, 1); }
 
@@ -86,7 +83,7 @@ public:
     T g2 = gcd(den, r_den);
     num = (num / g1) * (r_den / g2);
     den = (den / g2) * (r_num / g1);
-    if(den < 0) {
+    if (den < 0) {
       num = -num;
       den = -den;
     }
@@ -129,31 +126,30 @@ public:
     return *this;
   }
 
-#define define_cmp(op) \
-  bool operator op (const Rational& r) const { return num * r.den op r.num * den; }
+#define define_cmp(op)                        \
+  bool operator op(const Rational &r) const { \
+    return num * r.den op r.num * den;        \
+  }
 
   define_cmp(==)
 
-  define_cmp(!=)
+      define_cmp(!=)
 
-  define_cmp(<)
+          define_cmp(<)
 
-  define_cmp(>)
+              define_cmp(>)
 
-  define_cmp(<=)
+                  define_cmp(<=)
 
-  define_cmp(>=)
-
+                      define_cmp(>=)
 #undef define_cmp
 
-  template< typename Real = double >
-  Real to_double() const {
-    return static_cast < Real >(numerator()) / denominator();
+                          template <typename Real = double>
+                          Real to_double() const {
+    return static_cast<Real>(numerator()) / denominator();
   }
 
-  Rational abs() const {
-    return Rational{num < 0 ? -num : num, den};
-  }
+  Rational abs() const { return Rational{num < 0 ? -num : num, den}; }
 
   friend ostream &operator<<(ostream &os, const Rational &r) {
     return os << r.numerator() << "/" << r.denominator();
