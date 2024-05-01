@@ -1,9 +1,6 @@
-template< typename G >
+template <typename G>
 struct StaticTopTree {
-
-  enum OpType {
-    Vertex, AddVertex, AddEdge, Rake, Compress
-  };
+  enum OpType { Vertex, AddVertex, AddEdge, Rake, Compress };
 
   struct Node {
     OpType op;
@@ -12,18 +9,18 @@ struct StaticTopTree {
 
     int e_id;
 
-    Node(OpType op, int l, int r): op{op}, l{l}, r{r}, p{-1}, e_id{-1} {}
+    Node(OpType op, int l, int r) : op{op}, l{l}, r{r}, p{-1}, e_id{-1} {}
   };
 
-  vector< Node > vs;
+  vector<Node> vs;
 
-  vector< int > edge_to_vs;
+  vector<int> edge_to_vs;
 
   int root;
 
-  explicit StaticTopTree(G &g, int r = 0): g(g), edge_to_vs(g.size() - 1) {
+  explicit StaticTopTree(G &g, int r = 0) : g(g), edge_to_vs(g.size() - 1) {
     int e_sz = 0;
-    for(int i = 0; i < g.size(); i++) e_sz += g[i].size();
+    for (int i = 0; i < g.size(); i++) e_sz += g[i].size();
     if (e_sz + 1 != g.size()) {
       throw std::runtime_error("`g` must be a directed tree.");
     }
@@ -39,14 +36,14 @@ struct StaticTopTree {
 
   size_t size() const { return vs.size(); }
 
-private:
+ private:
   G &g;
 
-  using P = pair< int, int >;
+  using P = pair<int, int>;
 
   int dfs(int u) {
     int size = 1, heavy = 0;
-    for (auto &v: g[u]) {
+    for (auto &v : g[u]) {
       int subtree_size = dfs(v);
       size += subtree_size;
       if (heavy < subtree_size) {
@@ -59,7 +56,7 @@ private:
 
   int make_node(OpType t, int l, int r, int k = -1) {
     if (k == -1) {
-      k = (int) vs.size();
+      k = (int)vs.size();
       vs.emplace_back(t, l, r);
     } else {
       vs[k] = {t, l, r};
@@ -69,14 +66,14 @@ private:
     return k;
   }
 
-  P merge_forRake(const vector< P > &a) {
+  P merge_forRake(const vector<P> &a) {
     if (a.size() == 1) return a[0];
     int size_sum = 0;
-    for (auto &[_, size]: a) {
+    for (auto &[_, size] : a) {
       size_sum += size;
     }
-    vector< P > b, c;
-    for (auto &[it, size]: a) {
+    vector<P> b, c;
+    for (auto &[it, size] : a) {
       (size_sum > size ? b : c).emplace_back(it, size);
       size_sum -= size * 2;
     }
@@ -85,14 +82,14 @@ private:
     return {make_node(Rake, l, r), l_size + r_size};
   }
 
-  P merge_forCompress(const vector< pair< P, int>> &a) {
+  P merge_forCompress(const vector<pair<P, int>> &a) {
     if (a.size() == 1) return a[0].first;
     int size_sum = 0;
-    for (auto &[it, _]: a) {
+    for (auto &[it, _] : a) {
       size_sum += it.second;
     }
-    vector< pair< P, int>> b, c;
-    for (auto &[it, _]: a) {
+    vector<pair<P, int>> b, c;
+    for (auto &[it, _] : a) {
       (size_sum > it.second ? b : c).emplace_back(it, _);
       size_sum -= it.second * 2;
     }
@@ -113,8 +110,8 @@ private:
   }
 
   P rake(int u) {
-    vector< P > chs;
-    for (int j = 1; j < (int) g[u].size(); j++) {
+    vector<P> chs;
+    for (int j = 1; j < (int)g[u].size(); j++) {
       chs.emplace_back(add_edge(g[u][j].to, g[u][j].idx));
     }
     return merge_forRake(chs);
@@ -130,8 +127,8 @@ private:
   }
 
   P compress(int u) {
-    vector< pair< P, int>> chs{{add_vertex(u), -1}};
-    vector< int > ids{-1};
+    vector<pair<P, int>> chs{{add_vertex(u), -1}};
+    vector<int> ids{-1};
     while (not g[u].empty()) {
       int e_idx = g[u][0].idx;
       u = g[u][0];
