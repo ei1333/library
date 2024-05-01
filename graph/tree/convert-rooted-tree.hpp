@@ -20,7 +20,7 @@ Graph<T> convert_rooted_tree(const Graph<T> &g, int r = 0) {
       if (v[to] == 0) {
         v[to] = 1;
         que.emplace(to);
-        rg.add_directed_edge(p, to, to.cost);
+        rg.g[p].emplace_back(to);
       }
     }
   }
