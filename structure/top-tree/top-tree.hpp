@@ -6,11 +6,7 @@ struct SplayTreeForDashedEdge {
     Point key, sum;
 
     explicit Node(const Point &key)
-        : key(key),
-          sum(key),
-          l(nullptr),
-          r(nullptr),
-          p(nullptr) {}
+        : key(key), sum(key), l(nullptr), r(nullptr), p(nullptr) {}
   };
 
   SplayTreeForDashedEdge() = default;
@@ -41,8 +37,8 @@ struct SplayTreeForDashedEdge {
 
   void update(NP t) const {
     t->sum = t->key;
-    if(t->l) t->sum = TreeDPInfo::rake(t->sum, t->l->sum);
-    if(t->r) t->sum = TreeDPInfo::rake(t->sum, t->r->sum);
+    if (t->l) t->sum = TreeDPInfo::rake(t->sum, t->l->sum);
+    if (t->r) t->sum = TreeDPInfo::rake(t->sum, t->r->sum);
   }
 
   NP get_right(NP t) const {
@@ -123,7 +119,7 @@ struct TopTree {
   using Path = typename TreeDPInfo::Path;
   using Info = typename TreeDPInfo::Info;
 
-private:
+ private:
   struct Node {
     Node *l, *r, *p;
     Info info;
@@ -143,11 +139,11 @@ private:
           belong(nullptr) {}
   };
 
-public:
+ public:
   using NP = Node *;
   const SplayTreeForDashedEdge<TreeDPInfo> splay_tree;
 
-private:
+ private:
   void toggle(NP t) {
     swap(t->l, t->r);
     swap(t->sum, t->mus);
@@ -178,7 +174,7 @@ private:
     }
   }
 
-public:
+ public:
   TopTree() : splay_tree{} {}
 
   void push(NP t) {
@@ -198,14 +194,15 @@ public:
   }
 
   void update(NP t) {
-    Path key = t->light ? TreeDPInfo::add_vertex(t->light->sum, t->info) : TreeDPInfo::vertex(t->info);
+    Path key = t->light ? TreeDPInfo::add_vertex(t->light->sum, t->info)
+                        : TreeDPInfo::vertex(t->info);
     t->sum = key;
     t->mus = key;
-    if(t->l) {
+    if (t->l) {
       t->sum = TreeDPInfo::compress(t->l->sum, t->sum);
       t->mus = TreeDPInfo::compress(t->mus, t->l->mus);
     }
-    if(t->r) {
+    if (t->r) {
       t->sum = TreeDPInfo::compress(t->sum, t->r->sum);
       t->mus = TreeDPInfo::compress(t->r->mus, t->mus);
     }
@@ -250,7 +247,8 @@ public:
     for (NP cur = t; cur; cur = cur->p) {
       splay(cur);
       if (cur->r) {
-        cur->light = splay_tree.insert(cur->light, TreeDPInfo::add_edge(cur->r->sum));
+        cur->light =
+            splay_tree.insert(cur->light, TreeDPInfo::add_edge(cur->r->sum));
         cur->r->belong = cur->light;
       }
       cur->r = rp;
@@ -287,7 +285,7 @@ public:
     push(t);
   }
 
-  NP alloc(const Info& v) {
+  NP alloc(const Info &v) {
     NP t = new Node(v);
     update(t);
     return t;
@@ -347,31 +345,32 @@ public:
 };
 
 template <typename TreeDPInfo>
-struct TopTreeBuilder : TopTree< TreeDPInfo > {
-private:
-  using TT = TopTree< TreeDPInfo >;
+struct TopTreeBuilderForEdge : TopTree<TreeDPInfo> {
+ private:
+  using TT = TopTree<TreeDPInfo>;
   using Info = typename TreeDPInfo::Info;
+
+  int n, e_sz;
+  vector<vector<pair<int, int> > > g;
+
+ public:
   using TT::alloc;
   using TT::link;
 
-  int n, e_sz;
-  vector< vector< pair< int, int > > > g;
+  vector<typename TT::NP> vs, es;
 
-public:
-  vector< typename TT::NP > vs, es;
+  explicit TopTreeBuilderForEdge(int n) : n(n), g(n), vs(n), es(n), e_sz(0) {}
 
-  explicit TopTreeBuilder(int n) : n(n), g(n), vs(n), es(n), e_sz(0) {}
-
-  void set_vertex(int u, const Info& info) {
+  void set_vertex(int u, const Info &info) {
     assert(0 <= u and u < n);
     vs[u] = this->alloc(info);
   }
 
-  void add_edge(int u, int v, const Info& info, int id = -1) {
+  void add_edge(int u, int v, const Info &info, int id = -1) {
     assert(0 <= u and u < n);
     assert(0 <= v and v < n);
     assert(u != v);
-    if(id == -1) id = e_sz++;
+    if (id == -1) id = e_sz++;
     assert(0 <= id and id < n);
     g[u].emplace_back(v, id);
     g[v].emplace_back(u, id);
@@ -379,17 +378,63 @@ public:
   }
 
   void build(int r = 0) {
-    vector< pair< int, int > > que;
+    vector<pair<int, int> > que;
     que.reserve(n);
     que.emplace_back(r, -1);
-    while(not que.empty()) {
+    while (not que.empty()) {
       auto [u, p] = que.back();
       que.pop_back();
-      for(auto& [v, id] : g[u]) {
-        if(v == p) continue;
+      for (auto &[v, id] : g[u]) {
+        if (v == p) continue;
         que.emplace_back(v, u);
         link(es[id], vs[u]);
         link(vs[v], es[id]);
+      }
+    }
+  }
+};
+
+template <typename TreeDPInfo>
+struct TopTreeBuilderForVertex : TopTree<TreeDPInfo> {
+ private:
+  using TT = TopTree<TreeDPInfo>;
+  using Info = typename TreeDPInfo::Info;
+
+  int n;
+  vector<vector<int> > g;
+
+ public:
+  using TT::alloc;
+  using TT::link;
+
+  vector<typename TT::NP> vs;
+
+  explicit TopTreeBuilderForVertex(int n) : n(n), g(n), vs(n) {}
+
+  void set_vertex(int u, const Info &info) {
+    assert(0 <= u and u < n);
+    vs[u] = this->alloc(info);
+  }
+
+  void add_edge(int u, int v) {
+    assert(0 <= u and u < n);
+    assert(0 <= v and v < n);
+    assert(u != v);
+    g[u].emplace_back(v);
+    g[v].emplace_back(u);
+  }
+
+  void build(int r = 0) {
+    vector<pair<int, int> > que;
+    que.reserve(n);
+    que.emplace_back(r, -1);
+    while (not que.empty()) {
+      auto [u, p] = que.back();
+      que.pop_back();
+      for (auto &v : g[u]) {
+        if (v == p) continue;
+        que.emplace_back(v, u);
+        link(vs[v], vs[u]);
       }
     }
   }

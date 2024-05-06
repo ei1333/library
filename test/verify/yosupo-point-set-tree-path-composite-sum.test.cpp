@@ -4,12 +4,12 @@
 
 #include "../../structure/top-tree/top-tree.hpp"
 
-#include "../../structure/top-tree/point-set-tree-path-composite-sum.hpp"
+#include "../../structure/top-tree/vertex-set-tree-path-composite-sum.hpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  TopTreeBuilder< PointSetTreePathCompositeSum > g(N);
+  TopTreeBuilderForEdge< VertexSetTreePathCompositeSum > g(N);
   for(int i = 0; i < N; i++) {
     int a;
     cin >> a;
