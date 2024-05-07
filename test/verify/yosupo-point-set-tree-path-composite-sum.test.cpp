@@ -2,13 +2,16 @@
 
 #include "../../template/template.hpp"
 
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "../../structure/dynamic-tree/vertex-set-tree-path-composite-sum.hpp"
 #include "../../structure/dynamic-tree/dynamic-tree-builder-for-edge.hpp"
+
+using mint = modint998244353;
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  DynamicTreeBuilderForEdge< TopTree, VertexSetTreePathCompositeSum > g(N);
+  DynamicTreeBuilderForEdge< TopTree, VertexSetTreePathCompositeSum< mint > > g(N);
   for (int i = 0; i < N; i++) {
     int a;
     cin >> a;

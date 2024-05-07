@@ -2,13 +2,16 @@
 
 #include "../../template/template.hpp"
 
+#include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "../../structure/dynamic-tree/vertex-set-path-composite.hpp"
 #include "../../structure/dynamic-tree/dynamic-tree-builder-for-vertex.hpp"
+
+using mint = modint998244353;
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  DynamicTreeBuilderForVertex< LinkCutTree, VertexSetPathComposite > g(N);
+  DynamicTreeBuilderForVertex< LinkCutTree, VertexSetPathComposite< mint > > g(N);
   for(int i = 0; i < N; i++) {
     mint a, b;
     cin >> a >> b;

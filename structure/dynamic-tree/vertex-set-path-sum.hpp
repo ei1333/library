@@ -1,11 +1,12 @@
 #include "link-cut-tree.hpp"
 
+template <typename T>
 struct VertexSetPathSum {
   struct Path {
-    int64 sum;
+    T sum;
   };
   struct Info {
-    int64 v;
+    T v;
   };
 
   static Path vertex(const Info& u) { return {u.v}; }

@@ -1,14 +1,12 @@
-#include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "link-cut-tree.hpp"
 
-using mint = modint998244353;
-
+template <typename T>
 struct VertexSetPathComposite {
   struct Path {
-    mint a, b;
+    T a, b;
   };
   struct Info {
-    mint x, y;
+    T x, y;
   };
 
   static Path vertex(const Info& u) { return {u.x, u.y}; }

@@ -1,18 +1,16 @@
-#include "../../math/combinatorics/montgomery-mod-int.hpp"
 #include "top-tree.hpp"
 
-using mint = modint998244353;
-
+template <typename T>
 struct VertexSetTreePathCompositeSum {
   struct Point {
-    mint s, x;
+    T s, x;
   };
   struct Path {
-    mint a, b, s, x;
+    T a, b, s, x;
   };
   struct Info {
     bool is_vertex;
-    mint x, y;
+    T x, y;
   };
 
   static Path vertex(const Info& u) {

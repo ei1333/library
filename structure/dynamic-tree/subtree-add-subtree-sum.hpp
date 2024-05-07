@@ -1,25 +1,26 @@
 #include "lazy-top-tree.hpp"
 
+template <typename T>
 struct SubtreeAddSubtreeSum {
   struct Lazy {
-    int64 v;
+    T v;
     Lazy() : v{0} {}
-    Lazy(int64 v) : v{v} {}
+    Lazy(T v) : v{v} {}
     void propagate(const Lazy& p) { v += p.v; }
   };
   struct Point {
-    int64 sum;
+    T sum;
     int sz;
     void propagate(const Lazy& p) { sum += p.v * sz; }
   };
   struct Path {
-    int64 sum;
+    T sum;
     int sz;
     void propagate(const Lazy& p) { sum += sz * p.v; }
     void propagate_light(const Lazy& p) {}
   };
   struct Info {
-    int64 v;
+    T v;
     void propagate(const Lazy& p) { v += p.v; }
   };
 

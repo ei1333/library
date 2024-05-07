@@ -8,7 +8,7 @@
 int main() {
   int N, Q;
   cin >> N >> Q;
-  DynamicTreeBuilderForVertex< LazyTopTree, SubtreeAddSubtreeSum > g(N);
+  DynamicTreeBuilderForVertex< LazyTopTree, SubtreeAddSubtreeSum< int64 > > g(N);
   for(int i = 0; i < N; i++) {
     int64 x;
     cin >> x;
