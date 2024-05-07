@@ -1,20 +1,29 @@
 template <typename TreeDPInfo>
-struct SplayTreeForDashedEdge {
+struct LazySplayTreeForDashedEdge {
+  using Lazy = typename TreeDPInfo::Lazy;
   using Point = typename TreeDPInfo::Point;
   struct Node {
     Node *l, *r, *p;
     Point key, sum;
+    Lazy lazy, lbuf;
 
     explicit Node(const Point &key)
-        : key(key), sum(key), l(nullptr), r(nullptr), p(nullptr) {}
+        : key(key),
+          sum(key),
+          lazy(Lazy()),
+          lbuf(Lazy()),
+          l(nullptr),
+          r(nullptr),
+          p(nullptr) {}
   };
 
-  SplayTreeForDashedEdge() = default;
+  LazySplayTreeForDashedEdge() = default;
 
   using NP = Node *;
 
   void rotr(NP t) const {
     NP x = t->p, y = x->p;
+    push(x), push(t);
     if ((x->l = t->r)) t->r->p = x;
     t->r = x, x->p = t;
     update(x), update(t);
@@ -26,6 +35,7 @@ struct SplayTreeForDashedEdge {
 
   void rotl(NP t) const {
     NP x = t->p, y = x->p;
+    push(x), push(t);
     if ((x->r = t->l)) t->l->p = x;
     t->l = x, x->p = t;
     update(x), update(t);
@@ -52,7 +62,21 @@ struct SplayTreeForDashedEdge {
     return t;
   }
 
+  void propagate(NP t, const Lazy &lazy) const {
+    t->key.propagate(lazy);
+    t->sum.propagate(lazy);
+    t->lbuf.propagate(lazy);
+    t->lazy.propagate(lazy);
+  }
+
+  void push(NP t) const {
+    if (t->l) propagate(t->l, t->lazy);
+    if (t->r) propagate(t->r, t->lazy);
+    t->lazy = Lazy();
+  }
+
   void splay(NP t) const {
+    push(t);
     while (t->p) {
       NP q = t->p;
       if (!q->p) {
@@ -115,7 +139,8 @@ struct SplayTreeForDashedEdge {
 };
 
 template <typename TreeDPInfo>
-struct TopTree {
+struct LazyTopTree {
+  using Lazy = typename TreeDPInfo::Lazy;
   using Path = typename TreeDPInfo::Path;
   using Info = typename TreeDPInfo::Info;
 
@@ -124,8 +149,9 @@ struct TopTree {
     Node *l, *r, *p;
     Info info;
     Path sum, mus;
-    typename SplayTreeForDashedEdge<TreeDPInfo>::Node *light, *belong;
+    typename LazySplayTreeForDashedEdge<TreeDPInfo>::Node *light, *belong;
     bool rev;
+    Lazy hlazy, llazy;
 
     bool is_root() const { return not p or (p->l != this and p->r != this); }
 
@@ -136,12 +162,14 @@ struct TopTree {
           p(nullptr),
           rev(false),
           light(nullptr),
-          belong(nullptr) {}
+          belong(nullptr),
+          hlazy(Lazy()),
+          llazy(Lazy()) {}
   };
 
  public:
   using NP = Node *;
-  const SplayTreeForDashedEdge<TreeDPInfo> splay_tree;
+  const LazySplayTreeForDashedEdge<TreeDPInfo> splay_tree;
 
  private:
   void toggle(NP t) {
@@ -174,14 +202,47 @@ struct TopTree {
     }
   }
 
+  void propagate_heavy(NP t, const Lazy &hlazy) {
+    t->hlazy.propagate(hlazy);
+    t->info.propagate(hlazy);
+    t->sum.propagate(hlazy);
+    t->mus.propagate(hlazy);
+  }
+
+  void propagate_light(NP t, const Lazy &llazy) {
+    t->llazy.propagate(llazy);
+    t->sum.propagate_light(llazy);
+    t->mus.propagate_light(llazy);
+  }
+
+  void propagate_all(NP t, const Lazy &lazy) {
+    propagate_heavy(t, lazy);
+    propagate_light(t, lazy);
+  }
+
  public:
-  TopTree() : splay_tree{} {}
+  LazyTopTree() : splay_tree{} {}
 
   void push(NP t) {
     if (t->rev) {
       if (t->l) toggle(t->l);
       if (t->r) toggle(t->r);
       t->rev = false;
+    }
+    {
+      if (t->l) {
+        propagate_heavy(t->l, t->hlazy);
+        propagate_light(t->l, t->llazy);
+      }
+      if (t->r) {
+        propagate_heavy(t->r, t->hlazy);
+        propagate_light(t->r, t->llazy);
+      }
+      if (t->light) {
+        splay_tree.propagate(t->light, t->llazy);
+      }
+      t->hlazy = Lazy();
+      t->llazy = Lazy();
     }
   }
 
@@ -253,6 +314,8 @@ struct TopTree {
       }
       cur->r = rp;
       if (cur->r) {
+        splay_tree.splay(cur->r->belong);
+        propagate_all(cur->r, cur->r->belong->lbuf);
         push(cur->r);
         cur->light = splay_tree.erase(cur->r->belong);
       }
@@ -312,8 +375,42 @@ struct TopTree {
 
   void set_key(NP t, const Info &v) {
     expose(t);
-    t->info = std::move(v);
+    t->info = move(v);
     update(t);
+  }
+
+  void set_propagate_path(NP t, const Lazy &lazy) {
+    expose(t);
+    propagate_heavy(t, lazy);
+    push(t);
+    update(t);
+  }
+
+  void set_propagate_path(NP u, NP v, const Lazy &lazy) {
+    evert(u);
+    set_propagate_path(v, lazy);
+  }
+
+  void set_propagate_all(NP t, const Lazy &lazy) {
+    expose(t);
+    propagate_all(t, lazy);
+    push(t);
+    update(t);
+  }
+
+  void set_propagate_subtree(NP t, const Lazy &lazy) {
+    expose(t);
+    NP l = t->l;
+    t->l = nullptr;
+    propagate_all(t, lazy);
+    push(t);
+    t->l = l;
+    update(t);
+  }
+
+  void set_propagate_subtree(NP r, NP u, const Lazy &lazy) {
+    evert(r);
+    set_propagate_subtree(u, lazy);
   }
 
   const Path &query(NP u) {
@@ -321,10 +418,14 @@ struct TopTree {
     return u->sum;
   }
 
+  const Path &query_path(NP u) {
+    expose(u);
+    return u->sum;
+  }
+
   const Path &query_path(NP u, NP v) {
     evert(u);
-    expose(v);
-    return v->sum;
+    return query_path(v);
   }
 
   Path query_subtree(NP u) {
@@ -344,107 +445,24 @@ struct TopTree {
   }
 };
 
-template <typename TreeDPInfo>
-struct TopTreeBuilderForEdge : TopTree<TreeDPInfo> {
- private:
-  using TT = TopTree<TreeDPInfo>;
-  using Info = typename TreeDPInfo::Info;
-
-  int n, e_sz;
-  vector<vector<pair<int, int> > > g;
-
- public:
-  using TT::alloc;
-  using TT::link;
-
-  vector<typename TT::NP> vs, es;
-
-  explicit TopTreeBuilderForEdge(int n) : n(n), g(n), vs(n), es(n), e_sz(0) {}
-
-  void set_vertex(int u, const Info &info) {
-    assert(0 <= u and u < n);
-    vs[u] = this->alloc(info);
-  }
-
-  void add_edge(int u, int v, const Info &info, int id = -1) {
-    assert(0 <= u and u < n);
-    assert(0 <= v and v < n);
-    assert(u != v);
-    if (id == -1) id = e_sz++;
-    assert(0 <= id and id < n);
-    g[u].emplace_back(v, id);
-    g[v].emplace_back(u, id);
-    es[id] = alloc(info);
-  }
-
-  void build(int r = 0) {
-    vector<pair<int, int> > que;
-    que.reserve(n);
-    que.emplace_back(r, -1);
-    while (not que.empty()) {
-      auto [u, p] = que.back();
-      que.pop_back();
-      for (auto &[v, id] : g[u]) {
-        if (v == p) continue;
-        que.emplace_back(v, u);
-        link(es[id], vs[u]);
-        link(vs[v], es[id]);
-      }
-    }
-  }
-};
-
-template <typename TreeDPInfo>
-struct TopTreeBuilderForVertex : TopTree<TreeDPInfo> {
- private:
-  using TT = TopTree<TreeDPInfo>;
-  using Info = typename TreeDPInfo::Info;
-
-  int n;
-  vector<vector<int> > g;
-
- public:
-  using TT::alloc;
-  using TT::link;
-
-  vector<typename TT::NP> vs;
-
-  explicit TopTreeBuilderForVertex(int n) : n(n), g(n), vs(n) {}
-
-  void set_vertex(int u, const Info &info) {
-    assert(0 <= u and u < n);
-    vs[u] = this->alloc(info);
-  }
-
-  void add_edge(int u, int v) {
-    assert(0 <= u and u < n);
-    assert(0 <= v and v < n);
-    assert(u != v);
-    g[u].emplace_back(v);
-    g[v].emplace_back(u);
-  }
-
-  void build(int r = 0) {
-    vector<pair<int, int> > que;
-    que.reserve(n);
-    que.emplace_back(r, -1);
-    while (not que.empty()) {
-      auto [u, p] = que.back();
-      que.pop_back();
-      for (auto &v : g[u]) {
-        if (v == p) continue;
-        que.emplace_back(v, u);
-        link(vs[v], vs[u]);
-      }
-    }
-  }
-};
-
 /*
-struct TreeInfo {
-  struct Point {};
-  struct Path {};
-  struct Info {};
+struct TreeDPInfo {
+  struct Lazy {
+    Lazy() : {}
+    Lazy(T v): {}
+    void propagate(const Lazy &p) {}
+  };
+  struct Point {
+    void propagate(const Lazy &p) {}
+  };
+  struct Path {
+    void propagate(const Lazy& p) {}
+    void propagate_light(const Lazy& p) {}
+  };
+  struct Info {
+    void propagate(const Lazy& p) {}
+  };
+
   static Path vertex(const Info& u) {}
   static Path add_vertex(const Point& d, const Info& u) {}
   static Point add_edge(const Path& d) {}

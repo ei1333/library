@@ -1,18 +1,18 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
 
 #include "../../template/template.hpp"
 
-#include "../../structure/dynamic-tree/vertex-set-path-composite.hpp"
+#include "../../structure/dynamic-tree/vertex-set-path-sum.hpp"
 #include "../../structure/dynamic-tree/dynamic-tree-builder-for-vertex.hpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  DynamicTreeBuilderForVertex< LinkCutTree, VertexSetPathComposite > g(N);
+  DynamicTreeBuilderForVertex< LinkCutTree, VertexSetPathSum > g(N);
   for(int i = 0; i < N; i++) {
-    mint a, b;
-    cin >> a >> b;
-    g.set_vertex(i, {a, b});
+    int64 x;
+    cin >> x;
+    g.set_vertex(i, {x});
   }
   for(int i = 1; i < N; i++) {
     int a, b;
@@ -31,16 +31,14 @@ int main() {
       g.evert(g.vs[w]);
       g.link(g.vs[w], g.vs[x]);
     } else if(t == 1) {
-      int p;
-      mint c, d;
-      cin >> p >> c >> d;
-      g.set_key(g.vs[p], {c, d});
+      int v;
+      int64 x;
+      cin >> v >> x;
+      g.set_key(g.vs[v], {g.vs[v]->info.v + x});
     } else {
-      int u, v;
-      mint x;
-      cin >> u >> v >> x;
-      auto sum = g.query_path(g.vs[u], g.vs[v]);
-      cout << sum.a * x + sum.b << "\n";
+      int v, p;
+      cin >> v >> p;
+      cout << g.query_path(g.vs[p], g.vs[v]).sum << "\n";
     }
   }
 }

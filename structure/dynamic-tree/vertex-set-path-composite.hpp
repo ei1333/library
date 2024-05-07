@@ -1,4 +1,5 @@
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
+#include "link-cut-tree.hpp"
 
 using mint = modint998244353;
 

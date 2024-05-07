@@ -2,15 +2,14 @@
 
 #include "../../template/template.hpp"
 
-#include "../../structure/top-tree/top-tree.hpp"
-
-#include "../../structure/top-tree/vertex-set-tree-path-composite-sum.hpp"
+#include "../../structure/dynamic-tree/vertex-set-tree-path-composite-sum.hpp"
+#include "../../structure/dynamic-tree/dynamic-tree-builder-for-edge.hpp"
 
 int main() {
   int N, Q;
   cin >> N >> Q;
-  TopTreeBuilderForEdge< VertexSetTreePathCompositeSum > g(N);
-  for(int i = 0; i < N; i++) {
+  DynamicTreeBuilderForEdge< TopTree, VertexSetTreePathCompositeSum > g(N);
+  for (int i = 0; i < N; i++) {
     int a;
     cin >> a;
     g.set_vertex(i, {true, a, 0});
