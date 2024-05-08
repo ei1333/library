@@ -4,8 +4,7 @@ template <typename T>
 struct SubtreeAddSubtreeSum {
   struct Lazy {
     T v;
-    Lazy() : v{0} {}
-    Lazy(T v) : v{v} {}
+    static constexpr Lazy id() { return {0}; }
     void propagate(const Lazy& p) { v += p.v; }
   };
   struct Point {

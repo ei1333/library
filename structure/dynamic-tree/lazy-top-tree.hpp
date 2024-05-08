@@ -10,8 +10,8 @@ struct LazySplayTreeForDashedEdge {
     explicit Node(const Point &key)
         : key(key),
           sum(key),
-          lazy(Lazy()),
-          lbuf(Lazy()),
+          lazy(Lazy::id()),
+          lbuf(Lazy::id()),
           l(nullptr),
           r(nullptr),
           p(nullptr) {}
@@ -72,7 +72,7 @@ struct LazySplayTreeForDashedEdge {
   void push(NP t) const {
     if (t->l) propagate(t->l, t->lazy);
     if (t->r) propagate(t->r, t->lazy);
-    t->lazy = Lazy();
+    t->lazy = Lazy::id();
   }
 
   void splay(NP t) const {
@@ -163,8 +163,8 @@ struct LazyTopTree {
           rev(false),
           light(nullptr),
           belong(nullptr),
-          hlazy(Lazy()),
-          llazy(Lazy()) {}
+          hlazy(Lazy::id()),
+          llazy(Lazy::id()) {}
   };
 
  public:
@@ -241,8 +241,8 @@ struct LazyTopTree {
       if (t->light) {
         splay_tree.propagate(t->light, t->llazy);
       }
-      t->hlazy = Lazy();
-      t->llazy = Lazy();
+      t->hlazy = Lazy::id();
+      t->llazy = Lazy::id();
     }
   }
 
@@ -456,8 +456,8 @@ struct LazyTopTree {
 /*
 struct TreeDPInfo {
   struct Lazy {
-    Lazy() : {}
-    Lazy(T v): {}
+
+    static constexpr Lazy id() { return {0}; }
     void propagate(const Lazy &p) {}
   };
   struct Point {
@@ -470,7 +470,6 @@ struct TreeDPInfo {
   struct Info {
     void propagate(const Lazy& p) {}
   };
-
   static Path vertex(const Info& u) {}
   static Path add_vertex(const Point& d, const Info& u) {}
   static Point add_edge(const Path& d) {}

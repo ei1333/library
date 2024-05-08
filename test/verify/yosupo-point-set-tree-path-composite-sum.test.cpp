@@ -11,7 +11,8 @@ using mint = modint998244353;
 int main() {
   int N, Q;
   cin >> N >> Q;
-  DynamicTreeBuilderForEdge< TopTree, VertexSetTreePathCompositeSum< mint > > g(N);
+  DynamicTreeBuilderForEdge< LinkCutTreeForSubtree,
+      VertexSetTreePathCompositeSum< mint > > g(N);
   for (int i = 0; i < N; i++) {
     int a;
     cin >> a;

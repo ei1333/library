@@ -1,9 +1,11 @@
-#include "top-tree.hpp"
+#include "link-cut-tree-for-subtree.hpp"
 
 template <typename T>
 struct VertexSetSubtreeSum {
   struct Point {
     T sum;
+    static constexpr Point id() { return {0}; }
+    Point inv() const { return {-sum}; }
   };
   struct Path {
     T sum;
@@ -12,7 +14,6 @@ struct VertexSetSubtreeSum {
     T v;
   };
 
-  static Path vertex(const Info& u) { return {u.v}; }
   static Path add_vertex(const Point& d, const Info& u) {
     return {d.sum + u.v};
   }

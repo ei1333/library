@@ -8,7 +8,8 @@
 int main() {
   int N, Q;
   cin >> N >> Q;
-  DynamicTreeBuilderForVertex< TopTree, VertexSetSubtreeSum< int64 > > g(N);
+  DynamicTreeBuilderForVertex< LinkCutTreeForSubtree,
+      VertexSetSubtreeSum< int64 > > g(N);
   for(int i = 0; i < N; i++) {
     int64 x;
     cin >> x;
