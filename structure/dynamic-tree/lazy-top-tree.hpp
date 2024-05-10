@@ -456,8 +456,7 @@ struct LazyTopTree {
 /*
 struct TreeDPInfo {
   struct Lazy {
-
-    static constexpr Lazy id() { return {0}; }
+    static constexpr Lazy id() {}
     void propagate(const Lazy &p) {}
   };
   struct Point {

@@ -196,6 +196,39 @@ struct LinkCutTree {
     evert(u);
     return query_path(v);
   }
+
+  template <typename C>
+  pair<NP, Path> find_first(NP u, const C &check) {
+    expose(u);
+    Path sum = TreeDPInfo::vertex(u->info);
+    if (check(sum)) return {u, sum};
+    u = u->l;
+    while (u) {
+      push(u);
+      if (u->r) {
+        Path nxt = TreeDPInfo::compress(u->r->sum, sum);
+        if (check(nxt)) {
+          u = u->r;
+          continue;
+        }
+        sum = nxt;
+      }
+      Path nxt = TreeDPInfo::compress(TreeDPInfo::vertex(u->info), sum);
+      if (check(nxt)) {
+        splay(u);
+        return {u, nxt};
+      }
+      sum = nxt;
+      u = u->l;
+    }
+    return {nullptr, sum};
+  }
+
+  template <typename C>
+  pair<NP, Path> find_first(NP u, NP v, const C &check) {
+    evert(v);
+    return find_first(u, check);
+  }
 };
 
 /*
