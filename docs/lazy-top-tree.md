@@ -10,7 +10,7 @@ Light edge に繋がる情報もマージできるため Link Cut Tree よりも
 # コンストラクタ
 
 ```
-TopTree< TreeDPInfo >()
+LazyTopTree< TreeDPInfo >()
 ```
 
 ## TreeDPInfo について
