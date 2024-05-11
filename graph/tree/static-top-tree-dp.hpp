@@ -61,23 +61,17 @@ struct StaticTopTreeDP {
 
 /*
 struct TreeDPInfo {
-  struct Point {
-  };
-  struct Path {
-  };
+  struct Point {};
+  struct Path {};
 
   vector< int > A;
 
   TreeDPInfo(int n): A(n) {}
 
-  Path vertex(int u) const { return Path{}; };
-
-  Path add_vertex(Point d, int u) const { return Path{}; }
-
-  Point add_edge(Path d, int e) const { return Point{}; }
-
-  Point rake(Point l, Point r) const { return Point{}; }
-
-  Path compress(Path p, Path c, int e) const { return Path{}; }
+  Path vertex(int u) const {};
+  Path add_vertex(Point d, int u) const {}
+  Point add_edge(Path d, int e) const {}
+  Point rake(Point l, Point r) const {}
+  Path compress(Path p, Path c, int e) const {}
 };
 */

@@ -223,12 +223,6 @@ struct LinkCutTree {
     }
     return {nullptr, sum};
   }
-
-  template <typename C>
-  pair<NP, Path> find_first(NP u, NP v, const C &check) {
-    evert(v);
-    return find_first(u, check);
-  }
 };
 
 /*
