@@ -1,12 +1,11 @@
 ---
-title: Top Tree
-documentation_of: //structure/dynamic-tree/top-tree.hpp
+title: Lazy Top Tree
+documentation_of: //structure/dynamic-tree/lazy-top-tree.hpp
 ---
 
 Top Tree とは動的木の一つで, 辺の追加や削除などの木構造の動的な変化がある場合でも効率的にクエリを処理できます。
 
 Light edge に繋がる情報もマージできるため Link Cut Tree よりも強いクエリを処理できます。
-
 
 # コンストラクタ
 
@@ -20,9 +19,20 @@ TopTree< TreeDPInfo >()
 
 ```cpp
 struct TreeDPInfo {
-  struct Point {};
-  struct Path {};
-  struct Info {};
+  struct Lazy {
+    static constexpr Lazy id() {}
+    void propagate(const Lazy &p) {}
+  };
+  struct Point {
+    void propagate(const Lazy &p) {}
+  };
+  struct Path {
+    void propagate(const Lazy& p) {}
+    void propagate_light(const Lazy& p) {}
+  };
+  struct Info {
+    void propagate(const Lazy& p) {}
+  };
   static Path vertex(const Info& u) {}
   static Path add_vertex(const Point& d, const Info& u) {}
   static Point add_edge(const Path& d) {}
@@ -31,14 +41,23 @@ struct TreeDPInfo {
 };
 ```
 
+* `Lazy`: 遅延伝搬のための作用素を表す構造体
+  * `id()`: 作用素の単位元を返す関数
+  * `propagate(p)`: 自身を新しい作用素 `p` とマージする関数
 * `Point`: Light edge で繋がる頂点をまとめた結果 (Point cluster) を表す構造体
+  * `propagate(p)`: 自身に作用素 `p` を適用する関数
 * `Path`: Heavy edge で繋がる頂点をまとめた結果 (Path cluster) を表す構造体
+  * `propagate(p)`: 自身に作用素 `p` を適用する関数
+  * `propagate_light(p)`: 自身に Light edge に対する作用素 `p` を適用する関数（通常時は使用しないが、パスと部分木 2 つのタイプの遅延伝搬クエリが与えられる場合に使用することがある）
 * `Info`: 頂点を表す構造体
+  * `propagate(p)`: 自身に作用素 `p` を適用する関数
 * `vertex(u)`: 頂点 `u` のみからなる Path cluster を生成する関数
 * `add_vertex(d, u)`: Point cluster `d` の根に頂点 `u` を代入して Path cluster にする関数
 * `add_edge(d)`: Path cluster `d` に virtual な根を生やして Point cluster にする関数
 * `rake(l, r)`: Point cluster `l` と `r` をマージする関数
 * `compress(p, c)`: Path cluster `p` と `c` (`p` が根に近い側にある) をマージする関数
+
+`propagate(p)` は `p` が単位元 `id()` の場合でも呼び出されるので注意してください。
 
 以下のコードを Splay Tree により高速化したデータ構造とみなすことができます。
 
@@ -75,10 +94,6 @@ Path calc_heavy(int r) {
   return paths[0];
 }
 ```
-
-`Point` に逆元と単位元が存在する場合は [Link Cut Tree For Subtree]({{ site.baseurl }}/structure/dynamic-tree/link-cut-tree-for-subtree.hpp) で十分です。
-
-`Point` と `Path` に対し遅延伝搬が必要な場合は [Lazy Top Tree]({{ site.baseurl }}/structure/dynamic-tree/lazy-top-tree.hpp) が必要です。
 
 # expose
 
@@ -227,6 +242,46 @@ void set_key(NP t, const Info &v)
 
 1. 頂点 `u` を根とする部分木を `compress` でマージした結果を返します。
 2. 根を頂点 `r` に変更し、頂点 `u` を根とする部分木を `compress` でマージした結果を返します。
+
+## 計算量
+
+- amortized $O(\log n)$
+
+# set_propagate_path
+
+```
+(1) void set_propagate_path(NP u, const Lazy &lazy)
+(2) void set_propagate_path(NP u, NP v, const Lazy &lazy)
+```
+
+1. 根から頂点 `u` までのパス上の頂点を Heavy edge で繋げ、パス上の頂点全体に作用素 `lazy` を適用します。
+2. 頂点 `u` から頂点 `v`  までのパス上の頂点を Heavy edge で繋げ、パス上の頂点全体に作用素 `lazy` を適用します。副作用として、頂点 `u` を根に変更します。
+
+## 計算量
+
+- amortized $O(\log n)$
+
+# set_propagate_all
+
+```
+void set_propagate_all(NP t, const Lazy &lazy)
+```
+
+頂点 `t` を含む木全体の頂点に作用素 `lazy` を適用します。
+
+## 計算量
+
+- amortized $O(\log n)$
+
+# set_propagate_subtree
+
+```
+(1) void set_propagate_subtree(NP t, const Lazy &lazy)
+(2) void set_propagate_subtree(NP r, NP u, const Lazy &lazy)
+```
+
+1. 頂点 `u` を根とする部分木に含まれる頂点全体に作用素 `lazy` を適用します。
+2. 根を頂点 `r` に変更し、頂点 `u` を根とする部分木に含まれる頂点全体に作用素 `lazy` を適用します。
 
 ## 計算量
 

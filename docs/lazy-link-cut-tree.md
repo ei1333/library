@@ -1,4 +1,5 @@
 ---
+title: Lazy Link Cut Tree
 documentation_of: //structure/dynamic-tree/lazy-link-cut-tree.hpp
 ---
 
@@ -35,9 +36,9 @@ struct TreeDPInfo {
   * `id()`: 作用素の単位元を返す関数
   * `propagate(p)`: 自身を新しい作用素 `p` とマージする関数
 * `Path`: Heavy edge で繋がる頂点をまとめた結果 (Path cluster) を表す構造体
-  * `propagate(p)`: 自身と作用素 `p` をマージする関数
+  * `propagate(p)`: 自身に作用素 `p` を適用する関数
 * `Info`: 頂点を表す構造体
-  * `propagate(p)`: 自身と作用素 `p` をマージする関数
+  * `propagate(p)`: 自身に作用素 `p` を適用する関数
 * `vertex(u)`: 頂点 `u` のみからなる Path cluster を生成する関数
 * `compress(p, c)`: Path cluster `p` と `c` (`p` が根に近い側にある) をマージする関数
 
@@ -206,6 +207,10 @@ void set_key(NP t, const Info &v)
 
 1. 根から頂点 `u` までのパス上の頂点を Heavy edge で繋げ、パス上の頂点全体に作用素 `lazy` を適用します。
 2. 頂点 `u` から頂点 `v`  までのパス上の頂点を Heavy edge で繋げ、パス上の頂点全体に作用素 `lazy` を適用します。副作用として、頂点 `u` を根に変更します。
+
+# 計算量
+
+- amortized $O(\log n)$
 
 # find_first
 

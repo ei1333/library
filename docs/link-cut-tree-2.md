@@ -1,4 +1,5 @@
 ---
+title: Link Cut Tree
 documentation_of: //structure/dynamic-tree/link-cut-tree.hpp
 ---
 
