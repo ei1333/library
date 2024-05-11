@@ -8,7 +8,7 @@ Link Cut Tree とは動的木の一つで, 辺の追加や削除などの木構�
 # コンストラクタ
 
 ```
-LinkCutTree< TreeDPInfo >()
+LazyLinkCutTree< TreeDPInfo >()
 ```
 
 ## TreeDPInfo について
