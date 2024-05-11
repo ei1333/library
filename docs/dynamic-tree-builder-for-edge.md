@@ -58,7 +58,7 @@ void add_edge(int u, int v, const Info &info, int id = -1)
 void build(int r = 0)
 ```
 
-頂点 `r` を根とする動的木を構築する。
+頂点 `r` を根とする動的木を構築します。
 
 `vs` に各頂点へのポインタ、`es` に各辺へのポインタが格納されます。
 
