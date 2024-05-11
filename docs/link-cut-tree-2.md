@@ -200,3 +200,19 @@ pair<NP, Path> find_first(NP u, const C &check)
 ## 計算量
 
 - amortized $O(\log n)$
+
+## 使用例
+
+頂点 `v` から `u` までのパス上に出現する頂点を並べたとき、`k` 番目に現れる頂点を見つける場合、以下のように書けます。
+
+```cpp
+struct TreeDPInfo {
+  struct Path { int sz; };
+  struct Info { int idx; };
+  static Path vertex(const Info& u) { return {1}; }
+  static Path compress(const Path& p, const Path& c) { return {p.sz + c.sz}; }
+};
+
+auto res = lct.find_first(vs[u], vs[v],
+  [](const TreeDPInfo::Path& p) { return p.sz >= k; });
+```
