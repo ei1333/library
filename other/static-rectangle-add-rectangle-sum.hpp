@@ -6,8 +6,6 @@
 template <typename T, typename C>
 struct StaticRectangleAddRectangleSum {
   struct Hikari : array<C, 4> {
-    using A = array<C, 4>;
-
     Hikari &operator+=(const Hikari &p) {
       for (int i = 0; i < 4; i++) {
         this->at(i) += p.at(i);
@@ -95,14 +93,14 @@ struct StaticRectangleAddRectangleSum {
     int j = 0;
     BIT bit(ys.size());
     for (auto &query : qs) {
-      while (j < n and rs[j].x < query.x) {
-        auto &p = rectangles[j];
+      while (j < n + n and rs[j].x < query.x) {
+        auto &p = rectangles[rs[j].idx];
         if (rs[j].type) {
-          bit.apply(rs[j].d, {-p.w * p.r * p.d, -p.w, p.d * p.w, p.r * p.w});
-          bit.apply(rs[j].u, {p.w * p.r * p.u, p.w, -p.u * p.w, -p.r * p.w});
+          bit.apply(rs[j].d, {-p.w * p.r * p.d, -p.w, p.w * p.d, p.w * p.r});
+          bit.apply(rs[j].u, {p.w * p.r * p.u, p.w, -p.w * p.u, -p.w * p.r});
         } else {
-          bit.apply(rs[j].d, {p.w * p.l * p.d, p.w, -p.d * p.w, -p.l * p.w});
-          bit.apply(rs[j].u, {-p.w * p.l * p.u, -p.w, p.u * p.w, p.l * p.w});
+          bit.apply(rs[j].d, {p.w * p.l * p.d, p.w, -p.w * p.d, -p.w * p.l});
+          bit.apply(rs[j].u, {-p.w * p.l * p.u, -p.w, p.w * p.u, p.w * p.l});
         }
         ++j;
       }
