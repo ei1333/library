@@ -31,7 +31,7 @@ struct StaticPointAddRectangleSum {
 
   void add_point(T x, T y, C w) { points.emplace_back(Point{x, y, w}); }
 
-  // tatal weight of [l, r) * [d, u) points
+  // total weight of [l, r) * [d, u) points
   void add_query(T l, T d, T r, T u) {
     queries.emplace_back(Query{l, d, r, u});
   }

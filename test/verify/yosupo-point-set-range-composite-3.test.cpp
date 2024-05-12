@@ -2,8 +2,8 @@
 
 #include "../../template/template.hpp"
 
-#include "../../structure/develop/splay-tree-base.hpp"
-#include "../../structure/develop/reversible-splay-tree.hpp"
+#include "../../structure/bbst/splay-tree-base.hpp"
+#include "../../structure/bbst/reversible-splay-tree.hpp"
 
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 
