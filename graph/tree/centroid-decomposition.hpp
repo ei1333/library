@@ -3,7 +3,7 @@
 #include "../graph-template.hpp"
 
 /**
- * @brief Centroid-Decomosition(重心分解)
+ * @brief Centroid-Decomposition(重心分解)
  */
 template <typename T>
 struct CentroidDecomposition : Graph<T> {

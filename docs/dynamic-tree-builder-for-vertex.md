@@ -1,6 +1,6 @@
 ---
 title: Dynamic Tree Builder (for Vertex)
-documentation_of: //structure/dynamic-tree/dynamic-tree-builder-for-edge.hpp
+documentation_of: //structure/dynamic-tree/dynamic-tree-builder-for-vertex.hpp
 ---
 
 Link Cut Tree や Top Tree などの動的木を簡単に構築するための Builder です。
@@ -8,7 +8,7 @@ Link Cut Tree や Top Tree などの動的木を簡単に構築するための B
 # コンストラクタ
 
 ```
-DynamicTreeBuilderForEdge< DynamicTree, TreeDPInfo >(int n)
+DynamicTreeBuilderForVertex< DynamicTree, TreeDPInfo >(int n)
 ```
 
 頂点数 `n` の動的木を作成します。各頂点に対し `set_vertex`、各辺に対し `add_edge` を呼び出したあとに、`build` を呼び出すことを期待しています。
