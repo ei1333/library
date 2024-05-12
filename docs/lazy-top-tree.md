@@ -189,7 +189,7 @@ vector<NP> build(vector<Info> &vs)
 
 ## 計算量
 
-- $O(n)
+- $O(n)$
 
 # lca
 
