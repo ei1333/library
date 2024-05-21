@@ -1,7 +1,7 @@
 #include "../structure/others/decremental-upper-hull.hpp"
 
 template <typename T, typename T2, typename T3>
-vector<int> convex_layers(vector<pair<T, T> > ps) {
+vector<int> convex_layers(const vector<pair<T, T> >& ps) {
   int n = (int)ps.size();
   vector<int> ord(n);
   iota(ord.begin(), ord.end(), 0);
