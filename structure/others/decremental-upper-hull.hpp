@@ -65,6 +65,7 @@ struct DecrementalUpperHull {
     }
     return {a, c};
   }
+
   void get_hull(int v, const Point &L, const Point &R, vector<int> &res) const {
     if (v >= n) {
       res.emplace_back(v - n);
@@ -89,8 +90,11 @@ struct DecrementalUpperHull {
     size_t u = 0;
     root = build(u, 0, n);
   }
+
   size_t size() const { return sz; }
+
   bool empty() const { return sz == 0; }
+
   bool erase(int k) {
     assert(sz > 0);
     assert(0 <= k and k < n);
