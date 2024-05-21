@@ -100,10 +100,10 @@ struct DecrementalUpperHull {
     if (alive[k]) return false;
     alive[k] = true;
     k += n;
-    Point &p = seg[k].l;
     sz--;
     static vector<int> buf;
     if (sz > 0) {
+      const Point &p = seg[k].l;
       int v = root;
       while (v < n) {
         buf.emplace_back(v);
