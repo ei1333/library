@@ -3,7 +3,7 @@ title: Convex Layers
 documentation_of: //geometry/convex-layers.hpp
 ---
 
-二次元平面上に異なる $n$ 個の点 $ps$ があります。
+二次元平面上に異なる $n$ 個の点があります。
 
 凸包（及びその辺上）に含まれる点をすべて削除する、という操作をすべての点が消えるまで繰り返します。
 
@@ -12,7 +12,8 @@ documentation_of: //geometry/convex-layers.hpp
 # convex_layers
 
 ```
-vector<int> convex_layers< T, T2, T3 >(const vector<pair<T, T> >& ps)
+template <typename T, typename T2, typename T3>
+vector<int> convex_layers(const vector<pair<T, T> >& ps)
 ```
 
 $ps$ の各点について Convex Layer を求めます。
