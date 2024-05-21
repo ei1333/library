@@ -96,7 +96,6 @@ struct DecrementalUpperHull {
   bool empty() const { return sz == 0; }
 
   bool erase(int k) {
-    assert(sz > 0);
     assert(0 <= k and k < n);
     if (alive[k]) return false;
     alive[k] = true;
