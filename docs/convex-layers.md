@@ -11,7 +11,7 @@ documentation_of: //geometry/convex-layers.hpp
 
 # convex_layers
 
-```
+```cpp
 template <typename T, typename T2, typename T3>
 vector<int> convex_layers(const vector<pair<T, T> >& ps)
 ```

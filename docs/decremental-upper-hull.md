@@ -11,8 +11,8 @@ documentation_of: //structure/others/decremental-upper-hull.hpp
 
 # コンストラクタ
 
-```
-DecrementalUpperHull< T, T2, T3 > DecrementalUpperHull(const vector<Point> &ps)
+```cpp
+DecrementalUpperHull< T, T2, T3 >(const vector<Point> &ps)
 ```
 
 `T` は 2 * 座標の最大値が収まる型、`T2` は (2 * 座標の最大値)^2 が収まる型、`T3` は (2 * 座標の最大値)^3 が収まる型を指定してください。
@@ -28,7 +28,7 @@ DecrementalUpperHull< T, T2, T3 > DecrementalUpperHull(const vector<Point> &ps)
 
 # size
 
-```
+```cpp
 size_t size()
 ```
 
@@ -40,7 +40,7 @@ size_t size()
 
 # empty
 
-```
+```cpp
 bool empty()
 ```
 
@@ -52,7 +52,7 @@ bool empty()
 
 # erase
 
-```
+```cpp
 bool erase(int k)
 ```
 
@@ -66,7 +66,7 @@ $k$ 番目の点が残っている場合は、その点を削除して `true` �
 
 # get_hull
 
-```
+```cpp
 vector<int> get_hull()
 ```
 
