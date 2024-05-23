@@ -12,10 +12,10 @@ documentation_of: //structure/others/decremental-upper-hull.hpp
 # コンストラクタ
 
 ```cpp
-DecrementalUpperHull< T, T2, T3 >(const vector<Point> &ps)
+DecrementalUpperHull< T, T2 >(const vector<Point> &ps)
 ```
 
-`T` は 2 * 座標の最大値が収まる型、`T2` は (2 * 座標の最大値)^2 が収まる型、`T3` は (2 * 座標の最大値)^3 が収まる型を指定してください。
+`T` は 2 * 座標の最大値が収まる型、`T2` は (2 * 座標の最大値)^2 が収まる型を指定してください。
 
 ## 制約
 
