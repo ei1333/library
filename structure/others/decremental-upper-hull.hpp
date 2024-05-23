@@ -1,94 +1,192 @@
-template <typename T, typename T2, typename T3>
+template <typename T, typename T2>
 struct DecrementalUpperHull {
  private:
   using Point = pair<T, T>;
-#define x first
-#define y second
-  static constexpr T2 cross(const Point &a, const Point &b, const Point &c) {
-    return T2(b.y - a.y) * (c.x - a.x) - T2(c.y - a.y) * (b.x - a.x);
+
+  static constexpr T2 cross(const Point &a, const Point &b) {
+    return T2(a.first) * b.second - T2(a.second) * b.first;
   }
-  struct Node {
-    Point l;
-    pair<Point, Point> bridge;
-    int ch[2];
+
+  static constexpr int ccw(const Point &a, const Point &b) {
+    T2 x = cross(a, b);
+    return (x > 0) - (x < 0);
+  }
+
+  static constexpr Point sub(const Point &a, const Point &b) {
+    return {a.first - b.first, a.second - b.second};
+  }
+
+  static constexpr int ccw(Point const &a, Point const &b, Point const &c) {
+    return ccw(sub(b, a), sub(c, a));
+  }
+
+  struct Link {
+    Point p;
+    Link *prev, *next;
+    int id;
   };
-  size_t root, n, sz;
-  vector<Node> seg;
+  using LP = Link *;
+
+  struct Node {
+    LP chain, chain_back, tangent;
+    int lch, rch;
+  };
+
+  size_t n, sz;
   vector<bool> alive;
+  vector<Node> seg;
+  vector<Link> links;
+
+  pair<LP, LP> find_bridge(LP l, LP r) {
+    while (l->next or r->next) {
+      if (not r->next or (l->next and ccw(sub(l->next->p, l->p),
+                                          sub(r->next->p, r->p)) <= 0)) {
+        if (ccw(l->p, l->next->p, r->p) <= 0) {
+          l = l->next;
+        } else {
+          break;
+        }
+      } else {
+        if (ccw(l->p, r->p, r->next->p) > 0) {
+          r = r->next;
+        } else {
+          break;
+        }
+      }
+    }
+    return {l, r};
+  }
+
+  pair<LP, LP> find_bridge_rev(LP l, LP r) {
+    while (r->prev or l->prev) {
+      if (not l->prev or (r->prev and ccw(sub(r->prev->p, r->p),
+                                          sub(l->prev->p, l->p)) >= 0)) {
+        if (ccw(r->p, r->prev->p, l->p) >= 0) {
+          r = r->prev;
+        } else {
+          break;
+        }
+      } else {
+        if (ccw(r->p, l->p, l->prev->p) < 0) {
+          l = l->prev;
+        } else {
+          break;
+        }
+      }
+    }
+    return {r, l};
+  }
+
+  template <bool rev>
+  void fix_chain(int u, LP l, LP r) {
+    if (rev)
+      tie(r, l) = find_bridge_rev(l, r);
+    else
+      tie(l, r) = find_bridge(l, r);
+
+    Node &l_node = seg[seg[u].lch];
+    Node &r_node = seg[seg[u].rch];
+
+    seg[u].tangent = l;
+    seg[u].chain = l_node.chain;
+    seg[u].chain_back = r_node.chain_back;
+    l_node.chain = l->next;
+    r_node.chain_back = r->prev;
+
+    if (l->next)
+      l->next->prev = nullptr;
+    else
+      l_node.chain_back = nullptr;
+    if (r->prev)
+      r->prev->next = nullptr;
+    else
+      r_node.chain = nullptr;
+
+    l->next = r;
+    r->prev = l;
+  }
+
+  void rob(int u, int v) {
+    seg[u].chain = seg[v].chain;
+    seg[v].chain = nullptr;
+    seg[u].chain_back = seg[v].chain_back;
+    seg[v].chain_back = nullptr;
+  }
+
+  void erase(int u, int a, int b, int i) {
+    if (i < a or i >= b or u == -1) return;
+    int m = (a + b) / 2;
+    int v = i < m ? seg[u].lch : seg[u].rch;
+    if (!seg[u].tangent) {
+      seg[v].chain = seg[u].chain;
+      seg[v].chain_back = seg[u].chain_back;
+      if (i < m)
+        erase(v, a, m, i);
+      else
+        erase(v, m, b, i);
+      rob(u, v);
+      return;
+    }
+
+    auto l = seg[u].tangent, r = l->next;
+    Node &l_node = seg[seg[u].lch];
+    Node &r_node = seg[seg[u].rch];
+
+    l->next = l_node.chain;
+    if (l_node.chain)
+      l_node.chain->prev = l;
+    else
+      l_node.chain_back = l;
+    l_node.chain = seg[u].chain;
+
+    r->prev = r_node.chain_back;
+    if (r_node.chain_back)
+      r_node.chain_back->next = r;
+    else
+      r_node.chain = r;
+    r_node.chain_back = seg[u].chain_back;
+
+    if (seg[v].chain == seg[v].chain_back and seg[v].chain->id == i) {
+      seg[v].chain = seg[v].chain_back = nullptr;
+      rob(u, i < m ? seg[u].rch : seg[u].lch);
+      seg[u].tangent = nullptr;
+    } else if (i < m) {
+      if (l->id == i) l = l->next;
+      erase(v, a, m, i);
+      if (not l) l = l_node.chain_back;
+      fix_chain<true>(u, l, r);
+    } else {
+      if (r->id == i) r = r->prev;
+      erase(v, m, b, i);
+      if (not r) r = r_node.chain;
+      fix_chain<false>(u, l, r);
+    }
+  }
 
   size_t build(size_t &k, int l, int r) {
     if (r - l == 1) return l + n;
     int m = (l + r) / 2;
     size_t res = k++;
-    seg[res].ch[0] = build(k, l, m);
-    seg[res].ch[1] = build(k, m, r);
-    seg[res].l = seg[seg[res].ch[0]].l;
-    seg[res].bridge = pull(res);
+    seg[res].lch = build(k, l, m);
+    seg[res].rch = build(k, m, r);
+    fix_chain<false>(res, seg[seg[res].lch].chain, seg[seg[res].rch].chain);
     return res;
-  }
-
-  pair<Point, Point> pull(int k) const {
-    int l = seg[k].ch[0], r = seg[k].ch[1];
-    Point a = seg[l].bridge.first;
-    Point b = seg[l].bridge.second;
-    Point c = seg[r].bridge.first;
-    Point d = seg[r].bridge.second;
-    const T split_x = seg[r].l.first;
-    auto move_left = [&](bool f) {
-      l = seg[l].ch[f];
-      a = seg[l].bridge.first;
-      b = seg[l].bridge.second;
-    };
-    auto move_right = [&](bool f) {
-      r = seg[r].ch[f];
-      c = seg[r].bridge.first;
-      d = seg[r].bridge.second;
-    };
-    while (l < n or r < n) {
-      T3 s1 = cross(a, b, c);
-      if (l < n and s1 < 0) {
-        move_left(0);
-      } else if (r < n and cross(b, c, d) < 0) {
-        move_right(1);
-      } else if (l >= n) {
-        move_right(0);
-      } else if (r >= n) {
-        move_left(1);
-      } else {
-        T3 s2 = cross(b, a, d);
-        if (s1 + s2 == 0 or s1 * (d.x - split_x) > s2 * (split_x - c.x)) {
-          move_left(1);
-        } else {
-          move_right(0);
-        }
-      }
-    }
-    return {a, c};
-  }
-
-  void get_hull(int v, const Point &L, const Point &R, vector<int> &res) const {
-    if (v >= n) {
-      res.emplace_back(v - n);
-    } else if (R <= seg[v].bridge.first) {
-      get_hull(seg[v].ch[0], L, R, res);
-    } else if (seg[v].bridge.second <= L) {
-      get_hull(seg[v].ch[1], L, R, res);
-    } else {
-      get_hull(seg[v].ch[0], L, seg[v].bridge.first, res);
-      get_hull(seg[v].ch[1], seg[v].bridge.second, R, res);
-    }
   }
 
  public:
   explicit DecrementalUpperHull(const vector<Point> &ps)
       : n(ps.size()), seg(2 * n), sz(n), alive(n) {
-    if (ps.empty()) return;
     assert(is_sorted(ps.begin(), ps.end()));
-    for (int k = 0; k < n; k++) {
-      seg[k + n] = Node{ps[k], {ps[k], ps[k]}};
+    links.reserve(n);
+    for (int k = 0; k < n; ++k) {
+      links.emplace_back(Link{ps[k], nullptr, nullptr, k});
     }
+    for (int k = 0; k < n; k++) {
+      seg[k + n] = {&links[k], &links[k], nullptr, -1, -1};
+    }
+    if (ps.size() == 1) seg[0] = seg[1];
     size_t u = 0;
-    root = build(u, 0, n);
+    build(u, 0, n);
   }
 
   size_t size() const { return sz; }
@@ -99,44 +197,20 @@ struct DecrementalUpperHull {
     assert(0 <= k and k < n);
     if (alive[k]) return false;
     alive[k] = true;
-    k += n;
-    sz--;
-    static vector<int> buf;
-    if (sz > 0) {
-      const Point &p = seg[k].l;
-      int v = root;
-      while (v < n) {
-        buf.emplace_back(v);
-        v = seg[v].ch[p >= seg[seg[v].ch[1]].l];
-      }
-      if (buf.size() == 1) {
-        buf.pop_back();
-        root = seg[root].ch[seg[root].ch[0] == k];
-      } else {
-        int vp = buf.back();
-        buf.pop_back();
-        int vpp = buf.back();
-        int u = seg[vp].ch[seg[vp].ch[0] == v];
-        seg[vpp].ch[seg[vpp].ch[0] != vp] = u;
-        while (not buf.empty()) {
-          vp = buf.back();
-          buf.pop_back();
-          seg[vp].l = seg[seg[vp].ch[0]].l;
-          if (seg[vp].bridge.first == p || seg[vp].bridge.second == p) {
-            seg[vp].bridge = pull(vp);
-          }
-        }
-      }
+    --sz;
+    if (seg[0].chain == seg[0].chain_back) {
+      seg[0].chain = seg[0].chain_back = nullptr;
+    } else {
+      erase(0, 0, n, k);
     }
     return true;
   }
 
-  vector<int> get_hull() {
-    if (sz == 0) return {};
-    vector<int> res;
-    get_hull(root, seg[n].bridge.first, seg[n + n - 1].bridge.first, res);
-    return res;
+  vector<int> get_hull() const {
+    vector<int> ret;
+    for (LP u = seg[0].chain; u; u = u->next) {
+      ret.push_back(u->id);
+    }
+    return ret;
   }
-#undef x
-#undef y
 };

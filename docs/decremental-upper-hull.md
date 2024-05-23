@@ -24,7 +24,7 @@ DecrementalUpperHull< T, T2, T3 >(const vector<Point> &ps)
 
 ## 計算量
 
-- $O(n \log^2 n)$
+- $O(n \log n)$
 
 # size
 
@@ -62,7 +62,7 @@ $k$ 番目の点が残っている場合は、その点を削除して `true` �
 
 ## 計算量
 
-- $O(\log^2 n)$
+- amortized $O(\log n)$
 
 # get_hull
 
@@ -74,6 +74,6 @@ vector<int> get_hull()
 
 ## 計算量
 
-- $O(k \log^2 n)$
+- $O(k)$
 
 $k$ は上側凸包に用いられた点の個数です。

@@ -13,5 +13,5 @@ int main() {
     cin >> x >> y;
     ps[i] = {x, y};
   }
-  cout << convex_layers< int, int64, int64 >(ps) << "\n";
+  cout << convex_layers< int, int64 >(ps) << "\n";
 }
