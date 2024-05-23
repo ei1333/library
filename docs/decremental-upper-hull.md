@@ -29,7 +29,7 @@ DecrementalUpperHull< T, T2 >(const vector<Point> &ps)
 # size
 
 ```cpp
-size_t size()
+size_t size() const
 ```
 
 削除されずに残っている点の個数を返します。
@@ -41,7 +41,7 @@ size_t size()
 # empty
 
 ```cpp
-bool empty()
+bool empty() const
 ```
 
 すべての点が削除されている場合は `true`、そうでない場合は `false` を返します。
@@ -60,6 +60,10 @@ $k$ 番目の点がすでに削除されている場合は `false` を返しま�
 
 $k$ 番目の点が残っている場合は、その点を削除して `true` を返します。
 
+## 制約
+
+- $0 \leq k \lt n$
+
 ## 計算量
 
 - amortized $O(\log n)$
@@ -67,7 +71,7 @@ $k$ 番目の点が残っている場合は、その点を削除して `true` �
 # get_hull
 
 ```cpp
-vector<int> get_hull()
+vector<int> get_hull() const
 ```
 
 残っている点たちから構成される上側凸包の点の index を昇順で返します。
