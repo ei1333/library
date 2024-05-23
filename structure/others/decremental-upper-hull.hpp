@@ -37,7 +37,7 @@ struct DecrementalUpperHull {
   vector<Node> seg;
   vector<Link> links;
 
-  pair<LP, LP> find_bridge(LP l, LP r) {
+  pair<LP, LP> find_bridge(LP l, LP r) const {
     while (l->next or r->next) {
       if (not r->next or (l->next and ccw(sub(l->next->p, l->p),
                                           sub(r->next->p, r->p)) <= 0)) {
@@ -57,7 +57,7 @@ struct DecrementalUpperHull {
     return {l, r};
   }
 
-  pair<LP, LP> find_bridge_rev(LP l, LP r) {
+  pair<LP, LP> find_bridge_rev(LP l, LP r) const {
     while (r->prev or l->prev) {
       if (not l->prev or (r->prev and ccw(sub(r->prev->p, r->p),
                                           sub(l->prev->p, l->p)) >= 0)) {
