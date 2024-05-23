@@ -26,4 +26,4 @@ $ps$ の各点について Convex Layer を求めます。
 
 ## 計算量
 
-- $O(n \log^2 n)$
+- $O(n \log n)$
