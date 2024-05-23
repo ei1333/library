@@ -12,10 +12,10 @@ documentation_of: //structure/others/decremental-upper-hull.hpp
 # コンストラクタ
 
 ```cpp
-DecrementalUpperHull< T, T2, T3 >(const vector<Point> &ps)
+DecrementalUpperHull< T, T2 >(const vector<Point> &ps)
 ```
 
-`T` は 2 * 座標の最大値が収まる型、`T2` は (2 * 座標の最大値)^2 が収まる型、`T3` は (2 * 座標の最大値)^3 が収まる型を指定してください。
+`T` は 2 * 座標の最大値が収まる型、`T2` は (2 * 座標の最大値)^2 が収まる型を指定してください。
 
 ## 制約
 
@@ -24,12 +24,12 @@ DecrementalUpperHull< T, T2, T3 >(const vector<Point> &ps)
 
 ## 計算量
 
-- $O(n \log^2 n)$
+- $O(n \log n)$
 
 # size
 
 ```cpp
-size_t size()
+size_t size() const
 ```
 
 削除されずに残っている点の個数を返します。
@@ -41,7 +41,7 @@ size_t size()
 # empty
 
 ```cpp
-bool empty()
+bool empty() const
 ```
 
 すべての点が削除されている場合は `true`、そうでない場合は `false` を返します。
@@ -60,20 +60,24 @@ $k$ 番目の点がすでに削除されている場合は `false` を返しま�
 
 $k$ 番目の点が残っている場合は、その点を削除して `true` を返します。
 
+## 制約
+
+- $0 \leq k \lt n$
+
 ## 計算量
 
-- $O(\log^2 n)$
+- amortized $O(\log n)$
 
 # get_hull
 
 ```cpp
-vector<int> get_hull()
+vector<int> get_hull() const
 ```
 
 残っている点たちから構成される上側凸包の点の index を昇順で返します。
 
 ## 計算量
 
-- $O(k \log^2 n)$
+- $O(k)$
 
 $k$ は上側凸包に用いられた点の個数です。

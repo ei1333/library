@@ -12,13 +12,13 @@ documentation_of: //geometry/convex-layers.hpp
 # convex_layers
 
 ```cpp
-template <typename T, typename T2, typename T3>
+template <typename T, typename T2>
 vector<int> convex_layers(const vector<pair<T, T> >& ps)
 ```
 
 $ps$ の各点について Convex Layer を求めます。
 
-`T` は 2 * 座標の最大値が収まる型、`T2` は (2 * 座標の最大値)^2 が収まる型、`T3` は (2 * 座標の最大値)^3 が収まる型を指定してください。
+`T` は 2 * 座標の最大値が収まる型、`T2` は (2 * 座標の最大値)^2 が収まる型を指定してください。
 
 ## 制約
 
@@ -26,4 +26,4 @@ $ps$ の各点について Convex Layer を求めます。
 
 ## 計算量
 
-- $O(n \log^2 n)$
+- $O(n \log n)$
