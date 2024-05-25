@@ -1,16 +1,16 @@
-template< typename T, typename T2, typename T3 >
+template <typename T, typename T2, typename T3>
 struct RangeLinearAddRangeMinSegmentTree {
-private:
-  using Point = pair< int, T >;
+ private:
+  using Point = pair<int, T>;
 
   struct Node {
     Point lbr, rbr;
 
     T lza, lzb;
 
-    Node(int x, T y): lbr{x, y}, rbr{x, y}, lza{0}, lzb{0} {}
+    Node(int x, T y) : lbr{x, y}, rbr{x, y}, lza{0}, lzb{0} {}
 
-    Node(): lza{0}, lzb{0} {}
+    Node() : lza{0}, lzb{0} {}
   };
 
 #define x first
@@ -22,8 +22,8 @@ private:
 
   size_t n, sz, height;
   const T ti;
-  vector< int > mid;
-  vector< Node > seg;
+  vector<int> mid;
+  vector<Node> seg;
 
   void update(int k) {
     int l = 2 * k, r = 2 * k + 1;
@@ -92,7 +92,8 @@ private:
   T min_subtree(int k) {
     T a = 0, b = 0;
     while (k < sz) {
-      bool f = (seg[k].lbr.y - seg[k].rbr.y) > a * (seg[k].rbr.x - seg[k].lbr.x);
+      bool f =
+          (seg[k].lbr.y - seg[k].rbr.y) > a * (seg[k].rbr.x - seg[k].lbr.x);
       a += seg[k].lza;
       b += seg[k].lzb;
       k = k * 2 + f;
@@ -100,8 +101,9 @@ private:
     return seg[k].lbr.y + a * seg[k].lbr.x + b;
   }
 
-public:
-  explicit RangeLinearAddRangeMinSegmentTree(const vector< T > &vs, const T &ti): n(vs.size()), ti(ti) {
+ public:
+  explicit RangeLinearAddRangeMinSegmentTree(const vector<T> &vs, const T &ti)
+      : n(vs.size()), ti(ti) {
     sz = 1;
     height = 0;
     while (sz < n) sz <<= 1, height++;
