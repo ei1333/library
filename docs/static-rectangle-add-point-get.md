@@ -31,7 +31,7 @@ $\lbrace (x,y):l \leq x \lt r, d \leq y \lt u\rbrace$ で表される重み $w$ 
 - $l \lt r$
 - $d \lt u$
 
-# 計算量
+## 計算量
 
 - $O(1)$
 

@@ -21,7 +21,7 @@ documentation_of: //other/area-of-union-of-rectangles.hpp
 # add_rectangle
 
 ```cpp
-add_rectangle(T l, T d, T r, T u)
+void add_rectangle(T l, T d, T r, T u)
 ```
 
 $\lbrace (x,y):l \leq x \leq r, d \leq y \leq u\rbrace$ で表される長方形を追加します。
@@ -29,7 +29,11 @@ $\lbrace (x,y):l \leq x \leq r, d \leq y \leq u\rbrace$ で表される長方形
 ## 制約
 
 - $l \lt r$
-- $r \lt u$
+- $d \lt u$
+
+## 計算量
+
+- $O(1)$ 
 
 # calc
 
