@@ -1,8 +1,5 @@
 #include "../structure/others/binary-indexed-tree.hpp"
 
-/**
- * @brief Static Point Add Rectangle Sum
- */
 template <typename T, typename C>
 struct StaticPointAddRectangleSum {
   using BIT = BinaryIndexedTree<C>;

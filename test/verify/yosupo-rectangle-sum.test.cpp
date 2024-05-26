@@ -2,7 +2,6 @@
 
 #include "../../template/template.hpp"
 
-#include "../../structure/wavelet/succinct-indexable-dictionary.hpp"
 #include "../../structure/wavelet/wavelet-matrix-rectangle-sum.hpp"
 
 int main() {

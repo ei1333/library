@@ -1,3 +1,5 @@
+#include "succinct-indexable-dictionary.hpp"
+
 /*
  * @brief Wavelet Matrix Rectangle Sum
  *

@@ -1,35 +1,36 @@
-#include "static-point-add-rectangle-sum.hpp"
+#include "static-rectangle-add-point-get.hpp"
 
 template <typename T, typename C>
-struct DynamicPointAddRectangleSum {
-  using StaticRectangleSumSolver = StaticPointAddRectangleSum<T, C>;
+struct DynamicRectangleAddPointGet {
+ private:
+  using StaticPointGetSolver = StaticRectangleAddPointGet<T, C>;
 
   static_assert(is_integral<T>::value,
                 "template parameter T must be integral type");
 
-  struct Point {
-    T x, y;
+  struct Rectangle {
+    T l, d, r, u;
     C w;
   };
 
   struct Query {
-    T l, d, r, u;
+    T x, y;
   };
 
-  vector<variant<Point, Query> > queries;
+  vector<variant<Rectangle, Query> > queries;
 
-  DynamicPointAddRectangleSum() = default;
+ public:
+  DynamicRectangleAddPointGet() = default;
 
-  DynamicPointAddRectangleSum(int q) { queries.reserve(q); }
+  explicit DynamicRectangleAddPointGet(int q) { queries.reserve(q); }
 
-  void add_point(T x, T y, C w) { queries.emplace_back(Point{x, y, w}); }
-
-  // tatal weight of [l, r) * [d, u) points
-  void add_query(T l, T d, T r, T u) {
-    queries.emplace_back(Query{l, d, r, u});
+  void add_rectangle(T l, T d, T r, T u, C w) {
+    queries.emplace_back(Rectangle{l, d, r, u, w});
   }
 
-  vector<C> calculate_queries() {
+  void add_query(T x, T y) { queries.emplace_back(Query{x, y}); }
+
+  vector<C> calculate_queries() const {
     int q = (int)queries.size();
     vector<int> rev(q);
     int sz = 0;
@@ -45,17 +46,17 @@ struct DynamicPointAddRectangleSum {
       auto [l, r] = range.front();
       range.pop();
       int m = (l + r) >> 1;
-      StaticRectangleSumSolver solver;
+      StaticPointGetSolver solver;
       for (int k = l; k < m; k++) {
-        if (holds_alternative<Point>(queries[k])) {
-          auto &point = get<Point>(queries[k]);
-          solver.add_point(point.x, point.y, point.w);
+        if (holds_alternative<Rectangle>(queries[k])) {
+          auto &rect = get<Rectangle>(queries[k]);
+          solver.add_rectangle(rect.l, rect.d, rect.r, rect.u, rect.w);
         }
       }
       for (int k = m; k < r; k++) {
         if (holds_alternative<Query>(queries[k])) {
           auto &query = get<Query>(queries[k]);
-          solver.add_query(query.l, query.d, query.r, query.u);
+          solver.add_query(query.x, query.y);
         }
       }
       auto sub = solver.calculate_queries();
