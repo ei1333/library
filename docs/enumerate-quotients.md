@@ -12,7 +12,7 @@ template <typename T>
 vector< tuple< T, T, T > > enumerate_quotients(T n)
 ```
 
-戻り値の各要素を $\{q, l, r\}$ としたとき、$l \leq i \lt r$ を満たす整数 $i$ の商($\lfloor \frac n i \rfloor$) が $q$ であることを意味します。$q$ の昇順で返します。
+戻り値の各要素を $\\{q, l, r\\}$ としたとき、$l \leq i \lt r$ を満たす整数 $i$ の商($\lfloor \frac n i \rfloor$) が $q$ であることを意味します。$q$ の昇順で返します。
 
 ## 制約
 

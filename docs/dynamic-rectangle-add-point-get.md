@@ -19,7 +19,7 @@ documentation_of: //other/dynamic-point-add-rectangle-sum.hpp
 # add_rectangle
 
 ```cpp
-add_rectangle(T l, T d, T r, T u, C w)
+void add_rectangle(T l, T d, T r, T u, C w)
 ```
 
 $\lbrace (x,y):l \leq x \leq r, d \leq y \leq u\rbrace$ で表される重み $w$ の長方形を追加するクエリを追加します。
