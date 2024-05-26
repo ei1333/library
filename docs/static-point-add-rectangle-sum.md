@@ -15,7 +15,7 @@ documentation_of: //other/static-point-add-rectangle-sum.hpp
 (2) StaticPointAddRectangleSum< T, C >(int n, int q)
 ```
 
-`T` は座標が収まる型、$C$ は重みの総和が収まる型を指定してください。
+`T` は座標が収まる型、`C` は重みの総和が収まる型を指定してください。
 
 (2) で点の個数 $n$、クエリの個数 $q$ を指定した場合、領域を `reserve` するので少しだけ効率的です。
 
