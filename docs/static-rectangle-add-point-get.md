@@ -1,6 +1,6 @@
 ---
 title: Static Rectangle Add Point Get
-documentation_of: //other/static-point-add-rectangle-sum.hpp
+documentation_of: //other/static-rectangle-add-point-get.hpp
 ---
 
 2 次元平面上に重み付きの長方形が与えられます。
@@ -16,7 +16,7 @@ documentation_of: //other/static-point-add-rectangle-sum.hpp
 
 `T` は座標が収まる型、$C$ は重みの総和が収まる型を指定してください。
 
-(2) で長方形の個数 $n$、座標の個数 $q$ を指定した場合、領域を `reserve` するので少しだけ効率的です。
+(2) で長方形の個数 $n$、クエリの個数 $q$ を指定した場合、領域を `reserve` するので少しだけ効率的です。
 
 # add_rectangle
 
@@ -29,7 +29,7 @@ $\lbrace (x,y):l \leq x \leq r, d \leq y \leq u\rbrace$ で表される重み $w
 ## 制約
 
 - $l \lt r$
-- $r \lt u$
+- $d \lt u$
 
 # 計算量
 
@@ -41,9 +41,9 @@ $\lbrace (x,y):l \leq x \leq r, d \leq y \leq u\rbrace$ で表される重み $w
 void add_query(T x, T y)
 ```
 
-$(x, y)$ に含む長方形の重みの総和を求めるクエリを追加します。
+$(x, y)$ を含む長方形の重みの総和を求めるクエリを追加します。
 
-# 計算量
+## 計算量
 
 - $O(1)$
 
