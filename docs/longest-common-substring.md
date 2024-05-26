@@ -1,7 +1,6 @@
 ---
 title: Longest Common Substring
 documentation_of: //string/longest-common-substring.hpp
-
 ---
 
 与えられた 2 つの文字列の最長共通部分文字列を求めます。
