@@ -1,8 +1,5 @@
 #pragma once
 
-/**
- * @brief Graph Template(グラフテンプレート)
- */
 template <typename T = int>
 struct Edge {
   int from, to;

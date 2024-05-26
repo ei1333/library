@@ -1,8 +1,5 @@
 #include "../structure/others/binary-indexed-tree.hpp"
 
-/**
- * @brief Static Rectangle Add Rectangle Sum
- */
 template <typename T, typename C>
 struct StaticRectangleAddRectangleSum {
   struct Hikari : array<C, 4> {
