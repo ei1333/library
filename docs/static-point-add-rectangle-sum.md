@@ -34,7 +34,7 @@ $(x, y)$ に重み $w$ の点を追加します。
 # add_query
 
 ```cpp
-void add_query(T l, T r, $ d, $ u)
+void add_query(T l, T d, T r, T u)
 ```
 
 $\lbrace (x,y):l \leq x \lt r, d \leq y \lt u\rbrace$ で表される長方形内にある点の重みの総和を求めるクエリを追加します。
@@ -42,7 +42,7 @@ $\lbrace (x,y):l \leq x \lt r, d \leq y \lt u\rbrace$ で表される長方形�
 ## 制約
 
 - $l \lt r$
-- $r \lt u$
+- $d \lt u$
 
 # 計算量
 

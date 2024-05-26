@@ -1,6 +1,6 @@
 ---
 title: Dynamic Rectangle Add Point Get
-documentation_of: //other/dynamic-point-add-rectangle-sum.hpp
+documentation_of: //other/dynamic-rectangle-add-point-get.hpp
 ---
 
 2 次元平面上に重み付きの長方形を追加するクエリと、ある点を含む長方形の重みの総和を求めるいくつかのクエリに答えます。
@@ -27,7 +27,7 @@ $\lbrace (x,y):l \leq x \leq r, d \leq y \leq u\rbrace$ で表される重み $w
 ## 制約
 
 - $l \lt r$
-- $r \lt u$
+- $d \lt u$
 
 # 計算量
 
