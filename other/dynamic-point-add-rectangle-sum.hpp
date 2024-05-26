@@ -1,8 +1,5 @@
 #include "static-point-add-rectangle-sum.hpp"
 
-/**
- * @brief Dynamic Point Add Rectangle Sum
- */
 template <typename T, typename C>
 struct DynamicPointAddRectangleSum {
   using StaticRectangleSumSolver = StaticPointAddRectangleSum<T, C>;
