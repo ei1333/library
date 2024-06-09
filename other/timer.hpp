@@ -1,8 +1,4 @@
-/**
- * @brief Timer(タイマー)
- *
- */
-constexpr uint64_t CYCLES_PER_SEC = 3000000000;  // AtCoder
+constexpr uint64_t CYCLES_PER_SEC = 2900000000;  // AtCoder
 // constexpr uint64_t CYCLES_PER_SEC = 3600000000; // Codeforces
 // constexpr uint64_t CYCLES_PER_SEC = 2300000000; // yukicoder
 struct Timer {
