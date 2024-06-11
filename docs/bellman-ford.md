@@ -1,6 +1,6 @@
 ---
 title: Bellman-Ford (単一始点最短路)
-documentation_of: //graph/shortest-path/dijkstra.hpp
+documentation_of: //graph/shortest-path/bellman-ford.hpp
 ---
 
 単一始点全点間最短路を求めるアルゴリズムです。負辺があっても動作します。経路上に負閉路がある場合はそれを検出します。

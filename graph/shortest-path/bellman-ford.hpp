@@ -12,21 +12,21 @@ vector<T> bellman_ford(const Edges<T> &edges, int n, int s) {
       dist[e.to] = min(dist[e.to], dist[e.from] + e.cost);
     }
   }
-  vector<bool>negative(n);
-  for(int i = 0; i < n; i++) {
-    for (auto &e: edges) {
+  vector<bool> negative(n);
+  for (int i = 0; i < n; i++) {
+    for (auto &e : edges) {
       if (dist[e.from] == INF) continue;
       if (dist[e.from] + e.cost < dist[e.to]) {
         dist[e.to] = dist[e.from] + e.cost;
         negative[e.to] = true;
       }
-      if(negative[e.from]) {
+      if (negative[e.from]) {
         negative[e.to] = true;
       }
     }
   }
-  for(int i = 0; i < n; i++) {
-    if(negative[i]) dist[i] = M_INF;
+  for (int i = 0; i < n; i++) {
+    if (negative[i]) dist[i] = M_INF;
   }
   return dist;
 }
