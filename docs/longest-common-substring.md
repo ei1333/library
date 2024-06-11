@@ -18,7 +18,7 @@ $s$ と $t$ の最長共通部分列を $S[a, b)$、$T[c, d)$ とします。こ
 
 ## 計算量
 
-$n = \max(|s|, |t|)$ とします。
+$n = \max(\|s\|, \|t\|)$ とします。
 
 - `compress = false`: $O(n)$
 - `compress = true`: $O(n \log n)$

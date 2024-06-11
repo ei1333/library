@@ -14,7 +14,12 @@ int main() {
     es.emplace_back(a, b, c);
   }
   auto dists = bellman_ford(es, V, R);
-  if(dists.empty()) cout << "NEGATIVE CYCLE\n";
+  for(auto& dist : dists) {
+    if(dist == numeric_limits< int >::min()) {
+      cout << "NEGATIVE CYCLE\n";
+      return 0;
+    }
+  }
   for(auto &dist : dists) {
     if(dist == numeric_limits< int >::max()) cout << "INF\n";
     else cout << dist << "\n";
