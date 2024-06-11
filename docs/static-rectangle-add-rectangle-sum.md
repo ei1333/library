@@ -20,7 +20,7 @@ documentation_of: //other/static-rectangle-add-rectangle-sum.hpp
 
 (2) で長方形の個数 $n$、クエリの個数 $q$ を指定した場合、領域を `reserve` するので少しだけ効率的です。
 
-# add_point
+# add_rectangle
 
 ```cpp
 void add_rectangle(T l, T d, T r, T u, C w)
