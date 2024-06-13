@@ -84,12 +84,6 @@ jobs:
           key: ${{ runner.os }}-verify-result-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-verify-result-
-      
-      - name: Recieve dropbox token
-        run: |
-          DROPBOX_TOKEN=$(echo "${{needs.setup.outputs.dropbox_token}}" | openssl enc -aes256 -d -pbkdf2 -base64 -A -k '${{secrets.AES256_KEY}}')
-          echo "::add-mask::$DROPBOX_TOKEN"
-          echo "DROPBOX_TOKEN=$DROPBOX_TOKEN" >> $GITHUB_ENV
 
       - name: Download verify_files.json
         uses: competitive-verifier/actions/download-verify-artifact@v2
