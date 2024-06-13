@@ -5,6 +5,10 @@ on:
       - "master"
   pull_request:
   workflow_dispatch:
+    inputs:
+      ignore_prev_result:
+        type: boolean
+        default: false
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -59,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [setup]
     env:
-      SPLIT_SIZE: 20
+      SPLIT_SIZE: "20"
     strategy:
       matrix:
         # prettier-ignore
@@ -68,6 +72,24 @@ jobs:
            "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2147483647
+
+      - name: Restore cached results
+        if: ${{ ! inputs.ignore_prev_result }}
+        uses: actions/cache/restore@v3
+        id: restore-cached-results
+        with:
+          path: ${{github.workspace}}/merged-result.json
+          key: ${{ runner.os }}-verify-result-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-verify-result-
+      
+      - name: Recieve dropbox token
+        run: |
+          DROPBOX_TOKEN=$(echo "${{needs.setup.outputs.dropbox_token}}" | openssl enc -aes256 -d -pbkdf2 -base64 -A -k '${{secrets.AES256_KEY}}')
+          echo "::add-mask::$DROPBOX_TOKEN"
+          echo "DROPBOX_TOKEN=$DROPBOX_TOKEN" >> $GITHUB_ENV
 
       - name: Download verify_files.json
         uses: competitive-verifier/actions/download-verify-artifact@v2
@@ -77,7 +99,6 @@ jobs:
         with:
           cache-pip: true
 
-      # Initialize your own environment for verification.
       - name: Verify
         uses: competitive-verifier/actions/verify@v2
         with:
@@ -85,8 +106,9 @@ jobs:
           split-size: ${{ env.SPLIT_SIZE }}
           split-index: ${{ matrix.index }}
           timeout: 1800
+          prev-result: ${{ steps.restore-cached-results.outputs.cache-hit && 'merged-result.json' || ''}}
         env:
-            YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}
+          YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}
 
       - name: Upload result artifact
         uses: actions/upload-artifact@v4
@@ -98,8 +120,12 @@ jobs:
   docs-and-check:
     runs-on: ubuntu-latest
     needs: [verify]
+    outputs:
+      upload-pages: ${{steps.upload-pages.outcome == 'success'}}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2147483647
 
       - name: Download verify_files.json and all artifacts
         id: all-artifacts
@@ -116,7 +142,7 @@ jobs:
             mkdir -p .competitive-verifier/
             mv "$SRCDIR" .competitive-verifier/bundled
           else
-            echo "$SRCDIR is not exists."
+            echo "$SRCDIR does not exist."
           fi
         env:
           SRCDIR: .artifacts/Bundled-${{ runner.os }}
@@ -126,21 +152,32 @@ jobs:
         with:
           cache-pip: true
 
-      - name: Docs
-        uses: competitive-verifier/actions/docs@v1
+      - name: Merge results
+        uses: competitive-verifier/actions/merge-result@v2
         with:
-          verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+          result-files: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+          output-path: ${{github.workspace}}/merged-result.json
+      - name: Docs
+        uses: competitive-verifier/actions/docs@v2
+        with:
+          verify-result: ${{github.workspace}}/merged-result.json
           destination: _jekyll
           write-summary: true
+      - name: Save result
+        uses: actions/cache/save@v3
+        with:
+          path: ${{github.workspace}}/merged-result.json
+          key: ${{ runner.os }}-verify-result-${{ github.sha }}
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: _jekyll
           destination: _site
       - name: Upload artifact
+        id: upload-pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
@@ -150,7 +187,7 @@ jobs:
         with:
           verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
   deploy:
-    if: (success() || failure()) && github.ref == 'refs/heads/master'
+    if: (success() || failure()) && github.ref == 'refs/heads/master' && needs.docs-and-check.outputs.upload-pages == 'true'
     needs: docs-and-check
     environment:
       name: github-pages
@@ -159,4 +196,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
