@@ -25,7 +25,7 @@ void build(bool heavy = true)
 
 現在の Trie をもとにオートマトンを構築します。
 
-# 計算量
+## 計算量
 
 - O(追加した文字列の長さの総和)
 
@@ -54,4 +54,4 @@ unordered_map<int, int> match(const string &str, int now = 0)
 ## 計算量
 
 - (1) $O(1)$
-- (2) $O(`str` の長さ)
+- (2) O(`str` の長さ)
