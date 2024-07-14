@@ -1,10 +1,10 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/queue_operate_all_composite
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/deque_operate_all_composite
 
 #include "../../template/template.hpp"
 
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 
-#include "../../structure/others/queue-operate-aggregation.hpp"
+#include "../../structure/others/deque-operate-aggregation.hpp"
 
 using mint = modint998244353;
 
@@ -15,16 +15,22 @@ int main() {
   auto f = [](const pi &a, const pi &b) -> pi {
     return {a.first * b.first, a.second * b.first + b.second};
   };
-  auto que = get_queue_operate_aggregation<pi>(f);
+  auto que = get_deque_operate_aggregation<pi>(f);
   while (Q--) {
     int t;
     cin >> t;
     if (t == 0) {
       mint a, b;
       cin >> a >> b;
-      que.push(pi(a, b));
-    } else if(t == 1) {
-      que.pop();
+      que.push_front(pi(a, b));
+    } else if (t == 1) {
+      mint a, b;
+      cin >> a >> b;
+      que.push_back(pi(a, b));
+    } else if(t == 2) {
+      que.pop_front();
+    } else if(t == 3) {
+      que.pop_back();
     } else {
       mint x;
       cin >> x;

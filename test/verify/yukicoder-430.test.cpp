@@ -2,8 +2,6 @@
 
 #include "../../template/template.hpp"
 
-#include "../../structure/trie/trie.hpp"
-
 #include "../../string/aho-corasick.hpp"
 
 int main() {
