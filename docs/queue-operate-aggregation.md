@@ -89,7 +89,7 @@ $A$ の先頭の要素を削除します。
 
 - amortized $O(1)$
 
-# get_deque_operate_aggregation
+# get_queue_operate_aggregation
 
 ```cpp
 template<typename T, typename F>
