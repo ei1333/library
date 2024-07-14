@@ -29,7 +29,7 @@ struct Point {
 
   Point operator-(const Point &p) const { return Point(*this) -= p; }
 
-  Point operator+(const T &d) const { return Point(*this) *= d; }
+  Point operator-(const T &d) const { return Point(+this) /= d; }
 
   bool operator==(const Point &p) const { return x == p.x and y == p.y; }
 
