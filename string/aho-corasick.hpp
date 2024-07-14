@@ -51,7 +51,7 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
       now = this->nodes[now].nxt[c - margin];
       visit_cnt[now]++;
     }
-    for(auto& [now, cnt] : visit_cnt) {
+    for (auto &[now, cnt] : visit_cnt) {
       for (auto &v : this->nodes[now].accept) result[v] += cnt;
     }
     return result;
