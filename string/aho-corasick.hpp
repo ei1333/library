@@ -1,7 +1,5 @@
-/**
- * @brief Aho-Corasick(エイホ–コラシック法)
- *
- */
+#include "../structure/trie/trie.hpp"
+
 template <int char_size, int margin>
 struct AhoCorasick : Trie<char_size + 1, margin> {
   using Trie<char_size + 1, margin>::Trie;
@@ -47,11 +45,14 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
     }
   }
 
-  map<int, int> match(const string &str, int now = 0) {
-    map<int, int> result;
+  unordered_map<int, int> match(const string &str, int now = 0) {
+    unordered_map<int, int> result, visit_cnt;
     for (auto &c : str) {
       now = this->nodes[now].nxt[c - margin];
-      for (auto &v : this->nodes[now].accept) result[v] += 1;
+      visit_cnt[now]++;
+    }
+    for(auto& [now, cnt] : visit_cnt) {
+      for (auto &v : this->nodes[now].accept) result[v] += cnt;
     }
     return result;
   }
