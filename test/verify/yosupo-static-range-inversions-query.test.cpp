@@ -10,11 +10,11 @@ int main() {
   cin >> N >> Q;
   vector< int > A(N);
   for(auto &a : A) cin >> a;
-  Mo mo(N);
+  Mo mo(N, Q);
   for(int i = 0; i < Q; i++) {
     int l, r;
     cin >> l >> r;
-    mo.add(l, r);
+    mo.add_query(l, r);
   }
   vector< int > xs{A};
   sort(begin(xs), end(xs));
@@ -43,9 +43,9 @@ int main() {
     bit.apply(A[idx], -1);
     --all;
   };
-  auto out = [&](int idx) {
+  auto query = [&](int idx) {
     ans[idx] = inv;
   };
-  mo.build(add_left, add_right, erase_left, erase_right, out);
+  mo.calclate_queries(add_left, add_right, erase_left, erase_right, query);
   for(auto &p : ans) cout << p << "\n";
 }
