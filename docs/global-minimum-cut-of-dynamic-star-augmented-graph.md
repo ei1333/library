@@ -23,7 +23,7 @@ GlobalMinimumCutofDynamicStarAugmentedGraph< T >(int n, const Edges<T> &es)
 
 ## 計算量
 
-- $O(nm + n^2 log n)$
+- $O(nm + n^2 \log n)$
 
 # update
 
