@@ -13,7 +13,7 @@ struct HeavyLightDecomposition : Graph<T> {
   using Graph<T>::g;
   vector<int> sz, in, out, head, rev, par, dep;
 
-  void build() {
+  void build(int root = 0) {
     sz.assign(g.size(), 0);
     in.assign(g.size(), 0);
     out.assign(g.size(), 0);
@@ -21,9 +21,10 @@ struct HeavyLightDecomposition : Graph<T> {
     rev.assign(g.size(), 0);
     par.assign(g.size(), 0);
     dep.assign(g.size(), 0);
-    dfs_sz(0, -1, 0);
+    dfs_sz(root, -1, 0);
     int t = 0;
-    dfs_hld(0, -1, t);
+    head[root] = root;
+    dfs_hld(root, -1, t);
   }
 
   /* k: 0-indexed */
