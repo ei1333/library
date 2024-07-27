@@ -32,7 +32,7 @@ $t$ は `terminal` の個数です。
 
 # restore
 
-``cpp
+```cpp
 Edges<T> restore() const
 ```
 
