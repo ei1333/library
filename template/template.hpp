@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+#if __has_include(<atcoder/all>)
+#include <atcoder/all>
+#endif
 
 using namespace std;
 
@@ -74,15 +77,15 @@ typename enable_if<is_class<T>::value != 0>::type fill_v(T &t, const V &v) {
 
 template <typename F>
 struct FixPoint : F {
-  explicit FixPoint(F &&f) : F(forward<F>(f)) {}
+  explicit FixPoint(F &&f) : F(std::forward<F>(f)) {}
 
   template <typename... Args>
   decltype(auto) operator()(Args &&...args) const {
-    return F::operator()(*this, forward<Args>(args)...);
+    return F::operator()(*this, std::forward<Args>(args)...);
   }
 };
 
 template <typename F>
 inline decltype(auto) MFP(F &&f) {
-  return FixPoint<F>{forward<F>(f)};
+  return FixPoint<F>{std::forward<F>(f)};
 }
