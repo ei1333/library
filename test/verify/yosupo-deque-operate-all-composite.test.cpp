@@ -5,15 +5,16 @@
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 
 #include "../../structure/others/deque-operate-aggregation.hpp"
+#include "../../structure/segment-tree/affine.hpp"
 
 using mint = modint998244353;
 
 int main() {
   int Q;
   cin >> Q;
-  using pi = pair<mint, mint>;
+  using pi = Affine< mint >;
   auto f = [](const pi &a, const pi &b) -> pi {
-    return {a.first * b.first, a.second * b.first + b.second};
+    return pi::op(a, b);
   };
   auto que = get_deque_operate_aggregation<pi>(f);
   while (Q--) {
@@ -38,7 +39,7 @@ int main() {
         cout << x << "\n";
       } else {
         auto s = que.all_prod();
-        cout << s.first * x + s.second << "\n";
+        cout << s.eval(x) << "\n";
       }
     }
   }
