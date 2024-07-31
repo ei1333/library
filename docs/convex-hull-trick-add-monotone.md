@@ -1,6 +1,6 @@
 ---
 title: Convex Hull Trick Add Monotone
-documentation_of: ///structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp
+documentation_of: //structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp
 ---
 
 次のクエリを考えます。
