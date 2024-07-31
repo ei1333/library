@@ -1,7 +1,3 @@
-/**
- * @brief Convex Hull Trick Add Monotone
- *
- */
 template <typename T, bool isMin>
 struct ConvexHullTrickAddMonotone {
 #define F first
@@ -15,14 +11,18 @@ struct ConvexHullTrickAddMonotone {
 
   void clear() { H.clear(); }
 
-  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }
+  static constexpr int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }
 
-  inline bool check(const P &a, const P &b, const P &c) {
+  static constexpr T floor_div(T n, T d) {
+    return n / d - ((n ^ d) < 0 and n % d != 0);
+  }
+
+  static constexpr bool check(const P &a, const P &b, const P &c) {
     if (b.S == a.S || c.S == b.S)
       return sgn(b.F - a.F) * sgn(c.S - b.S) >= sgn(c.F - b.F) * sgn(b.S - a.S);
     // return (b.F-a.F)*(c.S-b.S) >= (b.S-a.S)*(c.F-b.F);
-    if (is_integral<T>::value) {
-      return (b.S - a.S) / (a.F - b.F) >= (c.S - b.S) / (b.F - c.F);
+    if constexpr (is_integral<T>::value) {
+      return floor_div(b.S - a.S, a.F - b.F) >= floor_div(c.S - b.S, b.F - c.F);
     } else {
       return (b.F - a.F) * sgn(c.S - b.S) / abs(b.S - a.S) >=
              (c.F - b.F) * sgn(b.S - a.S) / abs(c.S - b.S);
@@ -55,9 +55,9 @@ struct ConvexHullTrickAddMonotone {
     }
   }
 
-  inline T get_y(const P &a, const T &x) { return a.F * x + a.S; }
+  static constexpr T get_y(const P &a, const T &x) { return a.F * x + a.S; }
 
-  T query(T x) {
+  T query(T x) const {
     assert(!empty());
     int l = -1, r = H.size() - 1;
     while (l + 1 < r) {
