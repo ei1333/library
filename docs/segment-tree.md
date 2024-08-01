@@ -7,7 +7,7 @@ documentation_of: //structure/segment-tree/segment-tree.hpp
 
 モノイドは次の条件を満たす代数的構造です。
 
-* 結合律を満たします。つまり $S$ の各元 $a, b, c$ に対して, $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ を満たします。
+* 結合律を満たします。つまり $S$ の各元 $a, b, c$ に対して、$(a \cdot b) \cdot c = a \cdot (b \cdot c)$ を満たします。
 * 単位元を持ちます。つまり $S$ の任意の元 $a$ をとってきたときに $a \cdot e = e \cdot a = a$ なる $e$ が存在します。
 
 以下の実装では木を 1-indexed の配列で表現しています。ノード $k$ について、親ノードは $\frac k 2$, 子ノードは $2k$, $2k+1$ です。
@@ -19,10 +19,16 @@ documentation_of: //structure/segment-tree/segment-tree.hpp
 (2) SegmentTree< Monoid >(Monoid m, const vector<S> &v) 
 ```
 
-(1) モノイド `m`、サイズ `n` で初期化します。
+(1) モノイド `m`、サイズ `n` で初期化します。各要素には単位元 `m.e()` が格納されます。
 (2) モノイド `m`、配列 `v` で初期化します。
 
-`m` は各要素の型 `S`、二項演算 `op`、単位元 `e` を返す構造体です。
+## 計算量
+
+- $O(n)$
+
+## Monoid について
+
+`Monoid` は、次の構造体と関数を持つ構造体です。
 
 ```cpp
 struct Monoid {
@@ -32,11 +38,34 @@ struct Monoid {
 };
 ```
 
+- `S`: モノイドの型
+- `op(a, b)`: モノイドの 2 つの元 $a, b$ に対して、二項演算した結果（$a \cdot b$）を返す関数
+- `e`: モノイドの単位元を返す返す関数
 
-## 計算量
+例えば、区間和を求めたい場合は次の構造体を定義して、`SegmentTree` に渡します。
 
-- $O(n)$
+```cpp
+struct RangeSum {
+  using S = int;
+  static constexpr S op(const S& a, const S& b) { return a + b; }
+  static constexpr S e() { return 0; }
+};
 
+SegmentTree seg(RangeSum(), n);
+```
+
+## LambdaMonoid について
+
+`LambdaMonoid` は、ラムダ式を受け取って、構造体 `Monoid` のようにふるまう構造体です。
+
+
+例えば、区間和を求めたい場合はラムダ式を使って次のように書くこともできます。
+
+```cpp
+auto op = [](int a, int b) { return a + b; };
+auto e = []() { return 0; };
+SegmentTree seg(LambdaMonoid(op, e), N);
+```
 
 # build
 
