@@ -1,10 +1,10 @@
-template< typename Act >
+template <typename Act>
 struct DualSegmentTree {
   using F = typename Act::F;
 
-private:
+ private:
   int sz, height;
-  vector< F > lazy;
+  vector<F> lazy;
   Act m;
 
   inline void propagate(int k) {
@@ -19,8 +19,8 @@ private:
     for (int i = height; i > 0; i--) propagate(k >> i);
   }
 
-public:
-  DualSegmentTree(Act m, int n): m(m) {
+ public:
+  DualSegmentTree(Act m, int n) : m(m) {
     sz = 1;
     height = 0;
     while (sz < n) sz <<= 1, height++;
@@ -32,9 +32,7 @@ public:
     return lazy[k];
   }
 
-  F operator[](int k) {
-    return get(k);
-  }
+  F operator[](int k) { return get(k); }
 
   void apply(int a, int b, const F &f) {
     thrust(a += sz);
@@ -46,7 +44,7 @@ public:
   }
 };
 
-template< typename F2, typename Composition, typename Id >
+template <typename F2, typename Composition, typename Id>
 struct LambdaAct {
   using F = F2;
 
@@ -54,16 +52,17 @@ struct LambdaAct {
 
   F id() const { return _id(); }
 
-  LambdaAct(Composition _composition, Id _id):
-      _composition(_composition), _id(_id) {}
+  LambdaAct(Composition _composition, Id _id)
+      : _composition(_composition), _id(_id) {}
 
-private:
+ private:
   Composition _composition;
   Id _id;
 };
 
-template< typename Composition, typename Id >
-LambdaAct(Composition _composition, Id _id) -> LambdaAct< decltype(_id()), Composition, Id >;
+template <typename Composition, typename Id>
+LambdaAct(Composition _composition,
+          Id _id) -> LambdaAct<decltype(_id()), Composition, Id>;
 
 /*
 struct Act {
