@@ -1,26 +1,17 @@
-/**
- * @brief Dual-Segment-Tree(双対セグメント木)
- *
- */
-template <typename E, typename H>
+template< typename Act >
 struct DualSegmentTree {
-  int sz, height;
-  vector<E> lazy;
-  const H h;
-  const E ei;
+  using F = typename Act::F;
 
-  DualSegmentTree(int n, const H h, const E& ei) : h(h), ei(ei) {
-    sz = 1;
-    height = 0;
-    while (sz < n) sz <<= 1, height++;
-    lazy.assign(2 * sz, ei);
-  }
+private:
+  int sz, height;
+  vector< F > lazy;
+  Act m;
 
   inline void propagate(int k) {
-    if (lazy[k] != ei) {
-      lazy[2 * k + 0] = h(lazy[2 * k + 0], lazy[k]);
-      lazy[2 * k + 1] = h(lazy[2 * k + 1], lazy[k]);
-      lazy[k] = ei;
+    if (lazy[k] != m.id()) {
+      lazy[2 * k + 0] = m.composition(lazy[2 * k + 0], lazy[k]);
+      lazy[2 * k + 1] = m.composition(lazy[2 * k + 1], lazy[k]);
+      lazy[k] = m.id();
     }
   }
 
@@ -28,22 +19,56 @@ struct DualSegmentTree {
     for (int i = height; i > 0; i--) propagate(k >> i);
   }
 
-  void update(int a, int b, const E& x) {
-    thrust(a += sz);
-    thrust(b += sz - 1);
-    for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
-      if (l & 1) lazy[l] = h(lazy[l], x), ++l;
-      if (r & 1) --r, lazy[r] = h(lazy[r], x);
-    }
+public:
+  DualSegmentTree(Act m, int n): m(m) {
+    sz = 1;
+    height = 0;
+    while (sz < n) sz <<= 1, height++;
+    lazy.assign(2 * sz, m.id());
   }
 
-  E operator[](int k) {
+  F get(int k) {
     thrust(k += sz);
     return lazy[k];
   }
+
+  F operator[](int k) {
+    return get(k);
+  }
+
+  void apply(int a, int b, const F &f) {
+    thrust(a += sz);
+    thrust(b += sz - 1);
+    for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) lazy[l] = m.composition(lazy[l], f), ++l;
+      if (r & 1) --r, lazy[r] = m.composition(lazy[r], f);
+    }
+  }
 };
 
-template <typename E, typename H>
-DualSegmentTree<E, H> get_dual_segment_tree(int N, const H& h, const E& ei) {
-  return {N, h, ei};
-}
+template< typename F2, typename Composition, typename Id >
+struct LambdaAct {
+  using F = F2;
+
+  F composition(const F &f, const F &g) const { return _composition(f, g); }
+
+  F id() const { return _id(); }
+
+  LambdaAct(Composition _composition, Id _id):
+      _composition(_composition), _id(_id) {}
+
+private:
+  Composition _composition;
+  Id _id;
+};
+
+template< typename Composition, typename Id >
+LambdaAct(Composition _composition, Id _id) -> LambdaAct< decltype(_id()), Composition, Id >;
+
+/*
+struct Act {
+  using F = ?;
+  static constexpr F composition(const F &f, const F &g) {}
+  static constexpr F id() const {}
+};
+*/

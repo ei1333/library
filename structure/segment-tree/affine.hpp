@@ -7,4 +7,10 @@ struct Affine {
   static constexpr Affine op(const Affine& l, const Affine& r) {
     return {l.a * r.a, l.b * r.a + r.b};
   }
+  constexpr bool operator==(const Affine& p) const {
+    return a == p.a and b == p.b;
+  }
+  constexpr bool operator!=(const Affine& p) const {
+    return a != p.a or b != p.b;
+  }
 };

@@ -43,6 +43,9 @@ struct ActedMonoid {
 - 作用素の二項演算 `F composition(F f, F g)`
 - 作用素の単位元 `id()`
 
+作用素 `F` は、単位元 `id()` と比較するために `!=` 演算子が定義されている必要があります。
+
+
 ## LambdaActedMonoid について
 
 `LambdaActedMonoid` は、ラムダ式を受け取って、構造体 `ActedMonoid` のようにふるまう構造体です 。`LambdaActedMonoid` の引数に `S op(S a, S b)`、`e()`、`S mapping(S x, F f)`、`F composition(F f, F g)`、`id()` の順で渡すことで初期化できます。
@@ -151,8 +154,8 @@ S all_prod() const
 (2) void apply(int l, int r, const F &f)
 ```
 
-1. `k` 番目の要素に対して作用素を適用し、$f(x)$ に置き換えます。
-2. $l \leq k \lt r$ を満たす $k$ に対して作用素を適用して、$f(x)$ に置き換えます。
+1. `k` 番目の要素に対して作用素を適用します。
+2. $l \leq k \lt r$ を満たす $k$ に対して作用素を適用します。
 
 ## 制約
 
