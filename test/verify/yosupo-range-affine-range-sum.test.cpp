@@ -16,18 +16,21 @@ int main() {
   auto f = [](const pi &a, const pi &b) -> pi {
     return {a.first + b.first, a.second + b.second};
   };
+  auto e = []() -> pi { return {0, 0}; };
   auto g = [](const pi &a, const qi &b) -> pi {
     return {a.first * b.first + mint(a.second) * b.second, a.second};
   };
   auto h = [](const qi &a, const qi &b) -> qi {
     return {a.first * b.first, a.second * b.first + b.second};
   };
-  auto seg = get_lazy_segment_tree(N, f, g, h, pi(0, 0), qi(1, 0));
+  auto id = []() -> qi { return {1, 0}; };
+  vector< pi > vs(N);
   for(int i = 0; i < N; i++) {
     mint a;
     cin >> a;
-    seg.set(i, pi(a, 1));
+    vs[i] = {a, 1};
   }
+  LazySegmentTree seg(LambdaActedMonoid(f, e, g, h, id), vs);
   for(int i = 0; i < Q; i++) {
     int t;
     cin >> t;

@@ -1,26 +1,198 @@
 ---
+title: Lazy Segment Tree (遅延伝搬セグメント木)
 documentation_of: //structure/segment-tree/lazy-segment-tree.hpp
 ---
 
-## 概要
+セグメント木に遅延伝搬の機能を追加することで、区間に対して一様に作用素を作用させる操作が可能になります。
 
-遅延伝搬を用いることで, 区間に対する更新が可能になる. コンストラクタに対し追加で作用素モノイドの情報も与える.
+# コンストラクタ
 
-## 使い方
+```cpp
+(1) LazySegmentTree< ActedMonoid >(ActedMonoid m, int n)
+(2) LazySegmentTree< ActedMonoid >(ActedMonoid m, const vector<S> &v)
+```
 
-計算量のオーダーを表記していない関数は全て $O(\log n)$ で動作する.
+1. 作用素付きモノイド `m`、サイズ `n` で初期化します。各要素には単位元 `m.e()` が格納されます。
+2. 作用素付きモノイド `m`、配列 `v` で初期化します。
 
-* `LazySegmentTree(n, f, g, h, M1, OM0)`: サイズ `n` で初期化する. ここで `f` は2つの区間の要素をマージする二項演算, `g` は要素と作用素をマージする二項演算, `h` は作用素同士をマージする二項演算, `M1` はモノイドの単位元, `OM0` は作用素の単位元である. $O(n)$
-* `LazySegmentTree(v, f, g, h, M1, OM0)`: 配列 `v` で初期化する. 第2引数以降は上と同様. $O(n)$
-* `build(v)`: 配列 `v` で初期化する. $O(n)$
-* `set(k, x)`: `k` 番目の要素を `x` に更新する.
-* `get(k)`: `k` 番目の要素を返す.
-* `operator[k]`: `k` 番目の要素を返す.
-* `prod(l, r)`: 区間 $[l, r)$ に対して二項演算した結果を返す.
-* `all_prod()`: 全体を二項演算した結果を返す. $O(1)$
-* `apply(k, x)`: `k` 番目の要素に作用素 `x` を適用する.
-* `apply(l, r, x)`: 区間 $[l, r)$ に対して作用素 `x` を適用する.
-* `find_first(a, check)`: $[a,x)$ が `check` を満たす最初の要素位置 $x$ を返す. 存在しないとき $n$ を返す.
-* `find_last(b, check)`: $[x,b)$ が `check` を満たす最後の要素位置 $x$ を返す. 存在しないとき $-1$ を返す.
+## 計算量
 
-`auto seg = get_lazy_segment_tree(N, f, g, h, M1, OM0);` のようにすると `decltype(f)` などを用いなくてすむ.
+- $O(n)$
+
+## ActedMonoid について
+
+`ActedMonoid` は、次の構造体と関数を持つ構造体です。
+
+```cpp
+struct ActedMonoid {
+  using S = ?;
+  using F = ?;
+  static constexpr S op(const S& a, const S& b) {}
+  static constexpr S e() {}
+  static constexpr F mapping(const S& x, const F &f) {}
+  static constexpr F composition(const F &f, const F &g) {}
+  static constexpr F id() {}
+};
+```
+
+- モノイドの型 `S`
+- 作用素の型 `F`
+- モノイドの二項演算 `S op(S a, S b)`
+- モノイドの単位元 `e()`
+- 作用素をモノイドに適用する関数 `S mapping(S x, F f)`
+- 作用素の二項演算 `F composition(F f, F g)`
+- 作用素の単位元 `id()`
+
+## LambdaActedMonoid について
+
+`LambdaActedMonoid` は、ラムダ式を受け取って、構造体 `ActedMonoid` のようにふるまう構造体です 。`LambdaActedMonoid` の引数に `S op(S a, S b)`、`e()`、`S mapping(S x, F f)`、`F composition(F f, F g)`、`id()` の順で渡すことで初期化できます。
+
+```cpp
+template< typename Op, typename E, typename Mapping, typename Composition, typename Id >
+LambdaActedMonoid(Op _op, E _e, Mapping _mapping, Composition _composition, Id _id)
+```
+
+# build
+
+```cpp
+void build(const vector<S> &v)
+```
+
+配列 `v` で初期化します。
+
+## 制約
+
+- コンストラクタで渡した `n` と `v` の長さが一致する
+
+## 計算量
+
+- $O(n)$
+
+# set
+
+```cpp
+void set(int k, const S &x)
+```
+
+`k` 番目の要素を `x` に変更します。
+
+## 制約
+
+- $0 \leq k \lt n$
+
+## 計算量
+
+- $O(\log n)$
+
+# get
+
+```cpp
+S get(int k)
+```
+
+`k` 番目の要素を返します。
+
+## 制約
+
+- $0 \leq k \lt n$
+
+## 計算量
+
+- $O(\log n)$
+
+# operator[]
+
+```cpp
+S operator[](int k)
+```
+
+`k` 番目の要素を返します。
+
+## 制約
+
+- $0 \leq k \lt n$
+
+## 計算量
+
+- $O(\log n)$
+
+# prod
+
+```cpp
+S prod(int l, int r)
+```
+
+区間 $[l, r)$ に対して二項演算した結果を返します。
+
+## 制約
+
+- $0 \leq l \leq r \leq n$
+
+## 計算量
+
+- $O(\log n)$
+
+# all_prod
+
+```cpp
+S all_prod() const
+```
+
+すべての要素を二項演算した結果を返す。
+
+## 計算量
+
+- $O(1)$
+
+# apply
+
+```cpp
+(1) void apply(int k, const F &f)
+(2) void apply(int l, int r, const F &f)
+```
+
+1. `k` 番目の要素に対して作用素を適用し、$f(x)$ に置き換えます。
+2. $l \leq k \lt r$ を満たす $k$ に対して作用素を適用して、$f(x)$ に置き換えます。
+
+## 制約
+
+- $0 \leq k \lt n$
+- $0 \leq l \leq r \leq n$ 
+
+## 計算量
+
+- $O(\log n)$
+
+# find_first
+
+```cpp
+template <typename C>
+int find_first(int l, const C &check)
+```
+
+$[a, x)$ が `check` を満たす最初の要素位置 $x$ を返します。存在しないとき $n$ を返します。
+
+## 制約
+
+- $0 \leq l \leq n$
+
+## 計算量
+
+- $O(\log n)$
+
+# find_last
+
+```cpp
+template <typename C>
+int find_last(int r, const C &check)
+```
+
+$[x, b)$ が `check` を満たす最後の要素位置 $x$ を返します。存在しないとき $-1$ を返 します。
+
+## 制約
+
+- $0 \leq r \leq n$
+
+## 計算量
+
+- $O(\log n)$

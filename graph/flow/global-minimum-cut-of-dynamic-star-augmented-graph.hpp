@@ -5,13 +5,21 @@
 template <typename T>
 struct GlobalMinimumCutofDynamicStarAugmentedGraph {
  private:
-  function<T(T, T)> f = [](T a, T b) -> T { return min(a, b); };
-  function<T(T, T)> g = [](T a, T b) -> T { return a + b; };
-
   int n{};
   HeavyLightDecomposition<T> hld;
   vector<T> cur;
-  LazySegmentTree<T, T, decltype(f), decltype(g), decltype(g)> seg;
+
+  struct RangeAddRangeMin {
+    using S = T;
+    using F = T;
+    static constexpr S op(const S &a, const S &b) { return min(a, b); }
+    static constexpr S e() { return numeric_limits<T>::max(); }
+    static constexpr F mapping(const S &x, const F &f) { return x + f; }
+    static constexpr F composition(const F &f, const F &g) { return f + g; }
+    static constexpr F id() { return {0}; }
+  };
+
+  LazySegmentTree<RangeAddRangeMin> seg;
 
  public:
   GlobalMinimumCutofDynamicStarAugmentedGraph() = default;
@@ -21,7 +29,7 @@ struct GlobalMinimumCutofDynamicStarAugmentedGraph {
       : n(n),
         hld(extreme_vertex_set(n, es)),
         cur(n),
-        seg(2 * n - 1, f, g, g, numeric_limits<T>::max(), T()) {
+        seg(RangeAddRangeMin(), 2 * n - 1) {
     hld.build((int)hld.size() - 1);
     vector<int64> vs(2 * n - 1);
     for (int i = 0; i < 2 * n - 1; i++) {

@@ -19,8 +19,8 @@ documentation_of: //structure/segment-tree/segment-tree.hpp
 (2) SegmentTree< Monoid >(Monoid m, const vector<S> &v) 
 ```
 
-(1) モノイド `m`、サイズ `n` で初期化します。各要素には単位元 `m.e()` が格納されます。
-(2) モノイド `m`、配列 `v` で初期化します。
+1. モノイド `m`、サイズ `n` で初期化します。各要素には単位元 `m.e()` が格納されます。
+2. モノイド `m`、配列 `v` で初期化します。
 
 ## 計算量
 
@@ -32,15 +32,15 @@ documentation_of: //structure/segment-tree/segment-tree.hpp
 
 ```cpp
 struct Monoid {
-  using S = int;
+  using S = ?;
   static constexpr S op(const S& a, const S& b) {}
   static constexpr S e() {}
 };
 ```
 
-- `S`: モノイドの型
-- `op(a, b)`: モノイドの 2 つの元 $a, b$ に対して、二項演算した結果（$a \cdot b$）を返す関数
-- `e`: モノイドの単位元を返す返す関数
+- 型 `S`
+- 二項演算 `S op(S a, S b)`
+- 単位元 `e()`
 
 例えば、区間和を求めたい場合は次の構造体を定義して、`SegmentTree` に渡します。
 
@@ -56,8 +56,12 @@ SegmentTree seg(RangeSum(), n);
 
 ## LambdaMonoid について
 
-`LambdaMonoid` は、ラムダ式を受け取って、構造体 `Monoid` のようにふるまう構造体です。
+`LambdaMonoid` は、ラムダ式を受け取って、構造体 `Monoid` のようにふるまう構造体です。`LambdaMonoid` の引数に二項演算 `S op(S a, S b)`、単位元 `e()` の順で渡すことで初期化できます。
 
+```cpp
+template< typename Op, typename E >
+LambdaMonoid(Op _op, E _e)
+```
 
 例えば、区間和を求めたい場合はラムダ式を使って次のように書くこともできます。
 
@@ -74,6 +78,10 @@ void build(const vector<S> &v)
 ```
 
 配列 `v` で初期化します。
+
+## 制約
+
+- コンストラクタで渡した `n` と `v` の長さが一致する
 
 ## 計算量
 
@@ -114,7 +122,7 @@ S get(int k) const
 # operator[]
 
 ```cpp
-S operator[](const int &k) const
+S operator[](int k) const
 ```
 
 `k` 番目の要素を返します。
