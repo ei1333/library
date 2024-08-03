@@ -49,7 +49,7 @@ struct RangeSum {
   static constexpr S e() { return 0; }
 };
 
-PersistentSegmentTree seg(RangeSum());
+PersistentSegmentTree seg(RangeSum(), n);
 ```
 
 ## LambdaMonoid について
@@ -66,7 +66,7 @@ LambdaMonoid(Op _op, E _e)
 ```cpp
 auto op = [](int a, int b) { return a + b; };
 auto e = []() { return 0; };
-PersistentSegmentTree seg(LambdaMonoid(op, e));
+PersistentSegmentTree seg(LambdaMonoid(op, e), n);
 ```
 
 # build
@@ -120,7 +120,7 @@ S get(NP t, int k) const
 # apply
 
 ```cpp
-void apply(NP t, int k, const S &x)
+NP apply(NP t, int k, const S &x)
 ```
 
 セグメント木 `t` の `k` 番目の要素を、その要素と `x` を二項演算した値に変更し、新しいセグメント木へのポインタを返します。
@@ -155,7 +155,7 @@ S prod(NP t, int l, int r) const
 S all_prod(NP t) const
 ```
 
-セグメント木 `t` のすべての要素を二項演算した結果を返す。
+セグメント木 `t` のすべての要素を二項演算した結果を返します。
 
 ## 計算量
 

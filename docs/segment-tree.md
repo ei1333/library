@@ -68,7 +68,7 @@ LambdaMonoid(Op _op, E _e)
 ```cpp
 auto op = [](int a, int b) { return a + b; };
 auto e = []() { return 0; };
-SegmentTree seg(LambdaMonoid(op, e), N);
+SegmentTree seg(LambdaMonoid(op, e), n);
 ```
 
 # build
@@ -173,7 +173,7 @@ S prod(int l, int r) const
 S all_prod() const
 ```
 
-すべての要素を二項演算した結果を返す。
+すべての要素を二項演算した結果を返します。
 
 ## 計算量
 
