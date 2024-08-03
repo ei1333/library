@@ -3,7 +3,7 @@
 #include "../../template/template.hpp"
 
 #include "../../structure/segment-tree/dual-segment-tree.hpp"
-#include "../../structure/segment-tree/affine.hpp"
+#include "../../structure/class/affine.hpp"
 
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 

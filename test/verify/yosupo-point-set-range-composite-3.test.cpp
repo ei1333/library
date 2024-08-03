@@ -3,7 +3,7 @@
 #include "../../template/template.hpp"
 
 #include "../../structure/segment-tree/segment-tree.hpp"
-#include "../../structure/segment-tree/point-set-range-composite.hpp"
+#include "../../structure/class/point-set-range-composite.hpp"
 
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 

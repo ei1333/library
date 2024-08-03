@@ -3,7 +3,7 @@
 #include "../../template/template.hpp"
 
 #include "../../structure/bbst/reversible-splay-tree.hpp"
-#include "../../structure/segment-tree/affine.hpp"
+#include "../../structure/class/affine.hpp"
 
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 

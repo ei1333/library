@@ -5,7 +5,7 @@
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 
 #include "../../structure/others/queue-operate-aggregation.hpp"
-#include "../../structure/segment-tree/affine.hpp"
+#include "../../structure/class/affine.hpp"
 
 using mint = modint998244353;
 

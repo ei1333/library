@@ -1,9 +1,9 @@
 ---
-title: Segment Tree
+title: Segment Tree (セグメント木)
 documentation_of: //structure/segment-tree/segment-tree.hpp
 ---
 
-完全二分木です。モノイドについて区間に対する演算が $O(\log N)$ で処理できます。
+セグメント木は、モノイドについて区間に対する演算が $O(\log N)$ で処理できます。
 
 モノイドは次の条件を満たす代数的構造です。
 

@@ -1,3 +1,4 @@
+#include "../class/range-add-range-min.hpp"
 #include "../segment-tree/lazy-segment-tree.hpp"
 
 /**
@@ -42,12 +43,7 @@ struct PermutationTree {
     vector<int> desc{-1};
     vector<int> asc{-1};
     vector<NP> st;
-    constexpr int lim = (1 << 30) - 1;
-    auto f = [](int a, int b) { return min(a, b); };
-    auto e = [&]() { return lim; };
-    auto g = [](int a, int b) { return a + b; };
-    auto id = []() { return 0; };
-    LazySegmentTree seg(LambdaActedMonoid(f, e, g, g, id), vector<int>(n));
+    LazySegmentTree seg{RangeAddRangeMin<int>(), vector<int>(n)};
     for (int i = 0; i < n; i++) {
       while (~desc.back() and A[i] > A[desc.back()]) {
         seg.apply(desc[desc.size() - 2] + 1, desc.back() + 1,
