@@ -3,6 +3,7 @@
 #include "../../template/template.hpp"
 
 #include "../../structure/bbst/reversible-splay-tree.hpp"
+#include "../../structure/class/affine.hpp"
 
 #include "../../math/combinatorics/montgomery-mod-int.hpp"
 
@@ -11,14 +12,16 @@ using mint = modint998244353;
 int main() {
   int N, Q;
   cin >> N >> Q;
-  using pi = pair< mint, mint >;
+  using pi = Affine< mint >;
   auto f = [](const pi &a, const pi &b) -> pi {
-    return {a.first * b.first, a.second * b.first + b.second};
+    return pi::op(a, b);
   };
   ReversibleSplayTree< pi > seg(f, pi(1, 0));
   vector< pi > V(N);
   for(int i = 0; i < N; i++) {
-    cin >> V[i].first >> V[i].second;
+    int a, b;
+    cin >> a >> b;
+    V[i] = {a, b};
   }
   auto root = seg.build(V);
   for(int i = 0; i < Q; i++) {
@@ -34,7 +37,7 @@ int main() {
       mint x;
       cin >> l >> r >> x;
       auto ret = seg.query(root, l, r);
-      cout << ret.first * x + ret.second << "\n";
+      cout << ret.eval(x) << "\n";
     }
   }
 }

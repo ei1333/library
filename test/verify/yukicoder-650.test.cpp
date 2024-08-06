@@ -16,23 +16,23 @@ int main() {
   cin >> N;
   vector< int > X(N), Y(N);
   HeavyLightDecomposition<> g(N);
-  for(int i = 1; i < N; i++) {
+  for (int i = 1; i < N; i++) {
     cin >> X[i] >> Y[i];
     g.add_edge(X[i], Y[i]);
   }
   g.build();
-  for(int i = 1; i < N; i++) {
-    if(g.in[X[i]] > g.in[Y[i]]) swap(X[i], Y[i]);
+  for (int i = 1; i < N; i++) {
+    if (g.in[X[i]] > g.in[Y[i]]) swap(X[i], Y[i]);
   }
   using Mat = SquareMatrix< mint, 2 >;
   auto f = [](const Mat &a, const Mat &b) { return a * b; };
-  auto seg = get_segment_tree(N, f, Mat::mul_identity());
+  auto seg = SegmentTree(LambdaMonoid(f, []() { return Mat::mul_identity(); }), N);
   int Q;
   cin >> Q;
-  while(Q--) {
+  while (Q--) {
     char x;
     cin >> x;
-    if(x == 'x') {
+    if (x == 'x') {
       int v;
       cin >> v;
       Mat m;

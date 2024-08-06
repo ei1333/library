@@ -1,26 +1,19 @@
-/**
- * @brief Dual-Segment-Tree(双対セグメント木)
- *
- */
-template <typename E, typename H>
-struct DualSegmentTree {
-  int sz, height;
-  vector<E> lazy;
-  const H h;
-  const E ei;
+#include "../class/act.hpp"
 
-  DualSegmentTree(int n, const H h, const E& ei) : h(h), ei(ei) {
-    sz = 1;
-    height = 0;
-    while (sz < n) sz <<= 1, height++;
-    lazy.assign(2 * sz, ei);
-  }
+template <typename Act>
+struct DualSegmentTree {
+  using F = typename Act::F;
+
+ private:
+  int sz, height;
+  vector<F> lazy;
+  Act m;
 
   inline void propagate(int k) {
-    if (lazy[k] != ei) {
-      lazy[2 * k + 0] = h(lazy[2 * k + 0], lazy[k]);
-      lazy[2 * k + 1] = h(lazy[2 * k + 1], lazy[k]);
-      lazy[k] = ei;
+    if (lazy[k] != m.id()) {
+      lazy[2 * k + 0] = m.composition(lazy[2 * k + 0], lazy[k]);
+      lazy[2 * k + 1] = m.composition(lazy[2 * k + 1], lazy[k]);
+      lazy[k] = m.id();
     }
   }
 
@@ -28,22 +21,27 @@ struct DualSegmentTree {
     for (int i = height; i > 0; i--) propagate(k >> i);
   }
 
-  void update(int a, int b, const E& x) {
-    thrust(a += sz);
-    thrust(b += sz - 1);
-    for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
-      if (l & 1) lazy[l] = h(lazy[l], x), ++l;
-      if (r & 1) --r, lazy[r] = h(lazy[r], x);
-    }
+ public:
+  DualSegmentTree(Act m, int n) : m(m) {
+    sz = 1;
+    height = 0;
+    while (sz < n) sz <<= 1, height++;
+    lazy.assign(2 * sz, m.id());
   }
 
-  E operator[](int k) {
+  F get(int k) {
     thrust(k += sz);
     return lazy[k];
   }
-};
 
-template <typename E, typename H>
-DualSegmentTree<E, H> get_dual_segment_tree(int N, const H& h, const E& ei) {
-  return {N, h, ei};
-}
+  F operator[](int k) { return get(k); }
+
+  void apply(int a, int b, const F &f) {
+    thrust(a += sz);
+    thrust(b += sz - 1);
+    for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) lazy[l] = m.composition(lazy[l], f), ++l;
+      if (r & 1) --r, lazy[r] = m.composition(lazy[r], f);
+    }
+  }
+};

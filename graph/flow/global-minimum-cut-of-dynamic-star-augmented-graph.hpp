@@ -1,17 +1,16 @@
 #include "../../graph/tree/heavy-light-decomposition.hpp"
+#include "../../structure/class/range-add-range-min.hpp"
 #include "../../structure/segment-tree/lazy-segment-tree.hpp"
 #include "../others/extreme-vertex-set.hpp"
 
 template <typename T>
 struct GlobalMinimumCutofDynamicStarAugmentedGraph {
  private:
-  function<T(T, T)> f = [](T a, T b) -> T { return min(a, b); };
-  function<T(T, T)> g = [](T a, T b) -> T { return a + b; };
-
   int n{};
   HeavyLightDecomposition<T> hld;
   vector<T> cur;
-  LazySegmentTree<T, T, decltype(f), decltype(g), decltype(g)> seg;
+
+  LazySegmentTree<RangeAddRangeMin<T> > seg;
 
  public:
   GlobalMinimumCutofDynamicStarAugmentedGraph() = default;
@@ -21,7 +20,7 @@ struct GlobalMinimumCutofDynamicStarAugmentedGraph {
       : n(n),
         hld(extreme_vertex_set(n, es)),
         cur(n),
-        seg(2 * n - 1, f, g, g, numeric_limits<T>::max(), T()) {
+        seg(RangeAddRangeMin<T>(), 2 * n - 1) {
     hld.build((int)hld.size() - 1);
     vector<int64> vs(2 * n - 1);
     for (int i = 0; i < 2 * n - 1; i++) {

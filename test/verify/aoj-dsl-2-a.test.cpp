@@ -6,12 +6,14 @@
 
 int main() {
   int N, Q;
-  scanf("%d %d", &N, &Q);
-  auto seg = get_segment_tree(N, [](int a, int b) { return min(a, b); }, INT_MAX);
-  while(Q--) {
+  cin >> N >> Q;
+  auto seg = SegmentTree(
+      LambdaMonoid([](int a, int b) { return min(a, b); },
+                   []() { return INT_MAX; }), N);
+  while (Q--) {
     int T, X, Y;
-    scanf("%d %d %d", &T, &X, &Y);
-    if(T == 0) seg.set(X, Y);
-    else printf("%d\n", seg.prod(X, Y + 1));
+    cin >> T >> X >> Y;
+    if (T == 0) seg.set(X, Y);
+    else cout << seg.prod(X, Y + 1) << "\n";
   }
 }
