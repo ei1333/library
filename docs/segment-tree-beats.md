@@ -47,7 +47,7 @@ struct BeatsMonoid {
 
 ## LambdaBeatsMonoid について
 
-`LambdaBeatsMonoid` は、ラムダ式を受け取って、構造体 `ActedMonoid` のようにふるまう構造体です 。`LambdaActedMonoid` の引数に `S op(S a, S b)`、`bool fail(S a)`、`e()`、`S mapping(S x, F f)`、`F composition(F f, F g)`、`id()` の順で渡すことで初期化できます。
+`LambdaBeatsMonoid` は、ラムダ式を受け取って、構造体 `BeatsMonoid` のようにふるまう構造体です 。`LambdaBeatsMonoid` の引数に `S op(S a, S b)`、`bool fail(S a)`、`e()`、`S mapping(S x, F f)`、`F composition(F f, F g)`、`id()` の順で渡すことで初期化できます。
 
 ```cpp
 template< typename Op, typename Fail, typename E, typename Mapping, typename Composition, typename Id >
