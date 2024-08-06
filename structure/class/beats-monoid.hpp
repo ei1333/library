@@ -1,6 +1,7 @@
 #pragma once
 
-template< typename S2, typename Op, typename Fail, typename E, typename F2, typename Mapping, typename Composition, typename Id >
+template <typename S2, typename Op, typename Fail, typename E, typename F2,
+          typename Mapping, typename Composition, typename Id>
 struct LambdaBeatsMonoid {
   using S = S2;
   using F = F2;
@@ -17,8 +18,8 @@ struct LambdaBeatsMonoid {
 
   F id() const { return _id(); }
 
-  LambdaBeatsMonoid(Op _op, Fail _fail, E _e, Mapping _mapping, Composition _composition,
-                    Id _id)
+  LambdaBeatsMonoid(Op _op, Fail _fail, E _e, Mapping _mapping,
+                    Composition _composition, Id _id)
       : _op(_op),
         _fail(_fail),
         _e(_e),
@@ -26,7 +27,7 @@ struct LambdaBeatsMonoid {
         _composition(_composition),
         _id(_id) {}
 
-private:
+ private:
   Op _op;
   Fail _fail;
   E _e;
@@ -35,10 +36,12 @@ private:
   Id _id;
 };
 
-template< typename Op, typename Fail, typename E, typename Mapping, typename Composition,
-    typename Id >
-LambdaBeatsMonoid(Op _op, Fail _fail, E _e, Mapping _mapping, Composition _composition, Id _id)
--> LambdaBeatsMonoid< decltype(_e()), Op, Fail, E, decltype(_id()), Mapping, Composition, Id >;
+template <typename Op, typename Fail, typename E, typename Mapping,
+          typename Composition, typename Id>
+LambdaBeatsMonoid(Op _op, Fail _fail, E _e, Mapping _mapping,
+                  Composition _composition, Id _id)
+    -> LambdaBeatsMonoid<decltype(_e()), Op, Fail, E, decltype(_id()), Mapping,
+                         Composition, Id>;
 
 /*
 struct BeatsMonoid {

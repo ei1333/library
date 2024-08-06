@@ -1,6 +1,6 @@
-template< typename T >
+template <typename T>
 struct RangeChminChmaxAddRangeSum {
-  static constexpr T infty = numeric_limits< T >::max() / 2 - 1;
+  static constexpr T infty = numeric_limits<T>::max() / 2 - 1;
 
   struct MinMaxSum {
     T min, max, sum, minc, maxc, min2, max2, cnt;
@@ -52,9 +52,7 @@ struct RangeChminChmaxAddRangeSum {
     return c;
   }
 
-  static constexpr bool fail(const S &a) {
-    return a.fail;
-  }
+  static constexpr bool fail(const S &a) { return a.fail; }
 
   static constexpr S e() {
     return {infty, -infty, 0, 0, 0, infty, -infty, 0, false};
@@ -100,20 +98,10 @@ struct RangeChminChmaxAddRangeSum {
     return f;
   }
 
-  static constexpr F id() {
-    return {0, infty, -infty};
-  }
+  static constexpr F id() { return {0, infty, -infty}; }
 
-  static constexpr S set(T x) {
-    return {x, x, x, 1, 1, x, x, 1, false};
-  }
-  static constexpr F chmin(T x) {
-    return {0, x, -infty};
-  }
-  static constexpr F chmax(T x) {
-    return {0, infty, x};
-  }
-  static constexpr F add(T x) {
-    return {x, infty, -infty};
-  }
+  static constexpr S set(T x) { return {x, x, x, 1, 1, x, x, 1, false}; }
+  static constexpr F chmin(T x) { return {0, x, -infty}; }
+  static constexpr F chmax(T x) { return {0, infty, x}; }
+  static constexpr F add(T x) { return {x, infty, -infty}; }
 };

@@ -1,18 +1,18 @@
 #include "../class/beats-monoid.hpp"
 
-template< typename BeatsMonoid >
+template <typename BeatsMonoid>
 struct SegmentTreeBeats {
   using S = typename BeatsMonoid::S;
   using F = typename BeatsMonoid::F;
 
-private:
+ private:
   BeatsMonoid m;
 
   int n{}, sz{}, height{};
 
-  vector< S > data;
+  vector<S> data;
 
-  vector< F > lazy;
+  vector<F> lazy;
 
   inline void update(int k) {
     data[k] = m.op(data[2 * k + 0], data[2 * k + 1]);
@@ -37,10 +37,10 @@ private:
     }
   }
 
-public:
+ public:
   SegmentTreeBeats() = default;
 
-  explicit SegmentTreeBeats(BeatsMonoid m, int n): m(m), n(n) {
+  explicit SegmentTreeBeats(BeatsMonoid m, int n) : m(m), n(n) {
     sz = 1;
     height = 0;
     while (sz < n) sz <<= 1, height++;
@@ -48,13 +48,13 @@ public:
     lazy.assign(2 * sz, m.id());
   }
 
-  explicit SegmentTreeBeats(BeatsMonoid m, const vector< S > &v)
+  explicit SegmentTreeBeats(BeatsMonoid m, const vector<S> &v)
       : SegmentTreeBeats(m, v.size()) {
     build(v);
   }
 
-  void build(const vector< S > &v) {
-    assert(n == (int) v.size());
+  void build(const vector<S> &v) {
+    assert(n == (int)v.size());
     for (int k = 0; k < n; k++) data[k + sz] = v[k];
     for (int k = sz - 1; k > 0; k--) update(k);
   }
