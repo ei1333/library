@@ -47,7 +47,7 @@ struct ActedMonoid {
   using F = ?;
   static constexpr S op(const S& a, const S& b) {}
   static constexpr S e() {}
-  static constexpr F mapping(const S &x, const F &f) {}
+  static constexpr S mapping(const S &x, const F &f) {}
   static constexpr F composition(const F &f, const F &g) {}
   static constexpr F id() {}
 };
