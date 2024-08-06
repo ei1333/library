@@ -1,111 +1,123 @@
-template <typename Monoid, typename OperatorMonoid = Monoid>
+#include "../class/beats-monoid.hpp"
+
+template< typename BeatsMonoid >
 struct SegmentTreeBeats {
-  using F = function<Monoid(Monoid, Monoid)>;
-  using G = function<Monoid(Monoid, OperatorMonoid)>;
-  using H = function<OperatorMonoid(OperatorMonoid, OperatorMonoid)>;
+  using S = typename BeatsMonoid::S;
+  using F = typename BeatsMonoid::F;
 
-  int sz, height;
-  vector<Monoid> data;
-  vector<OperatorMonoid> lazy;
-  const F f;
-  const G g;
-  const H h;
-  const Monoid M1;
-  const OperatorMonoid OM0;
+private:
+  BeatsMonoid m;
 
-  SegmentTreeBeats(int n, const F f, const G g, const H h, const Monoid &M1,
-                   const OperatorMonoid OM0)
-      : f(f), g(g), h(h), M1(M1), OM0(OM0) {
-    sz = 1;
-    height = 0;
-    while (sz < n) sz <<= 1, height++;
-    data.assign(2 * sz, M1);
-    lazy.assign(2 * sz, OM0);
+  int n{}, sz{}, height{};
+
+  vector< S > data;
+
+  vector< F > lazy;
+
+  inline void update(int k) {
+    data[k] = m.op(data[2 * k + 0], data[2 * k + 1]);
   }
 
-  void set(int k, const Monoid &x) { data[k + sz] = x; }
-
-  void build() {
-    for (int k = sz - 1; k > 0; k--) {
-      data[k] = f(data[2 * k + 0], data[2 * k + 1]);
+  inline void apply_at(int k, const F &x) {
+    data[k] = m.mapping(data[k], x);
+    if (k < sz) {
+      lazy[k] = m.composition(lazy[k], x);
+      if (m.fail(data[k])) {
+        propagate(k);
+        update(k);
+      }
     }
   }
 
   inline void propagate(int k) {
-    if (lazy[k] != OM0) {
-      lazy[2 * k + 0] = h(lazy[2 * k + 0], lazy[k]);
-      lazy[2 * k + 1] = h(lazy[2 * k + 1], lazy[k]);
-      data[k] = reflect(k);
-      lazy[k] = OM0;
+    if (lazy[k] != m.id()) {
+      apply_at(2 * k + 0, lazy[k]);
+      apply_at(2 * k + 1, lazy[k]);
+      lazy[k] = m.id();
     }
   }
 
-  inline Monoid reflect(int k) {
-    return lazy[k] == OM0 ? data[k] : g(data[k], lazy[k]);
+public:
+  SegmentTreeBeats() = default;
+
+  explicit SegmentTreeBeats(BeatsMonoid m, int n): m(m), n(n) {
+    sz = 1;
+    height = 0;
+    while (sz < n) sz <<= 1, height++;
+    data.assign(2 * sz, m.e());
+    lazy.assign(2 * sz, m.id());
   }
 
-  inline void recalc(int k) {
-    while (k >>= 1) data[k] = f(reflect(2 * k + 0), reflect(2 * k + 1));
+  explicit SegmentTreeBeats(BeatsMonoid m, const vector< S > &v)
+      : SegmentTreeBeats(m, v.size()) {
+    build(v);
   }
 
-  inline void thrust(int k) {
+  void build(const vector< S > &v) {
+    assert(n == (int) v.size());
+    for (int k = 0; k < n; k++) data[k + sz] = v[k];
+    for (int k = sz - 1; k > 0; k--) update(k);
+  }
+
+  void set(int k, const S &x) {
+    k += sz;
     for (int i = height; i > 0; i--) propagate(k >> i);
+    data[k] = x;
+    for (int i = 1; i <= height; i++) update(k >> i);
   }
 
-  void update(int a, int b, const OperatorMonoid &x) {
-    thrust(a += sz);
-    thrust(b += sz - 1);
-    for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
-      if (l & 1) lazy[l] = h(lazy[l], x), ++l;
-      if (r & 1) --r, lazy[r] = h(lazy[r], x);
-    }
-    recalc(a);
-    recalc(b);
+  S get(int k) {
+    k += sz;
+    for (int i = height; i > 0; i--) propagate(k >> i);
+    return data[k];
   }
 
-  Monoid query(int a, int b) {
-    thrust(a += sz);
-    thrust(b += sz - 1);
-    Monoid L = M1, R = M1;
-    for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
-      if (l & 1) L = f(L, reflect(l++));
-      if (r & 1) R = f(reflect(--r), R);
+  S operator[](int k) { return get(k); }
+
+  S prod(int l, int r) {
+    if (l >= r) return m.e();
+    l += sz;
+    r += sz;
+    for (int i = height; i > 0; i--) {
+      if (((l >> i) << i) != l) propagate(l >> i);
+      if (((r >> i) << i) != r) propagate((r - 1) >> i);
     }
-    return f(L, R);
+    S L = m.e(), R = m.e();
+    for (; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) L = m.op(L, data[l++]);
+      if (r & 1) R = m.op(data[--r], R);
+    }
+    return m.op(L, R);
   }
 
-  Monoid operator[](const int &k) { return query(k, k + 1); }
+  S all_prod() const { return data[1]; }
 
-  template <typename Uku, typename Check, typename Func, typename X>
-  void update_beats_subtree(int k, const X &x, const Uku &uku,
-                            const Check &check, const Func &func) {
-    if (k >= sz) {
-      auto v = reflect(k);
-      if (uku(v, x)) return;
-      if (check(v)) lazy[k] = func(v, x);
-      return;
-    }
-    propagate(k);
-    if (uku(data[k], x)) return;
-    if (check(data[k])) {
-      lazy[k] = func(data[k], x);
-      return;
-    }
-    update_beats_subtree(k * 2 + 0, x, uku, check, func);
-    update_beats_subtree(k * 2 + 1, x, uku, check, func);
-    data[k] = f(reflect(2 * k + 0), reflect(2 * k + 1));
+  void apply(int k, const F &f) {
+    k += sz;
+    for (int i = height; i > 0; i--) propagate(k >> i);
+    data[k] = m.mapping(data[k], f);
+    for (int i = 1; i <= height; i++) update(k >> i);
   }
 
-  template <typename Uku, typename Check, typename Func, typename X>
-  void update_beats(int a, int b, const X &x, const Uku &uku,
-                    const Check &check, const Func &func) {
-    thrust(a += sz);
-    thrust(b += sz - 1);
-    for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
-      if (l & 1) update_beats_subtree(l++, x, uku, check, func);
-      if (r & 1) update_beats_subtree(--r, x, uku, check, func);
+  void apply(int l, int r, const F &f) {
+    if (l >= r) return;
+    l += sz;
+    r += sz;
+    for (int i = height; i > 0; i--) {
+      if (((l >> i) << i) != l) propagate(l >> i);
+      if (((r >> i) << i) != r) propagate((r - 1) >> i);
     }
-    recalc(a);
-    recalc(b);
+    {
+      int l2 = l, r2 = r;
+      for (; l < r; l >>= 1, r >>= 1) {
+        if (l & 1) apply_at(l++, f);
+        if (r & 1) apply_at(--r, f);
+      }
+      l = l2, r = r2;
+    }
+    for (int i = 1; i <= height; i++) {
+      if (((l >> i) << i) != l) update(l >> i);
+      if (((r >> i) << i) != r) update((r - 1) >> i);
+    }
   }
 };
