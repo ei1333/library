@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename S2, typename Op, typename E>
 struct LambdaMonoid {
   using S = S2;
