@@ -11,7 +11,7 @@ documentation_of: //structure/segment-tree/range-tree.hpp
 RangeTree< K, Monoid2D >(Monoid2D m)
 ```
 
-Monoid2D `m` の領域木をつくります。
+Monoid2D `m` の領域木をつくります。`K` は座標の型です。
 
 ## 計算量
 
@@ -76,6 +76,7 @@ void apply(K x, K y, S a)
 
 ## 制約
 
+- `build()` をすでに呼び出している
 - $(x, y)$ は `add_point` で追加された点
 
 ## 計算量
@@ -91,6 +92,10 @@ S prod(K l, K d, K r, K u)
 ```
 
 $l \leq x \lt r$ かつ $d \leq y \lt u$ を満たす点 $(x, y)$ に対して二項演算した結果を返します。
+
+## 制約
+
+- `build()` をすでに呼び出している
 
 ## 計算量
 

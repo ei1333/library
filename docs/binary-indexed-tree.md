@@ -1,23 +1,98 @@
 ---
+title: Binary Indexed Tree
 documentation_of: //structure/others/binary-indexed-tree.hpp
 ---
 
-## 概要
+Fenwick Tree とも呼ばれます。 数列に対し、ある要素に値を加える操作と、区間和を求める操作をそれぞれ対数時間で行うことが出来るデータ構造です。セグメント木や平衡二分探索木の機能を制限したものですが、実装が非常に単純で定数倍も軽いなどの利点があります。
 
-Fenwick Tree とも呼ばれる. 数列に対し, ある要素に値を加える操作と, 区間和を求める操作をそれぞれ対数時間で行うことが出来るデータ構造. セグメント木や平衡二分探索
-木の機能を制限したものであるが, 実装が非常に単純で定数倍も軽いなどの利点がある.
+# コンストラクタ
 
-## 使い方
+```cpp
+(1) BinaryIndexedTree(int n)
+(2) BinaryIndexedTree(const vector<T> &v)
+```
 
-* `BinaryIndexedTree(sz)`: 長さ `sz` の $0$ で初期化された配列で構築する.
-* `BinaryIndexedTree(vs)`: 配列 `vs` で構築する.
-* `apply(k, x)`: 要素 `k` に値 `x` を加える.
-* `prod(r)`: 区間 $[0,r)$ の総和を求める.
-* `prod(l, r)`: 区間 $[l, r)$ の総和を求める.
-* `lower_bound(x)`: 区間 $[0,k]$ の総和が `x` 以上となる最小の $k$ を返す. 数列が単調増加であることを要求する.
-* `upper_bound(x)`: 区間 $[0,k]$ の総和が `x` を上回る最小の $k$ を返す. 数列>が単調増加であることを要求する.
+1. 数列を長さ `n` で初期化します。各要素は $0$ です。
+2. 数列の各要素を 配列 `v` で初期化します。
 
 ## 計算量
 
-* 構築: $O(N)$
-* クエリ: $O(\log N)$
+- $O(n)$
+
+# build
+
+```cpp
+void build(const vector<T> &v)
+```
+
+数列の各要素を配列 `v` で初期化します。
+
+## 制約
+
+- `n` と `v` の長さが一致する
+
+## 計算量
+
+- $O(n)$
+
+# apply
+
+```cpp
+void apply(int k, const T &x)
+```
+
+`k` 番目の要素に値 `x` を加えます。
+
+## 制約
+
+- $0 \leq k \lt n$
+
+## 計算量
+
+- $O(\log n)$
+
+# prod
+
+```cpp
+(1) T prod(int r) const 
+(2) T prod(int l, int r) const
+```
+
+1. 数列の区間 $[0, r)$ の要素の総和を返します。
+2. 数列の区間 $[l, r)$ の要素の総和を返します。
+
+## 制約
+
+- $0 \leq l \leq r \leq n$
+
+# lower_bound
+
+```cpp
+int lower_bound(T x) const
+```
+
+数列の区間 $[0,k]$ の要素の総和が $x$ 以上となる最小の $k$ を返します。
+
+## 制約
+
+- 数列は広義単調増加
+
+## 計算量
+
+- $O(\log n)$
+
+## upper_bound
+
+```cpp
+int upper_bound(T x) const
+```
+
+数列の区間 $[0,k]$ の要素の総和が $x$ を上回る最小の $k$ を返します。
+
+## 制約
+
+- 数列は広義単調増加
+
+## 計算量
+
+* $O(\log n)$
