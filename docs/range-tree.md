@@ -5,6 +5,8 @@ documentation_of: //structure/segment-tree/range-tree.hpp
 
 領域木は、セグメント木のノードにデータ構造をのせることで、二次元クエリを処理できるデータ構造です。
 
+ある点に対する重みの加算と、矩形領域の点の重みの総和を求めたい場合は、[Wavelet Matrix Point Add Rectangle Sum]({{ site.baseurl }}/structure/wavelet/wavelet-matrix-point-add-rectangle-sum.hpp) を用いた方が定数倍が高速です。
+
 # コンストラクタ
 
 ```cpp
