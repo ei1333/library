@@ -7,9 +7,10 @@
 #include "../../graph/tree/heavy-light-decomposition.hpp"
 
 int main() {
-  int N, Q, S[200000];
+  int N, Q;
   cin >> N >> Q;
-  for(int i = 0; i < N; i++) {
+  vector< int > S(N);
+  for (int i = 0; i < N; i++) {
     cin >> S[i];
   }
   HeavyLightDecomposition< int64 > tree(N);
@@ -19,7 +20,7 @@ int main() {
   struct Node {
     int64 ans, all, left, right, length;
 
-    Node() : ans(-infll), all(0), left(-infll), right(-infll), length(0) {}
+    Node(): ans(-infll), all(0), left(-infll), right(-infll), length(0) {}
 
     Node(int64 val, int64 len) {
       length = len;
@@ -38,10 +39,14 @@ int main() {
     }
   };
   auto F = [](const Node &a, const Node &b) { return a + b; };
-  auto G = [](const Node &a, int64 x) { return Node(x, a.length); };
-  auto H = [](int64 x, int64 y) { return y; };
-  auto seg = get_lazy_segment_tree(N, F, G, H, Node(), infll);
-  for(int i = 0; i < N; i++) seg.set(i, Node(S[tree.rev[i]], 1));
+  auto G = [](const Node& x, int64 f) -> Node { return {f, x.length}; };
+  auto H = [](int64 f, int64 g) { return g; };
+  auto e = []() { return Node(); };
+  auto id = []() { return infll; };
+
+  vector< Node > vs(N);
+  for (int i = 0; i < N; i++) vs[i] = {S[tree.rev[i]], 1};
+  LazySegmentTree seg(LambdaActedMonoid(F, e, G, H, id), vs);
 
   auto QF = [&](int a, int b) { return seg.prod(a, b); };
   auto QG = [](const Node &a, const Node &b) { return a + b; };
@@ -50,15 +55,14 @@ int main() {
     return l + r;
   };
 
-  while(Q--) {
+  while (Q--) {
     int T, A, B, C;
     cin >> T >> A >> B >> C;
     --A, --B;
-    if(T == 1) {
+    if (T == 1) {
       tree.add(A, B, [&](int a, int b) { seg.apply(a, b, C); });
     } else {
       cout << tree.query(A, B, Node(), QF, QG, QS).ans << "\n";
     }
   }
 }
-

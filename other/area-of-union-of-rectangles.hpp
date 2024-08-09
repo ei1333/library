@@ -49,13 +49,15 @@ struct AreaOfUnionOfRectangles {
       if (b.first < a.first) return b;
       return {a.first, a.second + b.second};
     };
+    auto e = [&]() -> pi { return {n + 1, 0}; };
     auto g = [](const pi &a, int b) -> pi { return {a.first + b, a.second}; };
     auto h = [](int a, int b) -> int { return a + b; };
+    auto id = []() { return 0; };
     vector<pi> vs(ys.size() - 1);
     for (int i = 0; i + 1 < ys.size(); i++) {
       vs[i] = {0, ys[i + 1] - ys[i]};
     }
-    auto seg = get_lazy_segment_tree(vs, f, g, h, pi(n + 1, 0), 0);
+    LazySegmentTree seg(LambdaActedMonoid(f, e, g, h, id), vs);
     T2 ret = 0;
     T total = ys.back() - ys.front();
     for (int i = 0; i + 1 < n + n; i++) {
