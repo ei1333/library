@@ -15,7 +15,7 @@ Luzhiled's Library is a library implemented in C++17 for competitive programming
 
 ## 🤝 Contributions
 
-I welcome you to create issues or submit pull requests if you find any typos or bugs.
+I welcome you to open issues or PRs if you find any typos or bugs.
 
 You should apply `clang-format` to all files with the `.hpp` extension. Please use the predefined `google` style.
 
