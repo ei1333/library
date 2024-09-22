@@ -8,11 +8,9 @@ int main() {
   string T, P;
   cin >> T;
   cin >> P;
-  RollingHash roll;
-  auto rh1 = roll.build(T);
-  auto rh2 = roll.build(P);
+  RollingHash rh1(T), rh2(P);
   for(int i = 0; i + P.size() <= T.size(); i++) {
-    if(roll.query(rh1, i, i + P.size()) == roll.query(rh2, 0, P.size())) {
+    if(rh1.get(i, i + P.size()) == rh2.get(0, P.size())) {
       cout << i << endl;
     }
   }
