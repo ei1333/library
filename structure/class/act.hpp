@@ -17,8 +17,8 @@ struct LambdaAct {
 };
 
 template <typename Composition, typename Id>
-LambdaAct(Composition _composition,
-          Id _id) -> LambdaAct<decltype(_id()), Composition, Id>;
+LambdaAct(Composition _composition, Id _id)
+    -> LambdaAct<decltype(_id()), Composition, Id>;
 
 /*
 struct Act {

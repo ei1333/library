@@ -1,4 +1,5 @@
 struct ModInt61_1 {
+ private:
   using mint = ModInt61_1;
   using u64 = uint64_t;
   using u128 = __uint128_t;
@@ -11,12 +12,12 @@ struct ModInt61_1 {
   explicit ModInt61_1(u64 a) : x{a} {}
 
   mint &operator+=(const mint &p) {
-    if ((x += p.x) >= mod()) x -= p.x;
+    if ((x += p.x) >= mod()) x -= mod();
     return *this;
   }
 
   mint &operator-=(const mint &p) {
-    if ((x += p.x) >= mod()) x -= p.x;
+    if ((x += mod() - p.x) >= mod()) x -= mod();
     return *this;
   }
 
@@ -32,11 +33,11 @@ struct ModInt61_1 {
     return *this;
   }
 
-  mint operator-() const { return mint() -= *this; }
+  mint operator-() const { return mint() - *this; }
 
-  mint operator+(const mint &p) { return mint(*this) += p; }
+  mint operator+(const mint &p) const { return mint(*this) += p; }
 
-  mint operator-(const mint &p) { return mint(*this) -= p; }
+  mint operator-(const mint &p) const { return mint(*this) -= p; }
 
   mint operator*(const mint &p) const { return mint(*this) *= p; }
 
@@ -50,7 +51,7 @@ struct ModInt61_1 {
 
   mint pow(u64 n) const {
     mint ret(1), mul(*this);
-    while (n > 1) {
+    while (n > 0) {
       if (n & 1) ret *= mul;
       mul *= mul;
       n >>= 1;
