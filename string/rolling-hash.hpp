@@ -1,83 +1,157 @@
-/**
- * @brief Rolling-Hash(ローリングハッシュ)
- * @see https://qiita.com/keymoon/items/11fac5627672a6d6a9f6
- *
- */
+#include "../math/combinatorics/modint-2-61m1.hpp"
+
+template <typename T = char>
 struct RollingHash {
-  static const uint64_t mod = (1ull << 61ull) - 1;
-  using uint128_t = __uint128_t;
-  vector<uint64_t> power;
-  const uint64_t base;
+ private:
+  using mint = ModInt_2_61m1;
 
-  static inline uint64_t add(uint64_t a, uint64_t b) {
-    if ((a += b) >= mod) a -= mod;
-    return a;
-  }
-
-  static inline uint64_t mul(uint64_t a, uint64_t b) {
-    uint128_t c = (uint128_t)a * b;
-    return add(c >> 61, c & mod);
-  }
-
-  static inline uint64_t generate_base() {
+  static mint generate_base() {
     mt19937_64 mt(chrono::steady_clock::now().time_since_epoch().count());
-    uniform_int_distribution<uint64_t> rand(1, RollingHash::mod - 1);
-    return rand(mt);
+    uniform_int_distribution<uint64_t> rand(1, mint::mod() - 1);
+    return mint(rand(mt));
   }
 
-  inline void expand(size_t sz) {
-    if (power.size() < sz + 1) {
-      int pre_sz = (int)power.size();
-      power.resize(sz + 1);
-      for (int i = pre_sz - 1; i < sz; i++) {
-        power[i + 1] = mul(power[i], base);
+  static mint base, base_inv;
+  static vector<mint> bases, base_invs;
+
+  vector<T> pre, suf;
+  vector<mint> PRE{mint(0)}, SUF{mint(0)};
+
+  static void expand_bases(size_t n) {
+    if (bases.size() < n + 1) {
+      int pre_sz = (int)bases.size();
+      bases.resize(n + 1);
+      for (int i = pre_sz - 1; i < n; i++) {
+        bases[i + 1] = bases[i] * base;
       }
     }
   }
 
-  explicit RollingHash(uint64_t base = generate_base())
-      : base(base), power{1} {}
-
-  vector<uint64_t> build(const string &s) const {
-    int sz = s.size();
-    vector<uint64_t> hashed(sz + 1);
-    for (int i = 0; i < sz; i++) {
-      hashed[i + 1] = add(mul(hashed[i], base), s[i]);
+  static void expand_base_invs(size_t n) {
+    if (base_invs.size() < n + 1) {
+      int pre_sz = (int)base_invs.size();
+      base_invs.resize(n + 1);
+      for (int i = pre_sz - 1; i < n; i++) {
+        base_invs[i + 1] = base_invs[i] * base_inv;
+      }
     }
-    return hashed;
   }
 
-  template <typename T>
-  vector<uint64_t> build(const vector<T> &s) const {
-    int sz = s.size();
-    vector<uint64_t> hashed(sz + 1);
-    for (int i = 0; i < sz; i++) {
-      hashed[i + 1] = add(mul(hashed[i], base), s[i]);
+ public:
+  RollingHash() = default;
+
+  explicit RollingHash(const string& s) {
+    for (auto& c : s) push_back(c);
+  }
+
+  explicit RollingHash(const vector<T>& s) {
+    for (auto& c : s) push_back(c);
+  }
+
+  int size() const { return (int)pre.size() + (int)suf.size(); }
+
+  void push_front(T c) {
+    expand_base_invs(pre.size() + 1);
+    PRE.push_back(PRE.back() + base_invs[pre.size() + 1] * mint(c));
+    pre.push_back(c);
+  }
+
+  void push_back(T c) {
+    expand_bases(suf.size());
+    SUF.push_back(SUF.back() + bases[suf.size()] * mint(c));
+    suf.push_back(c);
+  }
+
+  T operator[](int k) const {
+    assert(0 <= k and k < size());
+    k -= (int)pre.size();
+    return k < 0 ? pre[~k] : suf[k];
+  }
+
+  mint get(int r) const {
+    assert(0 <= r and r <= size());
+    r -= (int)pre.size();
+    expand_bases(pre.size());
+    if (r < 0) {
+      return bases[pre.size()] * (PRE.back() - PRE[-r]);
+    } else {
+      return bases[pre.size()] * (PRE.back() + SUF[r]);
     }
-    return hashed;
   }
 
-  uint64_t query(const vector<uint64_t> &s, int l, int r) {
-    expand(r - l);
-    return add(s[r], mod - mul(s[l], power[r - l]));
+  mint get(int l, int r) const {
+    assert(0 <= l and l <= r and r <= size());
+    expand_base_invs(l);
+    return base_invs[l] * (get(r) - get(l));
   }
 
-  uint64_t combine(uint64_t h1, uint64_t h2, size_t h2len) {
-    expand(h2len);
-    return add(mul(h1, power[h2len]), h2);
-  }
-
-  int lcp(const vector<uint64_t> &a, int l1, int r1, const vector<uint64_t> &b,
-          int l2, int r2) {
-    int len = min(r1 - l1, r2 - l2);
+  int lcp(const RollingHash& b) const {
+    int len = min(size(), b.size());
     int low = 0, high = len + 1;
     while (high - low > 1) {
       int mid = (low + high) / 2;
-      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))
+      if (get(mid) == b.get(mid))
         low = mid;
       else
         high = mid;
     }
     return low;
   }
+
+  int lcp(const RollingHash& b, int l1, int l2) const {
+    assert(l1 <= size());
+    assert(l2 <= b.size());
+    int len = min(size() - l1, b.size() - l2);
+    int low = 0, high = len + 1;
+    while (high - low > 1) {
+      int mid = (low + high) / 2;
+      if (get(l1, l1 + mid) == b.get(l2, l2 + mid))
+        low = mid;
+      else
+        high = mid;
+    }
+    return low;
+  }
+
+  static mint combine(mint h1, int h1_len, mint h2) {
+    expand_bases(h1_len);
+    return h1 + h2 * bases[h1_len];
+  }
+
+  void clear() {
+    pre.clear();
+    pre.shrink_to_fit();
+    suf.clear();
+    suf.shrink_to_fit();
+    PRE = {mint(1)};
+    PRE.shrink_to_fit();
+    SUF = {mint(1)};
+    SUF.shrink_to_fit();
+  }
+
+  void merge(RollingHash& b) {
+    if (size() < b.size()) {
+      pre.swap(b.pre);
+      suf.swap(b.suf);
+      PRE.swap(b.PRE);
+      SUF.swap(b.SUF);
+      reverse(b.suf.begin(), b.suf.end());
+      for (auto& c : b.suf) push_front(c);
+      for (auto& c : b.pre) push_front(c);
+    } else {
+      reverse(b.pre.begin(), b.pre.end());
+      for (auto& c : b.pre) push_back(c);
+      for (auto& c : b.suf) push_back(c);
+    }
+    b.clear();
+  }
 };
+
+template <typename T>
+ModInt_2_61m1 RollingHash<T>::base = RollingHash::generate_base();
+template <typename T>
+ModInt_2_61m1 RollingHash<T>::base_inv = base.inv();
+template <typename T>
+vector<ModInt_2_61m1> RollingHash<T>::bases = {ModInt_2_61m1(1)};
+template <typename T>
+vector<ModInt_2_61m1> RollingHash<T>::base_invs = {ModInt_2_61m1(1)};
