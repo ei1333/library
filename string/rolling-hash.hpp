@@ -1,9 +1,9 @@
-#include "../math/combinatorics/modint-61-1.hpp"
+#include "../math/combinatorics/modint-2-61m1.hpp"
 
 template <typename T = char>
 struct RollingHash {
  private:
-  using mint = ModInt61_1;
+  using mint = ModInt_2_61m1;
 
   static mint generate_base() {
     mt19937_64 mt(chrono::steady_clock::now().time_since_epoch().count());
@@ -98,6 +98,26 @@ struct RollingHash {
     return low;
   }
 
+  int lcp(const RollingHash& b, int l1, int l2) const {
+    assert(l1 <= size());
+    assert(l2 <= b.size());
+    int len = min(size() - l1, b.size() - l2);
+    int low = 0, high = len + 1;
+    while (high - low > 1) {
+      int mid = (low + high) / 2;
+      if (get(l1, l1 + mid) == b.get(l2, l2 + mid))
+        low = mid;
+      else
+        high = mid;
+    }
+    return low;
+  }
+
+  static mint combine(mint h1, int h1_len, mint h2) {
+    expand_bases(h1_len);
+    return h1 + h2 * bases[h1_len];
+  }
+
   void clear() {
     pre.clear();
     pre.shrink_to_fit();
@@ -128,10 +148,10 @@ struct RollingHash {
 };
 
 template <typename T>
-ModInt61_1 RollingHash<T>::base = RollingHash::generate_base();
+ModInt_2_61m1 RollingHash<T>::base = RollingHash::generate_base();
 template <typename T>
-ModInt61_1 RollingHash<T>::base_inv = base.inv();
+ModInt_2_61m1 RollingHash<T>::base_inv = base.inv();
 template <typename T>
-vector<ModInt61_1> RollingHash<T>::bases = {ModInt61_1(1)};
+vector<ModInt_2_61m1> RollingHash<T>::bases = {ModInt_2_61m1(1)};
 template <typename T>
-vector<ModInt61_1> RollingHash<T>::base_invs = {ModInt61_1(1)};
+vector<ModInt_2_61m1> RollingHash<T>::base_invs = {ModInt_2_61m1(1)};

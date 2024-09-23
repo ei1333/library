@@ -1,15 +1,15 @@
-struct ModInt61_1 {
+struct ModInt_2_61m1 {
  private:
-  using mint = ModInt61_1;
+  using mint = ModInt_2_61m1;
   using u64 = uint64_t;
   using u128 = __uint128_t;
 
   u64 x;
 
  public:
-  ModInt61_1() : x{} {}
+  ModInt_2_61m1() : x{} {}
 
-  explicit ModInt61_1(u64 a) : x{a} {}
+  explicit ModInt_2_61m1(u64 a) : x{a} {}
 
   mint &operator+=(const mint &p) {
     if ((x += p.x) >= mod()) x -= mod();
