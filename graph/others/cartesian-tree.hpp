@@ -1,8 +1,6 @@
 #pragma once
 /**
  * @brief Cartesian Tree
- *
- * @see https://kimiyuki.net/blog/2020/07/27/recursion-on-cartesian-tree/
  */
 template <typename T>
 vector<int> cartesian_tree(const vector<T> &v) {
