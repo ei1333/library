@@ -9,12 +9,12 @@ struct BinaryIndexedTree {
 
   explicit BinaryIndexedTree(int n) : n(n) { data.assign(n + 1, T()); }
 
-  explicit BinaryIndexedTree(const vector<T> &v)
+  explicit BinaryIndexedTree(const vector<T>& v)
       : BinaryIndexedTree((int)v.size()) {
     build(v);
   }
 
-  void build(const vector<T> &v) {
+  void build(const vector<T>& v) {
     assert(n == (int)v.size());
     for (int i = 1; i <= n; i++) data[i] = v[i - 1];
     for (int i = 1; i <= n; i++) {
@@ -23,7 +23,7 @@ struct BinaryIndexedTree {
     }
   }
 
-  void apply(int k, const T &x) {
+  void apply(int k, const T& x) {
     for (++k; k <= n; k += k & -k) data[k] += x;
   }
 

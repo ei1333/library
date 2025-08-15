@@ -11,23 +11,23 @@ FormalPowerSeries<T> random_poly(int n) {
 }
 
 template <typename T>
-FormalPowerSeries<T> next_poly(const FormalPowerSeries<T> &dp,
-                               const FPSGraph<T> &g) {
+FormalPowerSeries<T> next_poly(const FormalPowerSeries<T>& dp,
+                               const FPSGraph<T>& g) {
   const int N = (int)dp.size();
   FormalPowerSeries<T> nxt(N);
   for (int i = 0; i < N; i++) {
-    for (auto &p : g[i]) nxt[p.first] += p.second * dp[i];
+    for (auto& p : g[i]) nxt[p.first] += p.second * dp[i];
   }
   return nxt;
 }
 
 template <typename T>
-FormalPowerSeries<T> minimum_poly(const FPSGraph<T> &g) {
+FormalPowerSeries<T> minimum_poly(const FPSGraph<T>& g) {
   const int N = (int)g.size();
   auto dp = random_poly<T>(N), u = random_poly<T>(N);
   FormalPowerSeries<T> f(2 * N);
   for (int i = 0; i < 2 * N; i++) {
-    for (auto &p : u.dot(dp)) f[i] += p;
+    for (auto& p : u.dot(dp)) f[i] += p;
     dp = next_poly(dp, g);
   }
   return berlekamp_massey(f);
@@ -36,7 +36,7 @@ FormalPowerSeries<T> minimum_poly(const FPSGraph<T> &g) {
 /* O(N(N+S) + N log N log Q) (O(S): time complexity of nex) */
 template <typename T>
 FormalPowerSeries<T> sparse_pow(int64_t Q, FormalPowerSeries<T> dp,
-                                const FPSGraph<T> &g) {
+                                const FPSGraph<T>& g) {
   const int N = (int)dp.size();
   auto A = FormalPowerSeries<T>({0, 1}).pow_mod(Q, minimum_poly(g));
   FormalPowerSeries<T> res(N);
@@ -54,7 +54,7 @@ T sparse_determinant(FPSGraph<T> g) {
   int N = (int)g.size();
   auto C = random_poly<T>(N);
   for (int i = 0; i < N; i++)
-    for (auto &p : g[i]) p.second *= C[i];
+    for (auto& p : g[i]) p.second *= C[i];
   auto u = minimum_poly(g);
   T acdet = u[0];
   if (N % 2 == 0) acdet *= -1;

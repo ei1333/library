@@ -21,7 +21,7 @@ struct Trie {
 
   void update_child(int node, int child, int id) { ++nodes[node].exist; }
 
-  void add(const string &str, int str_index, int node_index, int id) {
+  void add(const string& str, int str_index, int node_index, int id) {
     if (str_index == str.size()) {
       update_direct(node_index, id);
     } else {
@@ -35,13 +35,13 @@ struct Trie {
     }
   }
 
-  void add(const string &str, int id) { add(str, 0, 0, id); }
+  void add(const string& str, int id) { add(str, 0, 0, id); }
 
-  void add(const string &str) { add(str, nodes[0].exist); }
+  void add(const string& str) { add(str, nodes[0].exist); }
 
-  void query(const string &str, const function<void(int)> &f, int str_index,
+  void query(const string& str, const function<void(int)>& f, int str_index,
              int node_index) {
-    for (auto &idx : nodes[node_index].accept) f(idx);
+    for (auto& idx : nodes[node_index].accept) f(idx);
     if (str_index == str.size()) {
       return;
     } else {
@@ -51,7 +51,7 @@ struct Trie {
     }
   }
 
-  void query(const string &str, const function<void(int)> &f) {
+  void query(const string& str, const function<void(int)>& f) {
     query(str, f, 0, 0);
   }
 

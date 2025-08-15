@@ -4,7 +4,7 @@
 #include "line.hpp"
 
 namespace geometry {
-bool is_intersect_cl(const Circle &c, const Line &l) {
+bool is_intersect_cl(const Circle& c, const Line& l) {
   return sign(c.r - distance_lp(l, c.p)) >= 0;
 }
 }  // namespace geometry

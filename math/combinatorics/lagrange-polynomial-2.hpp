@@ -2,7 +2,7 @@
  * @brief Lagrange Polynomial(多項式補間, 係数)
  */
 template <typename Mint>
-vector<Mint> lagrange_polynomial(const vector<Mint> &x, const vector<Mint> &y) {
+vector<Mint> lagrange_polynomial(const vector<Mint>& x, const vector<Mint>& y) {
   int k = (int)x.size() - 1;
 
   vector<Mint> f(k + 1), dp(k + 2);

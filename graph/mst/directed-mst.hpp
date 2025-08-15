@@ -26,10 +26,10 @@ MinimumSpanningTree<T> directed_mst(int V, int root, Edges<T> edges) {
   using Node = typename Heap::Node;
 
   Heap heap;
-  vector<Node *> ins(2 * V, heap.make_root());
+  vector<Node*> ins(2 * V, heap.make_root());
 
   for (int i = 0; i < (int)edges.size(); i++) {
-    auto &e = edges[i];
+    auto& e = edges[i];
     ins[e.to] = heap.push(ins[e.to], e.cost, i);
   }
   vector<int> st;
@@ -39,7 +39,7 @@ MinimumSpanningTree<T> directed_mst(int V, int root, Edges<T> edges) {
       st.emplace_back(x);
       x = link[x];
     }
-    for (auto &p : st) {
+    for (auto& p : st) {
       link[p] = x;
     }
     st.clear();

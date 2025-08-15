@@ -65,7 +65,7 @@ struct BurnBury {
     {
       UF uf(n + n);
       for (int i = 0; i < n; i++) {
-        for (auto &[j, cs] : phi[i]) {
+        for (auto& [j, cs] : phi[i]) {
           T c = -cs[0] + cs[1] + cs[2] - cs[3];
           if (c < 0) {
             uf.unite(i, j + n);
@@ -77,7 +77,7 @@ struct BurnBury {
           }
         }
       }
-      for (auto &[vs, c] : zeta) {
+      for (auto& [vs, c] : zeta) {
         if (c > 0) return nullopt;
         if (c < 0) {
           for (int i = 1; i < (int)vs.size(); i++) {
@@ -111,7 +111,7 @@ struct BurnBury {
     }
     {
       for (int i = 0; i < n; i++) {
-        for (auto &[j, cs] : phi[i]) {
+        for (auto& [j, cs] : phi[i]) {
           if (flip[i]) {
             swap(cs[0], cs[2]);
             swap(cs[1], cs[3]);
@@ -131,7 +131,7 @@ struct BurnBury {
     }
     {
       for (int i = 0; i < n; i++) {
-        auto &cs = theta[i];
+        auto& cs = theta[i];
         if (flip[i]) {
           swap(cs[0], cs[1]);
         }
@@ -151,7 +151,7 @@ struct BurnBury {
     int s = n, t = n + 1;
     {
       for (int i = 0; i < n; i++) {
-        auto &cs = theta[i];
+        auto& cs = theta[i];
         if (cs[1] > 0) {
           flow.add_edge(i, t, cs[1]);
         }
@@ -160,7 +160,7 @@ struct BurnBury {
         }
       }
       for (int i = 0; i < n; i++) {
-        for (auto &[j, cs] : phi[i]) {
+        for (auto& [j, cs] : phi[i]) {
           if (cs[2] > 0) {
             flow.add_edge(i, j, cs[2]);
           }
@@ -170,13 +170,13 @@ struct BurnBury {
         }
       }
       int u = t + 1;
-      for (auto &[vs, c] : zeta) {
+      for (auto& [vs, c] : zeta) {
         if (c < 0) {
           if ((vs[0] >= 0) ^ flip[max(~vs[0], vs[0])]) {
             flow.add_edge(s, u, -c);
-            for (auto &p : vs) flow.add_edge(u, max(p, ~p), -c);
+            for (auto& p : vs) flow.add_edge(u, max(p, ~p), -c);
           } else {
-            for (auto &p : vs) flow.add_edge(max(p, ~p), u, -c);
+            for (auto& p : vs) flow.add_edge(max(p, ~p), u, -c);
             flow.add_edge(u, t, -c);
           }
           alpha += c;

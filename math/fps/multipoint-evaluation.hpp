@@ -4,7 +4,7 @@
  * @brief Multipoint Evaluation
  */
 template <template <typename> class FPS, typename Mint>
-FPS<Mint> multipoint_evaluation(const FPS<Mint> &f, const FPS<Mint> &xs) {
+FPS<Mint> multipoint_evaluation(const FPS<Mint>& f, const FPS<Mint>& xs) {
   auto g = subproduct_tree(xs);
   int m = (int)xs.size(), k = (int)g.size() / 2;
   g[1] = f % g[1];

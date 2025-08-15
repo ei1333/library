@@ -21,7 +21,7 @@ class erasable_heap {
  public:
   bool empty() const { return base.empty(); }
 
-  const T &top() const {
+  const T& top() const {
     assert(!empty());
     return base.top();
   }

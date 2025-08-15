@@ -33,7 +33,7 @@ struct FordFulkerson {
   flow_t find_augment_path(int idx, const int t, flow_t flow) {
     if (idx == t) return flow;
     used[idx] = timestamp;
-    for (auto &e : graph[idx]) {
+    for (auto& e : graph[idx]) {
       if (e.cap > 0 && used[e.to] != timestamp) {
         flow_t d = find_augment_path(e.to, t, min(flow, e.cap));
         if (d > 0) {
@@ -57,9 +57,9 @@ struct FordFulkerson {
 
   void output() {
     for (int i = 0; i < graph.size(); i++) {
-      for (auto &e : graph[i]) {
+      for (auto& e : graph[i]) {
         if (e.isrev) continue;
-        auto &rev_e = graph[e.to][e.rev];
+        auto& rev_e = graph[e.to][e.rev];
         cout << i << "->" << e.to << " (flow: " << rev_e.cap << "/"
              << e.cap + rev_e.cap << ")" << endl;
       }

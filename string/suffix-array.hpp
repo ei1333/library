@@ -4,7 +4,7 @@
 template <typename T>
 struct SuffixArray : vector<int> {
  private:
-  vector<int> sa_is(const vector<int> &s) const {
+  vector<int> sa_is(const vector<int>& s) const {
     const int n = (int)s.size();
     vector<int> ret(n);
 
@@ -15,10 +15,10 @@ struct SuffixArray : vector<int> {
       m += (is_lms[i + 1] = is_s[i] and not is_s[i + 1]);
     }
 
-    auto induced_sort = [&](const vector<int> &lms) {
+    auto induced_sort = [&](const vector<int>& lms) {
       int upper = *max_element(s.begin(), s.end());
       vector<int> l(upper + 2), r(upper + 2);
-      for (auto &&v : s) {
+      for (auto&& v : s) {
         ++l[v + 1];
         ++r[v];
       }
@@ -28,11 +28,11 @@ struct SuffixArray : vector<int> {
       for (int i = (int)lms.size() - 1; i >= 0; i--) {
         ret[--r[s[lms[i]]]] = lms[i];
       }
-      for (auto &&v : ret) {
+      for (auto&& v : ret) {
         if (v >= 1 and is_s[v - 1]) ret[l[s[v - 1]]++] = v - 1;
       }
       fill(r.begin(), r.end(), 0);
-      for (auto &&v : s) ++r[v];
+      for (auto&& v : s) ++r[v];
       partial_sum(r.begin(), r.end(), r.begin());
       for (int k = (int)ret.size() - 1, i = ret[k]; k >= 1; i = ret[--k]) {
         if (i >= 1 and not is_s[i - 1]) {
@@ -91,7 +91,7 @@ struct SuffixArray : vector<int> {
  public:
   T vs;
 
-  explicit SuffixArray(const T &vs, bool compress = false) : vs(vs) {
+  explicit SuffixArray(const T& vs, bool compress = false) : vs(vs) {
     vector<int> new_vs(vs.size() + 1);
     if (compress) {
       T xs = vs;
@@ -119,7 +119,7 @@ struct SuffixArray : vector<int> {
     }
   }
 
-  bool lt_substr(const string &t, int si = 0, int ti = 0) {
+  bool lt_substr(const string& t, int si = 0, int ti = 0) {
     int sn = (int)vs.size(), tn = (int)t.size();
     while (si < sn && ti < tn) {
       if (vs[si] < t[ti]) return true;
@@ -130,7 +130,7 @@ struct SuffixArray : vector<int> {
   }
 
   // t <= s[i,N) なる最小の i を返す O(|t| log |s|)
-  int lower_bound(const T &t) {
+  int lower_bound(const T& t) {
     int ng = 0, ok = (int)size();
     while (ok - ng > 1) {
       int mid = (ok + ng) / 2;
@@ -143,7 +143,7 @@ struct SuffixArray : vector<int> {
   }
 
   // O(|t| log |s|)
-  pair<int, int> equal_range(T &t) {
+  pair<int, int> equal_range(T& t) {
     int low = lower_bound(t);
     int ng = low - 1, ok = (int)size();
     t.back()++;

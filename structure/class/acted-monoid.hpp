@@ -6,13 +6,13 @@ struct LambdaActedMonoid {
   using S = S2;
   using F = F2;
 
-  S op(const S &a, const S &b) const { return _op(a, b); }
+  S op(const S& a, const S& b) const { return _op(a, b); }
 
   S e() const { return _e(); }
 
-  S mapping(const S &x, const F &f) const { return _mapping(x, f); }
+  S mapping(const S& x, const F& f) const { return _mapping(x, f); }
 
-  F composition(const F &f, const F &g) const { return _composition(f, g); }
+  F composition(const F& f, const F& g) const { return _composition(f, g); }
 
   F id() const { return _id(); }
 

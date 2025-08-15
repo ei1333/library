@@ -3,7 +3,7 @@
  * @brief Cartesian Tree
  */
 template <typename T>
-vector<int> cartesian_tree(const vector<T> &v) {
+vector<int> cartesian_tree(const vector<T>& v) {
   int n = (int)v.size();
   vector<int> par(n, -1);
   stack<int> st;

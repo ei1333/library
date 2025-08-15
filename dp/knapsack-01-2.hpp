@@ -1,5 +1,5 @@
 template <typename T>
-T knapsack_01_2(const vector<T> &w, const vector<int> &v, const T &W) {
+T knapsack_01_2(const vector<T>& w, const vector<int>& v, const T& W) {
   const int N = (int)w.size();
   const int sum = accumulate(begin(v), end(v), 0);
   vector<T> dp(sum + 1, W + 1);

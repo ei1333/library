@@ -6,34 +6,34 @@ struct UnsafeMod {
 
   UnsafeMod(word _x) : x(init(_x)) {}
 
-  bool operator==(const UnsafeMod &rhs) const { return x == rhs.x; }
+  bool operator==(const UnsafeMod& rhs) const { return x == rhs.x; }
 
-  bool operator!=(const UnsafeMod &rhs) const { return x != rhs.x; }
+  bool operator!=(const UnsafeMod& rhs) const { return x != rhs.x; }
 
-  UnsafeMod &operator+=(const UnsafeMod &rhs) {
+  UnsafeMod& operator+=(const UnsafeMod& rhs) {
     if ((x += rhs.x) >= mod) x -= mod;
     return *this;
   }
 
-  UnsafeMod &operator-=(const UnsafeMod &rhs) {
+  UnsafeMod& operator-=(const UnsafeMod& rhs) {
     if (sword(x -= rhs.x) < 0) x += mod;
     return *this;
   }
 
-  UnsafeMod &operator*=(const UnsafeMod &rhs) {
+  UnsafeMod& operator*=(const UnsafeMod& rhs) {
     x = reduce(dword(x) * rhs.x);
     return *this;
   }
 
-  UnsafeMod operator+(const UnsafeMod &rhs) const {
+  UnsafeMod operator+(const UnsafeMod& rhs) const {
     return UnsafeMod(*this) += rhs;
   }
 
-  UnsafeMod operator-(const UnsafeMod &rhs) const {
+  UnsafeMod operator-(const UnsafeMod& rhs) const {
     return UnsafeMod(*this) -= rhs;
   }
 
-  UnsafeMod operator*(const UnsafeMod &rhs) const {
+  UnsafeMod operator*(const UnsafeMod& rhs) const {
     return UnsafeMod(*this) *= rhs;
   }
 

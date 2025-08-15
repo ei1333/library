@@ -18,7 +18,7 @@ struct DoublingLowestCommonAncestor : Graph<T> {
   explicit DoublingLowestCommonAncestor(int n)
       : Graph<T>(n), LOG(32 - __builtin_clz(g.size())) {}
 
-  explicit DoublingLowestCommonAncestor(const Graph<T> &g)
+  explicit DoublingLowestCommonAncestor(const Graph<T>& g)
       : LOG(32 - __builtin_clz(g.size())), Graph<T>(g) {}
 
   void build(int root = 0) {
@@ -63,7 +63,7 @@ struct DoublingLowestCommonAncestor : Graph<T> {
   void dfs(int idx, int par, int d) {
     table[0][idx] = par;
     dep[idx] = d;
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to != par) {
         sum[to] = sum[idx] + to.cost;
         dfs(to, idx, d + 1);

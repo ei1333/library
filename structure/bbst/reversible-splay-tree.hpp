@@ -15,7 +15,7 @@ struct ReversibleSplayTree {
 
     bool is_root() const { return !p || (p->l != this && p->r != this); }
 
-    Node(const Monoid &key)
+    Node(const Monoid& key)
         : key(key),
           sum(key),
           sz(1),
@@ -25,22 +25,22 @@ struct ReversibleSplayTree {
           p(nullptr) {}
   };
 
-  ReversibleSplayTree(const F &f, const Monoid &M1)
-      : ReversibleSplayTree(f, [](const Monoid &a) { return a; }, M1) {}
+  ReversibleSplayTree(const F& f, const Monoid& M1)
+      : ReversibleSplayTree(f, [](const Monoid& a) { return a; }, M1) {}
 
-  ReversibleSplayTree(const F &f, const S &s, const Monoid &M1)
+  ReversibleSplayTree(const F& f, const S& s, const Monoid& M1)
       : f(f), s(s), M1(M1) {}
 
-  inline size_t count(const Node *t) { return t ? t->sz : 0; }
+  inline size_t count(const Node* t) { return t ? t->sz : 0; }
 
-  inline const Monoid &sum(const Node *t) { return t ? t->sum : M1; }
+  inline const Monoid& sum(const Node* t) { return t ? t->sum : M1; }
 
-  Node *alloc(const Monoid &v = Monoid()) { return new Node(v); }
+  Node* alloc(const Monoid& v = Monoid()) { return new Node(v); }
 
-  void splay(Node *t) {
+  void splay(Node* t) {
     push(t);
     while (!t->is_root()) {
-      auto *q = t->p;
+      auto* q = t->p;
       if (q->is_root()) {
         push(q), push(t);
         if (q->l == t)
@@ -48,7 +48,7 @@ struct ReversibleSplayTree {
         else
           rotl(t);
       } else {
-        auto *r = q->p;
+        auto* r = q->p;
         push(r), push(q), push(t);
         if (r->l == q) {
           if (q->l == t)
@@ -65,7 +65,7 @@ struct ReversibleSplayTree {
     }
   }
 
-  Node *push_front(Node *t, const Monoid &v = Monoid()) {
+  Node* push_front(Node* t, const Monoid& v = Monoid()) {
     if (!t) {
       t = alloc(v);
       return t;
@@ -80,7 +80,7 @@ struct ReversibleSplayTree {
     }
   }
 
-  Node *push_back(Node *t, const Monoid &v = Monoid()) {
+  Node* push_back(Node* t, const Monoid& v = Monoid()) {
     if (!t) {
       t = alloc(v);
       return t;
@@ -95,7 +95,7 @@ struct ReversibleSplayTree {
     }
   }
 
-  Node *erase(Node *t) {
+  Node* erase(Node* t) {
     splay(t);
     Node *x = t->l, *y = t->r;
     delete t;
@@ -115,17 +115,17 @@ struct ReversibleSplayTree {
     return t;
   }
 
-  Node *get_left(Node *t) const {
+  Node* get_left(Node* t) const {
     while (t->l) t = t->l;
     return t;
   }
 
-  Node *get_right(Node *t) const {
+  Node* get_right(Node* t) const {
     while (t->r) t = t->r;
     return t;
   }
 
-  pair<Node *, Node *> split(Node *t, int k) {
+  pair<Node*, Node*> split(Node* t, int k) {
     if (!t) return {nullptr, nullptr};
     push(t);
     if (k <= count(t->l)) {
@@ -144,8 +144,8 @@ struct ReversibleSplayTree {
   }
 
   template <typename... Args>
-  Node *merge(Node *l, Args... rest) {
-    Node *r = merge(rest...);
+  Node* merge(Node* l, Args... rest) {
+    Node* r = merge(rest...);
     if (!l && !r) return nullptr;
     if (!l) return splay(r), r;
     if (!r) return splay(l), l;
@@ -158,13 +158,13 @@ struct ReversibleSplayTree {
     return l;
   }
 
-  void insert(Node *&t, int k, const Monoid &v) {
+  void insert(Node*& t, int k, const Monoid& v) {
     splay(t);
     auto x = split(t, k);
     t = merge(merge(x.first, alloc(v)), x.second);
   }
 
-  Monoid erase(Node *&t, int k) {
+  Monoid erase(Node*& t, int k) {
     splay(t);
     auto x = split(t, k);
     auto y = split(x.second, 1);
@@ -174,7 +174,7 @@ struct ReversibleSplayTree {
     return v;
   }
 
-  Monoid query(Node *&t, int a, int b) {
+  Monoid query(Node*& t, int a, int b) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
@@ -183,15 +183,15 @@ struct ReversibleSplayTree {
     return ret;
   }
 
-  Node *build(const vector<Monoid> &v) { return build(0, (int)v.size(), v); }
+  Node* build(const vector<Monoid>& v) { return build(0, (int)v.size(), v); }
 
-  void toggle(Node *t) {
+  void toggle(Node* t) {
     swap(t->l, t->r);
     t->sum = s(t->sum);
     t->rev ^= true;
   }
 
-  Node *update(Node *t) {
+  Node* update(Node* t) {
     t->sz = 1;
     t->sum = t->key;
     if (t->l) t->sz += t->l->sz, t->sum = f(t->l->sum, t->sum);
@@ -199,14 +199,14 @@ struct ReversibleSplayTree {
     return t;
   }
 
-  tuple<Node *, Node *, Node *> split3(Node *t, int a, int b) {
+  tuple<Node*, Node*, Node*> split3(Node* t, int a, int b) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     return make_tuple(x.first, y.first, y.second);
   }
 
-  void push(Node *t) {
+  void push(Node* t) {
     if (t->rev) {
       if (t->l) toggle(t->l);
       if (t->r) toggle(t->r);
@@ -214,7 +214,7 @@ struct ReversibleSplayTree {
     }
   }
 
-  void set_element(Node *&t, int k, const Monoid &x) {
+  void set_element(Node*& t, int k, const Monoid& x) {
     splay(t);
     sub_set_element(t, k, x);
   }
@@ -224,12 +224,12 @@ struct ReversibleSplayTree {
   const F f;
   const S s;
 
-  Node *build(int l, int r, const vector<Monoid> &v) {
+  Node* build(int l, int r, const vector<Monoid>& v) {
     if (l + 1 >= r) return alloc(v[l]);
     return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
   }
 
-  Node *sub_set_element(Node *&t, int k, const Monoid &x) {
+  Node* sub_set_element(Node*& t, int k, const Monoid& x) {
     push(t);
     if (k < count(t->l)) {
       return sub_set_element(t->l, k, x);
@@ -242,7 +242,7 @@ struct ReversibleSplayTree {
     }
   }
 
-  void rotr(Node *t) {
+  void rotr(Node* t) {
     auto *x = t->p, *y = x->p;
     if ((x->l = t->r)) t->r->p = x;
     t->r = x, x->p = t;
@@ -254,7 +254,7 @@ struct ReversibleSplayTree {
     }
   }
 
-  void rotl(Node *t) {
+  void rotl(Node* t) {
     auto *x = t->p, *y = x->p;
     if ((x->r = t->l)) t->l->p = x;
     t->l = x, x->p = t;
@@ -266,5 +266,5 @@ struct ReversibleSplayTree {
     }
   }
 
-  Node *merge(Node *l) { return l; }
+  Node* merge(Node* l) { return l; }
 };

@@ -22,7 +22,7 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
       }
     }
     while (!que.empty()) {
-      auto &now = this->nodes[que.front()];
+      auto& now = this->nodes[que.front()];
       int fail = now.nxt[FAIL];
       correct[que.front()] += correct[fail];
       que.pop();
@@ -30,8 +30,8 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
         if (~now.nxt[i]) {
           this->nodes[now.nxt[i]].nxt[FAIL] = this->nodes[fail].nxt[i];
           if (heavy) {
-            auto &u = this->nodes[now.nxt[i]].accept;
-            auto &v = this->nodes[this->nodes[fail].nxt[i]].accept;
+            auto& u = this->nodes[now.nxt[i]].accept;
+            auto& v = this->nodes[this->nodes[fail].nxt[i]].accept;
             vector<int> accept;
             set_union(begin(u), end(u), begin(v), end(v),
                       back_inserter(accept));
@@ -45,26 +45,26 @@ struct AhoCorasick : Trie<char_size + 1, margin> {
     }
   }
 
-  unordered_map<int, int> match(const string &str, int now = 0) {
+  unordered_map<int, int> match(const string& str, int now = 0) {
     unordered_map<int, int> result, visit_cnt;
-    for (auto &c : str) {
+    for (auto& c : str) {
       now = this->nodes[now].nxt[c - margin];
       visit_cnt[now]++;
     }
-    for (auto &[now, cnt] : visit_cnt) {
-      for (auto &v : this->nodes[now].accept) result[v] += cnt;
+    for (auto& [now, cnt] : visit_cnt) {
+      for (auto& v : this->nodes[now].accept) result[v] += cnt;
     }
     return result;
   }
 
-  pair<int64_t, int> move(const char &c, int now = 0) {
+  pair<int64_t, int> move(const char& c, int now = 0) {
     now = this->nodes[now].nxt[c - margin];
     return {correct[now], now};
   }
 
-  pair<int64_t, int> move(const string &str, int now = 0) {
+  pair<int64_t, int> move(const string& str, int now = 0) {
     int64_t sum = 0;
-    for (auto &c : str) {
+    for (auto& c : str) {
       auto nxt = move(c, now);
       sum += nxt.first;
       now = nxt.second;

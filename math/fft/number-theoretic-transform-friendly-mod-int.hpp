@@ -44,7 +44,7 @@ struct NumberTheoreticTransformFriendlyModInt {
     }
   }
 
-  static void ntt(vector<Mint> &a) {
+  static void ntt(vector<Mint>& a) {
     init();
     const int n = (int)a.size();
     assert((n & (n - 1)) == 0);
@@ -104,7 +104,7 @@ struct NumberTheoreticTransformFriendlyModInt {
     }
   }
 
-  static void intt(vector<Mint> &a, bool f = true) {
+  static void intt(vector<Mint>& a, bool f = true) {
     init();
     const int n = (int)a.size();
     assert((n & (n - 1)) == 0);

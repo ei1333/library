@@ -2,7 +2,7 @@
  * @brief Mod Sqrt
  */
 template <typename T>
-T mod_sqrt(const T &a, const T &p) {
+T mod_sqrt(const T& a, const T& p) {
   if (a == 0) return 0;
   if (p == 2) return a;
   if (mod_pow(a, (p - 1) >> 1, p) != 1) return -1;

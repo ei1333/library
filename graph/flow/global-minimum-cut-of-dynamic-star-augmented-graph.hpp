@@ -16,7 +16,7 @@ struct GlobalMinimumCutofDynamicStarAugmentedGraph {
   GlobalMinimumCutofDynamicStarAugmentedGraph() = default;
 
   explicit GlobalMinimumCutofDynamicStarAugmentedGraph(int n,
-                                                       const Edges<T> &es)
+                                                       const Edges<T>& es)
       : n(n),
         hld(extreme_vertex_set(n, es)),
         cur(n),
@@ -24,7 +24,7 @@ struct GlobalMinimumCutofDynamicStarAugmentedGraph {
     hld.build((int)hld.size() - 1);
     vector<int64> vs(2 * n - 1);
     for (int i = 0; i < 2 * n - 1; i++) {
-      for (auto &e : hld[i]) {
+      for (auto& e : hld[i]) {
         vs[hld.in[e.to]] = e.cost;
       }
     }

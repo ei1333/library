@@ -19,7 +19,7 @@ struct NamoriGraph : Graph<T> {
     int tree_id, id;
   };
 
-  Info operator[](const int &k) const { return (Info){mark_id[k], id[k]}; }
+  Info operator[](const int& k) const { return (Info){mark_id[k], id[k]}; }
 
   int inv(int tree_id, int k) { return iv[tree_id][k]; }
 
@@ -37,7 +37,7 @@ struct NamoriGraph : Graph<T> {
     while (not que.empty()) {
       int idx = que.front();
       que.pop();
-      for (auto &e : g[idx]) {
+      for (auto& e : g[idx]) {
         if (used[e.to]) {
           continue;
         }
@@ -49,8 +49,8 @@ struct NamoriGraph : Graph<T> {
       }
     }
     int mx = 0;
-    for (auto &edges : g) {
-      for (auto &e : edges) mx = max(mx, e.idx);
+    for (auto& edges : g) {
+      for (auto& e : edges) mx = max(mx, e.idx);
     }
     vector<int> edge_used(mx + 1);
     vector<int> loop;
@@ -59,7 +59,7 @@ struct NamoriGraph : Graph<T> {
         for (bool update = true; update;) {
           update = false;
           loop.emplace_back(v);
-          for (auto &e : g[v]) {
+          for (auto& e : g[v]) {
             if (used[e.to] or edge_used[e.idx]) {
               continue;
             }
@@ -84,13 +84,13 @@ struct NamoriGraph : Graph<T> {
       iv.emplace_back();
       id[loop[i]] = sz++;
       iv.back().emplace_back(loop[i]);
-      for (auto &e : g[loop[i]]) {
+      for (auto& e : g[loop[i]]) {
         if (e.to != pre and e.to != nxt) {
           mark_dfs(e.to, loop[i], i, sz);
         }
       }
       Graph<T> tree(sz);
-      for (auto &e : g[loop[i]]) {
+      for (auto& e : g[loop[i]]) {
         if (e.to != pre and e.to != nxt) {
           tree.g[id[loop[i]]].emplace_back(id[loop[i]], id[e.to], e.cost,
                                            e.idx);
@@ -106,19 +106,19 @@ struct NamoriGraph : Graph<T> {
   vector<vector<int> > iv;
   vector<int> mark_id, id;
 
-  void mark_dfs(int idx, int par, int k, int &l) {
+  void mark_dfs(int idx, int par, int k, int& l) {
     mark_id[idx] = k;
     id[idx] = l++;
     iv.back().emplace_back(idx);
-    for (auto &e : g[idx]) {
+    for (auto& e : g[idx]) {
       if (e.to != par) {
         mark_dfs(e.to, idx, k, l);
       }
     }
   }
 
-  void build_dfs(int idx, int par, Graph<T> &tree) {
-    for (auto &e : g[idx]) {
+  void build_dfs(int idx, int par, Graph<T>& tree) {
+    for (auto& e : g[idx]) {
       if (e.to != par) {
         tree.g[id[idx]].emplace_back(id[idx], id[e.to], e.cost, e.idx);
         tree.g[id[e.to]].emplace_back(id[e.to], id[idx], e.cost, e.idx);

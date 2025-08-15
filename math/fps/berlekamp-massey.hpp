@@ -2,7 +2,7 @@
  * @brief Berlekamp Massey
  */
 template <template <typename> class FPS, typename Mint>
-FPS<Mint> berlekamp_massey(const FPS<Mint> &s) {
+FPS<Mint> berlekamp_massey(const FPS<Mint>& s) {
   const int N = (int)s.size();
   FPS<Mint> b = {Mint(-1)}, c = {Mint(-1)};
   Mint y = Mint(1);

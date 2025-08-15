@@ -8,10 +8,10 @@ struct PersistentWeightBalancedTree : WeightBalancedTree<Monoid, F> {
   using Node = typename WBT::Node;
 
  private:
-  Node *clone(Node *t) override { return &(*WBT::pool.alloc() = *t); }
+  Node* clone(Node* t) override { return &(*WBT::pool.alloc() = *t); }
 
  public:
-  Node *rebuild(Node *r) {
+  Node* rebuild(Node* r) {
     auto ret = WBT::dump(r);
     WBT::pool.clear();
     return WBT::build(ret);

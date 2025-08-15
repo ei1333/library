@@ -5,7 +5,7 @@ struct StaticRangeFrequency {
   vector<vector<int> > mp;
 
  public:
-  explicit StaticRangeFrequency(const vector<T> &xs) : vs{xs} {
+  explicit StaticRangeFrequency(const vector<T>& xs) : vs{xs} {
     sort(vs.begin(), vs.end());
     vs.erase(unique(vs.begin(), vs.end()), vs.end());
     mp.resize(vs.size());

@@ -6,7 +6,7 @@
  *
  */
 template <typename T>
-T mod_tetration(const T &a, const T &b, const T &m) {
+T mod_tetration(const T& a, const T& b, const T& m) {
   if (m == 1) return 0;
   if (a == 0) return !(b & 1);
   if (b == 0) return 1;

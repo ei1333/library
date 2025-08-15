@@ -15,7 +15,7 @@ struct PlusMinusOneRMQ {
 
   explicit PlusMinusOneRMQ() = default;
 
-  explicit PlusMinusOneRMQ(const vector<T> &vs) : vs(vs) {
+  explicit PlusMinusOneRMQ(const vector<T>& vs) : vs(vs) {
     int n = (int)vs.size();
     backet = max(1, (31 - __builtin_clz(n)) / 2);
     int sz = (n + backet - 1) / backet;

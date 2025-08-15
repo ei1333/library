@@ -23,36 +23,36 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
     while (this->size() && this->back() == T(0)) this->pop_back();
   }
 
-  P operator+(const P &r) const { return P(*this) += r; }
+  P operator+(const P& r) const { return P(*this) += r; }
 
-  P operator+(const T &v) const { return P(*this) += v; }
+  P operator+(const T& v) const { return P(*this) += v; }
 
-  P operator-(const P &r) const { return P(*this) -= r; }
+  P operator-(const P& r) const { return P(*this) -= r; }
 
-  P operator-(const T &v) const { return P(*this) -= v; }
+  P operator-(const T& v) const { return P(*this) -= v; }
 
-  P operator*(const P &r) const { return P(*this) *= r; }
+  P operator*(const P& r) const { return P(*this) *= r; }
 
-  P operator*(const T &v) const { return P(*this) *= v; }
+  P operator*(const T& v) const { return P(*this) *= v; }
 
-  P operator/(const P &r) const { return P(*this) /= r; }
+  P operator/(const P& r) const { return P(*this) /= r; }
 
-  P operator%(const P &r) const { return P(*this) %= r; }
+  P operator%(const P& r) const { return P(*this) %= r; }
 
-  P &operator+=(const P &r) {
+  P& operator+=(const P& r) {
     if (r.size() > this->size()) this->resize(r.size());
     for (int i = 0; i < (int)r.size(); i++) (*this)[i] += r[i];
     return *this;
   }
 
-  P &operator-=(const P &r) {
+  P& operator-=(const P& r) {
     if (r.size() > this->size()) this->resize(r.size());
     for (int i = 0; i < (int)r.size(); i++) (*this)[i] -= r[i];
     return *this;
   }
 
   // https://judge.yosupo.jp/problem/convolution_mod
-  P &operator*=(const P &r) {
+  P& operator*=(const P& r) {
     if (this->empty() || r.empty()) {
       this->clear();
       return *this;
@@ -61,7 +61,7 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
     return *this = {begin(ret), end(ret)};
   }
 
-  P &operator/=(const P &r) {
+  P& operator/=(const P& r) {
     if (this->size() < r.size()) {
       this->clear();
       return *this;
@@ -70,14 +70,14 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
     return *this = (rev().pre(n) * r.rev().inv(n)).pre(n).rev(n);
   }
 
-  P &operator%=(const P &r) {
+  P& operator%=(const P& r) {
     *this -= *this / r * r;
     shrink();
     return *this;
   }
 
   // https://judge.yosupo.jp/problem/division_of_polynomials
-  pair<P, P> div_mod(const P &r) {
+  pair<P, P> div_mod(const P& r) {
     P q = *this / r;
     P x = *this - q * r;
     x.shrink();
@@ -90,19 +90,19 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
     return ret;
   }
 
-  P &operator+=(const T &r) {
+  P& operator+=(const T& r) {
     if (this->empty()) this->resize(1);
     (*this)[0] += r;
     return *this;
   }
 
-  P &operator-=(const T &r) {
+  P& operator-=(const T& r) {
     if (this->empty()) this->resize(1);
     (*this)[0] -= r;
     return *this;
   }
 
-  P &operator*=(const T &v) {
+  P& operator*=(const T& v) {
     for (int i = 0; i < (int)this->size(); i++) (*this)[i] *= v;
     return *this;
   }
@@ -128,7 +128,7 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
 
   T operator()(T x) const {
     T r = 0, w = 1;
-    for (auto &v : *this) {
+    for (auto& v : *this) {
       r += w * v;
       w *= x;
     }
@@ -187,7 +187,7 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
   // https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
   P sqrt(
       int deg = -1,
-      const function<T(T)> &get_sqrt = [](T) { return T(1); }) const {
+      const function<T(T)>& get_sqrt = [](T) { return T(1); }) const {
     const int n = (int)this->size();
     if (deg == -1) deg = n;
     if ((*this)[0] == T(0)) {
@@ -214,7 +214,7 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
     return ret.pre(deg);
   }
 
-  P sqrt(const function<T(T)> &get_sqrt, int deg = -1) const {
+  P sqrt(const function<T(T)>& get_sqrt, int deg = -1) const {
     return sqrt(deg, get_sqrt);
   }
 
@@ -229,7 +229,7 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
     inv.push_back(T(0));
     inv.push_back(T(1));
 
-    auto inplace_integral = [&](P &F) -> void {
+    auto inplace_integral = [&](P& F) -> void {
       const int n = (int)F.size();
       auto mod = T::mod();
       while ((int)inv.size() <= n) {
@@ -240,7 +240,7 @@ struct FormalPowerSeriesFriendlyNTT : vector<T> {
       for (int i = 1; i <= n; i++) F[i] *= inv[i];
     };
 
-    auto inplace_diff = [](P &F) -> void {
+    auto inplace_diff = [](P& F) -> void {
       if (F.empty()) return;
       F.erase(begin(F));
       T coeff = 1, one = 1;

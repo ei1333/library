@@ -1,8 +1,8 @@
 #include "../graph-template.hpp"
 
 template <typename T>
-Graph<T> extreme_vertex_set(int n, const Edges<T> &es) {
-  for (auto &e : es) {
+Graph<T> extreme_vertex_set(int n, const Edges<T>& es) {
+  for (auto& e : es) {
     assert(0 <= e.from and e.from < n);
     assert(0 <= e.to and e.to < n);
     assert(e.from != e.to);
@@ -47,7 +47,7 @@ Graph<T> extreme_vertex_set(int n, const Edges<T> &es) {
       cur[v] = -1;
       y = x;
       x = v;
-      for (auto &e : g[v]) {
+      for (auto& e : g[v]) {
         if (cur[e.to] != -1) {
           cur[e.to] -= e.cost;
           que.emplace(cur[e.to], e.to);

@@ -7,5 +7,5 @@ struct PersistentBinaryTrie : BinaryTrie<T, MAX_LOG, D> {
   using Node = typename BinaryTrie<T, MAX_LOG, D>::Node;
 
  private:
-  Node *clone(Node *t) { return new Node(*t); }
+  Node* clone(Node* t) { return new Node(*t); }
 };

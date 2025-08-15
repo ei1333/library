@@ -62,10 +62,10 @@ struct MaxFlowLowerBound {
   void output(int M) {
     vector<flow_t> ans(M);
     for (int i = 0; i < flow.graph.size(); i++) {
-      for (auto &e : flow.graph[i]) {
+      for (auto& e : flow.graph[i]) {
         if (!e.isrev && ~e.idx) ans[e.idx] = up[e.idx] - e.cap;
       }
     }
-    for (auto &p : ans) cout << p << endl;
+    for (auto& p : ans) cout << p << endl;
   }
 };

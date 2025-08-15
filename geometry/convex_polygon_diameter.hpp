@@ -3,7 +3,7 @@
 
 namespace geometry {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
-pair<int, int> convex_polygon_diameter(const Polygon &p) {
+pair<int, int> convex_polygon_diameter(const Polygon& p) {
   int N = (int)p.size();
   int is = 0, js = 0;
   for (int i = 1; i < N; i++) {

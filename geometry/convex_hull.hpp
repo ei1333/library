@@ -4,7 +4,7 @@
 
 namespace geometry {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
-Polygon convex_hull(Polygon &p, bool strict = true) {
+Polygon convex_hull(Polygon& p, bool strict = true) {
   int n = (int)p.size(), k = 0;
   if (n <= 2) return p;
   sort(begin(p), end(p), compare_x);

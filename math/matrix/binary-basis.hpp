@@ -6,7 +6,7 @@ struct BinaryBasis {
   BinaryBasis() : update(false) {}
 
   bool add(T bit) {
-    for (auto &p : basis) {
+    for (auto& p : basis) {
       bit = min(bit, bit ^ p);
     }
     if (bit) {
@@ -18,7 +18,7 @@ struct BinaryBasis {
   }
 
   bool check(T bit) const {
-    for (auto &p : basis) {
+    for (auto& p : basis) {
       bit = min(bit, bit ^ p);
     }
     return bit == 0;
@@ -37,7 +37,7 @@ struct BinaryBasis {
     }
   }
 
-  bool operator==(BinaryBasis<T> &a) {
+  bool operator==(BinaryBasis<T>& a) {
     normalize(), a.normalize();
     return basis == a.basis;
   }

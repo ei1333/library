@@ -2,7 +2,7 @@
  * @brief Maximum Independent Set(最大独立集合)
  */
 template <typename Matrix>
-vector<int> maximum_independent_set(const Matrix &g, int trial = 1000000) {
+vector<int> maximum_independent_set(const Matrix& g, int trial = 1000000) {
   int N = (int)g.size();
   vector<uint64_t> bit(N);
   assert(N <= 64);

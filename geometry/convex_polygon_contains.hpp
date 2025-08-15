@@ -3,7 +3,7 @@
 #include "polygon.hpp"
 
 namespace geometry {
-int convex_polygon_contains(const Polygon &Q, const Point &p) {
+int convex_polygon_contains(const Polygon& Q, const Point& p) {
   int N = (int)Q.size();
   Point g = (Q[0] + Q[N / 3] + Q[N * 2 / 3]) / 3.0;
   if (equals(imag(g), imag(p)) && equals(real(g), real(p))) return IN;

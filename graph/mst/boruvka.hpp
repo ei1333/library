@@ -18,7 +18,7 @@ struct Boruvka {
   inline int find(int k) { return uf.find(k); }
 
   template <typename F>
-  T build(const F &update) {
+  T build(const F& update) {
     T ret = T();
     while (uf.size(0) < (int)V) {
       vector<pair<T, int> > v(V, make_pair(INF, -1));

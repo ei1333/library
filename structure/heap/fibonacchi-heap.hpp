@@ -11,7 +11,7 @@ struct FibonacchiHeap {
     int sz;
     bool mark;
 
-    Node(const key_t &key, const val_t &val)
+    Node(const key_t& key, const val_t& val)
         : key(key),
           val(val),
           left(this),
@@ -22,9 +22,9 @@ struct FibonacchiHeap {
           mark(false) {}
   };
 
-  Node *root;
+  Node* root;
   size_t sz;
-  vector<Node *> rank;
+  vector<Node*> rank;
 
   FibonacchiHeap() : root(nullptr), sz(0) {}
 
@@ -32,13 +32,13 @@ struct FibonacchiHeap {
 
   bool empty() const { return sz == 0; }
 
-  void update_min(Node *t) {
+  void update_min(Node* t) {
     if (!root || t->key < root->key) {
       root = t;
     }
   }
 
-  void concat(Node *&r, Node *t) {
+  void concat(Node*& r, Node* t) {
     if (!r) {
       r = t;
     } else {
@@ -49,14 +49,14 @@ struct FibonacchiHeap {
     }
   }
 
-  void delete_node(Node *t) {
+  void delete_node(Node* t) {
     t->left->right = t->right;
     t->right->left = t->left;
     t->left = t;
     t->right = t;
   }
 
-  Node *push(const key_t &key, const val_t &val) {
+  Node* push(const key_t& key, const val_t& val) {
     ++sz;
     auto node = new Node(key, val);
     concat(root, node);
@@ -64,7 +64,7 @@ struct FibonacchiHeap {
     return node;
   }
 
-  Node *consolidate(Node *s, Node *t) {
+  Node* consolidate(Node* s, Node* t) {
     if (root == s || s->key < t->key) {
       delete_node(t);
       ++s->sz;
@@ -83,7 +83,7 @@ struct FibonacchiHeap {
   pair<key_t, val_t> pop() {
     --sz;
 
-    Node *rem = root;
+    Node* rem = root;
 
     auto ret = make_pair(rem->key, rem->val);
 
@@ -107,12 +107,12 @@ struct FibonacchiHeap {
       }
 
       {
-        Node *base = root;
+        Node* base = root;
         int last = -1;
         do {
-          Node *nxt = base->right;
+          Node* nxt = base->right;
           while (base->sz < rank.size() && rank[base->sz]) {
-            Node *u = rank[base->sz];
+            Node* u = rank[base->sz];
             rank[base->sz] = nullptr;
             base = consolidate(u, base);
           }
@@ -129,7 +129,7 @@ struct FibonacchiHeap {
     return ret;
   }
 
-  inline void mark_dfs(Node *t) {
+  inline void mark_dfs(Node* t) {
     if (!t->par) {
       t->mark = false;
     } else if (t->mark) {
@@ -146,7 +146,7 @@ struct FibonacchiHeap {
     }
   }
 
-  void decrease_key(Node *t, const key_t &d) {
+  void decrease_key(Node* t, const key_t& d) {
     t->key -= d;
 
     if (!t->par) {

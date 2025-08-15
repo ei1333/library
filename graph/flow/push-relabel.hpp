@@ -109,7 +109,7 @@ struct PushRelabel {
     while (!que.empty()) {
       int p = que.front();
       que.pop();
-      for (auto &e : graph[p]) {
+      for (auto& e : graph[p]) {
         if (potential[e.to] == V && graph[e.to][e.rev].cap > 0) {
           potential[e.to] = potential[p] + 1;
           que.emplace(e.to);
@@ -121,7 +121,7 @@ struct PushRelabel {
   int init(int s, int t) {
     potential[s] = V + 1;
     bfs(t);
-    for (auto &e : graph[s]) {
+    for (auto& e : graph[s]) {
       if (potential[e.to] < V) {
         graph[e.to][e.rev].cap = e.cap;
         ex[s] -= e.cap;
@@ -132,7 +132,7 @@ struct PushRelabel {
     return calc_active(t);
   }
 
-  bool push(int u, int t, edge &e) {
+  bool push(int u, int t, edge& e) {
     flow_t f = min(e.cap, ex[u]);
     int v = e.to;
     e.cap -= f, ex[u] -= f;
@@ -142,8 +142,8 @@ struct PushRelabel {
   }
 
   int discharge(int u, int t) {
-    for (int &i = cur_edge[u]; i < (int)graph[u].size(); i++) {
-      auto &e = graph[u][i];
+    for (int& i = cur_edge[u]; i < (int)graph[u].size(); i++) {
+      auto& e = graph[u][i];
       if (potential[u] == potential[e.to] + 1 && e.cap > 0) {
         if (push(u, t, e)) return potential[u];
       }
@@ -171,7 +171,7 @@ struct PushRelabel {
     ++relabels;
     int prv = potential[u], cur = V;
     for (int i = 0; i < (int)graph[u].size(); ++i) {
-      const edge &e = graph[u][i];
+      const edge& e = graph[u][i];
       if (cur > potential[e.to] + 1 && e.cap > 0) {
         cur_edge[u] = i;
         cur = potential[e.to] + 1;

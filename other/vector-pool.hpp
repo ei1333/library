@@ -1,16 +1,16 @@
 template <class T>
 struct VectorPool {
   vector<T> pool;
-  vector<T *> stock;
+  vector<T*> stock;
   int ptr;
 
   VectorPool() = default;
 
   VectorPool(int sz) : pool(sz), stock(sz) {}
 
-  inline T *alloc() { return stock[--ptr]; }
+  inline T* alloc() { return stock[--ptr]; }
 
-  inline void free(T *t) { stock[ptr++] = t; }
+  inline void free(T* t) { stock[ptr++] = t; }
 
   void clear() {
     ptr = (int)pool.size();

@@ -23,7 +23,7 @@ struct SqrtDecomposition {
     lsum.assign(K, 0);
   }
 
-  void build(const vector<E> &add, const vector<T> &dat) {
+  void build(const vector<E>& add, const vector<T>& dat) {
     assert(add.size() == elem_add.size());
     assert(dat.size() == data.size());
     elem_add = add;

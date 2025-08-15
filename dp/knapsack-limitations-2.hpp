@@ -1,8 +1,8 @@
 #include "knapsack-limitations.hpp"
 
 template <typename T>
-T knapsack_limitations(const vector<T> &w, const vector<T> &m,
-                       const vector<int> &v, const T &W) {
+T knapsack_limitations(const vector<T>& w, const vector<T>& m,
+                       const vector<int>& v, const T& W) {
   const int N = (int)w.size();
   auto v_max = *max_element(begin(v), end(v));
   if (v_max == 0) return 0;
@@ -23,7 +23,7 @@ T knapsack_limitations(const vector<T> &w, const vector<T> &m,
   for (int i = 0; i < dp.size(); i++) {
     if (dp[i] > W || dp[i] == -1) continue;
     T rest = W - dp[i], cost = i;
-    for (auto &p : ord) {
+    for (auto& p : ord) {
       auto get = min(mb[p], rest / w[p]);
       if (get <= 0) continue;
       cost += get * v[p];

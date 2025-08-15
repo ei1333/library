@@ -20,7 +20,7 @@ struct TreeDiameter : Graph<T> {
 
     int now = p.second;
     while (now != q.second) {
-      for (auto &e : g[now]) {
+      for (auto& e : g[now]) {
         if (to[now] == e.to) {
           path.emplace_back(e);
         }
@@ -30,14 +30,14 @@ struct TreeDiameter : Graph<T> {
     return q.first;
   }
 
-  explicit TreeDiameter(const Graph<T> &g) : Graph<T>(g) {}
+  explicit TreeDiameter(const Graph<T>& g) : Graph<T>(g) {}
 
  private:
   vector<int> to;
 
   pair<T, int> dfs(int idx, int par) {
     pair<T, int> ret(0, idx);
-    for (auto &e : g[idx]) {
+    for (auto& e : g[idx]) {
       if (e.to == par) continue;
       auto cost = dfs(e.to, idx);
       cost.first += e.cost;

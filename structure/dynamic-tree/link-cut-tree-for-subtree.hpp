@@ -15,7 +15,7 @@ struct LinkCutTreeForSubtree {
 
     bool is_root() const { return not p or (p->l != this and p->r != this); }
 
-    Node(const Info &info)
+    Node(const Info& info)
         : info(info),
           l(nullptr),
           r(nullptr),
@@ -25,7 +25,7 @@ struct LinkCutTreeForSubtree {
   };
 
  public:
-  using NP = Node *;
+  using NP = Node*;
 
  private:
   void toggle(NP t) {
@@ -169,7 +169,7 @@ struct LinkCutTreeForSubtree {
     push(t);
   }
 
-  NP alloc(const Info &v) {
+  NP alloc(const Info& v) {
     NP t = new Node(v);
     update(t);
     return t;
@@ -180,7 +180,7 @@ struct LinkCutTreeForSubtree {
     return u == v or u->p;
   }
 
-  vector<NP> build(vector<Info> &vs) {
+  vector<NP> build(vector<Info>& vs) {
     vector<NP> nodes(vs.size());
     for (int i = 0; i < (int)vs.size(); i++) {
       nodes[i] = alloc(vs[i]);
@@ -194,23 +194,23 @@ struct LinkCutTreeForSubtree {
     return expose(v);
   }
 
-  void set_key(NP t, const Info &v) {
+  void set_key(NP t, const Info& v) {
     expose(t);
     t->info = std::move(v);
     update(t);
   }
 
-  const Path &query(NP u) {
+  const Path& query(NP u) {
     evert(u);
     return u->sum;
   }
 
-  const Path &query_path(NP u) {
+  const Path& query_path(NP u) {
     expose(u);
     return u->sum;
   }
 
-  const Path &query_path(NP u, NP v) {
+  const Path& query_path(NP u, NP v) {
     evert(u);
     return query_path(v);
   }

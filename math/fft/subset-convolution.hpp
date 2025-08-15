@@ -18,19 +18,19 @@ struct SubsetConvolution {
     }
   }
 
-  static inline void add(fps &f, const fps &g, int d) {
+  static inline void add(fps& f, const fps& g, int d) {
     for (int i = 0; i < d; i++) {
       f[i] += g[i];
     }
   }
 
-  static inline void sub(fps &f, const fps &g, int d) {
+  static inline void sub(fps& f, const fps& g, int d) {
     for (int i = d; i <= s; i++) {
       f[i] -= g[i];
     }
   }
 
-  static void zeta_transform(vector<fps> &F) {
+  static void zeta_transform(vector<fps>& F) {
     const int n = (int)F.size();
     assert((n & (n - 1)) == 0);
     init();
@@ -43,7 +43,7 @@ struct SubsetConvolution {
     }
   }
 
-  static void moebius_transform(vector<fps> &F) {
+  static void moebius_transform(vector<fps>& F) {
     const int n = (int)F.size();
     assert((n & (n - 1)) == 0);
     init();
@@ -56,7 +56,7 @@ struct SubsetConvolution {
     }
   }
 
-  static vector<fps> lift(const vector<Mint> &f) {
+  static vector<fps> lift(const vector<Mint>& f) {
     const int n = (int)f.size();
     init();
     vector<fps> F(n);
@@ -67,7 +67,7 @@ struct SubsetConvolution {
     return F;
   }
 
-  static vector<Mint> unlift(const vector<fps> &F) {
+  static vector<Mint> unlift(const vector<fps>& F) {
     const int n = (int)F.size();
     init();
     vector<Mint> f(n);
@@ -77,7 +77,7 @@ struct SubsetConvolution {
     return f;
   }
 
-  static void prod(vector<fps> &F, const vector<fps> &G) {
+  static void prod(vector<fps>& F, const vector<fps>& G) {
     int n = (int)F.size();
     int d = __builtin_ctz(n);
     for (int i = 0; i < n; i++) {
@@ -91,7 +91,7 @@ struct SubsetConvolution {
     }
   }
 
-  static vector<Mint> multiply(const vector<Mint> &f, const vector<Mint> &g) {
+  static vector<Mint> multiply(const vector<Mint>& f, const vector<Mint>& g) {
     auto F = lift(f), G = lift(g);
     zeta_transform(F);
     zeta_transform(G);

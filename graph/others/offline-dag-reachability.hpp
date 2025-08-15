@@ -9,8 +9,8 @@
  */
 
 template <typename T>
-vector<int> offline_dag_reachability(const Graph<T> &g,
-                                     vector<pair<int, int> > &qs) {
+vector<int> offline_dag_reachability(const Graph<T>& g,
+                                     vector<pair<int, int> >& qs) {
   const int N = (int)g.size();
   const int Q = (int)qs.size();
   auto ord = topological_sort(g);
@@ -21,8 +21,8 @@ vector<int> offline_dag_reachability(const Graph<T> &g,
     for (int k = l; k < r; k++) {
       dp[qs[k].first] |= int64_t(1) << (k - l);
     }
-    for (auto &idx : ord) {
-      for (auto &to : g[idx]) dp[to] |= dp[idx];
+    for (auto& idx : ord) {
+      for (auto& to : g[idx]) dp[to] |= dp[idx];
     }
     for (int k = l; k < r; k++) {
       ans[k] = (dp[qs[k].second] >> (k - l)) & 1;

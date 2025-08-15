@@ -6,7 +6,7 @@
  * @see https://www.slideshare.net/wata_orz/ss-12131479
  */
 template <typename Matrix>
-int chromatic_number(Matrix &g) {
+int chromatic_number(Matrix& g) {
   int N = (int)g.size();
   vector<int> es(N);
   for (int i = 0; i < (int)g.size(); i++) {
@@ -34,7 +34,7 @@ int chromatic_number(Matrix &g) {
     auto buf = hist;
     for (int c = 1; c < ret; c++) {
       int64_t sum = 0;
-      for (auto &[i, x] : buf) {
+      for (auto& [i, x] : buf) {
         sum += (x = int64_t(x) * i % mods[k]);
       }
       if (sum % mods[k]) ret = c;

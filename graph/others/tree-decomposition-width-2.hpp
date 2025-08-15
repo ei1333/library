@@ -33,7 +33,7 @@ struct TreeDecompositionWidth2 {
 
     vector<set<int> > exists(N);
     for (int i = 0; i < N; i++) {
-      for (auto &j : g[i]) {
+      for (auto& j : g[i]) {
         if (i < j) exists[i].emplace(j);
       }
     }
@@ -48,7 +48,7 @@ struct TreeDecompositionWidth2 {
       DecompNode r;
       r.bag.emplace_back(idx);
       int u = -1, v = -1;
-      for (auto &to : g[idx]) {
+      for (auto& to : g[idx]) {
         if (used[to] == -1) {
           (u == -1 ? u : v) = to;
           r.bag.emplace_back(to);
@@ -73,7 +73,7 @@ struct TreeDecompositionWidth2 {
         }
       }
 
-      for (auto &to : g[idx]) {
+      for (auto& to : g[idx]) {
         if (deg[to] <= 2) que.emplace(to);
       }
 
@@ -90,8 +90,8 @@ struct TreeDecompositionWidth2 {
   }
 };
 
-void to_nice(vector<DecompNode> &g, int root = 0) {
-  for (auto &p : g) {
+void to_nice(vector<DecompNode>& g, int root = 0) {
+  for (auto& p : g) {
     sort(p.bag.begin(), p.bag.end());
   }
 
@@ -116,7 +116,7 @@ void to_nice(vector<DecompNode> &g, int root = 0) {
     }
 
     if (g[idx].child.size() == 2) {
-      for (auto &ch : g[idx].child) {
+      for (auto& ch : g[idx].child) {
         if (g[ch].bag != g[idx].bag) {
           DecompNode r;
           r.child = {ch};
@@ -129,7 +129,7 @@ void to_nice(vector<DecompNode> &g, int root = 0) {
 
     // introduce / forget
     if (g[idx].child.size() == 1) {
-      int &ch = g[idx].child[0];
+      int& ch = g[idx].child[0];
 
       vector<int> latte, malta;
       set_difference(g[idx].bag.begin(), g[idx].bag.end(), g[ch].bag.begin(),
@@ -161,7 +161,7 @@ void to_nice(vector<DecompNode> &g, int root = 0) {
       }
     }
 
-    for (auto &ch : g[idx].child) {
+    for (auto& ch : g[idx].child) {
       st.emplace(ch);
     }
   }

@@ -48,13 +48,13 @@ struct DynamicPointAddRectangleSum {
       StaticRectangleSumSolver solver;
       for (int k = l; k < m; k++) {
         if (holds_alternative<Point>(queries[k])) {
-          auto &point = get<Point>(queries[k]);
+          auto& point = get<Point>(queries[k]);
           solver.add_point(point.x, point.y, point.w);
         }
       }
       for (int k = m; k < r; k++) {
         if (holds_alternative<Query>(queries[k])) {
-          auto &query = get<Query>(queries[k]);
+          auto& query = get<Query>(queries[k]);
           solver.add_query(query.l, query.d, query.r, query.u);
         }
       }

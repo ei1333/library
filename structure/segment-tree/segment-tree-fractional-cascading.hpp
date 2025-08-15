@@ -20,7 +20,7 @@ struct SegmentTreeFractionalCascading {
  public:
   SegmentTreeFractionalCascading() = default;
 
-  explicit SegmentTreeFractionalCascading(const vector<T> &v) {
+  explicit SegmentTreeFractionalCascading(const vector<T>& v) {
     sz = 1;
     while (sz < v.size()) sz <<= 1;
     seg.resize(2 * sz - 1);

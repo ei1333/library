@@ -1,5 +1,5 @@
-vector<vector<int> > grid_bfs(vector<string> &s, char start,
-                              const string &wall = "#") {
+vector<vector<int> > grid_bfs(vector<string>& s, char start,
+                              const string& wall = "#") {
   const int vx[] = {0, 1, 0, -1}, vy[] = {1, 0, -1, 0};
   vector<vector<int> > min_cost(s.size(), vector<int>(s[0].size(), -1));
   queue<pair<int, int> > que;

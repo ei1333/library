@@ -10,7 +10,7 @@ struct StaticRangeCountDistinct {
   vector<pair<int, int> > qs;
 
  public:
-  explicit StaticRangeCountDistinct(const vector<T> &vs) : xs(vs.size()) {
+  explicit StaticRangeCountDistinct(const vector<T>& vs) : xs(vs.size()) {
     vector<T> ys = vs;
     sort(ys.begin(), ys.end());
     ys.erase(unique(ys.begin(), ys.end()), ys.end());
@@ -43,7 +43,7 @@ struct StaticRangeCountDistinct {
       if (~pre[v]) bit.apply(n - pre[v] - 1, -1);
       pre[v] = i;
       bit.apply(n - i - 1, 1);
-      for (auto &j : ev[i]) {
+      for (auto& j : ev[i]) {
         ans[j] = bit.prod(n - qs[j].first);
       }
     }

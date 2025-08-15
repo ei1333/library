@@ -22,14 +22,14 @@ struct ShortestNonzeroPath {
   void unite_uf(int r, int c) { uf[c] = r; }
 
  public:
-  explicit ShortestNonzeroPath(int n, const F &f) : g(n), f(f) {}
+  explicit ShortestNonzeroPath(int n, const F& f) : g(n), f(f) {}
 
-  void add_undirected_edge(int u, int v, const T &cost, const S &label) {
+  void add_undirected_edge(int u, int v, const T& cost, const S& label) {
     add_directed_edge(u, v, cost, label);
     add_directed_edge(v, u, cost, label);
   }
 
-  void add_directed_edge(int u, int v, const T &cost, const S &label) {
+  void add_directed_edge(int u, int v, const T& cost, const S& label) {
     g[u].emplace_back((edge){v, cost, label});
   }
 
@@ -80,7 +80,7 @@ struct ShortestNonzeroPath {
     for (int u = 0; u < n; u++) {
       if (sp.dist[u] != INF) {
         for (int i = 0; i < (int)g[u].size(); i++) {
-          auto &e = g[u][i];
+          auto& e = g[u][i];
           if (u < e.to and f(sp.label[u], e.label) != sp.label[e.to]) {
             que.emplace(sp.dist[u] + sp.dist[e.to] + e.cost, u, i);
           }
@@ -105,11 +105,11 @@ struct ShortestNonzeroPath {
           v = find_uf(sp.parent[v]);
         }
       }
-      for (auto &x : bs) {
+      for (auto& x : bs) {
         unite_uf(u, x);
         dist[x] = cost - sp.dist[x];
         for (int j = 0; j < (int)g[x].size(); j++) {
-          auto &e = g[x][j];
+          auto& e = g[x][j];
           if (f(sp.label[x], e.label) == sp.label[e.to]) {
             que.emplace(dist[x] + sp.dist[e.to] + e.cost, x, j);
           }
@@ -127,6 +127,6 @@ struct ShortestNonzeroPath {
 };
 
 template <typename T, typename S, typename F>
-ShortestNonzeroPath<T, S, F> get_shortest_nonzero_path(int N, const F &f) {
+ShortestNonzeroPath<T, S, F> get_shortest_nonzero_path(int N, const F& f) {
   return ShortestNonzeroPath<T, S, F>{N, f};
 }

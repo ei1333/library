@@ -2,7 +2,7 @@
  * @brief Lagrange Polynomial(多項式補間, 値)
  */
 template <typename T>
-T lagrange_polynomial(const vector<T> &y, int64_t t) {
+T lagrange_polynomial(const vector<T>& y, int64_t t) {
   int N = y.size() - 1;
   Combination<T> comb(N);
   if (t <= N) return y[t];

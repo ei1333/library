@@ -7,10 +7,10 @@ struct PersistentLazyRedBlackTree
   using Node = typename RBT::Node;
 
  private:
-  Node *clone(Node *t) override { return &(*RBT::pool.alloc() = *t); }
+  Node* clone(Node* t) override { return &(*RBT::pool.alloc() = *t); }
 
  public:
-  Node *rebuild(Node *r) {
+  Node* rebuild(Node* r) {
     auto ret = RBT::dump(r);
     RBT::pool.clear();
     return RBT::build(ret);

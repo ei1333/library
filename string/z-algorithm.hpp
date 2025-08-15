@@ -16,11 +16,11 @@ struct ZAlgorithm {
   ZAlgorithm() : delete_hist{{}} {}
 
   template <typename S>
-  ZAlgorithm(const S &s) : ZAlgorithm() {
-    for (auto &c : s) add(c);
+  ZAlgorithm(const S& s) : ZAlgorithm() {
+    for (auto& c : s) add(c);
   }
 
-  void add(const T &c) {
+  void add(const T& c) {
     s.emplace_back(c);
     delete_hist.emplace_back();
     deleted.emplace_back(0);
@@ -54,7 +54,7 @@ struct ZAlgorithm {
 
     if (not cur.empty()) {
       int t = cur.front();
-      for (auto &p : delete_hist[len - t]) {
+      for (auto& p : delete_hist[len - t]) {
         set(p + t, len);
       }
     }

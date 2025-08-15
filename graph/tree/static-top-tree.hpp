@@ -18,7 +18,7 @@ struct StaticTopTree {
 
   int root;
 
-  explicit StaticTopTree(G &g, int r = 0) : g(g), edge_to_vs(g.size() - 1) {
+  explicit StaticTopTree(G& g, int r = 0) : g(g), edge_to_vs(g.size() - 1) {
     int e_sz = 0;
     for (int i = 0; i < g.size(); i++) e_sz += g[i].size();
     if (e_sz + 1 != g.size()) {
@@ -32,18 +32,18 @@ struct StaticTopTree {
     vs.shrink_to_fit();
   }
 
-  const Node &operator[](int k) const { return vs[k]; }
+  const Node& operator[](int k) const { return vs[k]; }
 
   size_t size() const { return vs.size(); }
 
  private:
-  G &g;
+  G& g;
 
   using P = pair<int, int>;
 
   int dfs(int u) {
     int size = 1, heavy = 0;
-    for (auto &v : g[u]) {
+    for (auto& v : g[u]) {
       int subtree_size = dfs(v);
       size += subtree_size;
       if (heavy < subtree_size) {
@@ -66,14 +66,14 @@ struct StaticTopTree {
     return k;
   }
 
-  P merge_forRake(const vector<P> &a) {
+  P merge_forRake(const vector<P>& a) {
     if (a.size() == 1) return a[0];
     int size_sum = 0;
-    for (auto &[_, size] : a) {
+    for (auto& [_, size] : a) {
       size_sum += size;
     }
     vector<P> b, c;
-    for (auto &[it, size] : a) {
+    for (auto& [it, size] : a) {
       (size_sum > size ? b : c).emplace_back(it, size);
       size_sum -= size * 2;
     }
@@ -82,14 +82,14 @@ struct StaticTopTree {
     return {make_node(Rake, l, r), l_size + r_size};
   }
 
-  P merge_forCompress(const vector<pair<P, int>> &a) {
+  P merge_forCompress(const vector<pair<P, int>>& a) {
     if (a.size() == 1) return a[0].first;
     int size_sum = 0;
-    for (auto &[it, _] : a) {
+    for (auto& [it, _] : a) {
       size_sum += it.second;
     }
     vector<pair<P, int>> b, c;
-    for (auto &[it, _] : a) {
+    for (auto& [it, _] : a) {
       (size_sum > it.second ? b : c).emplace_back(it, _);
       size_sum -= it.second * 2;
     }

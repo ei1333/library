@@ -44,7 +44,7 @@ struct PrimalDual {
         que.pop();
         if (min_cost[p.second] < p.first) continue;
         for (int i = 0; i < (int)graph[p.second].size(); i++) {
-          edge &e = graph[p.second][i];
+          edge& e = graph[p.second][i];
           cost_t nextCost = min_cost[p.second] + e.cost + potential[p.second] -
                             potential[e.to];
           if (e.cap > 0 && min_cost[e.to] > nextCost) {
@@ -63,7 +63,7 @@ struct PrimalDual {
       f -= addflow;
       ret += addflow * potential[t];
       for (int v = t; v != s; v = prevv[v]) {
-        edge &e = graph[prevv[v]][preve[v]];
+        edge& e = graph[prevv[v]][preve[v]];
         e.cap -= addflow;
         graph[v][e.rev].cap += addflow;
       }
@@ -73,9 +73,9 @@ struct PrimalDual {
 
   void output() {
     for (int i = 0; i < graph.size(); i++) {
-      for (auto &e : graph[i]) {
+      for (auto& e : graph[i]) {
         if (e.isrev) continue;
-        auto &rev_e = graph[e.to][e.rev];
+        auto& rev_e = graph[e.to][e.rev];
         cout << i << "->" << e.to << " (flow: " << rev_e.cap << "/"
              << rev_e.cap + e.cap << ")" << endl;
       }

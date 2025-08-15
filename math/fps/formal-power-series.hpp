@@ -26,36 +26,36 @@ struct FormalPowerSeries : vector<T> {
     while (this->size() && this->back() == T(0)) this->pop_back();
   }
 
-  P operator+(const P &r) const { return P(*this) += r; }
+  P operator+(const P& r) const { return P(*this) += r; }
 
-  P operator+(const T &v) const { return P(*this) += v; }
+  P operator+(const T& v) const { return P(*this) += v; }
 
-  P operator-(const P &r) const { return P(*this) -= r; }
+  P operator-(const P& r) const { return P(*this) -= r; }
 
-  P operator-(const T &v) const { return P(*this) -= v; }
+  P operator-(const T& v) const { return P(*this) -= v; }
 
-  P operator*(const P &r) const { return P(*this) *= r; }
+  P operator*(const P& r) const { return P(*this) *= r; }
 
-  P operator*(const T &v) const { return P(*this) *= v; }
+  P operator*(const T& v) const { return P(*this) *= v; }
 
-  P operator/(const P &r) const { return P(*this) /= r; }
+  P operator/(const P& r) const { return P(*this) /= r; }
 
-  P operator%(const P &r) const { return P(*this) %= r; }
+  P operator%(const P& r) const { return P(*this) %= r; }
 
-  P &operator+=(const P &r) {
+  P& operator+=(const P& r) {
     if (r.size() > this->size()) this->resize(r.size());
     for (int i = 0; i < r.size(); i++) (*this)[i] += r[i];
     return *this;
   }
 
-  P &operator-=(const P &r) {
+  P& operator-=(const P& r) {
     if (r.size() > this->size()) this->resize(r.size());
     for (int i = 0; i < r.size(); i++) (*this)[i] -= r[i];
     return *this;
   }
 
   // https://judge.yosupo.jp/problem/convolution_mod
-  P &operator*=(const P &r) {
+  P& operator*=(const P& r) {
     if (this->empty() || r.empty()) {
       this->clear();
       return *this;
@@ -64,7 +64,7 @@ struct FormalPowerSeries : vector<T> {
     return *this = {begin(ret), end(ret)};
   }
 
-  P &operator/=(const P &r) {
+  P& operator/=(const P& r) {
     if (this->size() < r.size()) {
       this->clear();
       return *this;
@@ -73,10 +73,10 @@ struct FormalPowerSeries : vector<T> {
     return *this = (rev().pre(n) * r.rev().inv(n)).pre(n).rev(n);
   }
 
-  P &operator%=(const P &r) { return *this -= *this / r * r; }
+  P& operator%=(const P& r) { return *this -= *this / r * r; }
 
   // https://judge.yosupo.jp/problem/division_of_polynomials
-  pair<P, P> div_mod(const P &r) {
+  pair<P, P> div_mod(const P& r) {
     P q = *this / r;
     return make_pair(q, *this - q * r);
   }
@@ -87,19 +87,19 @@ struct FormalPowerSeries : vector<T> {
     return ret;
   }
 
-  P &operator+=(const T &r) {
+  P& operator+=(const T& r) {
     if (this->empty()) this->resize(1);
     (*this)[0] += r;
     return *this;
   }
 
-  P &operator-=(const T &r) {
+  P& operator-=(const T& r) {
     if (this->empty()) this->resize(1);
     (*this)[0] -= r;
     return *this;
   }
 
-  P &operator*=(const T &v) {
+  P& operator*=(const T& v) {
     for (int i = 0; i < this->size(); i++) (*this)[i] *= v;
     return *this;
   }
@@ -125,7 +125,7 @@ struct FormalPowerSeries : vector<T> {
 
   T operator()(T x) const {
     T r = 0, w = 1;
-    for (auto &v : *this) {
+    for (auto& v : *this) {
       r += w * v;
       w *= x;
     }
@@ -172,7 +172,7 @@ struct FormalPowerSeries : vector<T> {
   // https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
   P sqrt(
       int deg = -1,
-      const function<T(T)> &get_sqrt = [](T) { return T(1); }) const {
+      const function<T(T)>& get_sqrt = [](T) { return T(1); }) const {
     const int n = (int)this->size();
     if (deg == -1) deg = n;
     if ((*this)[0] == T(0)) {
@@ -199,7 +199,7 @@ struct FormalPowerSeries : vector<T> {
     return ret.pre(deg);
   }
 
-  P sqrt(const function<T(T)> &get_sqrt, int deg = -1) const {
+  P sqrt(const function<T(T)>& get_sqrt, int deg = -1) const {
     return sqrt(deg, get_sqrt);
   }
 

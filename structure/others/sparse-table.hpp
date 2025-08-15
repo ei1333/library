@@ -10,7 +10,7 @@ struct SparseTable {
 
   SparseTable() = default;
 
-  explicit SparseTable(const vector<T> &v, const F &f) : f(f) {
+  explicit SparseTable(const vector<T>& v, const F& f) : f(f) {
     const int n = (int)v.size();
     const int b = 32 - __builtin_clz(n);
     st.assign(b, vector<T>(n));
@@ -35,6 +35,6 @@ struct SparseTable {
 };
 
 template <typename T, typename F>
-SparseTable<T, F> get_sparse_table(const vector<T> &v, const F &f) {
+SparseTable<T, F> get_sparse_table(const vector<T>& v, const F& f) {
   return SparseTable<T, F>(v, f);
 }

@@ -4,7 +4,7 @@
  *
  */
 template <typename Matrix>
-vector<vector<int> > enumerate_cliques(Matrix &g) {
+vector<vector<int> > enumerate_cliques(Matrix& g) {
   int N = (int)g.size(), M = 0;
   vector<int> deg(N);
   vector<vector<int> > edge(N, vector<int>(N));
@@ -16,7 +16,7 @@ vector<vector<int> > enumerate_cliques(Matrix &g) {
 
   vector<vector<int> > cliques;
 
-  auto add_clique = [&](const vector<int> &rem, bool last) {
+  auto add_clique = [&](const vector<int>& rem, bool last) {
     vector<int> neighbor((int)rem.size() - last);
     for (int i = 0; i < (int)neighbor.size(); i++) {
       for (int j = 0; j < (int)neighbor.size(); j++) {

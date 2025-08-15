@@ -5,7 +5,7 @@
  *
  */
 template <typename T>
-pair<T, vector<int> > hungarian(Matrix<T> &A) {
+pair<T, vector<int> > hungarian(Matrix<T>& A) {
   const T infty = numeric_limits<T>::max();
   const int N = (int)A.height();
   const int M = (int)A.width();

@@ -59,14 +59,14 @@ struct StaticRectangleAddPointGet {
     vector<R> rs;
     rs.reserve(n + n);
     for (int i = 0; i < n; i++) {
-      auto &rect = rectangles[i];
+      auto& rect = rectangles[i];
       int d = lower_bound(ys.begin(), ys.end(), rect.d) - ys.begin();
       int u = lower_bound(ys.begin(), ys.end(), rect.u) - ys.begin();
       rs.emplace_back(R{rect.l, d, u, false, rect.w});
       rs.emplace_back(R{rect.r, d, u, true, rect.w});
     }
     sort(rs.begin(), rs.end(),
-         [](const R &a, const R &b) { return a.x < b.x; });
+         [](const R& a, const R& b) { return a.x < b.x; });
 
     vector<int> qs(q);
     iota(qs.begin(), qs.end(), 0);
@@ -75,7 +75,7 @@ struct StaticRectangleAddPointGet {
 
     int j = 0;
     BIT bit(ys.size());
-    for (auto &i : qs) {
+    for (auto& i : qs) {
       while (j < n + n and rs[j].x <= queries[i].x) {
         if (rs[j].type) {
           bit.apply(rs[j].d, -rs[j].w);

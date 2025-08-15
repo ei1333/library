@@ -34,7 +34,7 @@ struct Dinic {
     while (!que.empty() && min_cost[t] == -1) {
       int p = que.front();
       que.pop();
-      for (auto &e : graph[p]) {
+      for (auto& e : graph[p]) {
         if (e.cap > 0 && min_cost[e.to] == -1) {
           min_cost[e.to] = min_cost[p] + 1;
           que.push(e.to);
@@ -46,8 +46,8 @@ struct Dinic {
 
   flow_t find_min_dist_augment_path(int idx, const int t, flow_t flow) {
     if (idx == t) return flow;
-    for (int &i = iter[idx]; i < (int)graph[idx].size(); i++) {
-      edge &e = graph[idx][i];
+    for (int& i = iter[idx]; i < (int)graph[idx].size(); i++) {
+      edge& e = graph[idx][i];
       if (e.cap > 0 && min_cost[idx] < min_cost[e.to]) {
         flow_t d = find_min_dist_augment_path(e.to, t, min(flow, e.cap));
         if (d > 0) {
@@ -72,9 +72,9 @@ struct Dinic {
 
   void output() {
     for (int i = 0; i < graph.size(); i++) {
-      for (auto &e : graph[i]) {
+      for (auto& e : graph[i]) {
         if (e.isrev) continue;
-        auto &rev_e = graph[e.to][e.rev];
+        auto& rev_e = graph[e.to][e.rev];
         cout << i << "->" << e.to << " (flow: " << rev_e.cap << "/"
              << e.cap + rev_e.cap << ")" << endl;
       }
@@ -89,7 +89,7 @@ struct Dinic {
     while (not que.empty()) {
       int p = que.front();
       que.pop();
-      for (auto &e : graph[p]) {
+      for (auto& e : graph[p]) {
         if (e.cap > 0 and not used[e.to]) {
           used[e.to] = true;
           que.emplace(e.to);

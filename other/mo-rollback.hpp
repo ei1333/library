@@ -17,8 +17,8 @@ struct MoRollBack {
     right.emplace_back(r);
   }
 
-  int run(const ADD &add, const REM &rem, const RESET &reset,
-          const SNAPSHOT &snapshot, const ROLLBACK &rollback) {
+  int run(const ADD& add, const REM& rem, const RESET& reset,
+          const SNAPSHOT& snapshot, const ROLLBACK& rollback) {
     assert(left.size() == order.size());
     sort(begin(order), end(order), [&](int a, int b) {
       int ablock = left[a] / width, bblock = left[b] / width;

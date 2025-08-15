@@ -3,20 +3,20 @@ struct DecrementalUpperHull {
  private:
   using Point = pair<T, T>;
 
-  static constexpr T2 cross(const Point &a, const Point &b) {
+  static constexpr T2 cross(const Point& a, const Point& b) {
     return T2(a.first) * b.second - T2(a.second) * b.first;
   }
 
-  static constexpr int ccw(const Point &a, const Point &b) {
+  static constexpr int ccw(const Point& a, const Point& b) {
     T2 x = cross(a, b);
     return (x > 0) - (x < 0);
   }
 
-  static constexpr Point sub(const Point &a, const Point &b) {
+  static constexpr Point sub(const Point& a, const Point& b) {
     return {a.first - b.first, a.second - b.second};
   }
 
-  static constexpr int ccw(Point const &a, Point const &b, Point const &c) {
+  static constexpr int ccw(Point const& a, Point const& b, Point const& c) {
     return ccw(sub(b, a), sub(c, a));
   }
 
@@ -25,7 +25,7 @@ struct DecrementalUpperHull {
     Link *prev, *next;
     int id;
   };
-  using LP = Link *;
+  using LP = Link*;
 
   struct Node {
     LP chain, chain_back, tangent;
@@ -84,8 +84,8 @@ struct DecrementalUpperHull {
     else
       tie(l, r) = find_bridge(l, r);
 
-    Node &l_node = seg[seg[u].lch];
-    Node &r_node = seg[seg[u].rch];
+    Node& l_node = seg[seg[u].lch];
+    Node& r_node = seg[seg[u].rch];
 
     seg[u].tangent = l;
     seg[u].chain = l_node.chain;
@@ -129,8 +129,8 @@ struct DecrementalUpperHull {
     }
 
     auto l = seg[u].tangent, r = l->next;
-    Node &l_node = seg[seg[u].lch];
-    Node &r_node = seg[seg[u].rch];
+    Node& l_node = seg[seg[u].lch];
+    Node& r_node = seg[seg[u].rch];
 
     l->next = l_node.chain;
     if (l_node.chain)
@@ -163,7 +163,7 @@ struct DecrementalUpperHull {
     }
   }
 
-  size_t build(size_t &k, int l, int r) {
+  size_t build(size_t& k, int l, int r) {
     if (r - l == 1) return l + n;
     int m = (l + r) / 2;
     size_t res = k++;
@@ -174,7 +174,7 @@ struct DecrementalUpperHull {
   }
 
  public:
-  explicit DecrementalUpperHull(const vector<Point> &ps)
+  explicit DecrementalUpperHull(const vector<Point>& ps)
       : n(ps.size()), seg(2 * n), sz(n), alive(n) {
     assert(is_sorted(ps.begin(), ps.end()));
     links.reserve(n);

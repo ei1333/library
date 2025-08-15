@@ -8,7 +8,7 @@ constexpr int CLOCKWISE = -1;
 constexpr int ONLINE_BACK = +2;   // c-a-b
 constexpr int ONLINE_FRONT = -2;  // a-b-c
 constexpr int ON_SEGMENT = 0;     // a-c-b
-int ccw(const Point &a, Point b, Point c) {
+int ccw(const Point& a, Point b, Point c) {
   b = b - a, c = c - a;
   if (sign(cross(b, c)) == +1) return COUNTER_CLOCKWISE;
   if (sign(cross(b, c)) == -1) return CLOCKWISE;

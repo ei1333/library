@@ -33,10 +33,10 @@ struct EulerianTrail {
 
   vector<vector<int> > enumerate_eulerian_trail() {
     if (directed) {
-      for (auto &p : deg)
+      for (auto& p : deg)
         if (p != 0) return {};
     } else {
-      for (auto &p : deg)
+      for (auto& p : deg)
         if (p & 1) return {};
     }
     used_edge.assign(M, 0);
@@ -50,16 +50,16 @@ struct EulerianTrail {
 
   vector<vector<int> > enumerate_semi_eulerian_trail() {
     UnionFind uf(g.size());
-    for (auto &p : es) uf.unite(p.first, p.second);
+    for (auto& p : es) uf.unite(p.first, p.second);
     vector<vector<int> > group(g.size());
     for (int i = 0; i < (int)g.size(); i++) group[uf.find(i)].emplace_back(i);
     vector<vector<int> > ret;
     used_edge.assign(M, 0);
-    for (auto &vs : group) {
+    for (auto& vs : group) {
       if (vs.empty()) continue;
       int latte = -1, malta = -1;
       if (directed) {
-        for (auto &p : vs) {
+        for (auto& p : vs) {
           if (abs(deg[p]) > 1) {
             return {};
           } else if (deg[p] == 1) {
@@ -68,7 +68,7 @@ struct EulerianTrail {
           }
         }
       } else {
-        for (auto &p : vs) {
+        for (auto& p : vs) {
           if (deg[p] & 1) {
             if (latte == -1)
               latte = p;

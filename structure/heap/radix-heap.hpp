@@ -18,7 +18,7 @@ struct RadixHeap {
     return a ? bit - __builtin_clzll(a) : 0;
   }
 
-  void push(const key_t &key, const val_t &val) {
+  void push(const key_t& key, const val_t& val) {
     sz++;
     vs[getbit(key ^ last)].emplace_back(key, val);
   }
@@ -28,7 +28,7 @@ struct RadixHeap {
       int idx = 1;
       while (vs[idx].empty()) idx++;
       last = min_element(vs[idx].begin(), vs[idx].end())->first;
-      for (auto &p : vs[idx]) vs[getbit(p.first ^ last)].emplace_back(p);
+      for (auto& p : vs[idx]) vs[getbit(p.first ^ last)].emplace_back(p);
       vs[idx].clear();
     }
     --sz;

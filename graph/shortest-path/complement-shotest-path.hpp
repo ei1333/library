@@ -13,9 +13,9 @@ struct ComplementShortestPath : Graph<T> {
   vector<vector<T> > dists;
 
   void build() {
-    for (auto &es : g) {
+    for (auto& es : g) {
       sort(begin(es), end(es),
-           [&](const Edge<T> &a, const Edge<T> &b) { return a.to < b.to; });
+           [&](const Edge<T>& a, const Edge<T>& b) { return a.to < b.to; });
     }
     const int N = (int)g.size();
     dists.resize(N);
@@ -64,7 +64,7 @@ struct ComplementShortestPath : Graph<T> {
       que.pop();
       int ptr = 0;
       vector<int> nxt_visited;
-      for (auto &to : not_visited) {
+      for (auto& to : not_visited) {
         while (ptr < (int)g[idx].size() and g[idx][ptr].to < to) {
           ++ptr;
         }

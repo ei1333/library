@@ -32,7 +32,7 @@ struct UnionFind {
       ret[find(i)].emplace_back(i);
     }
     ret.erase(remove_if(begin(ret), end(ret),
-                        [&](const vector<int> &v) { return v.empty(); }),
+                        [&](const vector<int>& v) { return v.empty(); }),
               end(ret));
     return ret;
   }
