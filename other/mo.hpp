@@ -17,9 +17,9 @@ struct Mo {
   }
 
   template <typename AL, typename AR, typename EL, typename ER, typename Q>
-  void calclate_queries(const AL &add_left, const AR &add_right,
-                        const EL &erase_left, const ER &erase_right,
-                        const Q &query) {
+  void calclate_queries(const AL& add_left, const AR& add_right,
+                        const EL& erase_left, const ER& erase_right,
+                        const Q& query) {
     assert(lr.size() == ord.size());
     vector<int> bs(n);
     for (int i = 0, cnt = 0, b = 0; i < n; i++) {
@@ -49,7 +49,7 @@ struct Mo {
   }
 
   template <typename A, typename E, typename Q>
-  void calclate_queries(const A &add, const E &erase, const Q &query) {
+  void calclate_queries(const A& add, const E& erase, const Q& query) {
     calclate_queries(add, add, erase, erase, query);
   }
 };

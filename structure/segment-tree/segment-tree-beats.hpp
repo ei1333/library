@@ -18,7 +18,7 @@ struct SegmentTreeBeats {
     data[k] = m.op(data[2 * k + 0], data[2 * k + 1]);
   }
 
-  inline void apply_at(int k, const F &x) {
+  inline void apply_at(int k, const F& x) {
     data[k] = m.mapping(data[k], x);
     if (k < sz) {
       lazy[k] = m.composition(lazy[k], x);
@@ -48,18 +48,18 @@ struct SegmentTreeBeats {
     lazy.assign(2 * sz, m.id());
   }
 
-  explicit SegmentTreeBeats(BeatsMonoid m, const vector<S> &v)
+  explicit SegmentTreeBeats(BeatsMonoid m, const vector<S>& v)
       : SegmentTreeBeats(m, v.size()) {
     build(v);
   }
 
-  void build(const vector<S> &v) {
+  void build(const vector<S>& v) {
     assert(n == (int)v.size());
     for (int k = 0; k < n; k++) data[k + sz] = v[k];
     for (int k = sz - 1; k > 0; k--) update(k);
   }
 
-  void set(int k, const S &x) {
+  void set(int k, const S& x) {
     k += sz;
     for (int i = height; i > 0; i--) propagate(k >> i);
     data[k] = x;
@@ -92,14 +92,14 @@ struct SegmentTreeBeats {
 
   S all_prod() const { return data[1]; }
 
-  void apply(int k, const F &f) {
+  void apply(int k, const F& f) {
     k += sz;
     for (int i = height; i > 0; i--) propagate(k >> i);
     data[k] = m.mapping(data[k], f);
     for (int i = 1; i <= height; i++) update(k >> i);
   }
 
-  void apply(int l, int r, const F &f) {
+  void apply(int l, int r, const F& f) {
     if (l >= r) return;
     l += sz;
     r += sz;

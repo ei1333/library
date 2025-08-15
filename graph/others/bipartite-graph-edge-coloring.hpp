@@ -21,7 +21,7 @@ struct BipariteGraphEdgeColoring {
   };
   RegularGraph g;
 
-  static UnionFind contract(valarray<int> &deg, int k) {
+  static UnionFind contract(valarray<int>& deg, int k) {
     using pi = pair<int, int>;
     priority_queue<pi, vector<pi>, greater<> > que;
     for (int i = 0; i < (int)deg.size(); i++) {
@@ -45,8 +45,8 @@ struct BipariteGraphEdgeColoring {
     valarray<int> deg[2];
     deg[0] = valarray<int>(L);
     deg[1] = valarray<int>(R);
-    for (auto &p : A) deg[0][p]++;
-    for (auto &p : B) deg[1][p]++;
+    for (auto& p : A) deg[0][p]++;
+    for (auto& p : B) deg[1][p]++;
 
     int k = max(deg[0].max(), deg[1].max());
 
@@ -95,7 +95,7 @@ struct BipariteGraphEdgeColoring {
     return {k, N, C, D};
   }
 
-  void rec(const vector<int> &ord, int k) {
+  void rec(const vector<int>& ord, int k) {
     if (k == 0) {
       return;
     } else if (k == 1) {
@@ -103,11 +103,11 @@ struct BipariteGraphEdgeColoring {
       return;
     } else if ((k & 1) == 0) {
       EulerianTrail<false> et(g.n + g.n);
-      for (auto &p : ord) et.add_edge(g.A[p], g.B[p] + g.n);
+      for (auto& p : ord) et.add_edge(g.A[p], g.B[p] + g.n);
       auto paths = et.enumerate_eulerian_trail();
       vector<int> path;
-      for (auto &ps : paths) {
-        for (auto &e : ps) path.emplace_back(ord[e]);
+      for (auto& ps : paths) {
+        for (auto& e : ps) path.emplace_back(ord[e]);
       }
       vector<int> beet[2];
       for (int i = 0; i < (int)path.size(); i++) {
@@ -117,11 +117,11 @@ struct BipariteGraphEdgeColoring {
       rec(beet[1], k / 2);
     } else {
       BipartiteFlow flow(g.n, g.n);
-      for (auto &i : ord) flow.add_edge(g.A[i], g.B[i]);
+      for (auto& i : ord) flow.add_edge(g.A[i], g.B[i]);
       flow.max_matching();
       vector<int> beet;
       ans.emplace_back();
-      for (auto &i : ord) {
+      for (auto& i : ord) {
         if (flow.match_l[g.A[i]] == g.B[i]) {
           flow.match_l[g.A[i]] = -1;
           ans.back().emplace_back(i);
@@ -151,7 +151,7 @@ struct BipariteGraphEdgeColoring {
     vector<vector<int> > res;
     for (int i = 0; i < (int)ans.size(); i++) {
       res.emplace_back();
-      for (auto &j : ans[i])
+      for (auto& j : ans[i])
         if (j < (int)A.size()) res.back().emplace_back(j);
     }
     return res;

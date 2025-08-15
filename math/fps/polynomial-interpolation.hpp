@@ -4,7 +4,7 @@
  * @brief Polynomial Interpolation(多項式補間)
  */
 template <template <typename> class FPS, typename Mint>
-FPS<Mint> polynomial_interpolation(const FPS<Mint> &xs, const FPS<Mint> &ys) {
+FPS<Mint> polynomial_interpolation(const FPS<Mint>& xs, const FPS<Mint>& ys) {
   assert(xs.size() == ys.size());
   auto mul = subproduct_tree(xs);
   int n = (int)xs.size(), k = (int)mul.size() / 2;

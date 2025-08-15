@@ -10,7 +10,7 @@ class RandomizedBinarySearchTree {
 
     Node() = default;
 
-    Node(const T &k) : cnt(1), key(k), sum(k), l(nullptr), r(nullptr) {}
+    Node(const T& k) : cnt(1), key(k), sum(k), l(nullptr), r(nullptr) {}
   };
 
   inline int xor128() {
@@ -27,23 +27,23 @@ class RandomizedBinarySearchTree {
     return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
   }
 
-  Node *build(int l, int r, const vector<T> &v) {
+  Node* build(int l, int r, const vector<T>& v) {
     if (l + 1 >= r) return alloc(v[l]);
     return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
   }
 
-  void dump(Node *t, typename vector<T>::iterator &it) const {
+  void dump(Node* t, typename vector<T>::iterator& it) const {
     if (!t) return;
     dump(t->l, it);
     *it = t->key;
     dump(t->r, ++it);
   }
 
-  inline size_t count(const Node *t) const { return t ? t->cnt : 0; }
+  inline size_t count(const Node* t) const { return t ? t->cnt : 0; }
 
-  inline T sum(const Node *t) const { return t ? t->sum : e; }
+  inline T sum(const Node* t) const { return t ? t->sum : e; }
 
-  inline Node *update(Node *t) {
+  inline Node* update(Node* t) {
     t->cnt = count(t->l) + count(t->r) + 1;
     t->sum = f(f(sum(t->l), t->key), sum(t->r));
     return t;
@@ -55,12 +55,12 @@ class RandomizedBinarySearchTree {
   const T e;
 
  public:
-  RandomizedBinarySearchTree(size_t sz, const F &f, const T &e)
+  RandomizedBinarySearchTree(size_t sz, const F& f, const T& e)
       : pool(sz), f(f), ptr(0), e(e) {}
 
-  inline Node *alloc(const T &v) { return &(pool[ptr++] = Node(v)); }
+  inline Node* alloc(const T& v) { return &(pool[ptr++] = Node(v)); }
 
-  Node *merge(Node *l, Node *r) {
+  Node* merge(Node* l, Node* r) {
     if (!l || !r) return l ? l : r;
     if (xor128() % (l->cnt + r->cnt) < l->cnt) {
       l->r = merge(l->r, r);
@@ -72,11 +72,11 @@ class RandomizedBinarySearchTree {
   }
 
   template <typename... Args>
-  Node *merge(Node *p, Args... args) {
+  Node* merge(Node* p, Args... args) {
     return merge(p, merge(args...));
   }
 
-  pair<Node *, Node *> split(Node *t, int k) {
+  pair<Node*, Node*> split(Node* t, int k) {
     if (!t) return {t, t};
     if (k <= count(t->l)) {
       auto s = split(t->l, k);
@@ -89,52 +89,52 @@ class RandomizedBinarySearchTree {
     }
   }
 
-  Node *build(const vector<T> &v) {
+  Node* build(const vector<T>& v) {
     ptr = 0;
     return build(0, (int)v.size(), v);
   }
 
-  vector<T> dump(Node *t) const {
+  vector<T> dump(Node* t) const {
     vector<T> v(count(t));
     auto it = begin(v);
     dump(t, it);
     return v;
   }
 
-  string to_string(Node *r) {
+  string to_string(Node* r) {
     auto s = dump(r);
     string ret;
     for (int i = 0; i < s.size(); i++) ret += std::to_string(s[i]) + ", ";
     return ret;
   }
 
-  void insert(Node *&t, int k, const T &v) {
+  void insert(Node*& t, int k, const T& v) {
     auto x = split(t, k);
     t = merge(merge(x.first, alloc(v)), x.second);
   }
 
-  void push_front(Node *&t, const T &v) { t = merge(alloc(v), t); }
+  void push_front(Node*& t, const T& v) { t = merge(alloc(v), t); }
 
-  void push_back(Node *&t, const T &v) { t = merge(t, alloc(v)); }
+  void push_back(Node*& t, const T& v) { t = merge(t, alloc(v)); }
 
-  T pop_front(Node *&t) {
+  T pop_front(Node*& t) {
     auto ret = split(t, 1);
     t = ret.second;
     return ret.first->key;
   }
 
-  T pop_back(Node *&t) {
+  T pop_back(Node*& t) {
     auto ret = split(t, count(t) - 1);
     t = ret.first;
     return ret.second->key;
   }
 
-  void erase(Node *&t, int k) {
+  void erase(Node*& t, int k) {
     auto x = split(t, k);
     t = merge(x.first, split(x.second, 1).second);
   }
 
-  T query(Node *&t, int a, int b) {
+  T query(Node*& t, int a, int b) {
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     auto ret = sum(y.first);
@@ -142,13 +142,13 @@ class RandomizedBinarySearchTree {
     return ret;
   }
 
-  tuple<Node *, Node *, Node *> split3(Node *t, int a, int b) {
+  tuple<Node*, Node*, Node*> split3(Node* t, int a, int b) {
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     return make_tuple(x.first, y.first, y.second);
   }
 
-  void set_element(Node *&t, int k, const T &x) {
+  void set_element(Node*& t, int k, const T& x) {
     if (k < count(t->l))
       set_element(t->l, k, x);
     else if (k == count(t->l))
@@ -158,7 +158,7 @@ class RandomizedBinarySearchTree {
     t = update(t);
   }
 
-  size_t size(Node *t) const { return count(t); }
+  size_t size(Node* t) const { return count(t); }
 
-  bool empty(Node *t) const { return !t; }
+  bool empty(Node* t) const { return !t; }
 };

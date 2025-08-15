@@ -16,7 +16,7 @@ struct TwoEdgeConnectedComponents : LowLink<T> {
   Graph<T> tree;
   vector<vector<int> > group;
 
-  int operator[](const int &k) const { return comp[k]; }
+  int operator[](const int& k) const { return comp[k]; }
 
   void build() override {
     LowLink<T>::build();
@@ -30,20 +30,20 @@ struct TwoEdgeConnectedComponents : LowLink<T> {
       group[comp[i]].emplace_back(i);
     }
     tree = Graph<T>(k);
-    for (auto &e : bridge) {
+    for (auto& e : bridge) {
       tree.add_edge(comp[e.from], comp[e.to], e.cost);
     }
   }
 
-  explicit TwoEdgeConnectedComponents(const Graph<T> &g) : Graph<T>(g) {}
+  explicit TwoEdgeConnectedComponents(const Graph<T>& g) : Graph<T>(g) {}
 
  private:
-  void dfs(int idx, int par, int &k) {
+  void dfs(int idx, int par, int& k) {
     if (par >= 0 && ord[par] >= low[idx])
       comp[idx] = comp[par];
     else
       comp[idx] = k++;
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (comp[to] == -1) dfs(to, idx, k);
     }
   }

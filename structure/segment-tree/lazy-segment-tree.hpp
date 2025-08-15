@@ -18,7 +18,7 @@ struct LazySegmentTree {
     data[k] = m.op(data[2 * k + 0], data[2 * k + 1]);
   }
 
-  inline void all_apply(int k, const F &x) {
+  inline void all_apply(int k, const F& x) {
     data[k] = m.mapping(data[k], x);
     if (k < sz) lazy[k] = m.composition(lazy[k], x);
   }
@@ -42,18 +42,18 @@ struct LazySegmentTree {
     lazy.assign(2 * sz, m.id());
   }
 
-  explicit LazySegmentTree(ActedMonoid m, const vector<S> &v)
+  explicit LazySegmentTree(ActedMonoid m, const vector<S>& v)
       : LazySegmentTree(m, v.size()) {
     build(v);
   }
 
-  void build(const vector<S> &v) {
+  void build(const vector<S>& v) {
     assert(n == (int)v.size());
     for (int k = 0; k < n; k++) data[k + sz] = v[k];
     for (int k = sz - 1; k > 0; k--) update(k);
   }
 
-  void set(int k, const S &x) {
+  void set(int k, const S& x) {
     k += sz;
     for (int i = height; i > 0; i--) propagate(k >> i);
     data[k] = x;
@@ -86,14 +86,14 @@ struct LazySegmentTree {
 
   S all_prod() const { return data[1]; }
 
-  void apply(int k, const F &f) {
+  void apply(int k, const F& f) {
     k += sz;
     for (int i = height; i > 0; i--) propagate(k >> i);
     data[k] = m.mapping(data[k], f);
     for (int i = 1; i <= height; i++) update(k >> i);
   }
 
-  void apply(int l, int r, const F &f) {
+  void apply(int l, int r, const F& f) {
     if (l >= r) return;
     l += sz;
     r += sz;
@@ -116,7 +116,7 @@ struct LazySegmentTree {
   }
 
   template <typename C>
-  int find_first(int l, const C &check) {
+  int find_first(int l, const C& check) {
     if (l >= n) return n;
     l += sz;
     for (int i = height; i > 0; i--) propagate(l >> i);
@@ -141,7 +141,7 @@ struct LazySegmentTree {
   }
 
   template <typename C>
-  int find_last(int r, const C &check) {
+  int find_last(int r, const C& check) {
     if (r <= 0) return -1;
     r += sz;
     for (int i = height; i > 0; i--) propagate((r - 1) >> i);

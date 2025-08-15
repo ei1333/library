@@ -2,7 +2,7 @@
  * @brief Superset Zeta/Moebius Transform (上位集合のゼータ/メビウス変換)
  */
 template <typename T>
-void superset_zeta_transform(vector<T> &f) {
+void superset_zeta_transform(vector<T>& f) {
   const int n = (int)f.size();
   assert((n & (n - 1)) == 0);
   for (int i = 1; i < n; i <<= 1) {
@@ -15,7 +15,7 @@ void superset_zeta_transform(vector<T> &f) {
 }
 
 template <typename T>
-void superset_moebius_transform(vector<T> &f) {
+void superset_moebius_transform(vector<T>& f) {
   const int n = (int)f.size();
   assert((n & (n - 1)) == 0);
   for (int i = 1; i < n; i <<= 1) {

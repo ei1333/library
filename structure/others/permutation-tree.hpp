@@ -12,7 +12,7 @@ struct PermutationTree {
     NodeType type;
     int l, r;          // [l, r)
     int min_v, max_v;  // [min_v, max_v)
-    vector<Node *> ch;
+    vector<Node*> ch;
 
     size_t size() const { return r - l; }
 
@@ -23,7 +23,7 @@ struct PermutationTree {
     bool is_cut() const { return type == CUT; }
   };
 
-  using NP = Node *;
+  using NP = Node*;
 
   PermutationTree() = default;
 
@@ -37,7 +37,7 @@ struct PermutationTree {
   }
 
  public:
-  static NP build(vector<int> &A) {
+  static NP build(vector<int>& A) {
     int n = (int)A.size();
 
     vector<int> desc{-1};

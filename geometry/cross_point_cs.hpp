@@ -5,7 +5,7 @@
 #include "segment.hpp"
 
 namespace geometry {
-Points cross_point_cs(const Circle &c, const Segment &s) {
+Points cross_point_cs(const Circle& c, const Segment& s) {
   int num = is_intersect_cs(c, s);
   if (num == 0) return {};
   if (num == 2) return cross_point_cl(c, s);

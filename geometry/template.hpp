@@ -4,23 +4,23 @@ const Real EPS = 1e-8, PI = acos(-1);
 
 inline bool eq(Real a, Real b) { return fabs(b - a) < EPS; }
 
-Point operator*(const Point &p, const Real &d) {
+Point operator*(const Point& p, const Real& d) {
   return Point(real(p) * d, imag(p) * d);
 }
 
-istream &operator>>(istream &is, Point &p) {
+istream& operator>>(istream& is, Point& p) {
   Real a, b;
   is >> a >> b;
   p = Point(a, b);
   return is;
 }
 
-ostream &operator<<(ostream &os, Point &p) {
+ostream& operator<<(ostream& os, Point& p) {
   return os << fixed << setprecision(10) << p.real() << " " << p.imag();
 }
 
 // rotate point p counterclockwise by theta rad
-Point rotate(Real theta, const Point &p) {
+Point rotate(Real theta, const Point& p) {
   return Point(cos(theta) * p.real() - sin(theta) * p.imag(),
                sin(theta) * p.real() + cos(theta) * p.imag());
 }
@@ -30,7 +30,7 @@ Real radian_to_degree(Real r) { return (r * 180.0 / PI); }
 Real degree_to_radian(Real d) { return (d * PI / 180.0); }
 
 // smaller angle of the a-b-c
-Real get_angle(const Point &a, const Point &b, const Point &c) {
+Real get_angle(const Point& a, const Point& b, const Point& c) {
   const Point v(b - a), w(c - b);
   Real alpha = atan2(v.imag(), v.real()), beta = atan2(w.imag(), w.real());
   if (alpha > beta) swap(alpha, beta);
@@ -39,7 +39,7 @@ Real get_angle(const Point &a, const Point &b, const Point &c) {
 }
 
 namespace std {
-bool operator<(const Point &a, const Point &b) {
+bool operator<(const Point& a, const Point& b) {
   return a.real() != b.real() ? a.real() < b.real() : a.imag() < b.imag();
 }
 }  // namespace std
@@ -61,11 +61,11 @@ struct Line {
       a = Point(0, C / B), b = Point(C / A, 0);
   }
 
-  friend ostream &operator<<(ostream &os, Line &p) {
+  friend ostream& operator<<(ostream& os, Line& p) {
     return os << p.a << " to " << p.b;
   }
 
-  friend istream &operator>>(istream &is, Line &a) { return is >> a.a >> a.b; }
+  friend istream& operator>>(istream& is, Line& a) { return is >> a.a >> a.b; }
 };
 
 struct Segment : Line {
@@ -89,16 +89,16 @@ using Segments = vector<Segment>;
 using Lines = vector<Line>;
 using Circles = vector<Circle>;
 
-Real cross(const Point &a, const Point &b) {
+Real cross(const Point& a, const Point& b) {
   return real(a) * imag(b) - imag(a) * real(b);
 }
 
-Real dot(const Point &a, const Point &b) {
+Real dot(const Point& a, const Point& b) {
   return real(a) * real(b) + imag(a) * imag(b);
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
-int ccw(const Point &a, Point b, Point c) {
+int ccw(const Point& a, Point b, Point c) {
   b = b - a, c = c - a;
   if (cross(b, c) > EPS) return +1;   // "COUNTER_CLOCKWISE"
   if (cross(b, c) < -EPS) return -1;  // "CLOCKWISE"
@@ -108,65 +108,65 @@ int ccw(const Point &a, Point b, Point c) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
-bool parallel(const Line &a, const Line &b) {
+bool parallel(const Line& a, const Line& b) {
   return eq(cross(a.b - a.a, b.b - b.a), 0.0);
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
-bool orthogonal(const Line &a, const Line &b) {
+bool orthogonal(const Line& a, const Line& b) {
   return eq(dot(a.a - a.b, b.a - b.b), 0.0);
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
-Point projection(const Line &l, const Point &p) {
+Point projection(const Line& l, const Point& p) {
   double t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b);
   return l.a + (l.a - l.b) * t;
 }
 
-Point projection(const Segment &l, const Point &p) {
+Point projection(const Segment& l, const Point& p) {
   double t = dot(p - l.a, l.a - l.b) / norm(l.a - l.b);
   return l.a + (l.a - l.b) * t;
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-Point reflection(const Line &l, const Point &p) {
+Point reflection(const Line& l, const Point& p) {
   return p + (projection(l, p) - p) * 2.0;
 }
 
-bool intersect(const Line &l, const Point &p) {
+bool intersect(const Line& l, const Point& p) {
   return abs(ccw(l.a, l.b, p)) != 1;
 }
 
-bool intersect(const Line &l, const Line &m) {
+bool intersect(const Line& l, const Line& m) {
   return abs(cross(l.b - l.a, m.b - m.a)) > EPS ||
          abs(cross(l.b - l.a, m.b - l.a)) < EPS;
 }
 
-bool intersect(const Segment &s, const Point &p) {
+bool intersect(const Segment& s, const Point& p) {
   return ccw(s.a, s.b, p) == 0;
 }
 
-bool intersect(const Line &l, const Segment &s) {
+bool intersect(const Line& l, const Segment& s) {
   return cross(l.b - l.a, s.a - l.a) * cross(l.b - l.a, s.b - l.a) < EPS;
 }
 
-Real distance(const Line &l, const Point &p);
+Real distance(const Line& l, const Point& p);
 
-bool intersect(const Circle &c, const Line &l) {
+bool intersect(const Circle& c, const Line& l) {
   return distance(l, c.p) <= c.r + EPS;
 }
 
-bool intersect(const Circle &c, const Point &p) {
+bool intersect(const Circle& c, const Point& p) {
   return abs(abs(p - c.p) - c.r) < EPS;
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
-bool intersect(const Segment &s, const Segment &t) {
+bool intersect(const Segment& s, const Segment& t) {
   return ccw(s.a, s.b, t.a) * ccw(s.a, s.b, t.b) <= 0 &&
          ccw(t.a, t.b, s.a) * ccw(t.a, t.b, s.b) <= 0;
 }
 
-int intersect(const Circle &c, const Segment &l) {
+int intersect(const Circle& c, const Segment& l) {
   if (norm(projection(l, c.p) - c.p) - c.r * c.r > EPS) return 0;
   auto d1 = abs(c.p - l.a), d2 = abs(c.p - l.b);
   if (d1 < c.r + EPS && d2 < c.r + EPS) return 0;
@@ -188,35 +188,35 @@ int intersect(Circle c1, Circle c2) {
   return 0;
 }
 
-Real distance(const Point &a, const Point &b) { return abs(a - b); }
+Real distance(const Point& a, const Point& b) { return abs(a - b); }
 
-Real distance(const Line &l, const Point &p) {
+Real distance(const Line& l, const Point& p) {
   return abs(p - projection(l, p));
 }
 
-Real distance(const Line &l, const Line &m) {
+Real distance(const Line& l, const Line& m) {
   return intersect(l, m) ? 0 : distance(l, m.a);
 }
 
-Real distance(const Segment &s, const Point &p) {
+Real distance(const Segment& s, const Point& p) {
   Point r = projection(s, p);
   if (intersect(s, r)) return abs(r - p);
   return min(abs(s.a - p), abs(s.b - p));
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
-Real distance(const Segment &a, const Segment &b) {
+Real distance(const Segment& a, const Segment& b) {
   if (intersect(a, b)) return 0;
   return min(
       {distance(a, b.a), distance(a, b.b), distance(b, a.a), distance(b, a.b)});
 }
 
-Real distance(const Line &l, const Segment &s) {
+Real distance(const Line& l, const Segment& s) {
   if (intersect(l, s)) return 0;
   return min(distance(l, s.a), distance(l, s.b));
 }
 
-Point crosspoint(const Line &l, const Line &m) {
+Point crosspoint(const Line& l, const Line& m) {
   Real A = cross(l.b - l.a, m.b - m.a);
   Real B = cross(l.b - l.a, l.b - m.a);
   if (eq(abs(A), 0.0) && eq(abs(B), 0.0)) return m.a;
@@ -224,12 +224,12 @@ Point crosspoint(const Line &l, const Line &m) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-Point crosspoint(const Segment &l, const Segment &m) {
+Point crosspoint(const Segment& l, const Segment& m) {
   return crosspoint(Line(l), Line(m));
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D
-pair<Point, Point> crosspoint(const Circle &c, const Line l) {
+pair<Point, Point> crosspoint(const Circle& c, const Line l) {
   Point pr = projection(l, c.p);
   Point e = (l.b - l.a) / abs(l.b - l.a);
   if (eq(distance(l, c.p), c.r)) return {pr, pr};
@@ -237,7 +237,7 @@ pair<Point, Point> crosspoint(const Circle &c, const Line l) {
   return {pr - e * base, pr + e * base};
 }
 
-pair<Point, Point> crosspoint(const Circle &c, const Segment &l) {
+pair<Point, Point> crosspoint(const Circle& c, const Segment& l) {
   Line aa = Line(l.a, l.b);
   if (intersect(c, l) == 2) return crosspoint(c, aa);
   auto ret = crosspoint(c, aa);
@@ -249,7 +249,7 @@ pair<Point, Point> crosspoint(const Circle &c, const Segment &l) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_E
-pair<Point, Point> crosspoint(const Circle &c1, const Circle &c2) {
+pair<Point, Point> crosspoint(const Circle& c1, const Circle& c2) {
   Real d = abs(c1.p - c2.p);
   Real a = acos((c1.r * c1.r + d * d - c2.r * c2.r) / (2 * c1.r * d));
   Real t = atan2(c2.p.imag() - c1.p.imag(), c2.p.real() - c1.p.real());
@@ -260,7 +260,7 @@ pair<Point, Point> crosspoint(const Circle &c1, const Circle &c2) {
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F
 // tangent of circle c through point p
-pair<Point, Point> tangent(const Circle &c1, const Point &p2) {
+pair<Point, Point> tangent(const Circle& c1, const Point& p2) {
   return crosspoint(c1, Circle(p2, sqrt(norm(c1.p - p2) - c1.r * c1.r)));
 }
 
@@ -287,7 +287,7 @@ Lines tangent(Circle c1, Circle c2) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B
-bool is_convex(const Polygon &p) {
+bool is_convex(const Polygon& p) {
   int n = (int)p.size();
   for (int i = 0; i < n; i++) {
     if (ccw(p[(i + n - 1) % n], p[i], p[(i + 1) % n]) == -1) return false;
@@ -296,7 +296,7 @@ bool is_convex(const Polygon &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
-Polygon convex_hull(Polygon &p) {
+Polygon convex_hull(Polygon& p) {
   int n = (int)p.size(), k = 0;
   if (n <= 2) return p;
   sort(p.begin(), p.end());
@@ -314,7 +314,7 @@ Polygon convex_hull(Polygon &p) {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
 enum { OUT, ON, IN };
 
-int contains(const Polygon &Q, const Point &p) {
+int contains(const Polygon& Q, const Point& p) {
   bool in = false;
   for (int i = 0; i < Q.size(); i++) {
     Point a = Q[i] - p, b = Q[(i + 1) % Q.size()] - p;
@@ -326,7 +326,7 @@ int contains(const Polygon &Q, const Point &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0412
-int convex_contains(const Polygon &Q, const Point &p) {
+int convex_contains(const Polygon& Q, const Point& p) {
   int N = (int)Q.size();
   Point g = (Q[0] + Q[N / 3] + Q[N * 2 / 3]) / 3.0;
   if (g == p) return IN;
@@ -355,8 +355,8 @@ int convex_contains(const Polygon &Q, const Point &p) {
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
 // deduplication of line segments
-void merge_segments(vector<Segment> &segs) {
-  auto merge_if_able = [](Segment &s1, const Segment &s2) {
+void merge_segments(vector<Segment>& segs) {
+  auto merge_if_able = [](Segment& s1, const Segment& s2) {
     if (abs(cross(s1.b - s1.a, s2.b - s2.a)) > EPS) return false;
     if (ccw(s1.a, s2.a, s1.b) == 1 || ccw(s1.a, s2.a, s1.b) == -1) return false;
     if (ccw(s1.a, s1.b, s2.a) == -2 || ccw(s2.a, s2.b, s1.a) == -2)
@@ -380,8 +380,8 @@ void merge_segments(vector<Segment> &segs) {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1033
 // construct a graph with the vertex of the intersection of any two line
 // segments
-vector<vector<int> > segment_arrangement(vector<Segment> &segs,
-                                         vector<Point> &ps) {
+vector<vector<int> > segment_arrangement(vector<Segment>& segs,
+                                         vector<Point>& ps) {
   vector<vector<int> > g;
   int N = (int)segs.size();
   for (int i = 0; i < N; i++) {
@@ -418,7 +418,7 @@ vector<vector<int> > segment_arrangement(vector<Segment> &segs,
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
 // cut with a straight line l and return a convex polygon on the left
-Polygon convex_cut(const Polygon &U, Line l) {
+Polygon convex_cut(const Polygon& U, Line l) {
   Polygon ret;
   for (int i = 0; i < U.size(); i++) {
     Point now = U[i], nxt = U[(i + 1) % U.size()];
@@ -431,7 +431,7 @@ Polygon convex_cut(const Polygon &U, Line l) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
-Real area(const Polygon &p) {
+Real area(const Polygon& p) {
   Real A = 0;
   for (int i = 0; i < p.size(); ++i) {
     A += cross(p[i], p[(i + 1) % p.size()]);
@@ -440,10 +440,10 @@ Real area(const Polygon &p) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
-Real area(const Polygon &p, const Circle &c) {
+Real area(const Polygon& p, const Circle& c) {
   if (p.size() < 3) return 0.0;
   function<Real(Circle, Point, Point)> cross_area =
-      [&](const Circle &c, const Point &a, const Point &b) {
+      [&](const Circle& c, const Point& a, const Point& b) {
         Point va = c.p - a, vb = c.p - b;
         Real f = cross(va, vb), ret = 0.0;
         if (eq(f, 0.0)) return ret;
@@ -465,7 +465,7 @@ Real area(const Polygon &p, const Circle &c) {
 }
 
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
-Real convex_diameter(const Polygon &p) {
+Real convex_diameter(const Polygon& p) {
   int N = (int)p.size();
   int is = 0, js = 0;
   for (int i = 1; i < N; i++) {
@@ -497,7 +497,7 @@ Real closest_pair(Points ps) {
   if (ps.size() <= 1) throw(0);
   sort(begin(ps), end(ps));
 
-  auto compare_y = [&](const Point &a, const Point &b) {
+  auto compare_y = [&](const Point& a, const Point& b) {
     return imag(a) < imag(b);
   };
   vector<Point> beet(ps.size());

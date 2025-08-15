@@ -16,12 +16,12 @@ struct DynamicTreeBuilderForEdge : DynamicTree<TreeDPInfo> {
   explicit DynamicTreeBuilderForEdge(int n)
       : n(n), g(n), vs(n), es(n), e_sz(0) {}
 
-  void set_vertex(int u, const Info &info) {
+  void set_vertex(int u, const Info& info) {
     assert(0 <= u and u < n);
     vs[u] = this->alloc(info);
   }
 
-  void add_edge(int u, int v, const Info &info, int id = -1) {
+  void add_edge(int u, int v, const Info& info, int id = -1) {
     assert(0 <= u and u < n);
     assert(0 <= v and v < n);
     assert(u != v);
@@ -39,7 +39,7 @@ struct DynamicTreeBuilderForEdge : DynamicTree<TreeDPInfo> {
     while (not que.empty()) {
       auto [u, p] = que.back();
       que.pop_back();
-      for (auto &[v, id] : g[u]) {
+      for (auto& [v, id] : g[u]) {
         if (v == p) continue;
         que.emplace_back(v, u);
         link(es[id], vs[u]);

@@ -5,14 +5,14 @@
  * @brief Offline LCA(オフライン最小共通祖先)
  **/
 template <typename T>
-vector<int> offline_lca(const Graph<T> &g, vector<pair<int, int> > &qs,
+vector<int> offline_lca(const Graph<T>& g, vector<pair<int, int> >& qs,
                         int root = 0) {
   int n = (int)g.size();
   UnionFind uf(n);
   vector<int> st(n), mark(n), ptr(n), ans(qs.size(), -1);
   int top = 0;
   st[top] = root;
-  for (auto &[l, r] : qs) mark[l]++, mark[r]++;
+  for (auto& [l, r] : qs) mark[l]++, mark[r]++;
   vector<vector<pair<int, int> > > q(n);
   for (int i = 0; i < n; i++) {
     q[i].reserve(mark[i]);
@@ -42,7 +42,7 @@ vector<int> offline_lca(const Graph<T> &g, vector<pair<int, int> > &qs,
       mark[uf.find(u)] = u;
     }
     if (not run(u)) {
-      for (auto &[v, i] : q[u]) {
+      for (auto& [v, i] : q[u]) {
         if (~mark[v] and ans[i] == -1) {
           ans[i] = mark[uf.find(v)];
         }

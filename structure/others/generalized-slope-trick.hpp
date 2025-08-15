@@ -14,7 +14,7 @@ struct LazySplayTree {
 
     bool is_root() const { return !p || (p->l != this && p->r != this); }
 
-    Node(const T &key, const T &add)
+    Node(const T& key, const T& add)
         : key(key),
           sum(key),
           sz(1),
@@ -26,14 +26,14 @@ struct LazySplayTree {
 
   LazySplayTree() = default;
 
-  inline size_t count(const Node *t) { return t ? t->sz : 0; }
+  inline size_t count(const Node* t) { return t ? t->sz : 0; }
 
-  Node *alloc(const T &key, const T &add = T()) { return new Node(key, add); }
+  Node* alloc(const T& key, const T& add = T()) { return new Node(key, add); }
 
-  void splay(Node *t) {
+  void splay(Node* t) {
     push(t);
     while (!t->is_root()) {
-      auto *q = t->p;
+      auto* q = t->p;
       if (q->is_root()) {
         push(q), push(t);
         if (q->l == t)
@@ -41,7 +41,7 @@ struct LazySplayTree {
         else
           rotl(t);
       } else {
-        auto *r = q->p;
+        auto* r = q->p;
         push(r), push(q), push(t);
         if (r->l == q) {
           if (q->l == t)
@@ -58,7 +58,7 @@ struct LazySplayTree {
     }
   }
 
-  Node *erase(Node *t) {
+  Node* erase(Node* t) {
     splay(t);
     Node *x = t->l, *y = t->r;
     delete t;
@@ -78,23 +78,23 @@ struct LazySplayTree {
     return t;
   }
 
-  Node *get_left(Node *t) const {
+  Node* get_left(Node* t) const {
     while (t->l) t = t->l;
     return t;
   }
 
-  Node *get_right(Node *t) const {
+  Node* get_right(Node* t) const {
     while (t->r) t = t->r;
     return t;
   }
 
-  void set_propagate(Node *t, const T &add) {
+  void set_propagate(Node* t, const T& add) {
     splay(t);
     propagate(t, add);
     push(t);
   }
 
-  pair<Node *, Node *> split(Node *t, int k) {
+  pair<Node*, Node*> split(Node* t, int k) {
     if (!t) return {nullptr, nullptr};
     push(t);
     if (k <= count(t->l)) {
@@ -112,14 +112,14 @@ struct LazySplayTree {
     }
   }
 
-  tuple<Node *, Node *, Node *> split3(Node *t, int a, int b) {
+  tuple<Node*, Node*, Node*> split3(Node* t, int a, int b) {
     splay(t);
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     return make_tuple(x.first, y.first, y.second);
   }
 
-  pair<Node *, Node *> split_lower_bound(Node *t, const T &key) {
+  pair<Node*, Node*> split_lower_bound(Node* t, const T& key) {
     if (!t) return {nullptr, nullptr};
     push(t);
     if (key <= t->key) {
@@ -137,7 +137,7 @@ struct LazySplayTree {
     }
   }
 
-  Node *merge_wuh(Node *t1, Node *t2) {
+  Node* merge_wuh(Node* t1, Node* t2) {
     if (!t1 and !t2) return nullptr;
     if (!t1) return splay(t2), t2;
     if (!t2) return splay(t1), t1;
@@ -149,8 +149,8 @@ struct LazySplayTree {
   }
 
   template <typename... Args>
-  Node *merge(Node *l, Args... rest) {
-    Node *r = merge(rest...);
+  Node* merge(Node* l, Args... rest) {
+    Node* r = merge(rest...);
     if (!l && !r) return nullptr;
     if (!l) return splay(r), r;
     if (!r) return splay(l), l;
@@ -163,7 +163,7 @@ struct LazySplayTree {
     return l;
   }
 
-  Node *insert_lower_bound(Node *t, const T &v) {
+  Node* insert_lower_bound(Node* t, const T& v) {
     if (t) {
       splay(t);
       auto x = split_lower_bound(t, v);
@@ -173,7 +173,7 @@ struct LazySplayTree {
     }
   }
 
-  Node *update(Node *t) {
+  Node* update(Node* t) {
     t->sz = 1;
     t->sum = t->key;
     if (t->l) t->sz += t->l->sz, t->sum += t->l->sum;
@@ -181,13 +181,13 @@ struct LazySplayTree {
     return t;
   }
 
-  void propagate(Node *t, const T &x) {
+  void propagate(Node* t, const T& x) {
     t->add += x;
     t->sum += count(t) * x;
     t->key += x;
   }
 
-  void push(Node *t) {
+  void push(Node* t) {
     if (t->add) {
       if (t->l) propagate(t->l, t->add);
       if (t->r) propagate(t->r, t->add);
@@ -196,7 +196,7 @@ struct LazySplayTree {
   }
 
  private:
-  void rotr(Node *t) {
+  void rotr(Node* t) {
     auto *x = t->p, *y = x->p;
     if ((x->l = t->r)) t->r->p = x;
     t->r = x, x->p = t;
@@ -208,7 +208,7 @@ struct LazySplayTree {
     }
   }
 
-  void rotl(Node *t) {
+  void rotl(Node* t) {
     auto *x = t->p, *y = x->p;
     if ((x->r = t->l)) t->l->p = x;
     t->l = x, x->p = t;
@@ -220,7 +220,7 @@ struct LazySplayTree {
     }
   }
 
-  Node *merge(Node *l) { return l; }
+  Node* merge(Node* l) { return l; }
 };
 
 template <typename T>
@@ -232,7 +232,7 @@ struct GeneralizedSlopeTrick {
   typename LazySplayTree<T>::Node *L, *R;
 
  private:
-  void push_R(const T &a) { R = st.insert_lower_bound(R, a); }
+  void push_R(const T& a) { R = st.insert_lower_bound(R, a); }
 
   T top_R() {
     if (R) {
@@ -249,7 +249,7 @@ struct GeneralizedSlopeTrick {
     return val;
   }
 
-  void push_L(const T &a) { L = st.insert_lower_bound(L, a); }
+  void push_L(const T& a) { L = st.insert_lower_bound(L, a); }
 
   T top_L() {
     if (L) {
@@ -279,11 +279,11 @@ struct GeneralizedSlopeTrick {
   Query query() { return (Query){top_L(), top_R(), min_f}; }
 
   // f(x) += a
-  void add_all(const T &a) { min_f += a; }
+  void add_all(const T& a) { min_f += a; }
 
   // add \_
   // f(x) += max(a - x, 0)
-  void add_a_minus_x(const T &a) {
+  void add_a_minus_x(const T& a) {
     min_f += max(T(0), a - top_R());
     push_R(a);
     push_L(pop_R());
@@ -291,7 +291,7 @@ struct GeneralizedSlopeTrick {
 
   // add _/
   // f(x) += max(x - a, 0)
-  void add_x_minus_a(const T &a) {
+  void add_x_minus_a(const T& a) {
     min_f += max(T(0), top_L() - a);
     push_L(a);
     push_R(pop_L());
@@ -299,7 +299,7 @@ struct GeneralizedSlopeTrick {
 
   // add \/
   // f(x) += abs(x - a)
-  void add_abs(const T &a) {
+  void add_abs(const T& a) {
     add_a_minus_x(a);
     add_x_minus_a(a);
   }
@@ -314,7 +314,7 @@ struct GeneralizedSlopeTrick {
 
   // \/ -> \_/
   // f_{new} (x) = min f(y) (x-b <= y <= x-a)
-  void shift(const T &a, const T &b) {
+  void shift(const T& a, const T& b) {
     assert(a <= b);
     if (L) st.set_propagate(L, a);
     if (R) st.set_propagate(R, b);
@@ -322,10 +322,10 @@ struct GeneralizedSlopeTrick {
 
   // \/. -> .\/
   // f_{new} (x) = f(x - a)
-  void shift(const T &a) { shift(a, a); }
+  void shift(const T& a) { shift(a, a); }
 
   // return f(x) L, R を破壊する
-  T get(const T &x) {
+  T get(const T& x) {
     T ret = min_f;
     {
       auto [l, r] = st.split_lower_bound(L, x);
@@ -347,7 +347,7 @@ struct GeneralizedSlopeTrick {
   }
 
   // f(x) += g(x)
-  void merge(GeneralizedSlopeTrick &g) {
+  void merge(GeneralizedSlopeTrick& g) {
     L = st.merge_wuh(L, g.L);
     R = st.merge_wuh(R, g.R);
     min_f += g.min_f;

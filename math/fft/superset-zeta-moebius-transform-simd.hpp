@@ -4,7 +4,7 @@
  * @brief Superset Zeta/Moebius Transform SIMD (上位集合のゼータ/メビウス変換,
  * SIMD)
  */
-__attribute__((target("avx2"))) void superset_zeta_transform_simd(int *buf,
+__attribute__((target("avx2"))) void superset_zeta_transform_simd(int* buf,
                                                                   int mod,
                                                                   int n) {
   assert((n & (n - 1)) == 0);
@@ -23,28 +23,28 @@ __attribute__((target("avx2"))) void superset_zeta_transform_simd(int *buf,
         }
       } else if (i == 4) {
         for (int k = 0; k < i; k += 4) {
-          auto a = _mm_loadu_si128((__m128i *)(buf + j + k));
-          auto b = _mm_loadu_si128((__m128i *)(buf + j + k + i));
+          auto a = _mm_loadu_si128((__m128i*)(buf + j + k));
+          auto b = _mm_loadu_si128((__m128i*)(buf + j + k + i));
           a = _mm_add_epi32(a, b);
           a = _mm_sub_epi32(
               a, _mm_and_si128(_mm_cmpgt_epi32(a, m_mod_one2), m_mod2));
-          _mm_storeu_si128((__m128i *)(buf + j + k), a);
+          _mm_storeu_si128((__m128i*)(buf + j + k), a);
         }
       } else {
         for (int k = 0; k < i; k += 8) {
-          auto a = _mm256_loadu_si256((__m256i *)(buf + j + k));
-          auto b = _mm256_loadu_si256((__m256i *)(buf + j + k + i));
+          auto a = _mm256_loadu_si256((__m256i*)(buf + j + k));
+          auto b = _mm256_loadu_si256((__m256i*)(buf + j + k + i));
           a = _mm256_add_epi32(a, b);
           a = _mm256_sub_epi32(
               a, _mm256_and_si256(_mm256_cmpgt_epi32(a, m_mod_one), m_mod));
-          _mm256_storeu_si256((__m256i *)(buf + j + k), a);
+          _mm256_storeu_si256((__m256i*)(buf + j + k), a);
         }
       }
     }
   }
 }
 
-__attribute__((target("avx2"))) void superset_moebius_transform_simd(int *buf,
+__attribute__((target("avx2"))) void superset_moebius_transform_simd(int* buf,
                                                                      int mod,
                                                                      int n) {
   assert((n & (n - 1)) == 0);
@@ -61,21 +61,21 @@ __attribute__((target("avx2"))) void superset_moebius_transform_simd(int *buf,
         }
       } else if (i == 4) {
         for (int k = 0; k < i; k += 4) {
-          auto a = _mm_loadu_si128((__m128i *)(buf + j + k));
-          auto b = _mm_loadu_si128((__m128i *)(buf + j + k + i));
+          auto a = _mm_loadu_si128((__m128i*)(buf + j + k));
+          auto b = _mm_loadu_si128((__m128i*)(buf + j + k + i));
           a = _mm_sub_epi32(a, b);
           a = _mm_add_epi32(a,
                             _mm_and_si128(_mm_cmpgt_epi32(m_zero2, a), m_mod2));
-          _mm_storeu_si128((__m128i *)(buf + j + k), a);
+          _mm_storeu_si128((__m128i*)(buf + j + k), a);
         }
       } else {
         for (int k = 0; k < i; k += 8) {
-          auto a = _mm256_loadu_si256((__m256i *)(buf + j + k));
-          auto b = _mm256_loadu_si256((__m256i *)(buf + j + k + i));
+          auto a = _mm256_loadu_si256((__m256i*)(buf + j + k));
+          auto b = _mm256_loadu_si256((__m256i*)(buf + j + k + i));
           a = _mm256_sub_epi32(a, b);
           a = _mm256_add_epi32(
               a, _mm256_and_si256(_mm256_cmpgt_epi32(m_zero, a), m_mod));
-          _mm256_storeu_si256((__m256i *)(buf + j + k), a);
+          _mm256_storeu_si256((__m256i*)(buf + j + k), a);
         }
       }
     }
@@ -83,7 +83,7 @@ __attribute__((target("avx2"))) void superset_moebius_transform_simd(int *buf,
 }
 
 template <int mod>
-int *bitwise_and_convolution_simd(int *f, int *g, int n) {
+int* bitwise_and_convolution_simd(int* f, int* g, int n) {
   assert((n & (n - 1)) == 0);
   superset_zeta_transform_simd(f, mod, n);
   superset_zeta_transform_simd(g, mod, n);

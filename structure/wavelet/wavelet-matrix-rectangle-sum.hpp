@@ -13,7 +13,7 @@ struct WaveletMatrixRectangleSum {
 
   WaveletMatrixRectangleSum() = default;
 
-  WaveletMatrixRectangleSum(const vector<T> &v, const vector<D> &d)
+  WaveletMatrixRectangleSum(const vector<T>& v, const vector<D>& d)
       : length(v.size()) {
     assert(v.size() == d.size());
     vector<int> l(length), r(length), ord(length);
@@ -71,7 +71,7 @@ struct CompressedWaveletMatrixRectangleSum {
   WaveletMatrixRectangleSum<int, MAXLOG, D> mat;
   vector<T> ys;
 
-  CompressedWaveletMatrixRectangleSum(const vector<T> &v, const vector<D> &d)
+  CompressedWaveletMatrixRectangleSum(const vector<T>& v, const vector<D>& d)
       : ys(v) {
     sort(begin(ys), end(ys));
     ys.erase(unique(begin(ys), end(ys)), end(ys));
@@ -80,7 +80,7 @@ struct CompressedWaveletMatrixRectangleSum {
     mat = WaveletMatrixRectangleSum<int, MAXLOG, D>(t, d);
   }
 
-  inline int get(const T &x) {
+  inline int get(const T& x) {
     return lower_bound(begin(ys), end(ys), x) - begin(ys);
   }
 

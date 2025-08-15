@@ -6,7 +6,7 @@ struct PartiallyPersistentUnionFind {
   PartiallyPersistentUnionFind() {}
 
   PartiallyPersistentUnionFind(int sz) : data(sz, -1), last(sz, 1e9), add(sz) {
-    for (auto &vs : add) vs.emplace_back(-1, -1);
+    for (auto& vs : add) vs.emplace_back(-1, -1);
   }
 
   bool unite(int t, int x, int y) {

@@ -35,7 +35,7 @@ struct ConnectedGridStates {
       que.emplace(0, 0);
     }
 
-    auto push = [&](int nxt, const vector<int> &state) -> int {
+    auto push = [&](int nxt, const vector<int>& state) -> int {
       auto it = ids[nxt].emplace(state, states[nxt].size());
       if (it.second) {
         states[nxt].emplace_back(state);
@@ -50,7 +50,7 @@ struct ConnectedGridStates {
       auto [i, id] = que.front();
       que.pop();
       int j = i + 1 == width ? 0 : i + 1;
-      auto &state = states[i][id];
+      auto& state = states[i][id];
       int mx = *max_element(state.begin(), state.end());
       {  // '.'
         if (state[i] == -1) {
@@ -98,10 +98,10 @@ struct ConnectedGridStates {
     for (int i = 0; i < width; i++) {
       int j = i + 1 == width ? 0 : i + 1;
       int sz = (int)states[j].size();
-      for (auto &k : nxt_ground[i]) {
+      for (auto& k : nxt_ground[i]) {
         if (k == -2) k = sz;
       }
-      for (auto &k : nxt_wall[i]) {
+      for (auto& k : nxt_wall[i]) {
         if (k == -2) k = sz;
       }
       nxt_ground[i].emplace_back(sz);
@@ -116,7 +116,7 @@ struct ConnectedGridStates {
 
   inline int set_ground(int k, int state) const { return nxt_ground[k][state]; }
 
-  inline const vector<vector<int> > &operator[](int k) const {
+  inline const vector<vector<int> >& operator[](int k) const {
     return states[k >= width ? k - width : k];
   }
 };

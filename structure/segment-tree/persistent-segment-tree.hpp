@@ -7,7 +7,7 @@ struct PersistentSegmentTree {
     S d;
     Node *l, *r;
   };
-  using NP = Node *;
+  using NP = Node*;
 
  private:
   int n{};
@@ -15,14 +15,14 @@ struct PersistentSegmentTree {
 
   NP merge(NP l, NP r) const { return new Node{m.op(l->d, r->d), l, r}; }
 
-  NP build(int l, int r, const vector<S> &v) const {
+  NP build(int l, int r, const vector<S>& v) const {
     if (l + 1 == r) return new Node{v[l], nullptr, nullptr};
     NP lp = build(l, (l + r) / 2, v);
     NP rp = build((l + r) / 2, r, v);
     return merge(lp, rp);
   }
 
-  NP set(int a, const S &x, NP k, int l, int r) const {
+  NP set(int a, const S& x, NP k, int l, int r) const {
     if (r <= a || a + 1 <= l) {
       return k;
     } else if (a <= l && r <= a + 1) {
@@ -33,7 +33,7 @@ struct PersistentSegmentTree {
     }
   }
 
-  NP apply(int a, const S &x, NP k, int l, int r) const {
+  NP apply(int a, const S& x, NP k, int l, int r) const {
     if (r <= a || a + 1 <= l) {
       return k;
     } else if (a <= l && r <= a + 1) {
@@ -60,12 +60,12 @@ struct PersistentSegmentTree {
 
   explicit PersistentSegmentTree(Monoid m, int n) : m(m), n(n) {}
 
-  NP build(const vector<S> &v) const {
+  NP build(const vector<S>& v) const {
     assert(n == (int)v.size());
     return build(0, n, v);
   }
 
-  NP set(NP t, int k, const S &x) const { return set(k, x, t, 0, n); }
+  NP set(NP t, int k, const S& x) const { return set(k, x, t, 0, n); }
 
   S get(NP t, int k) const {
     int l = 0, r = n;
@@ -82,7 +82,7 @@ struct PersistentSegmentTree {
     return t->d;
   }
 
-  NP apply(NP t, int k, const S &x) const { return apply(k, x, t, 0, n); }
+  NP apply(NP t, int k, const S& x) const { return apply(k, x, t, 0, n); }
 
   S prod(NP t, int a, int b) const { return prod(a, b, t, 0, n); }
 

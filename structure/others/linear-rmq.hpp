@@ -16,7 +16,7 @@ struct LinearRMQ {
 
   inline int get_min(int l, int r) const { return comp(l, r) ? l : r; }
 
-  explicit LinearRMQ(size_t n, const Comp &comp) : comp(comp) {
+  explicit LinearRMQ(size_t n, const Comp& comp) : comp(comp) {
     vector<int> st;
     st.reserve(32);
     large.emplace_back();
@@ -65,6 +65,6 @@ struct LinearRMQ {
 };
 
 template <typename Comp>
-LinearRMQ<Comp> get_linear_rmq(int n, const Comp &comp) {
+LinearRMQ<Comp> get_linear_rmq(int n, const Comp& comp) {
   return LinearRMQ<Comp>(n, comp);
 }

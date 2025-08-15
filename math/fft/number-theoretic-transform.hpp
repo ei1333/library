@@ -54,7 +54,7 @@ struct NumberTheoreticTransform {
     }
   }
 
-  void ntt(vector<int> &a) {
+  void ntt(vector<int>& a) {
     const int n = (int)a.size();
     assert((n & (n - 1)) == 0);
     int zeros = __builtin_ctz(n);

@@ -17,7 +17,7 @@ struct ConvexHullTrickAddMonotone {
     return n / d - ((n ^ d) < 0 and n % d != 0);
   }
 
-  static constexpr bool check(const P &a, const P &b, const P &c) {
+  static constexpr bool check(const P& a, const P& b, const P& c) {
     if (b.S == a.S || c.S == b.S)
       return sgn(b.F - a.F) * sgn(c.S - b.S) >= sgn(c.F - b.F) * sgn(b.S - a.S);
     // return (b.F-a.F)*(c.S-b.S) >= (b.S-a.S)*(c.F-b.F);
@@ -55,7 +55,7 @@ struct ConvexHullTrickAddMonotone {
     }
   }
 
-  static constexpr T get_y(const P &a, const T &x) { return a.F * x + a.S; }
+  static constexpr T get_y(const P& a, const T& x) { return a.F * x + a.S; }
 
   T query(T x) const {
     assert(!empty());

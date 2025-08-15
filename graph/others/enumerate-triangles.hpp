@@ -7,7 +7,7 @@
  *
  */
 template <typename T>
-vector<tuple<int, int, int> > enumerate_triangles(const Graph<T> &g) {
+vector<tuple<int, int, int> > enumerate_triangles(const Graph<T>& g) {
   int N = (int)g.size();
   using pi = pair<int, int>;
   vector<pi> vp(N);
@@ -16,7 +16,7 @@ vector<tuple<int, int, int> > enumerate_triangles(const Graph<T> &g) {
   }
   vector<vector<int> > h(N);
   for (int i = 0; i < N; i++) {
-    for (auto &j : g[i]) {
+    for (auto& j : g[i]) {
       if (vp[i] > vp[j]) {
         h[i].emplace_back(j);
       }

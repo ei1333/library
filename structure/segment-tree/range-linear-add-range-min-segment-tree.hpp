@@ -16,7 +16,7 @@ struct RangeLinearAddRangeMinSegmentTree {
 #define x first
 #define y second
 
-  static constexpr T2 cross(const Point &a, const Point &b, const Point &c) {
+  static constexpr T2 cross(const Point& a, const Point& b, const Point& c) {
     return T2(b.y - a.y) * (c.x - a.x) - T2(c.y - a.y) * (b.x - a.x);
   }
 
@@ -102,7 +102,7 @@ struct RangeLinearAddRangeMinSegmentTree {
   }
 
  public:
-  explicit RangeLinearAddRangeMinSegmentTree(const vector<T> &vs, const T &ti)
+  explicit RangeLinearAddRangeMinSegmentTree(const vector<T>& vs, const T& ti)
       : n(vs.size()), ti(ti) {
     sz = 1;
     height = 0;

@@ -12,17 +12,17 @@ struct AbstractBinaryIndexedTree {
  public:
   AbstractBinaryIndexedTree() = default;
 
-  explicit AbstractBinaryIndexedTree(int n, const F f, const T &e)
+  explicit AbstractBinaryIndexedTree(int n, const F f, const T& e)
       : n(n), f(f), e(e) {
     data.assign(n + 1, e);
   }
 
-  explicit AbstractBinaryIndexedTree(const vector<T> &v, const F f, const T &e)
+  explicit AbstractBinaryIndexedTree(const vector<T>& v, const F f, const T& e)
       : AbstractBinaryIndexedTree((int)v.size(), f, e) {
     build(v);
   }
 
-  void build(const vector<T> &v) {
+  void build(const vector<T>& v) {
     assert(n == (int)v.size());
     for (int i = 1; i <= n; i++) data[i] = v[i - 1];
     for (int i = 1; i <= n; i++) {
@@ -31,7 +31,7 @@ struct AbstractBinaryIndexedTree {
     }
   }
 
-  void apply(int k, const T &x) {
+  void apply(int k, const T& x) {
     for (++k; k <= n; k += k & -k) data[k] = f(data[k], x);
   }
 
@@ -44,13 +44,13 @@ struct AbstractBinaryIndexedTree {
 
 template <typename T, typename F>
 AbstractBinaryIndexedTree<T, F> get_abstract_binary_indexed_tree(int n,
-                                                                 const F &f,
-                                                                 const T &e) {
+                                                                 const F& f,
+                                                                 const T& e) {
   return AbstractBinaryIndexedTree{n, f, e};
 }
 
 template <typename T, typename F>
 AbstractBinaryIndexedTree<T, F> get_abstract_binary_indexed_tree(
-    const vector<T> &v, const F &f, const T &e) {
+    const vector<T>& v, const F& f, const T& e) {
   return AbstractBinaryIndexedTree{v, f, e};
 }

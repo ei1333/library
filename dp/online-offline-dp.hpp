@@ -1,8 +1,8 @@
 #include "monotone-minima.hpp"
 
 template <typename T, typename Compare = less<T> >
-vector<T> online_offline_dp(int W, const function<T(int, int)> &f,
-                            const Compare &comp = Compare()) {
+vector<T> online_offline_dp(int W, const function<T(int, int)>& f,
+                            const Compare& comp = Compare()) {
   vector<T> dp(W + 1);
   vector<int> isset(W + 1);
   int y_base = -1, x_base = -1;

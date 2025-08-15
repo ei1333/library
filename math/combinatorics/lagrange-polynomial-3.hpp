@@ -2,8 +2,8 @@
  * @brief Lagrange Polynomial(多項式補間, 値)
  */
 template <typename Mint, typename F>
-vector<Mint> lagrange_polynomial(const vector<Mint> &y, int64_t T, const int &m,
-                                 const F &multiply) {
+vector<Mint> lagrange_polynomial(const vector<Mint>& y, int64_t T, const int& m,
+                                 const F& multiply) {
   int k = (int)y.size() - 1;
   T %= Mint::mod();
   if (T <= k) {

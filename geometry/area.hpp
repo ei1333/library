@@ -3,7 +3,7 @@
 
 namespace geometry {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
-Real area(const Polygon &p) {
+Real area(const Polygon& p) {
   int n = (int)p.size();
   Real A = 0;
   for (int i = 0; i < n; ++i) {

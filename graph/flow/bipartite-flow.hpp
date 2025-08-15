@@ -57,7 +57,7 @@ struct BipartiteFlow {
   /* http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0334 */
   vector<pair<int, int> > lex_max_matching() {
     if (!matched) max_matching();
-    for (auto &vs : g) sort(begin(vs), end(vs));
+    for (auto& vs : g) sort(begin(vs), end(vs));
     vector<pair<int, int> > es;
     for (int i = 0; i < (int)n; i++) {
       if (match_l[i] == -1 || alive[i] == 0) {
@@ -85,12 +85,12 @@ struct BipartiteFlow {
   }
 
   /* https://atcoder.jp/contests/utpc2013/tasks/utpc2013_11 */
-  vector<int> lex_min_vertex_cover(const vector<int> &ord) {
+  vector<int> lex_min_vertex_cover(const vector<int>& ord) {
     assert(ord.size() == n + m);
     auto res = build_risidual_graph();
     vector<vector<int> > r_res(n + m + 2);
     for (int i = 0; i < (int)(n + m + 2); i++) {
-      for (auto &j : res[i]) r_res[j].emplace_back(i);
+      for (auto& j : res[i]) r_res[j].emplace_back(i);
     }
     queue<int> que;
     vector<int> visited(n + m + 2, -1);
@@ -101,7 +101,7 @@ struct BipartiteFlow {
       while (!que.empty()) {
         int idx = que.front();
         que.pop();
-        for (auto &to : r_res[idx]) {
+        for (auto& to : r_res[idx]) {
           if (visited[to] != -1) continue;
           visited[to] = 1;
           que.emplace(to);
@@ -115,7 +115,7 @@ struct BipartiteFlow {
       while (!que.empty()) {
         int idx = que.front();
         que.pop();
-        for (auto &to : res[idx]) {
+        for (auto& to : res[idx]) {
           if (visited[to] != -1) continue;
           visited[to] = 0;
           que.emplace(to);
@@ -125,7 +125,7 @@ struct BipartiteFlow {
     expand_right(n + m);
     expand_left(n + m + 1);
     vector<int> ret;
-    for (auto &t : ord) {
+    for (auto& t : ord) {
       if (t < (int)n) {
         expand_left(t);
         if (visited[t] & 1) ret.emplace_back(t);
@@ -190,7 +190,7 @@ struct BipartiteFlow {
         ris[T].emplace_back(i + n);
     }
     for (int i = 0; i < (int)n; i++) {
-      for (auto &j : g[i]) {
+      for (auto& j : g[i]) {
         if (match_l[i] == j)
           ris[j + n].emplace_back(i);
         else
@@ -210,7 +210,7 @@ struct BipartiteFlow {
     while (!que.empty()) {
       int idx = que.front();
       que.pop();
-      for (auto &to : res[idx]) {
+      for (auto& to : res[idx]) {
         if (visited[to]) continue;
         visited[to] = true;
         que.emplace(to);
@@ -231,7 +231,7 @@ struct BipartiteFlow {
     while (!que.empty()) {
       int a = que.front();
       que.pop();
-      for (auto &b : g[a]) {
+      for (auto& b : g[a]) {
         int c = match_r[b];
         if (c >= 0 && dist[c] == -1) {
           dist[c] = dist[a] + 1;
@@ -243,7 +243,7 @@ struct BipartiteFlow {
 
   bool find_min_dist_augment_path(int a) {
     used[a] = time_stamp;
-    for (auto &b : g[a]) {
+    for (auto& b : g[a]) {
       int c = match_r[b];
       if (c < 0 || (used[c] != (int)time_stamp && dist[c] == dist[a] + 1 &&
                     find_min_dist_augment_path(c))) {
@@ -257,7 +257,7 @@ struct BipartiteFlow {
 
   bool find_augment_path(int a) {
     used[a] = time_stamp;
-    for (auto &b : g[a]) {
+    for (auto& b : g[a]) {
       int c = match_r[b];
       if (c < 0 || (alive[c] == 1 && used[c] != (int)time_stamp &&
                     find_augment_path(c))) {

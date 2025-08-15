@@ -4,7 +4,7 @@ struct DequeOperateAggregation {
   struct Node {
     T val, sum;
 
-    Node(const T &val, const T &sum) : val(val), sum(sum) {}
+    Node(const T& val, const T& sum) : val(val), sum(sum) {}
   };
   const F f;
   vector<Node> st[2];
@@ -44,7 +44,7 @@ struct DequeOperateAggregation {
     }
   }
 
-  void push_front(const T &x) {
+  void push_front(const T& x) {
     if (st[0].empty()) {
       st[0].emplace_back(x, x);
     } else {
@@ -52,7 +52,7 @@ struct DequeOperateAggregation {
     }
   }
 
-  void push_back(const T &x) {
+  void push_back(const T& x) {
     if (st[1].empty()) {
       st[1].emplace_back(x, x);
     } else {
@@ -84,6 +84,6 @@ struct DequeOperateAggregation {
 };
 
 template <typename T, typename F>
-DequeOperateAggregation<T, F> get_deque_operate_aggregation(const F &f) {
+DequeOperateAggregation<T, F> get_deque_operate_aggregation(const F& f) {
   return DequeOperateAggregation<T, F>{f};
 }

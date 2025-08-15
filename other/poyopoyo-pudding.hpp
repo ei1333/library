@@ -43,11 +43,11 @@ struct PoyoPoyoPudding {
   }
 
   // ---- デバッグ／鑑賞用 ---- //
-  friend ostream &operator<<(ostream &os, const PoyoPoyoPudding &p) {
+  friend ostream& operator<<(ostream& os, const PoyoPoyoPudding& p) {
     os << "🍮 PoyoPoyoPudding (" << p.top << " / " << kMaxLayers
        << " layers)\n";
     for (size_t i = p.top; i-- > 0;) {
-      const auto &L = p.layers[i];
+      const auto& L = p.layers[i];
       os << "  ├─ Layer " << setw(2) << i << " | Sweet " << setw(3)
          << int(L.sweetness) << " | Spring " << setw(3) << int(L.springiness)
          << '\n';

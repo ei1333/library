@@ -24,7 +24,7 @@ struct DominatorTree : Graph<T> {
     const int N = (int)g.size();
     dfs(root);
     for (int i = 0; i < N; i++) {
-      for (auto &to : g[i]) {
+      for (auto& to : g[i]) {
         if (~semi[i]) rg.add_directed_edge(to, i);
       }
     }
@@ -53,16 +53,16 @@ struct DominatorTree : Graph<T> {
     idom[root] = root;
   }
 
-  int operator[](const int &k) const { return idom[k]; }
+  int operator[](const int& k) const { return idom[k]; }
 
  private:
   Graph<T> rg;
 
   struct UnionFind {
-    const vector<int> &semi;
+    const vector<int>& semi;
     vector<int> par, m;
 
-    explicit UnionFind(const vector<int> &semi)
+    explicit UnionFind(const vector<int>& semi)
         : semi(semi), par(semi.size()), m(semi.size()) {
       iota(begin(par), end(par), 0);
       iota(begin(m), end(m), 0);
@@ -89,7 +89,7 @@ struct DominatorTree : Graph<T> {
   void dfs(int idx) {
     semi[idx] = (int)ord.size();
     ord.emplace_back(idx);
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (~semi[to]) continue;
       dfs(to);
       par[to] = idx;

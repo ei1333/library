@@ -2,7 +2,7 @@
  * @brief Subproduct Tree
  */
 template <template <typename> class FPS, typename Mint>
-vector<FPS<Mint> > subproduct_tree(const FPS<Mint> &xs) {
+vector<FPS<Mint> > subproduct_tree(const FPS<Mint>& xs) {
   int n = (int)xs.size();
   int k = 1;
   while (k < n) k <<= 1;

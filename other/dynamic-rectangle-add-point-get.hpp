@@ -49,13 +49,13 @@ struct DynamicRectangleAddPointGet {
       StaticPointGetSolver solver;
       for (int k = l; k < m; k++) {
         if (holds_alternative<Rectangle>(queries[k])) {
-          auto &rect = get<Rectangle>(queries[k]);
+          auto& rect = get<Rectangle>(queries[k]);
           solver.add_rectangle(rect.l, rect.d, rect.r, rect.u, rect.w);
         }
       }
       for (int k = m; k < r; k++) {
         if (holds_alternative<Query>(queries[k])) {
-          auto &query = get<Query>(queries[k]);
+          auto& query = get<Query>(queries[k]);
           solver.add_query(query.x, query.y);
         }
       }

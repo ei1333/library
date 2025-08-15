@@ -19,7 +19,7 @@ struct ThreeEdgeConnectedComponents : Graph<T> {
     deg.assign(g.size(), 0);
     low.assign(g.size(), g.size());
     for (size_t from = 0; from < g.size(); from++) {
-      for (auto &to : g[from]) {
+      for (auto& to : g[from]) {
         if ((T)from < to) bcc.add_edge(from, to);
       }
     }
@@ -41,7 +41,7 @@ struct ThreeEdgeConnectedComponents : Graph<T> {
     }
   }
 
-  int operator[](const int &k) { return uf.find(k); }
+  int operator[](const int& k) { return uf.find(k); }
 
  private:
   vector<int> used;
@@ -49,7 +49,7 @@ struct ThreeEdgeConnectedComponents : Graph<T> {
   IncrementalBridgeConnectivity bcc;
   UnionFind uf;
 
-  void absorb(vector<int> &path, int v, int w = -1) {
+  void absorb(vector<int>& path, int v, int w = -1) {
     while (!path.empty()) {
       int x = path.back();
       if (w != -1 && (in[x] > in[w] or in[w] >= out[x])) break;
@@ -59,10 +59,10 @@ struct ThreeEdgeConnectedComponents : Graph<T> {
     }
   }
 
-  void dfs(int idx, int p, vector<int> &path, int &k) {
+  void dfs(int idx, int p, vector<int>& path, int& k) {
     used[idx] = 1;
     in[idx] = low[idx] = k++;
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (idx == to || bcc.find(idx) != bcc.find(to)) continue;
       deg[idx]++;
       if (to == p) {

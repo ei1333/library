@@ -7,7 +7,7 @@ struct LazySplayTreeForDashedEdge {
     Point key, sum;
     Lazy lazy, lbuf;
 
-    explicit Node(const Point &key)
+    explicit Node(const Point& key)
         : key(key),
           sum(key),
           lazy(Lazy::id()),
@@ -19,7 +19,7 @@ struct LazySplayTreeForDashedEdge {
 
   LazySplayTreeForDashedEdge() = default;
 
-  using NP = Node *;
+  using NP = Node*;
 
   void rotr(NP t) const {
     NP x = t->p, y = x->p;
@@ -56,13 +56,13 @@ struct LazySplayTreeForDashedEdge {
     return t;
   }
 
-  NP alloc(const Point &v) const {
+  NP alloc(const Point& v) const {
     auto t = new Node(v);
     update(t);
     return t;
   }
 
-  void propagate(NP t, const Lazy &lazy) const {
+  void propagate(NP t, const Lazy& lazy) const {
     t->key.propagate(lazy);
     t->sum.propagate(lazy);
     t->lbuf.propagate(lazy);
@@ -101,7 +101,7 @@ struct LazySplayTreeForDashedEdge {
     }
   }
 
-  NP insert(NP t, const Point &v) const {
+  NP insert(NP t, const Point& v) const {
     if (not t) {
       t = alloc(v);
       return t;
@@ -155,7 +155,7 @@ struct LazyTopTree {
 
     bool is_root() const { return not p or (p->l != this and p->r != this); }
 
-    Node(const Info &info)
+    Node(const Info& info)
         : info(info),
           l(nullptr),
           r(nullptr),
@@ -168,7 +168,7 @@ struct LazyTopTree {
   };
 
  public:
-  using NP = Node *;
+  using NP = Node*;
   const LazySplayTreeForDashedEdge<TreeDPInfo> splay_tree;
 
  private:
@@ -202,20 +202,20 @@ struct LazyTopTree {
     }
   }
 
-  void propagate_heavy(NP t, const Lazy &hlazy) {
+  void propagate_heavy(NP t, const Lazy& hlazy) {
     t->hlazy.propagate(hlazy);
     t->info.propagate(hlazy);
     t->sum.propagate(hlazy);
     t->mus.propagate(hlazy);
   }
 
-  void propagate_light(NP t, const Lazy &llazy) {
+  void propagate_light(NP t, const Lazy& llazy) {
     t->llazy.propagate(llazy);
     t->sum.propagate_light(llazy);
     t->mus.propagate_light(llazy);
   }
 
-  void propagate_all(NP t, const Lazy &lazy) {
+  void propagate_all(NP t, const Lazy& lazy) {
     propagate_heavy(t, lazy);
     propagate_light(t, lazy);
   }
@@ -356,7 +356,7 @@ struct LazyTopTree {
     push(t);
   }
 
-  NP alloc(const Info &v) {
+  NP alloc(const Info& v) {
     NP t = new Node(v);
     update(t);
     return t;
@@ -367,7 +367,7 @@ struct LazyTopTree {
     return u == v or u->p;
   }
 
-  vector<NP> build(vector<Info> &vs) {
+  vector<NP> build(vector<Info>& vs) {
     vector<NP> nodes(vs.size());
     for (int i = 0; i < (int)vs.size(); i++) {
       nodes[i] = alloc(vs[i]);
@@ -381,32 +381,32 @@ struct LazyTopTree {
     return expose(v);
   }
 
-  void set_key(NP t, const Info &v) {
+  void set_key(NP t, const Info& v) {
     expose(t);
     t->info = move(v);
     update(t);
   }
 
-  void set_propagate_path(NP t, const Lazy &lazy) {
+  void set_propagate_path(NP t, const Lazy& lazy) {
     expose(t);
     propagate_heavy(t, lazy);
     push(t);
     update(t);
   }
 
-  void set_propagate_path(NP u, NP v, const Lazy &lazy) {
+  void set_propagate_path(NP u, NP v, const Lazy& lazy) {
     evert(u);
     set_propagate_path(v, lazy);
   }
 
-  void set_propagate_all(NP t, const Lazy &lazy) {
+  void set_propagate_all(NP t, const Lazy& lazy) {
     expose(t);
     propagate_all(t, lazy);
     push(t);
     update(t);
   }
 
-  void set_propagate_subtree(NP t, const Lazy &lazy) {
+  void set_propagate_subtree(NP t, const Lazy& lazy) {
     expose(t);
     NP l = t->l;
     t->l = nullptr;
@@ -416,22 +416,22 @@ struct LazyTopTree {
     update(t);
   }
 
-  void set_propagate_subtree(NP r, NP u, const Lazy &lazy) {
+  void set_propagate_subtree(NP r, NP u, const Lazy& lazy) {
     evert(r);
     set_propagate_subtree(u, lazy);
   }
 
-  const Path &query(NP u) {
+  const Path& query(NP u) {
     evert(u);
     return u->sum;
   }
 
-  const Path &query_path(NP u) {
+  const Path& query_path(NP u) {
     expose(u);
     return u->sum;
   }
 
-  const Path &query_path(NP u, NP v) {
+  const Path& query_path(NP u, NP v) {
     evert(u);
     return query_path(v);
   }

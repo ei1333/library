@@ -7,11 +7,11 @@ struct StaticTopTreeDP {
 
   using STT = StaticTopTree<G>;
 
-  const STT &g;
+  const STT& g;
 
-  const TreeDPInfo &info;
+  const TreeDPInfo& info;
 
-  explicit StaticTopTreeDP(const STT &g, const TreeDPInfo &info)
+  explicit StaticTopTreeDP(const STT& g, const TreeDPInfo& info)
       : g(g), info(info) {
     dp.resize(g.size());
     dfs(g.root);

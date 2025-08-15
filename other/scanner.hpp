@@ -3,10 +3,10 @@
  */
 struct Scanner {
  public:
-  explicit Scanner(FILE *fp) : fp(fp) {}
+  explicit Scanner(FILE* fp) : fp(fp) {}
 
   template <typename T, typename... E>
-  void read(T &t, E &...e) {
+  void read(T& t, E&... e) {
     read_single(t);
     read(e...);
   }
@@ -15,9 +15,9 @@ struct Scanner {
   static constexpr size_t line_size = 1 << 16;
   static constexpr size_t int_digits = 20;
   char line[line_size + 1] = {};
-  FILE *fp = nullptr;
-  char *st = line;
-  char *ed = line;
+  FILE* fp = nullptr;
+  char* st = line;
+  char* ed = line;
 
   void read() {}
 
@@ -26,7 +26,7 @@ struct Scanner {
   void reread() {
     ptrdiff_t len = ed - st;
     memmove(line, st, len);
-    char *tmp = line + len;
+    char* tmp = line + len;
     ed = tmp + fread(tmp, 1, line_size - len, fp);
     *ed = 0;
     st = line;
@@ -41,7 +41,7 @@ struct Scanner {
   }
 
   template <typename T, enable_if_t<is_integral<T>::value, int> = 0>
-  void read_single(T &s) {
+  void read_single(T& s) {
     skip_space();
     if (st + int_digits >= ed) reread();
     bool neg = false;
@@ -57,11 +57,11 @@ struct Scanner {
   }
 
   template <typename T, enable_if_t<is_same<T, string>::value, int> = 0>
-  void read_single(T &s) {
+  void read_single(T& s) {
     s = "";
     skip_space();
     while (true) {
-      char *base = st;
+      char* base = st;
       while (*st && !is_space(*st)) ++st;
       s += string(base, st);
       if (st != ed) return;
@@ -70,7 +70,7 @@ struct Scanner {
   }
 
   template <typename T>
-  void read_single(vector<T> &s) {
-    for (auto &d : s) read(d);
+  void read_single(vector<T>& s) {
+    for (auto& d : s) read(d);
   }
 };

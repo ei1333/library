@@ -7,7 +7,7 @@
 
 namespace geometry {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
-Real ca_cp_impl(const Circle &c, const Point &a, const Point &b) {
+Real ca_cp_impl(const Circle& c, const Point& a, const Point& b) {
   auto va = c.p - a, vb = c.p - b;
   Real f = cross(va, vb), ret = 0;
   if (sign(f) == 0) return ret;
@@ -27,7 +27,7 @@ Real ca_cp_impl(const Circle &c, const Point &a, const Point &b) {
   return ret;
 }
 
-Real common_area_cp(const Circle &c, const Polygon &p) {
+Real common_area_cp(const Circle& c, const Polygon& p) {
   if (p.size() < 3) return 0;
   Real A = 0;
   for (int i = 0; i < p.size(); i++) {

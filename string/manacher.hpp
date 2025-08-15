@@ -35,7 +35,7 @@ vector<int> manacher(S s, bool calc_even = true) {
       if (((i ^ rad[i]) & 1) == 0) rad[i]--;
     }
   } else {
-    for (auto &&x : rad) x = 2 * x - 1;
+    for (auto&& x : rad) x = 2 * x - 1;
   }
   return rad;
 }

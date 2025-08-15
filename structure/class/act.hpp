@@ -4,7 +4,7 @@ template <typename F2, typename Composition, typename Id>
 struct LambdaAct {
   using F = F2;
 
-  F composition(const F &f, const F &g) const { return _composition(f, g); }
+  F composition(const F& f, const F& g) const { return _composition(f, g); }
 
   F id() const { return _id(); }
 

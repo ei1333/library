@@ -28,48 +28,48 @@ struct MontgomeryModInt {
  public:
   MontgomeryModInt() : x{} {}
 
-  MontgomeryModInt(const i64 &a)
+  MontgomeryModInt(const i64& a)
       : x(reduce(u64(fast ? a : (a % mod() + mod())) * n2)) {}
 
-  static constexpr u32 reduce(const u64 &b) {
+  static constexpr u32 reduce(const u64& b) {
     return u32(b >> 32) + mod() - u32((u64(u32(b) * r) * mod()) >> 32);
   }
 
-  mint &operator+=(const mint &p) {
+  mint& operator+=(const mint& p) {
     if (i32(x += p.x - 2 * mod()) < 0) x += 2 * mod();
     return *this;
   }
 
-  mint &operator-=(const mint &p) {
+  mint& operator-=(const mint& p) {
     if (i32(x -= p.x) < 0) x += 2 * mod();
     return *this;
   }
 
-  mint &operator*=(const mint &p) {
+  mint& operator*=(const mint& p) {
     x = reduce(u64(x) * p.x);
     return *this;
   }
 
-  mint &operator/=(const mint &p) {
+  mint& operator/=(const mint& p) {
     *this *= p.inv();
     return *this;
   }
 
   mint operator-() const { return mint() - *this; }
 
-  mint operator+(const mint &p) const { return mint(*this) += p; }
+  mint operator+(const mint& p) const { return mint(*this) += p; }
 
-  mint operator-(const mint &p) const { return mint(*this) -= p; }
+  mint operator-(const mint& p) const { return mint(*this) -= p; }
 
-  mint operator*(const mint &p) const { return mint(*this) *= p; }
+  mint operator*(const mint& p) const { return mint(*this) *= p; }
 
-  mint operator/(const mint &p) const { return mint(*this) /= p; }
+  mint operator/(const mint& p) const { return mint(*this) /= p; }
 
-  bool operator==(const mint &p) const {
+  bool operator==(const mint& p) const {
     return (x >= mod() ? x - mod() : x) == (p.x >= mod() ? p.x - mod() : p.x);
   }
 
-  bool operator!=(const mint &p) const {
+  bool operator!=(const mint& p) const {
     return (x >= mod() ? x - mod() : x) != (p.x >= mod() ? p.x - mod() : p.x);
   }
 
@@ -90,11 +90,11 @@ struct MontgomeryModInt {
 
   mint inv() const { return pow(mod() - 2); }
 
-  friend ostream &operator<<(ostream &os, const mint &p) {
+  friend ostream& operator<<(ostream& os, const mint& p) {
     return os << p.val();
   }
 
-  friend istream &operator>>(istream &is, mint &a) {
+  friend istream& operator>>(istream& is, mint& a) {
     i64 t;
     is >> t;
     a = mint(t);

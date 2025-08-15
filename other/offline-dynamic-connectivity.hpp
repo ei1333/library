@@ -25,7 +25,7 @@ struct OfflineDynamicConnectivity {
     if (--cnt[e] == 0) pend.emplace_back(make_pair(appear[e], idx), e);
   }
 
-  void add(int a, int b, const edge &e, int k, int l, int r) {
+  void add(int a, int b, const edge& e, int k, int l, int r) {
     if (r <= a || b <= l) return;
     if (a <= l && r <= b) {
       seg[k].emplace_back(e);
@@ -35,21 +35,21 @@ struct OfflineDynamicConnectivity {
     add(a, b, e, 2 * k + 2, (l + r) >> 1, r);
   }
 
-  void add(int a, int b, const edge &e) { add(a, b, e, 0, 0, segsz); }
+  void add(int a, int b, const edge& e) { add(a, b, e, 0, 0, segsz); }
 
   void build() {
-    for (auto &p : cnt) {
+    for (auto& p : cnt) {
       if (p.second > 0)
         pend.emplace_back(make_pair(appear[p.first], Q), p.first);
     }
-    for (auto &s : pend) {
+    for (auto& s : pend) {
       add(s.first.first, s.first.second, s.second);
     }
   }
 
-  void run(const function<void(int)> &f, int k = 0) {
+  void run(const function<void(int)>& f, int k = 0) {
     int add = 0;
-    for (auto &e : seg[k]) {
+    for (auto& e : seg[k]) {
       add += uf.unite(e.first, e.second);
     }
     comp -= add;
@@ -60,7 +60,7 @@ struct OfflineDynamicConnectivity {
       int query_index = k - (segsz - 1);
       f(query_index);
     }
-    for (auto &e : seg[k]) {
+    for (auto& e : seg[k]) {
       uf.undo();
     }
     comp += add;

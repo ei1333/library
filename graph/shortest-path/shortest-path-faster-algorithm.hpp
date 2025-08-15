@@ -6,7 +6,7 @@
  * @brief Shortest-Path-Faster-Algorithm(単一始点最短路)
  */
 template <typename T>
-vector<T> shortest_path_faster_algorithm(const Graph<T> &g, int s) {
+vector<T> shortest_path_faster_algorithm(const Graph<T>& g, int s) {
   const auto INF = numeric_limits<T>::max();
   vector<T> dist(g.size(), INF);
   vector<int> pending(g.size(), 0), times(g.size(), 0);
@@ -21,7 +21,7 @@ vector<T> shortest_path_faster_algorithm(const Graph<T> &g, int s) {
     int p = que.front();
     que.pop();
     pending[p] = false;
-    for (auto &e : g[p]) {
+    for (auto& e : g[p]) {
       T next_cost = dist[p] + e.cost;
       if (next_cost >= dist[e.to]) continue;
       dist[e.to] = next_cost;

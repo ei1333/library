@@ -11,7 +11,7 @@ struct MinimumSteinerTree {
 
   MinimumSteinerTree() = default;
 
-  explicit MinimumSteinerTree(const Graph<T> &g, const vector<int> &terminal)
+  explicit MinimumSteinerTree(const Graph<T>& g, const vector<int>& terminal)
       : g(g),
         terminal(terminal),
         dp(1 << terminal.size(), vector<T>(g.size(), infty)),
@@ -46,7 +46,7 @@ struct MinimumSteinerTree {
         que.pop();
         if (dp[i][v] < now) continue;
         for (int j = 0; j < (int)g[v].size(); j++) {
-          const auto &e = g[v][j];
+          const auto& e = g[v][j];
           if (now + e.cost < dp[i][e.to]) {
             dp[i][e.to] = now + e.cost;
             pre[i][e.to] = {v, j};
@@ -81,7 +81,7 @@ struct MinimumSteinerTree {
   }
 
  private:
-  const Graph<T> &g;
-  const vector<int> &terminal;
+  const Graph<T>& g;
+  const vector<int>& terminal;
   vector<vector<pi> > pre;
 };

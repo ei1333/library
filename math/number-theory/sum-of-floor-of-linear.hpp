@@ -1,5 +1,5 @@
 template <typename T>
-T sum_of_floor_of_linear(const T &n, const T &m, T a, T b) {
+T sum_of_floor_of_linear(const T& n, const T& m, T a, T b) {
   T ret = 0;
   if (a >= m) ret += (n - 1) * n * (a / m) / 2, a %= m;
   if (b >= m) ret += n * (b / m), b %= m;

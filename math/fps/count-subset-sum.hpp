@@ -2,7 +2,7 @@
  * @brief Count Subset Sum
  */
 template <template <typename> class FPS, typename Mint>
-FPS<Mint> count_subset_sum(vector<Mint> &c) {
+FPS<Mint> count_subset_sum(vector<Mint>& c) {
   const int n = (int)c.size();
   vector<Mint> inv(n);
   inv[0] = Mint(0);

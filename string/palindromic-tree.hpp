@@ -33,9 +33,9 @@ struct PalindromicTree {
     return cur;
   }
 
-  bool output_dfs(int v, int id, vector<T> &ret) const {
+  bool output_dfs(int v, int id, vector<T>& ret) const {
     if (v == id) return true;
-    for (auto &nxt : ns[v].link) {
+    for (auto& nxt : ns[v].link) {
       if (output_dfs(nxt.second, id, ret)) {
         ret.emplace_back(nxt.first);
         return true;
@@ -50,14 +50,14 @@ struct PalindromicTree {
     ns.emplace_back(0, 0);   // 長さ 0
   }
 
-  PalindromicTree(const string &S) : PalindromicTree() { add(S); }
+  PalindromicTree(const string& S) : PalindromicTree() { add(S); }
 
   int diff(int t) const {
     if (ns[t].suffix_link <= 0) return -1;
     return ns[t].len - ns[ns[t].suffix_link].len;
   }
 
-  int add(const T &x) {
+  int add(const T& x) {
     int idx = (int)vs.size();
     vs.emplace_back(x);
     int cur = find_prev_palindrome(ptr);
@@ -87,7 +87,7 @@ struct PalindromicTree {
   // * apply(node_idx, pre_idx): 頂点 node_idx に 頂点 pre_idx の結果を加える
   // * update: S[i]を末尾とする回文の頂点番号の集合
   template <typename I, typename U>
-  vector<int> update_dp(const I &init, const U &apply) {
+  vector<int> update_dp(const I& init, const U& apply) {
     int i = (int)vs.size() - 1;
     int id = ptr;
     vector<int> update;
@@ -102,8 +102,8 @@ struct PalindromicTree {
     return update;
   }
 
-  void add(const string &s) {
-    for (auto &x : s) add(x);
+  void add(const string& s) {
+    for (auto& x : s) add(x);
   }
 
   vector<int> build_frequency() const {
@@ -131,5 +131,5 @@ struct PalindromicTree {
 
   int size() const { return (int)ns.size(); }
 
-  Node &operator[](int idx) { return ns[idx]; }
+  Node& operator[](int idx) { return ns[idx]; }
 };

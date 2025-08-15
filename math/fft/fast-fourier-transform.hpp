@@ -8,11 +8,11 @@ struct C {
 
   C(real x, real y) : x(x), y(y) {}
 
-  inline C operator+(const C &c) const { return C(x + c.x, y + c.y); }
+  inline C operator+(const C& c) const { return C(x + c.x, y + c.y); }
 
-  inline C operator-(const C &c) const { return C(x - c.x, y - c.y); }
+  inline C operator-(const C& c) const { return C(x - c.x, y - c.y); }
 
-  inline C operator*(const C &c) const {
+  inline C operator*(const C& c) const {
     return C(x * c.x - y * c.y, x * c.y + y * c.x);
   }
 
@@ -42,7 +42,7 @@ void ensure_base(int nbase) {
   }
 }
 
-void fft(vector<C> &a, int n) {
+void fft(vector<C>& a, int n) {
   assert((n & (n - 1)) == 0);
   int zeros = __builtin_ctz(n);
   ensure_base(zeros);
@@ -63,7 +63,7 @@ void fft(vector<C> &a, int n) {
   }
 }
 
-vector<int64_t> multiply(const vector<int> &a, const vector<int> &b) {
+vector<int64_t> multiply(const vector<int>& a, const vector<int>& b) {
   int need = (int)a.size() + (int)b.size() - 1;
   int nbase = 1;
   while ((1 << nbase) < need) nbase++;

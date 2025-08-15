@@ -50,10 +50,10 @@ struct WaveletMatrix {
     return ret;
   }
 
-  T operator[](const int &k) { return access(k); }
+  T operator[](const int& k) { return access(k); }
 
   // count i s.t. (0 <= i < r) && v[i] == x
-  int rank(const T &x, int r) {
+  int rank(const T& x, int r) {
     int l = 0;
     for (int level = MAXLOG - 1; level >= 0; level--) {
       tie(l, r) = succ((x >> level) & 1, l, r, level);
@@ -116,7 +116,7 @@ struct CompressedWaveletMatrix {
   WaveletMatrix<int, MAXLOG> mat;
   vector<T> ys;
 
-  CompressedWaveletMatrix(const vector<T> &v) : ys(v) {
+  CompressedWaveletMatrix(const vector<T>& v) : ys(v) {
     sort(begin(ys), end(ys));
     ys.erase(unique(begin(ys), end(ys)), end(ys));
     vector<int> t(v.size());
@@ -124,15 +124,15 @@ struct CompressedWaveletMatrix {
     mat = WaveletMatrix<int, MAXLOG>(t);
   }
 
-  inline int get(const T &x) {
+  inline int get(const T& x) {
     return lower_bound(begin(ys), end(ys), x) - begin(ys);
   }
 
   T access(int k) { return ys[mat.access(k)]; }
 
-  T operator[](const int &k) { return access(k); }
+  T operator[](const int& k) { return access(k); }
 
-  int rank(const T &x, int r) {
+  int rank(const T& x, int r) {
     auto pos = get(x);
     if (pos == ys.size() || ys[pos] != x) return 0;
     return mat.rank(pos, r);

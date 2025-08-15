@@ -14,7 +14,7 @@ struct StronglyConnectedComponents : Graph<T> {
   void build() {
     rg = Graph<T>(g.size());
     for (size_t i = 0; i < g.size(); i++) {
-      for (auto &e : g[i]) {
+      for (auto& e : g[i]) {
         rg.add_directed_edge(e.to, e.from, e.cost);
       }
     }
@@ -27,7 +27,7 @@ struct StronglyConnectedComponents : Graph<T> {
       if (comp[i] == -1) rdfs(i, ptr), ptr++;
     dag = Graph<T>(ptr);
     for (size_t i = 0; i < g.size(); i++) {
-      for (auto &e : g[i]) {
+      for (auto& e : g[i]) {
         int x = comp[e.from], y = comp[e.to];
         if (x == y) continue;
         dag.add_directed_edge(x, y, e.cost);
@@ -47,13 +47,13 @@ struct StronglyConnectedComponents : Graph<T> {
 
   void dfs(int idx) {
     if (exchange(used[idx], true)) return;
-    for (auto &to : g[idx]) dfs(to);
+    for (auto& to : g[idx]) dfs(to);
     order.push_back(idx);
   }
 
   void rdfs(int idx, int cnt) {
     if (comp[idx] != -1) return;
     comp[idx] = cnt;
-    for (auto &to : rg.g[idx]) rdfs(to, cnt);
+    for (auto& to : rg.g[idx]) rdfs(to, cnt);
   }
 };

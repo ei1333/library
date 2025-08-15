@@ -27,7 +27,7 @@ struct RandomizedBinarySearchTree {
 
     Node() = default;
 
-    Node(const Monoid &k, const OperatorMonoid &p)
+    Node(const Monoid& k, const OperatorMonoid& p)
         : cnt(1), key(k), sum(k), lazy(p), l(nullptr), r(nullptr) {}
   };
 
@@ -41,7 +41,7 @@ struct RandomizedBinarySearchTree {
   const H h;
   const P p;
 
-  RandomizedBinarySearchTree(int sz, const F &f, const Monoid &M1)
+  RandomizedBinarySearchTree(int sz, const F& f, const Monoid& M1)
       : pool(sz),
         ptr(0),
         f(f),
@@ -51,28 +51,28 @@ struct RandomizedBinarySearchTree {
         M1(M1),
         OM0(OperatorMonoid()) {}
 
-  RandomizedBinarySearchTree(int sz, const F &f, const G &g, const H &h,
-                             const P &p, const Monoid &M1,
-                             const OperatorMonoid &OM0)
+  RandomizedBinarySearchTree(int sz, const F& f, const G& g, const H& h,
+                             const P& p, const Monoid& M1,
+                             const OperatorMonoid& OM0)
       : pool(sz), ptr(0), f(f), g(g), h(h), p(p), M1(M1), OM0(OM0) {}
 
-  inline Node *alloc(const Monoid &key) {
+  inline Node* alloc(const Monoid& key) {
     return &(pool[ptr++] = Node(key, OM0));
   }
 
-  virtual Node *clone(Node *t) { return t; }
+  virtual Node* clone(Node* t) { return t; }
 
-  inline int count(const Node *t) { return t ? t->cnt : 0; }
+  inline int count(const Node* t) { return t ? t->cnt : 0; }
 
-  inline Monoid sum(const Node *t) { return t ? t->sum : M1; }
+  inline Monoid sum(const Node* t) { return t ? t->sum : M1; }
 
-  inline Node *update(Node *t) {
+  inline Node* update(Node* t) {
     t->cnt = count(t->l) + count(t->r) + 1;
     t->sum = f(f(sum(t->l), t->key), sum(t->r));
     return t;
   }
 
-  Node *propagate(Node *t) {
+  Node* propagate(Node* t) {
     t = clone(t);
     if (t->lazy != OM0) {
       t->key = g(t->key, p(t->lazy, 1));
@@ -91,7 +91,7 @@ struct RandomizedBinarySearchTree {
     return update(t);
   }
 
-  Node *merge(Node *l, Node *r) {
+  Node* merge(Node* l, Node* r) {
     if (!l || !r) return l ? l : r;
     if (xor128() % (l->cnt + r->cnt) < l->cnt) {
       l = propagate(l);
@@ -104,7 +104,7 @@ struct RandomizedBinarySearchTree {
     }
   }
 
-  pair<Node *, Node *> split(Node *t, int k) {
+  pair<Node*, Node*> split(Node* t, int k) {
     if (!t) return {t, t};
     t = propagate(t);
     if (k <= count(t->l)) {
@@ -118,17 +118,17 @@ struct RandomizedBinarySearchTree {
     }
   }
 
-  Node *build(int l, int r, const vector<Monoid> &v) {
+  Node* build(int l, int r, const vector<Monoid>& v) {
     if (l + 1 >= r) return alloc(v[l]);
     return merge(build(l, (l + r) >> 1, v), build((l + r) >> 1, r, v));
   }
 
-  Node *build(const vector<Monoid> &v) {
+  Node* build(const vector<Monoid>& v) {
     ptr = 0;
     return build(0, (int)v.size(), v);
   }
 
-  void dump(Node *r, typename vector<Monoid>::iterator &it) {
+  void dump(Node* r, typename vector<Monoid>::iterator& it) {
     if (!r) return;
     r = propagate(r);
     dump(r->l, it);
@@ -136,31 +136,31 @@ struct RandomizedBinarySearchTree {
     dump(r->r, ++it);
   }
 
-  vector<Monoid> dump(Node *r) {
+  vector<Monoid> dump(Node* r) {
     vector<Monoid> v((size_t)count(r));
     auto it = begin(v);
     dump(r, it);
     return v;
   }
 
-  string to_string(Node *r) {
+  string to_string(Node* r) {
     auto s = dump(r);
     string ret;
     for (int i = 0; i < s.size(); i++) ret += ", ";
     return (ret);
   }
 
-  void insert(Node *&t, int k, const Monoid &v) {
+  void insert(Node*& t, int k, const Monoid& v) {
     auto x = split(t, k);
     t = merge(merge(x.first, alloc(v)), x.second);
   }
 
-  void erase(Node *&t, int k) {
+  void erase(Node*& t, int k) {
     auto x = split(t, k);
     t = merge(x.first, split(x.second, 1).second);
   }
 
-  Monoid query(Node *&t, int a, int b) {
+  Monoid query(Node*& t, int a, int b) {
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     auto ret = sum(y.first);
@@ -168,14 +168,14 @@ struct RandomizedBinarySearchTree {
     return ret;
   }
 
-  void set_propagate(Node *&t, int a, int b, const OperatorMonoid &p) {
+  void set_propagate(Node*& t, int a, int b, const OperatorMonoid& p) {
     auto x = split(t, a);
     auto y = split(x.second, b - a);
     y.first->lazy = h(y.first->lazy, p);
     t = merge(x.first, merge(propagate(y.first), y.second));
   }
 
-  void set_element(Node *&t, int k, const Monoid &x) {
+  void set_element(Node*& t, int k, const Monoid& x) {
     t = propagate(t);
     if (k < count(t->l))
       set_element(t->l, k, x);
@@ -186,9 +186,9 @@ struct RandomizedBinarySearchTree {
     t = update(t);
   }
 
-  int size(Node *t) { return count(t); }
+  int size(Node* t) { return count(t); }
 
-  bool empty(Node *t) { return !t; }
+  bool empty(Node* t) { return !t; }
 
-  Node *makeset() { return nullptr; }
+  Node* makeset() { return nullptr; }
 };

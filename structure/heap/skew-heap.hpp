@@ -8,15 +8,15 @@ struct SkewHeap {
     Node *l, *r;
     int idx;
 
-    explicit Node(const T &key, int idx)
+    explicit Node(const T& key, int idx)
         : key(key), idx(idx), lazy(0), l(nullptr), r(nullptr) {}
   };
 
   SkewHeap() = default;
 
-  Node *alloc(const T &key, int idx = -1) { return new Node(key, idx); }
+  Node* alloc(const T& key, int idx = -1) { return new Node(key, idx); }
 
-  Node *propagate(Node *t) {
+  Node* propagate(Node* t) {
     if (t && t->lazy != 0) {
       if (t->l) t->l->lazy += t->lazy;
       if (t->r) t->r->lazy += t->lazy;
@@ -26,7 +26,7 @@ struct SkewHeap {
     return t;
   }
 
-  Node *meld(Node *x, Node *y) {
+  Node* meld(Node* x, Node* y) {
     propagate(x), propagate(y);
     if (!x || !y) return x ? x : y;
     if ((x->key < y->key) ^ isMin) swap(x, y);
@@ -35,16 +35,16 @@ struct SkewHeap {
     return x;
   }
 
-  Node *push(Node *t, const T &key, int idx = -1) {
+  Node* push(Node* t, const T& key, int idx = -1) {
     return meld(t, alloc(key, idx));
   }
 
-  Node *pop(Node *t) {
+  Node* pop(Node* t) {
     assert(t != nullptr);
     return meld(t->l, t->r);
   }
 
-  Node *add(Node *t, const T &lazy) {
+  Node* add(Node* t, const T& lazy) {
     if (t) {
       t->lazy += lazy;
       propagate(t);
@@ -52,5 +52,5 @@ struct SkewHeap {
     return t;
   }
 
-  Node *make_root() { return nullptr; }
+  Node* make_root() { return nullptr; }
 };

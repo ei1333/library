@@ -38,7 +38,7 @@ struct RMQLowestCommonAncestor : Graph<T> {
     in[idx] = (int)ord.size();
     ord.emplace_back(idx);
     dep.emplace_back(d);
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to != par) {
         dfs(to, idx, d + 1);
         ord.emplace_back(idx);

@@ -47,7 +47,7 @@ struct HeavyLightDecomposition : Graph<T> {
   int dist(int u, int v) const { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }
 
   template <typename E, typename Q, typename F, typename S>
-  E query(int u, int v, const E &ti, const Q &q, const F &f, const S &s,
+  E query(int u, int v, const E& ti, const Q& q, const F& f, const S& s,
           bool edge = false) {
     E l = ti, r = ti;
     for (;; v = par[head[v]]) {
@@ -59,13 +59,13 @@ struct HeavyLightDecomposition : Graph<T> {
   }
 
   template <typename E, typename Q, typename F>
-  E query(int u, int v, const E &ti, const Q &q, const F &f,
+  E query(int u, int v, const E& ti, const Q& q, const F& f,
           bool edge = false) {
     return query(u, v, ti, q, f, f, edge);
   }
 
   template <typename Q>
-  void add(int u, int v, const Q &q, bool edge = false) {
+  void add(int u, int v, const Q& q, bool edge = false) {
     for (;; v = par[head[v]]) {
       if (in[u] > in[v]) swap(u, v);
       if (head[u] == head[v]) break;
@@ -75,7 +75,7 @@ struct HeavyLightDecomposition : Graph<T> {
   }
 
   /* {parent, child} */
-  vector<pair<int, int> > compress(vector<int> &remark) {
+  vector<pair<int, int> > compress(vector<int>& remark) {
     auto cmp = [&](int a, int b) { return in[a] < in[b]; };
     sort(begin(remark), end(remark), cmp);
     remark.erase(unique(begin(remark), end(remark)), end(remark));
@@ -86,7 +86,7 @@ struct HeavyLightDecomposition : Graph<T> {
     remark.erase(unique(begin(remark), end(remark)), end(remark));
     vector<pair<int, int> > es;
     stack<int> st;
-    for (auto &k : remark) {
+    for (auto& k : remark) {
       while (!st.empty() && out[st.top()] <= in[k]) st.pop();
       if (!st.empty()) es.emplace_back(st.top(), k);
       st.emplace(k);
@@ -94,7 +94,7 @@ struct HeavyLightDecomposition : Graph<T> {
     return es;
   }
 
-  explicit HeavyLightDecomposition(const Graph<T> &g) : Graph<T>(g) {}
+  explicit HeavyLightDecomposition(const Graph<T>& g) : Graph<T>(g) {}
 
  private:
   void dfs_sz(int idx, int p, int d) {
@@ -102,7 +102,7 @@ struct HeavyLightDecomposition : Graph<T> {
     par[idx] = p;
     sz[idx] = 1;
     if (g[idx].size() && g[idx][0] == p) swap(g[idx][0], g[idx].back());
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to == p) continue;
       dfs_sz(to, idx, d + 1);
       sz[idx] += sz[to];
@@ -110,10 +110,10 @@ struct HeavyLightDecomposition : Graph<T> {
     }
   }
 
-  void dfs_hld(int idx, int p, int &times) {
+  void dfs_hld(int idx, int p, int& times) {
     in[idx] = times++;
     rev[in[idx]] = idx;
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to == p) continue;
       head[to] = (g[idx][0] == to ? head[idx] : to);
       dfs_hld(to, idx, times);

@@ -17,7 +17,7 @@ struct BipartiteMatching {
 
   bool augment(int idx) {
     used[idx] = timestamp;
-    for (auto &to : graph[idx]) {
+    for (auto& to : graph[idx]) {
       int to_match = match[to];
       if (alive[to] == 0) continue;
       if (to_match == -1 ||

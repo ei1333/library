@@ -1,7 +1,7 @@
 template <typename T, typename Compare = greater<T> >
-vector<T> knapsack_limitations(const vector<int> &w, const vector<int> &m,
-                               const vector<T> &v, const int &W, const T &NG,
-                               const Compare &comp = Compare()) {
+vector<T> knapsack_limitations(const vector<int>& w, const vector<int>& m,
+                               const vector<T>& v, const int& W, const T& NG,
+                               const Compare& comp = Compare()) {
   const int N = (int)w.size();
   vector<T> dp(W + 1, NG), deqv(W + 1);
   dp[0] = T();

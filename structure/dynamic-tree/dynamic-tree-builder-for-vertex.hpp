@@ -15,7 +15,7 @@ struct DynamicTreeBuilderForVertex : DynamicTree<TreeDPInfo> {
 
   explicit DynamicTreeBuilderForVertex(int n) : n(n), g(n), vs(n) {}
 
-  void set_vertex(int u, const Info &info) {
+  void set_vertex(int u, const Info& info) {
     assert(0 <= u and u < n);
     vs[u] = this->alloc(info);
   }
@@ -35,7 +35,7 @@ struct DynamicTreeBuilderForVertex : DynamicTree<TreeDPInfo> {
     while (not que.empty()) {
       auto [u, p] = que.back();
       que.pop_back();
-      for (auto &v : g[u]) {
+      for (auto& v : g[u]) {
         if (v == p) continue;
         que.emplace_back(v, u);
         link(vs[v], vs[u]);

@@ -15,7 +15,7 @@ struct WaveletMatrixPointAddRectangleSum {
 
   WaveletMatrixPointAddRectangleSum() = default;
 
-  WaveletMatrixPointAddRectangleSum(const vector<T> &v, const vector<D> &d)
+  WaveletMatrixPointAddRectangleSum(const vector<T>& v, const vector<D>& d)
       : length(v.size()), v(v) {
     assert(v.size() == d.size());
     vector<int> l(length), r(length), ord(length);
@@ -70,8 +70,8 @@ struct WaveletMatrixPointAddRectangleSum {
     return rect_sum(l, r, upper) - rect_sum(l, r, lower);
   }
 
-  void point_add(int k, const D &x) {
-    auto &y = v[k];
+  void point_add(int k, const D& x) {
+    auto& y = v[k];
     for (int level = MAXLOG - 1; level >= 0; level--) {
       bool f = ((y >> level) & 1);
       k = matrix[level].rank(f, k) + mid[level] * f;
@@ -85,8 +85,8 @@ struct CompressedWaveletMatrixPointAddRectangleSum {
   WaveletMatrixPointAddRectangleSum<int, MAXLOG, D> mat;
   vector<T> ys;
 
-  CompressedWaveletMatrixPointAddRectangleSum(const vector<T> &v,
-                                              const vector<D> &d)
+  CompressedWaveletMatrixPointAddRectangleSum(const vector<T>& v,
+                                              const vector<D>& d)
       : ys(v) {
     sort(begin(ys), end(ys));
     ys.erase(unique(begin(ys), end(ys)), end(ys));
@@ -95,7 +95,7 @@ struct CompressedWaveletMatrixPointAddRectangleSum {
     mat = WaveletMatrixPointAddRectangleSum<int, MAXLOG, D>(t, d);
   }
 
-  inline int get(const T &x) {
+  inline int get(const T& x) {
     return lower_bound(begin(ys), end(ys), x) - begin(ys);
   }
 
@@ -105,5 +105,5 @@ struct CompressedWaveletMatrixPointAddRectangleSum {
     return mat.rect_sum(l, r, get(lower), get(upper));
   }
 
-  void point_add(int k, const D &x) { mat.point_add(k, x); }
+  void point_add(int k, const D& x) { mat.point_add(k, x); }
 };

@@ -5,7 +5,7 @@
 #include "segment.hpp"
 
 namespace geometry {
-int is_intersect_cs(const Circle &c, const Segment &l) {
+int is_intersect_cs(const Circle& c, const Segment& l) {
   Point h = projection(l, c.p);
   if (sign(norm(h - c.p) - norm(c.r)) > 0) return 0;
   auto d1 = abs(c.p - l.a), d2 = abs(c.p - l.b);

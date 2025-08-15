@@ -2,7 +2,7 @@
  * @brief Subset Zeta/Moebius Transform (下位集合のゼータ/メビウス変換)
  */
 template <typename T>
-void subset_zeta_transform(vector<T> &f) {
+void subset_zeta_transform(vector<T>& f) {
   const int n = (int)f.size();
   assert((n & (n - 1)) == 0);
   for (int i = 1; i < n; i <<= 1) {
@@ -15,7 +15,7 @@ void subset_zeta_transform(vector<T> &f) {
 }
 
 template <typename T>
-void subset_moebius_transform(vector<T> &f) {
+void subset_moebius_transform(vector<T>& f) {
   const int n = (int)f.size();
   assert((n & (n - 1)) == 0);
   for (int i = 1; i < n; i <<= 1) {

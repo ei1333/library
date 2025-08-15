@@ -29,13 +29,13 @@ struct Rational {
  public:
   Rational() : num(0), den(1) {}
 
-  explicit Rational(const T &n) : num(n), den(1) {}
+  explicit Rational(const T& n) : num(n), den(1) {}
 
-  explicit Rational(const T &n, const T &d) : num(n), den(d) { normalize(); }
+  explicit Rational(const T& n, const T& d) : num(n), den(d) { normalize(); }
 
-  Rational &operator=(const T &n) { return assign(n, 1); }
+  Rational& operator=(const T& n) { return assign(n, 1); }
 
-  Rational &assign(const T &n, const T &d) {
+  Rational& assign(const T& n, const T& d) {
     num = n;
     den = d;
     normalize();
@@ -46,7 +46,7 @@ struct Rational {
 
   T denominator() const { return den; }
 
-  Rational &operator+=(const Rational &r) {
+  Rational& operator+=(const Rational& r) {
     T r_num = r.num, r_den = r.den;
     T g = gcd(den, r_den);
     den /= g;
@@ -57,7 +57,7 @@ struct Rational {
     return *this;
   }
 
-  Rational &operator-=(const Rational &r) {
+  Rational& operator-=(const Rational& r) {
     T r_num = r.num, r_den = r.den;
     T g = gcd(den, r_den);
     den /= g;
@@ -68,7 +68,7 @@ struct Rational {
     return *this;
   }
 
-  Rational &operator*=(const Rational &r) {
+  Rational& operator*=(const Rational& r) {
     T r_num = r.num, r_den = r.den;
     T g1 = gcd(num, r_den);
     T g2 = gcd(den, r_num);
@@ -77,7 +77,7 @@ struct Rational {
     return *this;
   }
 
-  Rational &operator/=(const Rational &r) {
+  Rational& operator/=(const Rational& r) {
     T r_num = r.num, r_den = r.den;
     T g1 = gcd(num, r_num);
     T g2 = gcd(den, r_den);
@@ -90,44 +90,44 @@ struct Rational {
     return *this;
   }
 
-  Rational &operator+=(const T &i) { return (*this) += Rational{i}; }
+  Rational& operator+=(const T& i) { return (*this) += Rational{i}; }
 
-  Rational &operator-=(const T &i) { return (*this) -= Rational{i}; }
+  Rational& operator-=(const T& i) { return (*this) -= Rational{i}; }
 
-  Rational &operator*=(const T &i) { return (*this) *= Rational{i}; }
+  Rational& operator*=(const T& i) { return (*this) *= Rational{i}; }
 
-  Rational &operator/=(const T &i) { return (*this) /= Rational{i}; }
+  Rational& operator/=(const T& i) { return (*this) /= Rational{i}; }
 
-  Rational operator+(const Rational &r) const { return Rational(*this) += r; }
+  Rational operator+(const Rational& r) const { return Rational(*this) += r; }
 
-  Rational operator-(const Rational &r) const { return Rational(*this) -= r; }
+  Rational operator-(const Rational& r) const { return Rational(*this) -= r; }
 
-  Rational operator*(const Rational &r) const { return Rational(*this) *= r; }
+  Rational operator*(const Rational& r) const { return Rational(*this) *= r; }
 
-  Rational operator/(const Rational &r) const { return Rational(*this) /= r; }
+  Rational operator/(const Rational& r) const { return Rational(*this) /= r; }
 
-  Rational operator+(const T &i) const { return Rational(*this) += i; }
+  Rational operator+(const T& i) const { return Rational(*this) += i; }
 
-  Rational operator-(const T &i) const { return Rational(*this) -= i; }
+  Rational operator-(const T& i) const { return Rational(*this) -= i; }
 
-  Rational operator*(const T &i) const { return Rational(*this) *= i; }
+  Rational operator*(const T& i) const { return Rational(*this) *= i; }
 
-  Rational operator/(const T &i) const { return Rational(*this) /= i; }
+  Rational operator/(const T& i) const { return Rational(*this) /= i; }
 
   Rational operator-() const { return Rational{-num, den}; }
 
-  Rational &operator++() {
+  Rational& operator++() {
     num += den;
     return *this;
   }
 
-  Rational &operator--() {
+  Rational& operator--() {
     num -= den;
     return *this;
   }
 
 #define define_cmp(op)                        \
-  bool operator op(const Rational &r) const { \
+  bool operator op(const Rational& r) const { \
     return num * r.den op r.num * den;        \
   }
 
@@ -151,7 +151,7 @@ struct Rational {
 
   Rational abs() const { return Rational{num < 0 ? -num : num, den}; }
 
-  friend ostream &operator<<(ostream &os, const Rational &r) {
+  friend ostream& operator<<(ostream& os, const Rational& r) {
     return os << r.numerator() << "/" << r.denominator();
   }
 };

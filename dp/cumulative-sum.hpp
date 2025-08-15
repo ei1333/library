@@ -6,7 +6,7 @@ struct CumulativeSum {
 
   explicit CumulativeSum(size_t sz) : data(sz + 1, 0) {}
 
-  void add(int k, const T &x) { data[k + 1] += x; }
+  void add(int k, const T& x) { data[k + 1] += x; }
 
   void build() {
     for (int i = 1; i < data.size(); i++) {

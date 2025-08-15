@@ -14,7 +14,7 @@ Mint coeff_of_rational_function(FPS<Mint> P, FPS<Mint> Q, int64_t k) {
   }
   if (P.empty()) return ret;
   P.resize((int)Q.size() - 1);
-  auto sub = [&](const FPS<Mint> &as, bool odd) {
+  auto sub = [&](const FPS<Mint>& as, bool odd) {
     FPS<Mint> bs((as.size() + !odd) / 2);
     for (int i = odd; i < (int)as.size(); i += 2) bs[i >> 1] = as[i];
     return bs;

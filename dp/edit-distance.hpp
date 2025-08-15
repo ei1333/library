@@ -1,4 +1,4 @@
-int edit_distance(const string &S, const string &T) {
+int edit_distance(const string& S, const string& T) {
   const int N = (int)S.size(), M = (int)T.size();
   vector<vector<int> > dp(N + 1, vector<int>(M + 1, N + M));
   for (int i = 0; i <= N; i++) dp[i][0] = i;

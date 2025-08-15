@@ -18,9 +18,9 @@ struct Matrix {
 
   size_t width() const { return (A[0].size()); }
 
-  inline const vector<T> &operator[](int k) const { return (A.at(k)); }
+  inline const vector<T>& operator[](int k) const { return (A.at(k)); }
 
-  inline vector<T> &operator[](int k) { return (A.at(k)); }
+  inline vector<T>& operator[](int k) { return (A.at(k)); }
 
   static Matrix I(size_t n) {
     Matrix mat(n);
@@ -28,7 +28,7 @@ struct Matrix {
     return (mat);
   }
 
-  Matrix &operator+=(const Matrix &B) {
+  Matrix& operator+=(const Matrix& B) {
     size_t n = height(), m = width();
     assert(n == B.height() && m == B.width());
     for (int i = 0; i < n; i++)
@@ -36,7 +36,7 @@ struct Matrix {
     return (*this);
   }
 
-  Matrix &operator-=(const Matrix &B) {
+  Matrix& operator-=(const Matrix& B) {
     size_t n = height(), m = width();
     assert(n == B.height() && m == B.width());
     for (int i = 0; i < n; i++)
@@ -44,7 +44,7 @@ struct Matrix {
     return (*this);
   }
 
-  Matrix &operator*=(const Matrix &B) {
+  Matrix& operator*=(const Matrix& B) {
     size_t n = height(), m = B.width(), p = width();
     assert(p == B.height());
     vector<vector<T> > C(n, vector<T>(m, 0));
@@ -56,7 +56,7 @@ struct Matrix {
     return (*this);
   }
 
-  Matrix &operator^=(long long k) {
+  Matrix& operator^=(long long k) {
     Matrix B = Matrix::I(height());
     while (k > 0) {
       if (k & 1) B *= *this;
@@ -67,15 +67,15 @@ struct Matrix {
     return (*this);
   }
 
-  Matrix operator+(const Matrix &B) const { return (Matrix(*this) += B); }
+  Matrix operator+(const Matrix& B) const { return (Matrix(*this) += B); }
 
-  Matrix operator-(const Matrix &B) const { return (Matrix(*this) -= B); }
+  Matrix operator-(const Matrix& B) const { return (Matrix(*this) -= B); }
 
-  Matrix operator*(const Matrix &B) const { return (Matrix(*this) *= B); }
+  Matrix operator*(const Matrix& B) const { return (Matrix(*this) *= B); }
 
   Matrix operator^(const long long k) const { return (Matrix(*this) ^= k); }
 
-  friend ostream &operator<<(ostream &os, Matrix &p) {
+  friend ostream& operator<<(ostream& os, Matrix& p) {
     size_t n = p.height(), m = p.width();
     for (int i = 0; i < n; i++) {
       os << "[";

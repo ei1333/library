@@ -7,9 +7,9 @@ struct Line {
 
   Line() = default;
 
-  Line(const Point &a, const Point &b) : a(a), b(b) {}
+  Line(const Point& a, const Point& b) : a(a), b(b) {}
 
-  Line(const Real &A, const Real &B, const Real &C) {  // Ax+By=C
+  Line(const Real& A, const Real& B, const Real& C) {  // Ax+By=C
     if (equals(A, 0)) {
       assert(!equals(B, 0));
       a = Point(0, C / B);
@@ -26,11 +26,11 @@ struct Line {
     }
   }
 
-  friend ostream &operator<<(ostream &os, Line &l) {
+  friend ostream& operator<<(ostream& os, Line& l) {
     return os << l.a << " to " << l.b;
   }
 
-  friend istream &operator>>(istream &is, Line &l) { return is >> l.a >> l.b; }
+  friend istream& operator>>(istream& is, Line& l) { return is >> l.a >> l.b; }
 };
 
 using Lines = vector<Line>;

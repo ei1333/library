@@ -7,7 +7,7 @@ struct LiChaoTree {
 
     inline T get(T x) const { return a * x + b; }
 
-    inline bool over(const Line &b, const T &x) const {
+    inline bool over(const Line& b, const T& x) const {
       return get(x) < b.get(x);
     }
   };
@@ -16,14 +16,14 @@ struct LiChaoTree {
   vector<Line> seg;
   int sz;
 
-  LiChaoTree(const vector<T> &x, T INF) : xs(x) {
+  LiChaoTree(const vector<T>& x, T INF) : xs(x) {
     sz = 1;
     while (sz < xs.size()) sz <<= 1;
     while (xs.size() < sz) xs.push_back(xs.back() + 1);
     seg.assign(2 * sz - 1, Line(0, INF));
   }
 
-  void update(Line &x, int k, int l, int r) {
+  void update(Line& x, int k, int l, int r) {
     int mid = (l + r) >> 1;
     auto latte = x.over(seg[k], xs[l]), malta = x.over(seg[k], xs[mid]);
     if (malta) swap(seg[k], x);

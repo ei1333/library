@@ -5,13 +5,13 @@ struct SplayTreeForDashedEdge {
     Node *l, *r, *p;
     Point key, sum;
 
-    explicit Node(const Point &key)
+    explicit Node(const Point& key)
         : key(key), sum(key), l(nullptr), r(nullptr), p(nullptr) {}
   };
 
   SplayTreeForDashedEdge() = default;
 
-  using NP = Node *;
+  using NP = Node*;
 
   void rotr(NP t) const {
     NP x = t->p, y = x->p;
@@ -46,7 +46,7 @@ struct SplayTreeForDashedEdge {
     return t;
   }
 
-  NP alloc(const Point &v) const {
+  NP alloc(const Point& v) const {
     auto t = new Node(v);
     update(t);
     return t;
@@ -77,7 +77,7 @@ struct SplayTreeForDashedEdge {
     }
   }
 
-  NP insert(NP t, const Point &v) const {
+  NP insert(NP t, const Point& v) const {
     if (not t) {
       t = alloc(v);
       return t;
@@ -129,7 +129,7 @@ struct TopTree {
 
     bool is_root() const { return not p or (p->l != this and p->r != this); }
 
-    Node(const Info &info)
+    Node(const Info& info)
         : info(info),
           l(nullptr),
           r(nullptr),
@@ -140,7 +140,7 @@ struct TopTree {
   };
 
  public:
-  using NP = Node *;
+  using NP = Node*;
   const SplayTreeForDashedEdge<TreeDPInfo> splay_tree;
 
  private:
@@ -293,7 +293,7 @@ struct TopTree {
     push(t);
   }
 
-  NP alloc(const Info &v) {
+  NP alloc(const Info& v) {
     NP t = new Node(v);
     update(t);
     return t;
@@ -304,7 +304,7 @@ struct TopTree {
     return u == v or u->p;
   }
 
-  vector<NP> build(vector<Info> &vs) {
+  vector<NP> build(vector<Info>& vs) {
     vector<NP> nodes(vs.size());
     for (int i = 0; i < (int)vs.size(); i++) {
       nodes[i] = alloc(vs[i]);
@@ -318,23 +318,23 @@ struct TopTree {
     return expose(v);
   }
 
-  void set_key(NP t, const Info &v) {
+  void set_key(NP t, const Info& v) {
     expose(t);
     t->info = std::move(v);
     update(t);
   }
 
-  const Path &query(NP u) {
+  const Path& query(NP u) {
     evert(u);
     return u->sum;
   }
 
-  const Path &query_path(NP u) {
+  const Path& query_path(NP u) {
     expose(u);
     return u->sum;
   }
 
-  const Path &query_path(NP u, NP v) {
+  const Path& query_path(NP u, NP v) {
     evert(u);
     return query_path(v);
   }

@@ -3,7 +3,7 @@
 template <typename S2, typename Op, typename E>
 struct LambdaMonoid {
   using S = S2;
-  S op(const S &a, const S &b) const { return _op(a, b); }
+  S op(const S& a, const S& b) const { return _op(a, b); }
 
   S e() const { return _e(); }
 

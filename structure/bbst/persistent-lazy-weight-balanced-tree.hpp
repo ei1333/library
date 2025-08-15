@@ -10,10 +10,10 @@ struct PersistentLazyWeightBalancedTree
   using Node = typename LWBT::Node;
 
  private:
-  Node *clone(Node *t) override { return &(*LWBT::pool.alloc() = *t); }
+  Node* clone(Node* t) override { return &(*LWBT::pool.alloc() = *t); }
 
  public:
-  Node *rebuild(Node *r) {
+  Node* rebuild(Node* r) {
     auto ret = LWBT::dump(r);
     LWBT::pool.clear();
     return LWBT::build(ret);

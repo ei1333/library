@@ -36,7 +36,7 @@ struct DualSegmentTree {
 
   F operator[](int k) { return get(k); }
 
-  void apply(int a, int b, const F &f) {
+  void apply(int a, int b, const F& f) {
     thrust(a += sz);
     thrust(b += sz - 1);
     for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {

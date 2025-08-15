@@ -19,7 +19,7 @@ struct CentroidDecomposition : Graph<T> {
     return build_dfs(0);
   }
 
-  explicit CentroidDecomposition(const Graph<T> &g) : Graph<T>(g) {}
+  explicit CentroidDecomposition(const Graph<T>& g) : Graph<T>(g) {}
 
  private:
   vector<int> sub;
@@ -27,7 +27,7 @@ struct CentroidDecomposition : Graph<T> {
 
   inline int build_dfs(int idx, int par) {
     sub[idx] = 1;
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to == par || v[to]) continue;
       sub[idx] += build_dfs(to, idx);
     }
@@ -35,7 +35,7 @@ struct CentroidDecomposition : Graph<T> {
   }
 
   inline int search_centroid(int idx, int par, const int mid) {
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to == par || v[to]) continue;
       if (sub[to] > mid) return search_centroid(to, idx, mid);
     }
@@ -45,7 +45,7 @@ struct CentroidDecomposition : Graph<T> {
   inline int build_dfs(int idx) {
     int centroid = search_centroid(idx, -1, build_dfs(idx, -1) / 2);
     v[centroid] = true;
-    for (auto &to : g[centroid]) {
+    for (auto& to : g[centroid]) {
       if (!v[to]) tree.add_directed_edge(centroid, build_dfs(to));
     }
     v[centroid] = false;

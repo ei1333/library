@@ -10,7 +10,7 @@ struct RangeChminChmaxAddRangeSum {
   struct AddChminChmax {
     T add, chmin, chmax;
 
-    bool operator!=(const AddChminChmax &a) const {
+    bool operator!=(const AddChminChmax& a) const {
       return add != a.add or chmin != a.chmin or chmax != a.chmax;
     }
   };
@@ -18,7 +18,7 @@ struct RangeChminChmaxAddRangeSum {
   using S = MinMaxSum;
   using F = AddChminChmax;
 
-  static constexpr S op(const S &a, const S &b) {
+  static constexpr S op(const S& a, const S& b) {
     if (a.min > a.max) return b;
     if (b.min > b.max) return a;
 
@@ -52,13 +52,13 @@ struct RangeChminChmaxAddRangeSum {
     return c;
   }
 
-  static constexpr bool fail(const S &a) { return a.fail; }
+  static constexpr bool fail(const S& a) { return a.fail; }
 
   static constexpr S e() {
     return {infty, -infty, 0, 0, 0, infty, -infty, 0, false};
   }
 
-  static constexpr S mapping(S x, const F &f) {
+  static constexpr S mapping(S x, const F& f) {
     assert(not x.fail);
     if (x.min > x.max) return x;
 
@@ -90,7 +90,7 @@ struct RangeChminChmaxAddRangeSum {
     return x;
   }
 
-  static constexpr F composition(F f, const F &g) {
+  static constexpr F composition(F f, const F& g) {
     f.add += g.add, f.chmax += g.add, f.chmin += g.add;
     f.chmin = min(f.chmin, g.chmin);
     f.chmax = min(f.chmax, g.chmin);

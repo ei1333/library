@@ -20,12 +20,12 @@ struct SegmentTree {
     seg.assign(2 * sz, m.e());
   }
 
-  explicit SegmentTree(Monoid m, const vector<S> &v)
+  explicit SegmentTree(Monoid m, const vector<S>& v)
       : SegmentTree(m, (int)v.size()) {
     build(v);
   }
 
-  void build(const vector<S> &v) {
+  void build(const vector<S>& v) {
     assert(n == (int)v.size());
     for (int k = 0; k < n; k++) seg[k + sz] = v[k];
     for (int k = sz - 1; k > 0; k--) {
@@ -33,7 +33,7 @@ struct SegmentTree {
     }
   }
 
-  void set(int k, const S &x) {
+  void set(int k, const S& x) {
     k += sz;
     seg[k] = x;
     while (k >>= 1) {
@@ -45,7 +45,7 @@ struct SegmentTree {
 
   S operator[](int k) const { return get(k); }
 
-  void apply(int k, const S &x) {
+  void apply(int k, const S& x) {
     k += sz;
     seg[k] = m.op(seg[k], x);
     while (k >>= 1) {
@@ -66,7 +66,7 @@ struct SegmentTree {
   S all_prod() const { return seg[1]; }
 
   template <typename C>
-  int find_first(int l, const C &check) const {
+  int find_first(int l, const C& check) const {
     if (l >= n) return n;
     l += sz;
     S sum = m.e();
@@ -89,7 +89,7 @@ struct SegmentTree {
   }
 
   template <typename C>
-  int find_last(int r, const C &check) const {
+  int find_last(int r, const C& check) const {
     if (r <= 0) return -1;
     r += sz;
     S sum = m.e();

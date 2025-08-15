@@ -4,7 +4,7 @@
 
 namespace geometry {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_E
-Points cross_point_cc(const Circle &c1, const Circle &c2) {
+Points cross_point_cc(const Circle& c1, const Circle& c2) {
   Real d = abs(c1.p - c2.p), r = c1.r + c2.r;
   if (sign(d - r) > 0 or sign(d + c1.r - c2.r) < 0) return {};
   Real a = acos((norm(c1.r) - norm(c2.r) + norm(d)) / (2 * c1.r * d));

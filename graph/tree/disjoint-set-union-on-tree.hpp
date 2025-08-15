@@ -24,7 +24,7 @@ struct DisjointSetUnionOnTree : Graph<T> {
   int build_subtree(int idx) {
     in[idx] = ord.size();
     ord.emplace_back(idx);
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       int sub = build_subtree(to);
       sz[idx] += sub;
       if (heavy[idx] == -1 || sz[heavy[idx]] < sub) {
@@ -36,14 +36,14 @@ struct DisjointSetUnionOnTree : Graph<T> {
   }
 
   void dfs(int idx, bool keep) {
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (heavy[idx] == to) continue;
       dfs(to, false);
     }
     if (heavy[idx] != -1) {
       dfs(heavy[idx], true);
     }
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (heavy[idx] == to) continue;
       for (int p = in[to]; p < out[to]; p++) {
         expand(ord[p]);

@@ -25,7 +25,7 @@ struct LowLink : Graph<T> {
     }
   }
 
-  explicit LowLink(const Graph<T> &g) : Graph<T>(g) {}
+  explicit LowLink(const Graph<T>& g) : Graph<T>(g) {}
 
  private:
   vector<int> used;
@@ -36,7 +36,7 @@ struct LowLink : Graph<T> {
     low[idx] = ord[idx];
     bool is_articulation = false, beet = false;
     int cnt = 0;
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to == par && !exchange(beet, true)) {
         continue;
       }

@@ -41,10 +41,10 @@ struct StaticPointAddRectangleSum {
       return ans;
     }
     sort(points.begin(), points.end(),
-         [](const Point &a, const Point &b) { return a.y < b.y; });
+         [](const Point& a, const Point& b) { return a.y < b.y; });
     vector<T> ys;
     ys.reserve(n);
-    for (Point &p : points) {
+    for (Point& p : points) {
       if (ys.empty() or ys.back() != p.y) ys.emplace_back(p.y);
       p.y = (int)ys.size() - 1;
     }
@@ -59,19 +59,19 @@ struct StaticPointAddRectangleSum {
     vector<Q> qs;
     qs.reserve(q + q);
     for (int i = 0; i < q; i++) {
-      auto &query = queries[i];
+      auto& query = queries[i];
       int d = lower_bound(ys.begin(), ys.end(), query.d) - ys.begin();
       int u = lower_bound(ys.begin(), ys.end(), query.u) - ys.begin();
       qs.emplace_back(Q{query.l, d, u, false, i});
       qs.emplace_back(Q{query.r, d, u, true, i});
     }
     sort(points.begin(), points.end(),
-         [](const Point &a, const Point &b) { return a.x < b.x; });
+         [](const Point& a, const Point& b) { return a.x < b.x; });
     sort(qs.begin(), qs.end(),
-         [](const Q &a, const Q &b) { return a.x < b.x; });
+         [](const Q& a, const Q& b) { return a.x < b.x; });
     int j = 0;
     BIT bit(ys.size());
-    for (auto &query : qs) {
+    for (auto& query : qs) {
       while (j < n and points[j].x < query.x) {
         bit.apply(points[j].y, points[j].w);
         ++j;

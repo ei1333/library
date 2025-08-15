@@ -4,8 +4,8 @@
  * @brief Sample Point Shift(標本点シフト)
  */
 template <typename Mint, typename F>
-vector<Mint> sample_point_shift(const vector<Mint> &ys, const Mint &m,
-                                const F &multiply) {
+vector<Mint> sample_point_shift(const vector<Mint>& ys, const Mint& m,
+                                const F& multiply) {
   Enumeration<Mint> comb;
   int d = (int)ys.size() - 1;
   vector<Mint> f(d + 1), g(d * 2 + 1);

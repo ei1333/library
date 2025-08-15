@@ -4,7 +4,7 @@
 
 namespace geometry {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
-int contains(const Polygon &Q, const Point &p) {
+int contains(const Polygon& Q, const Point& p) {
   bool in = false;
   for (int i = 0; i < Q.size(); i++) {
     Point a = Q[i] - p, b = Q[(i + 1) % Q.size()] - p;

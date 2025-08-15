@@ -19,7 +19,7 @@ struct BiConnectedComponents : LowLink<T> {
     }
   }
 
-  explicit BiConnectedComponents(const Graph<T> &g) : Graph<T>(g) {}
+  explicit BiConnectedComponents(const Graph<T>& g) : Graph<T>(g) {}
 
  private:
   vector<int> used;
@@ -28,7 +28,7 @@ struct BiConnectedComponents : LowLink<T> {
   void dfs(int idx, int par) {
     used[idx] = true;
     bool beet = false;
-    for (auto &to : g[idx]) {
+    for (auto& to : g[idx]) {
       if (to == par && !exchange(beet, true)) continue;
       if (!used[to] || ord[to] < ord[idx]) {
         tmp.emplace_back(to);

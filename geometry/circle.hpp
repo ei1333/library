@@ -8,7 +8,7 @@ struct Circle {
 
   Circle() = default;
 
-  Circle(const Point &p, const Real &r) : p(p), r(r) {}
+  Circle(const Point& p, const Real& r) : p(p), r(r) {}
 };
 
 using Circles = vector<Circle>;

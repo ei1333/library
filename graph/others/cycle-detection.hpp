@@ -16,7 +16,7 @@ struct CycleDetection : Graph<T> {
 
   bool dfs(int idx) {
     used[idx] = 1;
-    for (auto &e : g[idx]) {
+    for (auto& e : g[idx]) {
       if (used[e] == 0) {
         pre[e] = e;
         if (dfs(e)) return true;
