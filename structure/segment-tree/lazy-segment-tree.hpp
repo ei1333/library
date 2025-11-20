@@ -116,8 +116,8 @@ struct LazySegmentTree {
   }
 
   template <typename C>
-  int find_first(int l, const C& check) {
-    if (l >= n) return n;
+  optional<int> find_first(int l, const C& check) {
+    if (l >= n) return nullopt;
     l += sz;
     for (int i = height; i > 0; i--) propagate(l >> i);
     S sum = m.e();
@@ -137,12 +137,12 @@ struct LazySegmentTree {
       }
       sum = m.op(sum, data[l++]);
     } while ((l & -l) != l);
-    return n;
+    return nullopt;
   }
 
   template <typename C>
-  int find_last(int r, const C& check) {
-    if (r <= 0) return -1;
+  optional<int> find_last(int r, const C& check) {
+    if (r <= 0) return nullopt;
     r += sz;
     for (int i = height; i > 0; i--) propagate((r - 1) >> i);
     S sum = m.e();
@@ -163,6 +163,6 @@ struct LazySegmentTree {
       }
       sum = m.op(data[r], sum);
     } while ((r & -r) != r);
-    return -1;
+    return nullopt;
   }
 };

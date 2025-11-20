@@ -66,8 +66,8 @@ struct SegmentTree {
   S all_prod() const { return seg[1]; }
 
   template <typename C>
-  int find_first(int l, const C& check) const {
-    if (l >= n) return n;
+  optional<int> find_first(int l, const C& check) const {
+    if (l >= n) return nullopt;
     l += sz;
     S sum = m.e();
     do {
@@ -85,12 +85,12 @@ struct SegmentTree {
       }
       sum = m.op(sum, seg[l++]);
     } while ((l & -l) != l);
-    return n;
+    return nullopt;
   }
 
   template <typename C>
-  int find_last(int r, const C& check) const {
-    if (r <= 0) return -1;
+  optional<int> find_last(int r, const C& check) const {
+    if (r <= 0) return nullopt;
     r += sz;
     S sum = m.e();
     do {
@@ -109,6 +109,6 @@ struct SegmentTree {
       }
       sum = m.op(seg[r], sum);
     } while ((r & -r) != r);
-    return -1;
+    return nullopt;
   }
 };
