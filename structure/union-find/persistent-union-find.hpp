@@ -1,3 +1,5 @@
+#include "../others/persistent-array.hpp"
+
 /*
  * @brief Persistent-Union-Find(永続Union-Find)
  */

@@ -56,7 +56,7 @@ struct Line {
     if (eq(A, 0))
       a = Point(0, C / B), b = Point(1, C / B);
     else if (eq(B, 0))
-      b = Point(C / A, 0), b = Point(C / A, 1);
+      a = Point(C / A, 0), b = Point(C / A, 1);
     else
       a = Point(0, C / B), b = Point(C / A, 0);
   }
