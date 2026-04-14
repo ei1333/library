@@ -33,7 +33,7 @@ istream& operator>>(istream& is, pair<T1, T2>& p) {
 
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& v) {
-  for (int i = 0; i < (int)v.size(); i++) {
+  for (size_t i = 0; i < v.size(); i++) {
     os << v[i] << (i + 1 != v.size() ? " " : "");
   }
   return os;
@@ -46,12 +46,12 @@ istream& operator>>(istream& is, vector<T>& v) {
 }
 
 template <typename T1, typename T2>
-inline bool chmax(T1& a, T2 b) {
+bool chmax(T1& a, T2 b) {
   return a < b && (a = b, true);
 }
 
 template <typename T1, typename T2>
-inline bool chmin(T1& a, T2 b) {
+bool chmin(T1& a, T2 b) {
   return a > b && (a = b, true);
 }
 
@@ -66,12 +66,12 @@ auto make_v(size_t a, Ts... ts) {
 }
 
 template <typename T, typename V>
-typename enable_if<is_class<T>::value == 0>::type fill_v(T& t, const V& v) {
+enable_if_t<is_class_v<T> == 0> fill_v(T& t, const V& v) {
   t = v;
 }
 
 template <typename T, typename V>
-typename enable_if<is_class<T>::value != 0>::type fill_v(T& t, const V& v) {
+enable_if_t<is_class_v<T> != 0> fill_v(T& t, const V& v) {
   for (auto& e : t) fill_v(e, v);
 }
 
@@ -86,6 +86,6 @@ struct FixPoint : F {
 };
 
 template <typename F>
-inline decltype(auto) MFP(F&& f) {
+decltype(auto) MFP(F&& f) {
   return FixPoint<F>{std::forward<F>(f)};
 }
