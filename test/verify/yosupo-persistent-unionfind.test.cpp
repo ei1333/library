@@ -2,7 +2,6 @@
 
 #include "../../template/template.hpp"
 
-#include "../../structure/others/persistent-array.hpp"
 #include "../../structure/union-find/persistent-union-find.hpp"
 
 int main() {
