@@ -20,7 +20,7 @@ documentation_of: //structure/wavelet/wavelet-tree.hpp
 
 ## 計算量
 
-- (2) $O(|v| \cdot MAXLOG)$
+- (2) $O(\|v\| \cdot MAXLOG)$
 
 # rank
 
@@ -136,7 +136,7 @@ CompressedWaveletTree(const vector<T>& v)
 
 ## 計算量
 
-- $O(|v| \log |v| + |v| \cdot MAXLOG)$
+- $O(\|v\| \log \|v\| + \|v\| \cdot MAXLOG)$
 
 # rank
 
@@ -152,7 +152,7 @@ int rank(const T& x, int r)
 
 ## 計算量
 
-- $O(\log |v| + MAXLOG)$
+- $O(\log \|v\| + MAXLOG)$
 
 # kth_smallest
 
@@ -204,7 +204,7 @@ T kth_largest(int l, int r, int k)
 
 ## 計算量
 
-- $O(\log |v| + MAXLOG)$
+- $O(\log \|v\| + MAXLOG)$
 
 # prev_value
 
@@ -220,7 +220,7 @@ T prev_value(int l, int r, T upper)
 
 ## 計算量
 
-- $O(\log |v| + MAXLOG)$
+- $O(\log \|v\| + MAXLOG)$
 
 # next_value
 
@@ -236,4 +236,4 @@ T next_value(int l, int r, T lower)
 
 ## 計算量
 
-- $O(\log |v| + MAXLOG)$
+- $O(\log \|v\| + MAXLOG)$

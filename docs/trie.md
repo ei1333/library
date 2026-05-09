@@ -31,7 +31,7 @@ Trie< char_size, margin >()
 
 ## 計算量
 
-- $O(|str|)$
+- $O(\|str\|)$
 
 # query
 
@@ -47,7 +47,7 @@ Trie< char_size, margin >()
 
 ## 計算量
 
-- $O(|str| + 列挙されるid数)$
+- $O(\|str\| + 列挙されるid数)$
 
 # count
 

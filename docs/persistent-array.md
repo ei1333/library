@@ -61,4 +61,4 @@ void build(const vector<T>& v)
 
 ## 計算量
 
-- $O(|v| \log |v|)$
+- $O(\|v\| \log \|v\|)$
