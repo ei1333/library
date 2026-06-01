@@ -38,6 +38,12 @@ struct PrioritySumStructure {
 
   T query() const { return sum; }
 
+  T kth_element() {
+    assert(0 < k && k <= size());
+    modify();
+    return in.top();
+  }
+
   void insert(T x) {
     in.emplace(x);
     sum += x;
