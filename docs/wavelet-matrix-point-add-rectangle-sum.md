@@ -24,7 +24,7 @@ documentation_of: //structure/wavelet/wavelet-matrix-point-add-rectangle-sum.hpp
 
 ## 計算量
 
-- (2) $O(|v| \cdot MAXLOG)$
+- (2) $O(\|v\| \cdot MAXLOG)$
 
 # rect_sum
 
@@ -78,7 +78,7 @@ CompressedWaveletMatrixPointAddRectangleSum(const vector<T>& v, const vector<D>&
 
 ## 計算量
 
-- $O(|v| \log |v| + |v| \cdot MAXLOG)$
+- $O(\|v\| \log \|v\| + \|v\| \cdot MAXLOG)$
 
 # rect_sum
 
@@ -96,7 +96,7 @@ CompressedWaveletMatrixPointAddRectangleSum(const vector<T>& v, const vector<D>&
 
 ## 計算量
 
-- $O(\log |v| + MAXLOG \log N)$
+- $O(\log \|v\| + MAXLOG \log N)$
 
 # point_add
 

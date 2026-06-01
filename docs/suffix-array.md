@@ -20,7 +20,7 @@ SuffixArray(const T& vs, bool compress = false)
 
 ## 計算量
 
-- $O(|vs|)$
+- $O(\|vs\|)$
 
 # output
 
@@ -40,7 +40,7 @@ bool lt_substr(const string& t, int si = 0, int ti = 0)
 
 ## 計算量
 
-- $O(\min(|vs|-si, |t|-ti))$
+- $O(\min(\|vs\|-si, \|t\|-ti))$
 
 # lower_bound
 
@@ -52,7 +52,7 @@ int lower_bound(const T& t)
 
 ## 計算量
 
-- $O(|t| \log |vs|)$
+- $O(\|t\| \log \|vs\|)$
 
 # equal_range
 
@@ -71,4 +71,4 @@ pair<int, int> equal_range(T& t)
 
 ## 計算量
 
-- $O(|t| \log |vs|)$
+- $O(\|t\| \log \|vs\|)$
