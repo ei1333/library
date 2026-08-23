@@ -39,7 +39,3 @@ $N = \lvert a\rvert$, $M = \lvert b\rvert$ とする。
 
 - 時間: $O(N + M)$
 - 空間: $O(N + M)$
-
-# 参考文献
-
-- [Min Plus Convolution (Convex and Arbitrary)](https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary)

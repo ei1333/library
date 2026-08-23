@@ -39,8 +39,3 @@ $N = \lvert a\rvert$, $M = \lvert b\rvert$ とする。
 
 - 時間: $O((N + M)\log(N + M))$
 - 空間: $O(N + M)$
-
-# 参考文献
-
-- [Min Plus Convolution (Concave and Arbitrary)](https://judge.yosupo.jp/problem/min_plus_convolution_concave_arbitrary)
-- [Library Checker Problems の正解実装](https://github.com/yosupo06/library-checker-problems/blob/master/convolution/min_plus_convolution_concave_arbitrary/sol/correct.cpp)
