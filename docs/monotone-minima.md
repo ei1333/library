@@ -44,7 +44,7 @@ template <typename Select>
 vector<int> monotone_minima_select(int H, int W, Select select)
 ```
 
-各行の最適な列番号を返す。`select(i, l, r)` は、行 $i$ の閉区間 $[l, r]$ に含まれる最適な列番号を返すものとする。各行について候補列が一つの連続区間として渡されるため、列を進めながら評価値を更新できる場合に利用できる。
+各行の最適な列番号を返す。`select(i, l, r)` は、行 $i$ の半開区間 $[l, r)$ に含まれる最適な列番号を返すものとする。各行について候補列が一つの連続区間として渡されるため、列を進めながら評価値を更新できる場合に利用できる。
 
 ## 引数
 
@@ -61,7 +61,7 @@ vector<int> monotone_minima_select(int H, int W, Select select)
 - $0 \leq H$
 - $0 \leq W$
 - 各行の最適列が広義単調増加する
-- `select(i, l, r)` は $l \leq j \leq r$ を満たす最適列 $j$ を返す
+- `select(i, l, r)` は $l \leq j < r$ を満たす最適列 $j$ を返す
 
 ## 計算量
 

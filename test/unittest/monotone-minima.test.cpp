@@ -20,7 +20,7 @@ int main() {
   auto selected =
       monotone_minima_select(3, 5, [&](int row, int left, int right) {
         int best = left;
-        for (int column = left + 1; column <= right; ++column) {
+        for (int column = left + 1; column < right; ++column) {
           if (matrix[row][column] < matrix[row][best]) best = column;
         }
         return best;

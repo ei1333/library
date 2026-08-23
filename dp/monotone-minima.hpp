@@ -10,7 +10,7 @@ std::vector<int> monotone_minima_select(int H, int W, Select select) {
                  int right) -> void {
     if (top > bottom) return;
     int line = (top + bottom) / 2;
-    int best = select(line, left, right);
+    int best = select(line, left, right + 1);
     ret[line] = best;
     self(self, top, line - 1, left, best);
     self(self, line + 1, bottom, best, right);
@@ -23,7 +23,7 @@ template <typename F>
 std::vector<int> monotone_minima(int H, int W, F comp) {
   return monotone_minima_select(H, W, [&](int row, int left, int right) {
     int best = left;
-    for (int column = left + 1; column <= right; ++column) {
+    for (int column = left + 1; column < right; ++column) {
       if (comp(row, best, column)) best = column;
     }
     return best;
