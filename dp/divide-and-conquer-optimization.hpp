@@ -16,8 +16,10 @@ std::vector<std::vector<T> > divide_and_conquer_optimization(
       if (x >= y) return INF;
       return dp[i - 1][x] + f(x, y);
     };
-    auto ret = monotone_minima(W + 1, W + 1, get_cost, comp);
-    for (int j = 0; j <= W; j++) dp[i][j] = ret[j].second;
+    auto ret = monotone_minima(W + 1, W + 1, [&](int j, int old_k, int new_k) {
+      return comp(get_cost(j, new_k), get_cost(j, old_k));
+    });
+    for (int j = 0; j <= W; j++) dp[i][j] = get_cost(j, ret[j]);
   }
   return dp;
 }

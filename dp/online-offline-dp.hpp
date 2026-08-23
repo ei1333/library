@@ -19,11 +19,15 @@ std::vector<T> online_offline_dp(int W, const std::function<T(int, int)>& f,
       [&](int l, int m,
           int r) {  // dp[l, m) -> dp[m, r)
         x_base = l, y_base = m;
-        auto ret = monotone_minima(r - m, m - l, get_cost, comp);
+        auto ret =
+            monotone_minima(r - m, m - l, [&](int i, int old_j, int new_j) {
+              return comp(get_cost(i, new_j), get_cost(i, old_j));
+            });
         for (int i = 0; i < ret.size(); i++) {
-          if (!isset[m + i] || comp(ret[i].second, dp[m + i])) {
+          T cost = get_cost(i, ret[i]);
+          if (!isset[m + i] || comp(cost, dp[m + i])) {
             isset[m + i] = true;
-            dp[m + i] = ret[i].second;
+            dp[m + i] = cost;
           }
         }
       };
