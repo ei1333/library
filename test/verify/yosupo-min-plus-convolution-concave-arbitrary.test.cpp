@@ -10,9 +10,9 @@
 int main() {
   int N, M;
   std::cin >> N >> M;
-  std::vector<long long> A(N), B(M);
-  for (long long& a : A) std::cin >> a;
-  for (long long& b : B) std::cin >> b;
+  std::vector<int> A(N), B(M);
+  for (int& a : A) std::cin >> a;
+  for (int& b : B) std::cin >> b;
   auto C = min_plus_convolution_concave_arbitary(A, B);
   for (int i = 0; i < static_cast<int>(C.size()); ++i) {
     if (i) std::cout << ' ';
