@@ -12,7 +12,7 @@
     "verify:template-check": "node scripts/check-verify-template-includes.mjs"
   },
   "devDependencies": {
-    "markdownlint-cli2": "0.23.2",
+    "markdownlint-cli2": "0.23.3",
     "prettier": "3.9.6"
   },
   "engines": {
